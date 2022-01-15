@@ -16,7 +16,7 @@
 @endsection
 
 @section('content')
-    
+    <h2>Test header</h2>
     <div class="container">
         <h2 style="text-align: center;">Announcement List</h2><br>
         <table class="mb-0 table table-hover" id="table">
