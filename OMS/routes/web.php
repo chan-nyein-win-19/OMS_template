@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\OMSControllers\AnnouncementController;
+use App\Http\Controllers\OMSControllers\AccountController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,3 +24,8 @@ Route::get('/', function () {
 // announcement
     Route::resource('announcements',AnnouncementController::class);
 // end
+
+// account
+    Route::resource('accounts',AccountController::class);
+// end
+
