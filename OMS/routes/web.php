@@ -23,9 +23,12 @@ Route::get('/', function () {
 
 // announcement
     Route::resource('announcements',AnnouncementController::class);
+    
 // end
 
 // account
     Route::resource('accounts',AccountController::class);
 // end
+
+
 
