@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\OMSControllers\AnnouncementController;
 use App\Http\Controllers\OMSControllers\AccountController;
+use App\Models\Announcement;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,7 +18,8 @@ use App\Http\Controllers\OMSControllers\AccountController;
 */
 
 Route::get('/', function () {
-    return view('template.template');
+    $list = Announcement::latest()->paginate(4);
+    return view('template.template',compact('list'));
 });
 
 

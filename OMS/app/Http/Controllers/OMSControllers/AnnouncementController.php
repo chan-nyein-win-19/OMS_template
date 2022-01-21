@@ -48,7 +48,8 @@ class AnnouncementController extends Controller
      */
     public function show(Announcement $announcement)
     {
-        //
+        $list = Announcement::find($announcement['id']);
+        return view('announcement.detail',compact('list'));
     }
 
     /**
