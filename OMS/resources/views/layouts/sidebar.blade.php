@@ -9,12 +9,12 @@
                 </a>
                 <ul>
                     <li>
-                       <a href="#" class="textstyle">
+                       <a href="{{ url('/users') }}" class="textstyle">
                             Employee List
                        </a>
                     </li>
                     <li>
-                       <a href="#" class="textstyle">
+                       <a href="{{ url('/user') }}" class="textstyle">
                            Employee Create
                        </a>
                    </li>

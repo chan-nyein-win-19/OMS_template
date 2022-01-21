@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\OMSControllers\AnnouncementController;
 use App\Http\Controllers\OMSControllers\AccountController;
+use App\Http\Controllers\OMSControllers\EmployeeController;
+use App\Http\Controllers\OMSControllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,5 +29,11 @@ Route::get('/', function () {
 
 // account
     Route::resource('accounts',AccountController::class);
+// end
+
+
+// user
+Route::resource(name: 'user', controller:EmployeeController::class);
+Route::resource('users',UserController::class);
 // end
 
