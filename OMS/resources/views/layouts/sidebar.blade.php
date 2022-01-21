@@ -2,7 +2,7 @@
     <ul class="vertical-nav-menu">
         <li class="app-sidebar__heading">Employee</li>
         <li>
-            <a href="#">
+            <a href="{{ url('/users') }}">
                 <i class="metismenu-icon pe-7s-diamond"></i>
                 Employee List
                 <i class="metismenu-state-icon caret-left"></i>

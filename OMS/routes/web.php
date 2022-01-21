@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\OMSControllers\AnnouncementController;
 use App\Http\Controllers\OMSControllers\AccountController;
+use App\Http\Controllers\OMSControllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +21,9 @@ Route::get('/', function () {
     return view('template.template');
 });
 
+// user
+    Route::resource('users',UserController::class);
+// end
 
 // announcement
     Route::resource('announcements',AnnouncementController::class);
