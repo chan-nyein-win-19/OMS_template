@@ -9,12 +9,12 @@
                 </a>
                 <ul>
                     <li>
-                       <a href="#" class="textstyle">
+                       <a href="#">
                             Employee List
                        </a>
                     </li>
                     <li>
-                       <a href="#" class="textstyle">
+                       <a href="#">
                            Employee Create
                        </a>
                    </li>
