@@ -3,7 +3,9 @@
 @section('title','Office Management System')
 
 @section('style')
-
+    <link rel="stylesheet" href="{{ asset('/storage/OMS/data-tables/jquery.dataTables.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('/storage/OMS/bootstrap5/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('/storage/OMS/css/style.css') }}">
 @endsection
 
 @section('topbar')
@@ -16,7 +18,7 @@
 
 @section('content')
     <div class="container">
-        <h3 class="mb-3">Latest Announcement</h3>
+        <h3 class="mb-4">Latest Announcement</h3>
         @foreach($list as $item)
         <div class="card mb-2">
             <div class="card-body">

@@ -54,15 +54,16 @@
                                     <i class="fa fa-angle-down ml-2 opacity-8"></i>
                                 </a>
                                 <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu dropdown-menu-right">
-                                    <button type="button" tabindex="0" class="dropdown-item">User Info</button>
-                                    <button type="button" tabindex="0" class="dropdown-item">Logout</button>
+                                    @if(isset(Auth::user()->employeeid))
+                                        <button type="button" tabindex="0" class="dropdown-item">{{ Auth::user()->username }}</button>
+                                        <button type="button" tabindex="0" class="dropdown-item"><a href="{{ url('/logout') }}" style="text-decoration: none">logout</a></button>
+                                    @endif
                                 </div>
                             </div>
                         </div>
                         <div class="widget-content-left ml-3 header-user-info">
                             <div class="widget-heading">
-                                Alina Mclourd
-                                {{-- {{ Auth::user()->username }} --}}
+                                {{ Auth::user()->username }}
                             </div>
                         </div>
                     </div>

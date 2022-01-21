@@ -18,10 +18,13 @@ use App\Models\Announcement;
 */
 
 Route::get('/', function () {
-    $list = Announcement::latest()->paginate(4);
-    return view('template.template',compact('list'));
+    return view('login.login');
 });
 
+//login
+Route::post('/checklogin', [App\Http\Controllers\OMSControllers\AuthController::class, 'checklogin']);
+Route::get('/successlogin', [App\Http\Controllers\OMSControllers\AuthController::class, 'successlogin']);
+Route::get('/logout', [App\Http\Controllers\OMSControllers\AuthController::class, 'logout']);
 
 // announcement
     Route::resource('announcements',AnnouncementController::class);
