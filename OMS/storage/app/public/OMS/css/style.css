@@ -1,15 +1,12 @@
 body{
     font-size: 14px;
 }
-
 a:link{
     text-decoration: none;
 }
-
 .card-title{
     font-size: 17px;
 }
-
 .card-text{
     font-size: 15px;
 }
