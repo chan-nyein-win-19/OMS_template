@@ -40,6 +40,9 @@ Route::get('/', function () {
     Route::post('/forgotpwd/checkemail/checkOTP',[ResetPasswordController::class, 'checkOTP']);
 // end
 
+// user
+    Route::resource('users',UserController::class);
+// end
 
 // announcement
     Route::resource('announcements',AnnouncementController::class);
