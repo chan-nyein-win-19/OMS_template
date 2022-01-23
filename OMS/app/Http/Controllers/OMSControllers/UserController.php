@@ -5,10 +5,7 @@ namespace App\Http\Controllers\OMSControllers;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
-<<<<<<< HEAD
-=======
 use Datatables;
->>>>>>> UserLIst
 
 class UserController extends Controller
 {
@@ -19,12 +16,8 @@ class UserController extends Controller
      */
     public function index()
     {
-<<<<<<< HEAD
-        //
-=======
         $list = User::all();
         return view('user.userlist', compact('list'));
->>>>>>> UserLIst
     }
 
     /**
@@ -90,13 +83,9 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-<<<<<<< HEAD
-        //
-=======
         $delete=User::find($user);
         $delete->each->delete();
 
         return back();
->>>>>>> UserLIst
     }
 }
