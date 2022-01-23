@@ -23,10 +23,13 @@ Route::get('/', function () {
 
 // announcement
     Route::resource('announcements',AnnouncementController::class);
+
     Route::match(['put', 'patch'],'announcements/{id}', 'AnnouncementController@update');
 // end
 
 // account
     Route::resource('accounts',AccountController::class);
 // end
+
+
 
