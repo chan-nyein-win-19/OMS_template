@@ -27,6 +27,7 @@ class AnnouncementController extends Controller
     public function create()
     {
         //
+         return view('announcement.create');
     }
 
     /**
@@ -38,6 +39,12 @@ class AnnouncementController extends Controller
     public function store(Request $request)
     {
         //
+        $announcement = new Announcement;
+        $announcement->title=request()->title;
+        $announcement->content=request()->content;
+        //$announcement->user_id=auth()->user()->id;
+        $announcement->save();
+        return redirect('/announcements/create')->with('info','Announcements Successfully Added...');
     }
 
     /**
@@ -46,9 +53,13 @@ class AnnouncementController extends Controller
      * @param  \App\Models\Announcement  $announcement
      * @return \Illuminate\Http\Response
      */
-    public function show(Announcement $announcement)
+    public function show($id)
     {
         //
+        $ann=Announcement::find($id);
+        
+        return view('announcement.show',compact('ann'));
+
     }
 
     /**
@@ -57,9 +68,12 @@ class AnnouncementController extends Controller
      * @param  \App\Models\Announcement  $announcement
      * @return \Illuminate\Http\Response
      */
-    public function edit(Announcement $announcement)
+    public function edit($id)
     {
         //
+        $edit=Announcement::find($id);
+        
+        return view('announcement.edit',compact('edit'));
     }
 
     /**
@@ -69,9 +83,23 @@ class AnnouncementController extends Controller
      * @param  \App\Models\Announcement  $announcement
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Announcement $announcement)
+    public function update(Request $request, $id)
     {
         //
+      /*  Announcement::findOrFail($id)->update([
+            'title'=>request()->title,
+            'content'=>request()->content,
+            //'user_id'=>auth()->user()->id,
+        ]);*/
+        
+        $announcement = Announcement::find($id);
+        $announcement->title=request()->title;
+        $announcement->content=request()->content;
+        //$announcement->user_id=auth()->user()->id;
+        $announcement->save();
+       // return view('announcement.edit');
+        $a="/announcements/".$id."/edit";
+        return redirect($a)->with('success','Announcement has been updated successfully!!');
     }
 
     /**
