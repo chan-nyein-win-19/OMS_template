@@ -24,12 +24,8 @@
         <li>
             <a href="#">
                 <i class="metismenu-icon pe-7s fas fa-scroll" style="font-size: 16px;"></i>
-                Announcements
+                    Announcements
                 <i class="fa fa-angle-down ml-2 opacity-8"></i>
-            <a href="{{ url('/users') }}">
-                <i class="metismenu-icon pe-7s-diamond"></i>
-                Employee List
-                <i class="metismenu-state-icon caret-left"></i>
             </a>
             <ul>
                 <li>
