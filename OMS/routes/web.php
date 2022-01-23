@@ -80,21 +80,27 @@ Route::get('/', function () {
         'as'=>'leaves.show',
         'uses'=>'App\Http\Controllers\OMSControllers\LeaveController@show'
     ]);
+
     Route::get('leaves/edit/{date}',[
         'as'=>'leaves.edit',
         'uses'=>'App\Http\Controllers\OMSControllers\LeaveController@edit'
     ]);
+
     Route::resource('leaves',LeaveController::class,['except'=>'show','edit']);
 //end 
 
 // EmployeeLeave
     Route::get('/leaveRequestForm/{newLeave}/{date}',[LeaveController::class,'addNew']);
+
     Route::post('/leaveRecord/searchLeave',[LeaveController::class,'searchLeave']);
 // end
 
 // leaderLeave
     Route::get('/leader/leaveRecord',[LeaderLeaveController::class,'viewLeave']);
+
     Route::post('/leader/leaveRecord/searchLeave',[LeaderLeaveController::class,'findLeave']);
+
     Route::get('/leader/leaveStatus/{id}/{status}/{date}/{filtering}',[LeaderLeaveController::class,'changeStatus']);
+    
     Route::get('/leader/leaveRecord/filterLeave/{filtering}/{date}',[LeaderLeaveController::class,'filterLeave']);
 // end
