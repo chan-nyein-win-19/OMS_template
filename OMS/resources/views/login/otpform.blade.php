@@ -34,10 +34,16 @@ One Time Password Form
                     @endforeach
                 </ul>
             </div>
+<<<<<<< HEAD
         @endif -->
         <form method="post" action="{{ url('/forgotpwd/checkemail/checkOTP') }}">
         @csrf
         @method('POST')
+=======
+        @endif
+        <form method="post" action="{{ url("/otp/checkOTP")}}">
+        @csrf
+>>>>>>> attendanceAdd
             <input type="hidden" name="employeeid" value="{{ $employeeid }}">
             <div class="form-group">
                 <label>OTP Password</label>

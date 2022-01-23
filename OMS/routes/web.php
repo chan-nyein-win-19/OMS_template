@@ -10,6 +10,7 @@ use App\Http\Controllers\OMSControllers\ResetPasswordController;
 use App\Http\Controllers\OMSControllers\EmployeeController;
 use App\Http\Controllers\OMSControllers\UserController;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -62,3 +63,6 @@ Route::get('/', function () {
     Route::resource('users',UserController::class);
 // end
 
+//attendance
+Route::get('/attendanceform',[App\Http\Controllers\OMSControllers\AttendanceController::class, 'create']);
+Route::post('/attendanceform',[App\Http\Controllers\OMSControllers\AttendanceController::class, 'store']);
