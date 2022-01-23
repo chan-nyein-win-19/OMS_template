@@ -83,4 +83,5 @@ class EmailSendController extends Controller
     {
      return view('login.otpform');
     }
+    }
 }
