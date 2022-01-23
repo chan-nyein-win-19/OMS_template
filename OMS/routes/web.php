@@ -38,6 +38,7 @@ Route::get('/', function () {
     Route::post('/forgotpwd/checkemail/checkOTP',[ResetPasswordController::class, 'checkOTP']);
 // end
 
+
 // announcement
     Route::resource('announcements',AnnouncementController::class);
 
@@ -46,7 +47,6 @@ Route::get('/', function () {
 
 // account
     Route::resource('accounts',AccountController::class);
+    Route::get('/changepassword/{id}',[AccountController::class,'editPassword']);
+    Route::post('/changepassword/{id}',[AccountController::class,'changePassword']);
 // end
-
-
-

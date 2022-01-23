@@ -53,16 +53,18 @@
 
 
                                 <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu dropdown-menu-right">
-                                    @if(isset(Auth::user()->employeeid))
-                                        <button type="button" tabindex="0" class="dropdown-item">{{ Auth::user()->username }}</button>
-                                        <button type="button" tabindex="0" class="dropdown-item"><a href="{{ url('/logout') }}">logout</a></button>
-                                    @endif
-                                </div>
+                                @if(isset(Auth::user()->employeeid))
+                                    <a class="btn dropdown-item" tabindex="0" href="{{ url('/accounts/Auth::user()->id') }}">Account info</a>
+                                    <a class="btn dropdown-item" tabindex="0" href="{{ url('/changepassword/Auth::user()->id') }}">Change Password</a>
+                                    <a class="btn dropdown-item" tabindex="0"  href="{{ url('/logout') }}">Logout</a>
+                                
+                                @endif
+                            </div>
                             </div>
                         </div>
                         <div class="widget-content-left ml-3 header-user-info">
                             <div class="widget-heading">
-                                Alina Mclourd
+                            {{ Auth::user()->username }}
                             </div>
                         </div>
                     </div>
