@@ -50,9 +50,13 @@
                                     <i class="fa fa-user" style="font-size: 20px;color: grey;"></i>
                                     <i class="fa fa-angle-down ml-2 opacity-8"></i>
                                 </a>
+
+
                                 <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu dropdown-menu-right">
-                                    <button type="button" tabindex="0" class="dropdown-item">User Info</button>
-                                    <button type="button" tabindex="0" class="dropdown-item">Logout</button>
+                                    @if(isset(Auth::user()->employeeid))
+                                        <button type="button" tabindex="0" class="dropdown-item">{{ Auth::user()->username }}</button>
+                                        <button type="button" tabindex="0" class="dropdown-item"><a href="{{ url('/logout') }}">logout</a></button>
+                                    @endif
                                 </div>
                             </div>
                         </div>
