@@ -5,18 +5,18 @@
             <a href="#" class="textstyle">
                 <i class="metismenu-icon pe-7s fas fa-user"  style="font-size: 16px;"></i>
                     Employee
-                    <i class="fa fa-angle-down ml-5 opacity-8"></i>
+                <i class="fa fa-angle-down ml-5 opacity-8"></i>
                 </a>
                 <ul>
                     <li>
-                       <a href="{{ url('/users') }}" class="textstyle">
+                        <a href="{{ url('/users') }}" class="textstyle">
                             Employee List
-                       </a>
+                        </a>
                     </li>
                     <li>
-                       <a href="{{ url('/user') }}" class="textstyle">
+                        <a href="{{ url('/user') }}" class="textstyle">
                            Employee Create
-                       </a>
+                        </a>
                    </li>
                </ul>
            </li>
@@ -44,19 +44,19 @@
         <li>
             <a href="#" class="textstyle">
                 <i class="metismenu-icon pe-7s fas fa-list" style="font-size: 16px;"></i>
-                <span class="ml-3">Assets</span>
+                    <span class="ml-3">Assets</span>
                 <i class="fa fa-angle-down ml-5 opacity-8"></i>
             </a>
             <ul>
                 <li>
-                   <a href="#" class="textstyle">
+                    <a href="#" class="textstyle">
                        Asset Lists
-                   </a>
+                    </a>
                 </li>
                 <li>
-                   <a href="#" class="textstyle">
+                    <a href="#" class="textstyle">
                        Asset Create
-                   </a>
+                    </a>
                 </li>
             </ul>
         </li>
