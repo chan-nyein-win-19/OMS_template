@@ -11,8 +11,7 @@ use App\Http\Controllers\OMSControllers\EmployeeController;
 use App\Http\Controllers\OMSControllers\UserController;
 use App\Http\Controllers\OMSControllers\LeaveController;
 use App\Http\Controllers\OMSControllers\LeaderLeaveController;
-use App\Http\Controllers\OMSControllers\AdminController;
-use App\Http\Controllers\AttendanceController;
+use App\Http\Controllers\OMSControllers\AttendanceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,6 +30,7 @@ Route::get('/', function () {
 
 // login
     Route::post('/checklogin',[AuthController::class, 'checklogin']);
+
     Route::get('/logout',[AuthController::class, 'logout']);
 // end
 
@@ -47,13 +47,6 @@ Route::get('/', function () {
 // user
     Route::resource('users',UserController::class);
 // end
-// Route::get('/', function () {
-//     return view('template.template');
-// });
-//Auth Route
-Route::get('/', [AdminController::class, 'index']);
-Route::post('/adminlogin/checklogin',[AdminController::class, 'checklogin']);
-//End Auth
 
 // announcement
     Route::resource('announcements',AnnouncementController::class);
@@ -63,20 +56,26 @@ Route::post('/adminlogin/checklogin',[AdminController::class, 'checklogin']);
 
 // account
     Route::resource('accounts',AccountController::class);
+
     Route::get('/changepassword/{id}',[AccountController::class,'editPassword']);
+
     Route::post('/changepassword/{id}',[AccountController::class,'changePassword']);
 // end
 
 
 // user
     Route::resource(name: 'user', controller:EmployeeController::class);
+
     Route::resource('users',UserController::class);
 // end
 
 //attendance
-Route::get('/attendanceform',[App\Http\Controllers\OMSControllers\AttendanceController::class, 'create']);
-Route::post('/attendanceform',[App\Http\Controllers\OMSControllers\AttendanceController::class, 'store']);
-//Leave Resource Route
+    Route::get('/attendanceform',[AttendanceController::class, 'create']);
+
+    Route::post('/attendanceform',[AttendanceController::class, 'store']);
+// end
+
+// leave 
     Route::get('leaves/list',[
         'as'=>'leaves.show',
         'uses'=>'App\Http\Controllers\OMSControllers\LeaveController@show'
@@ -86,30 +85,16 @@ Route::post('/attendanceform',[App\Http\Controllers\OMSControllers\AttendanceCon
         'uses'=>'App\Http\Controllers\OMSControllers\LeaveController@edit'
     ]);
     Route::resource('leaves',LeaveController::class,['except'=>'show','edit']);
-//end Resource Route
-//login
-Route::get('adminlogin/successlogin',[AdminController::class, 'successlogin'])->middleware('auth');
-Route::get('/adminlogin/logout', [AdminController::class, 'logout']);
-//endlogin
+//end 
 
+// EmployeeLeave
+    Route::get('/leaveRequestForm/{newLeave}/{date}',[LeaveController::class,'addNew']);
+    Route::post('/leaveRecord/searchLeave',[LeaveController::class,'searchLeave']);
+// end
 
-//EmployeeLeave
-Route::get('/leaveRequestForm/{newLeave}/{date}',[LeaveController::class,'addNew']);
-//Route::post('/leaveRequestForm/{newLeave}/{date}',[LeaveController::class,'save']);
-Route::post('/leaveRecord/searchLeave',[LeaveController::class,'searchLeave']);
-//Route::get('/leaveRequestForm',[LeaveController::class,'show']);
-//Route::post('/leaveRequestForm',[LeaveController::class,'save']);
-//Route::get('/leaveRecord',[LeaveController::class,'list']);
-
-//Route::get('/leaveRecord/edit/{date}',[LeaveController::class,'editLeave']);
-//Route::post('/leaveRecord/edit',[LeaveController::class,'editLeavePost']);
-//Route::get('/leaveRecord/delete/{id}',[LeaveController::class,'destroy']);
-
-//EndEmployeeLeave
-
-//leaderLeave
-Route::get('/leader/leaveRecord',[LeaderLeaveController::class,'viewLeave']);
-Route::post('/leader/leaveRecord/searchLeave',[LeaderLeaveController::class,'findLeave']);
-Route::get('/leader/leaveStatus/{id}/{status}/{date}/{filtering}',[LeaderLeaveController::class,'changeStatus']);
-Route::get('/leader/leaveRecord/filterLeave/{filtering}/{date}',[LeaderLeaveController::class,'filterLeave']);
-//endLeaderLeave
+// leaderLeave
+    Route::get('/leader/leaveRecord',[LeaderLeaveController::class,'viewLeave']);
+    Route::post('/leader/leaveRecord/searchLeave',[LeaderLeaveController::class,'findLeave']);
+    Route::get('/leader/leaveStatus/{id}/{status}/{date}/{filtering}',[LeaderLeaveController::class,'changeStatus']);
+    Route::get('/leader/leaveRecord/filterLeave/{filtering}/{date}',[LeaderLeaveController::class,'filterLeave']);
+// end
