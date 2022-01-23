@@ -26,13 +26,17 @@ Route::get('/', function () {
 // login
     Route::post('/checklogin',[AuthController::class, 'checklogin']);
     Route::get('/logout',[AuthController::class, 'logout']);
+// end
 
 // Forgot Password
     Route::get('/forgotpwd',[EmailSendController::class, 'forgotpwd']);
+
     Route::post('/forgotpwd/checkemail',[EmailSendController::class, 'checkemail']);
+// end
 
 // One Time Password and Set New Password
     Route::post('/forgotpwd/checkemail/checkOTP',[ResetPasswordController::class, 'checkOTP']);
+// end
 
 // announcement
     Route::resource('announcements',AnnouncementController::class);

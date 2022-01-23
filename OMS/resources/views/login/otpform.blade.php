@@ -3,9 +3,9 @@
 One Time Password Form
 @endsection
 @section('content')
-    <h1 align="center">Office Management System</h1>
+    <h1 class="text-center">Office Management System</h1>
     <div class ="container box">
-        <h3 align ="center">One Time Password Form</h3></br>
+        <h3 class="text-center">One Time Password Form</h3></br>
 
 
     @if($errors->any())
@@ -35,7 +35,7 @@ One Time Password Form
                 </ul>
             </div>
         @endif -->
-        <form method="post" action="{{ url("/forgotpwd/checkemail/checkOTP")}}">
+        <form method="post" action="{{ url('/forgotpwd/checkemail/checkOTP') }}">
         @csrf
         @method('POST')
             <input type="hidden" name="employeeid" value="{{ $employeeid }}">

@@ -7,14 +7,12 @@ Forgot Password Form
     <div class ="container box">
         <h3 class="text-center">Forgot Password Form</h3></br>
 
-
         @if($message = Session::get('error'))
             <div class="alert alert-danger alert-block">
                 <button type="button" class="close" data-dismiss="alert">x</button>
                 <strong>{{ $message }}</strong>
             </div>
         @endif
-
 
         @if(count($errors) > 0)
             <div class="alert alert-danger">
@@ -25,11 +23,12 @@ Forgot Password Form
                 </ul>
             </div>
         @endif
-        <form method="post" action="{{ url("/forgotpwd/checkemail")}}">
+        
+        <form method="post" action="{{ url('/forgotpwd/checkemail' )}}" novalidate>
         @csrf
             <div class="form-group">
                 <label>Employee Email</label>
-                <input type="email" id="email" name="email" class="form-control"/>
+                <input type="email" name="email" class="form-control"/>
             </div>
         
             <div class="form-group">
