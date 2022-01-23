@@ -37,7 +37,6 @@ class AnnouncementController extends Controller
      */
     public function store(Request $request)
     {
-        
         $announcement = new Announcement;
         $announcement->title=request()->title;
         $announcement->content=request()->content;
@@ -53,11 +52,9 @@ class AnnouncementController extends Controller
      */
     public function show($id)
     {
-     
         $ann=Announcement::find($id);
         
         return view('announcement.show',compact('ann'));
-
     }
 
     /**
@@ -68,7 +65,6 @@ class AnnouncementController extends Controller
      */
     public function edit($id)
     {
-      
         $edit=Announcement::find($id);
         
         return view('announcement.edit',compact('edit'));
