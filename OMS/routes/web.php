@@ -7,6 +7,8 @@ use App\Http\Controllers\OMSControllers\AnnouncementController;
 use App\Http\Controllers\OMSControllers\AccountController;
 use App\Http\Controllers\OMSControllers\EmailSendController;
 use App\Http\Controllers\OMSControllers\ResetPasswordController;
+use App\Http\Controllers\OMSControllers\EmployeeController;
+use App\Http\Controllers\OMSControllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,3 +52,10 @@ Route::get('/', function () {
     Route::get('/changepassword/{id}',[AccountController::class,'editPassword']);
     Route::post('/changepassword/{id}',[AccountController::class,'changePassword']);
 // end
+
+
+// user
+    Route::resource(name: 'user', controller:EmployeeController::class);
+    Route::resource('users',UserController::class);
+// end
+
