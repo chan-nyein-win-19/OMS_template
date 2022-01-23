@@ -3,9 +3,9 @@
 Login Form
 @endsection
 @section('content')
-    <h1 align="center">Office Management System</h1>
+    <h1 class="text-center">Office Management System</h1>
     <div class ="container box">
-        <h3 align ="center">Login Form</h3></br>
+        <h3 class="text-center">Login Form</h3></br>
 
         @if($message = Session::get('error'))
             <div class="alert alert-danger alert-block">
