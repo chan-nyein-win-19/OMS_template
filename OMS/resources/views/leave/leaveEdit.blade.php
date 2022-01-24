@@ -141,7 +141,7 @@
                         <div class="col-sm-2"></div>
                         <div class="col-sm-10">
                         <input type="submit" class="btn btn-primary">
-                            <button class="btn btn-danger ml-5" id="clear">
+                            <button class="btn btn-danger ml-5" id="clear" type="reset">
                               clear</button></div>
                       </div>
                          

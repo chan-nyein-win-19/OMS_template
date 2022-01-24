@@ -25,7 +25,7 @@
 </div>
 <div class="row">
     
-    <div class="col-md-4">
+    <div class="col-md-4 mb-3">
    
             <form action="{{url("/leader/leaveRecord/searchLeave")}}" class="form-inline" method="post" >
             @csrf
@@ -41,7 +41,7 @@
             </form>
     </div>
     <div class="col-md-6"></div>
-    <div class="col-md-2">
+    <div class="col-md-2 mb-3">
       <select onchange="this.options[this.selectedIndex].value && (window.location= this.options[this.selectedIndex].value);" class="form-control" id="filterLeave">
           <option value="{{url("/leader/leaveRecord/filterLeave/all/$today")}}" @if($filtering=='all')selected @endif>All</option>
           <option value="{{url("/leader/leaveRecord/filterLeave/Pending/$today")}}" @if($filtering=='Pending')selected @endif >Pending</option>

@@ -199,7 +199,7 @@
                         <div class="col-sm-2"></div>
                         <div class="col-sm-10">
                         <input type="submit" class="btn btn-primary">
-                            <button class="btn btn-danger ml-5" id="clear">
+                            <button class="btn btn-danger ml-5" id="clear" type="reset">
                               clear</button>
                          </div>
                       </div>
@@ -353,7 +353,7 @@
                         <div class="col-sm-2"></div>
                         <div class="col-sm-10">
                         <input type="submit" class="btn btn-primary">
-                            <button class="btn btn-danger ml-5" id="clear">
+                            <button class="btn btn-danger ml-5" id="clear" type="reset">
                               clear</button>
                         </div>
                       </div> 
@@ -420,12 +420,12 @@ addbutton1.onclick = function(){
  return false;
 }
 
-let clear = document.querySelector("#clear");
-clear.onclick = function(){
+// let clear = document.querySelector("#clear");
+// clear.onclick = function(){
 
-document.getElementById('newform').reset();
+// document.getElementById('reason').value="";
 
-}
+// }
 
 }) 
 
