@@ -1,8 +1,8 @@
 <?php
+
 namespace App\Http\Controllers\OMSControllers;
 
 use App\Http\Controllers\Controller;
-namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Validator;
 use App\Models\Otp;
@@ -13,31 +13,38 @@ class ResetPasswordController extends Controller
 {
     //
     function checkOTP(Request $request)
-    {
-        $this->validate($request,[
-            'otp'=>'required',
-            'newPassword'=>'required|string|min:3',
-            'confirmPassword'=>'required|string|min:3',    
+   {
+    $validator= validator(request()->all(),[
+        'otp'=>'required',
+        'newPassword'=>'required|string|min:3',
+        'confirmPassword'=>'required|string|min:3',
+      ]);
+
+
+      $employeeid = $request->get('employeeid');
+
+      if($validator->fails())
+      {
+      
+        return view('login.otpform',compact('employeeid'))->withErrors($validator);
+      }
+
+
+       $otp =Otp::where('employeeid',$request->get('employeeid'))->first();
+       
+
+       if($otp->otp == $request->get('otp'))
+       {
+        User::where('id',$request->get('employeeid'))->update([
+            'password' => Hash::make($request->get('newPassword'))
         ]);
-
-        $user_data= array(
-           'otp' => $request->get('otp'),
-           'newPassword'=> $request->get('newPassword')
-        );
-
-        $otp =Otp::where('employeeid',$request->get('employeeid'))->first();
-
-
-        if($otp->otp == $request->get('otp'))
-        {
-            User::where('id',$request->get('employeeid'))->update([
-                'password' => Hash::make($request->get('newPassword'))
-            ]);
-            return redirect('/adminlogin');
-        }
-        else
-        {
-            return redirect('/forgotpwd/otpform')->with('error','Incorrect OTP');
-        }
+        return view('login.login');
+       }
+       else
+       {
+        return view('login.otpform',compact('employeeid'))->withErrors(['otpError'=>'Incorrect OTP']);
+       }
     }
-}
+    
+   }
+
