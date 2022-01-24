@@ -5,6 +5,7 @@
 @section('style')
     <link rel="stylesheet" href="{{ asset('/storage/OMS/data-tables/jquery.dataTables.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/storage/OMS/bootstrap5/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('/storage/OMS/css/style.css') }}">
 @endsection
 
 @section('topbar')
@@ -43,7 +44,7 @@
                         <button class="mb-2 mr-2 btn-transition btn btn-outline-warning">
                             <i class="fa fa-fw"></i>
                         </button>
-                        <form method="POST" action="">
+                        <form method="POST" action="{{ route('announcements.destroy', $item->id) }}">
                             @csrf
                             <input name="_method" type="hidden" value="DELETE">
                             <button type="submit" class="mb-2 mr-2 btn-transition btn btn-outline-danger show_confirm" data-toggle="tooltip">
@@ -75,9 +76,7 @@
                 null,
                 null,
                 null,
-                null
-                
-
+                null              
             ],
             "aaSorting": [],            
             

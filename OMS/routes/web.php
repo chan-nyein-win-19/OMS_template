@@ -2,13 +2,16 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\OMSControllers\AuthController;
 use App\Http\Controllers\OMSControllers\AnnouncementController;
 use App\Http\Controllers\OMSControllers\AccountController;
+use App\Http\Controllers\OMSControllers\EmailSendController;
+use App\Http\Controllers\OMSControllers\ResetPasswordController;
+use App\Http\Controllers\OMSControllers\EmployeeController;
+use App\Http\Controllers\OMSControllers\UserController;
 use App\Http\Controllers\OMSControllers\LeaveController;
 use App\Http\Controllers\OMSControllers\LeaderLeaveController;
-use App\Http\Controllers\OMSControllers\AdminController;
-
-use App\Http\Controllers\AttendanceController;
+use App\Http\Controllers\OMSControllers\AttendanceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,56 +24,83 @@ use App\Http\Controllers\AttendanceController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('template.template');
-// });
-//Auth Route
-Route::get('/', [AdminController::class, 'index']);
-Route::post('/adminlogin/checklogin',[AdminController::class, 'checklogin']);
-//End Auth
+Route::get('/', function () {
+  return view('login.login');
+});
+
+// login
+    Route::post('/checklogin',[AuthController::class, 'checklogin']);
+
+    Route::get('/logout',[AuthController::class, 'logout']);
+// end
+
+// Forgot Password
+    Route::get('/forgotpwd',[EmailSendController::class, 'forgotpwd']);
+
+    Route::post('/forgotpwd/checkemail',[EmailSendController::class, 'checkemail']);
+// end
+
+// One Time Password and Set New Password
+    Route::post('/forgotpwd/checkemail/checkOTP',[ResetPasswordController::class, 'checkOTP']);
+// end
+
+// user
+    Route::resource('users',UserController::class);
+// end
 
 // announcement
     Route::resource('announcements',AnnouncementController::class);
+
+    Route::match(['put', 'patch'],'announcements/{id}', 'AnnouncementController@update');
 // end
 
 // account
     Route::resource('accounts',AccountController::class);
+
+    Route::get('/changepassword/{id}',[AccountController::class,'editPassword']);
+
+    Route::post('/changepassword/{id}',[AccountController::class,'changePassword']);
 // end
 
-//Leave Resource Route
+
+// user
+    Route::resource(name: 'user', controller:EmployeeController::class);
+
+    Route::resource('users',UserController::class);
+// end
+
+//attendance
+    Route::get('/attendanceform',[AttendanceController::class, 'create']);
+
+    Route::post('/attendanceform',[AttendanceController::class, 'store']);
+// end
+
+// leave 
     Route::get('leaves/list',[
         'as'=>'leaves.show',
         'uses'=>'App\Http\Controllers\OMSControllers\LeaveController@show'
     ]);
+
     Route::get('leaves/edit/{date}',[
         'as'=>'leaves.edit',
         'uses'=>'App\Http\Controllers\OMSControllers\LeaveController@edit'
     ]);
+
     Route::resource('leaves',LeaveController::class,['except'=>'show','edit']);
-//end Resource Route
-//login
-Route::get('adminlogin/successlogin',[AdminController::class, 'successlogin'])->middleware('auth');
-Route::get('/adminlogin/logout', [AdminController::class, 'logout']);
-//endlogin
+//end 
 
+// EmployeeLeave
+    Route::get('/leaveRequestForm/{newLeave}/{date}',[LeaveController::class,'addNew']);
 
-//EmployeeLeave
-Route::get('/leaveRequestForm/{newLeave}/{date}',[LeaveController::class,'addNew']);
-//Route::post('/leaveRequestForm/{newLeave}/{date}',[LeaveController::class,'save']);
-Route::post('/leaveRecord/searchLeave',[LeaveController::class,'searchLeave']);
-//Route::get('/leaveRequestForm',[LeaveController::class,'show']);
-//Route::post('/leaveRequestForm',[LeaveController::class,'save']);
-//Route::get('/leaveRecord',[LeaveController::class,'list']);
+    Route::post('/leaveRecord/searchLeave',[LeaveController::class,'searchLeave']);
+// end
 
-//Route::get('/leaveRecord/edit/{date}',[LeaveController::class,'editLeave']);
-//Route::post('/leaveRecord/edit',[LeaveController::class,'editLeavePost']);
-//Route::get('/leaveRecord/delete/{id}',[LeaveController::class,'destroy']);
+// leaderLeave
+    Route::get('/leader/leaveRecord',[LeaderLeaveController::class,'viewLeave']);
 
-//EndEmployeeLeave
+    Route::post('/leader/leaveRecord/searchLeave',[LeaderLeaveController::class,'findLeave']);
 
-//leaderLeave
-Route::get('/leader/leaveRecord',[LeaderLeaveController::class,'viewLeave']);
-Route::post('/leader/leaveRecord/searchLeave',[LeaderLeaveController::class,'findLeave']);
-Route::get('/leader/leaveStatus/{id}/{status}/{date}/{filtering}',[LeaderLeaveController::class,'changeStatus']);
-Route::get('/leader/leaveRecord/filterLeave/{filtering}/{date}',[LeaderLeaveController::class,'filterLeave']);
-//endLeaderLeave
+    Route::get('/leader/leaveStatus/{id}/{status}/{date}/{filtering}',[LeaderLeaveController::class,'changeStatus']);
+    
+    Route::get('/leader/leaveRecord/filterLeave/{filtering}/{date}',[LeaderLeaveController::class,'filterLeave']);
+// end

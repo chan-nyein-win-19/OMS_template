@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title','I am template blade')
+@section('title','Office Management System')
 
 @section('style')
 

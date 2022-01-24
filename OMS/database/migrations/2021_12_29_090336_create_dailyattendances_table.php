@@ -13,12 +13,19 @@ class CreateDailyattendancesTable extends Migration
      */
     public function up()
     {
+
         Schema::create('dailyattendances', function (Blueprint $table) {
             $table->id();
+            $table->String('userid');
             $table->date('date');
-            $table->datetime('checkin');
-            $table->datetime('checkout');
-            $table->integer('workinghour');
+            $table->time('checkin');
+            $table->time('checkout');
+            $table->String('lunchtime');
+            $table->String('ottime');
+            $table->String('workinghour');
+            $table->String('leaveday');
+            $table->String('halfdayleave');   
+            $table->String('workfromhome');
             $table->timestamps();
         });
     }
