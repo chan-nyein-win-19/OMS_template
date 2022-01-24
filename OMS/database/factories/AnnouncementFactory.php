@@ -18,7 +18,7 @@ class AnnouncementFactory extends Factory
 <<<<<<< HEAD
 			'content'=>$this->faker->paragraph,
 =======
-            'content'=>$this->faker->paragraph,
+             'content'=>$this->faker->paragraph,
 >>>>>>> UserLIst
         ];
     }

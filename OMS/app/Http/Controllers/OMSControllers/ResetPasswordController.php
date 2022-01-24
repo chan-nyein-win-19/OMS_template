@@ -27,8 +27,8 @@ class ResetPasswordController extends Controller
       {
       
         return view('login.otpform',compact('employeeid'))->withErrors($validator);
+       // return view('login.otpform',compact('employeeid'));
       }
-
 
        $otp =Otp::where('employeeid',$request->get('employeeid'))->first();
        
@@ -43,6 +43,8 @@ class ResetPasswordController extends Controller
        else
        {
         return view('login.otpform',compact('employeeid'))->withErrors(['otpError'=>'Incorrect OTP']);
+        //return view('login.otpform',compact('employeeid'))->with('error','Incorrect OTP');
+        //return view('login.otpform')->with('error','Wrong Email');
        }
     }
     
