@@ -2,6 +2,11 @@
 
 namespace App\Http\Controllers\OMSControllers;
 
+
+// namespace App\Http\Controllers\Auth;
+// use AuthenticatesUsers;
+
+
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Validator;
@@ -10,6 +15,11 @@ use Illuminate\Support\Facades\Mail;
 
 class AuthController extends Controller
 {
+    function login()
+    {
+       return view('login.login');
+    }
+    
     public function checklogin(Request $request)
     {
         $this->validate($request,[
@@ -36,4 +46,9 @@ class AuthController extends Controller
        Auth::logout();
        return view('login.login');
     }
+
+    // public function __construct()
+    // {
+    //     $this->middleware('guest')->except('logout');
+    // }
 }

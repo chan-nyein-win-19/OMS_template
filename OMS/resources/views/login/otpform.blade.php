@@ -4,52 +4,57 @@ One Time Password Form
 @endsection
 @section('content')
     <h1 class="text-center">Office Management System</h1>
+
     <div class ="container box">
         <h3 class="text-center">One Time Password Form</h3></br>
+        <script>
+            $(document).ready(()=>{
+                $('[name="otp"]').focus();
+            });
+        </script>
 
-
+    @if(count($errors) == 4 || count($errors) == 1)
     @if($errors->any())
 	    <div class="alert alert-danger">
-		<ol>
-			@foreach($errors->all() as $value)
-			<li>{{$value}}</li>
-			@endforeach
-		</ol>
-	</div>
+		@foreach($errors->all() as $value)
+			    {{$value}}
+		@endforeach
+		
+	    </div>
 	@endif
+    @endif
 
-        <!-- @if($message = Session::get('error'))
-            <div class="alert alert-danger alert-block">
-                <button type="button" class="close" data-dismiss="alert">x</button>
-                <strong>{{ $message }}</strong>
-            </div>
-        @endif
-
-
-        @if(count($errors) > 0)
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif -->
+   
         <form method="post" action="{{ url('/forgotpwd/checkemail/checkOTP') }}">
         @csrf
         @method('POST')
             <input type="hidden" name="employeeid" value="{{ $employeeid }}">
             <div class="form-group">
                 <label>OTP Password</label>
-                <input type="number" name="otp" class="form-control"/>
+                <input type="number" name="otp" class="form-control @error('otp') is-invalid @enderror"/>
+                @error('otp')
+                    <span class="invalid-feedback" role="alert">
+                        {{ $message }}
+                    </span>
+                @enderror
             </div>
             <div class="form-group">
                 <label>New Password</label>
-                <input type="password" name="newPassword" class="form-control" id="pass1" onkeyup='checkpwd();'/>
+                <input type="password" name="newPassword" class="form-control @error('newPassword') is-invalid @enderror" id="pass1" onkeyup='checkpwd();'/>
+                @error('newPassword')
+                    <span class="invalid-feedback" role="alert">
+                        {{ $message }}
+                    </span>
+                @enderror
             </div>
             <div class="form-group">
                 <label>Comfirm Password</label>
-                <input type="password" name="confirmPassword" class="form-control" id="pass2" onkeyup='checkpwd();'/>
+                <input type="password" name="confirmPassword" class="form-control @error('confirmPassword') is-invalid @enderror" id="pass2" onkeyup='checkpwd();'/>
+                @error('confirmPassword')
+                    <span class="invalid-feedback" role="alert">
+                        {{ $message }}
+                    </span>
+                @enderror
             </div>
 
             <div class="form-group">

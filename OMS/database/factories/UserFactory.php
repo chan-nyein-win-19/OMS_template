@@ -22,10 +22,10 @@ class UserFactory extends Factory
           //  'employeeid'=>$this->faker->unique()->safeEmployeeid(),
             'email' => $this->faker->unique()->safeEmail(),
             'email_verified_at' => now(),
-            'role'=>'admin',
+           // 'role'=>'admin',
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-            'email' => $this->faker->unique()->safeEmail(),
-            'email_verified_at' => now(),
+            //'email' => $this->faker->unique()->safeEmail(),
+            // 'email_verified_at' => now(),
             'role' => $this->faker->name(),
             'employeeid' => rand(1,100),
             'remember_token' => Str::random(10),

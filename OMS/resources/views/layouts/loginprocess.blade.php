@@ -28,7 +28,9 @@
         h1,h3{
             color:darkblue;
         }
-        
+        span{
+            color:red;
+        }
     </style>
 </head>
 <body>

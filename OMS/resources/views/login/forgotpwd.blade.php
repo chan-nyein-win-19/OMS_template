@@ -7,6 +7,13 @@ Forgot Password Form
     <div class ="container box">
         <h3 class="text-center">Forgot Password Form</h3></br>
 
+
+        <script>
+            $(document).ready(()=>{
+                $('[name="email"]').focus();
+            });
+        </script>
+
         @if($message = Session::get('error'))
             <div class="alert alert-danger alert-block">
                 <button type="button" class="close" data-dismiss="alert">x</button>
@@ -14,7 +21,7 @@ Forgot Password Form
             </div>
         @endif
 
-        @if(count($errors) > 0)
+        <!-- @if(count($errors) > 0)
             <div class="alert alert-danger">
                 <ul>
                     @foreach($errors->all() as $error)
@@ -22,13 +29,18 @@ Forgot Password Form
                     @endforeach
                 </ul>
             </div>
-        @endif
+        @endif -->
         
         <form method="post" action="{{ url('/forgotpwd/checkemail' )}}" novalidate>
         @csrf
             <div class="form-group">
                 <label>Employee Email</label>
-                <input type="email" name="email" class="form-control"/>
+                <input type="email" name="email" class="form-control @error('email') is-invalid @enderror"/>
+                @error('email')
+                    <span class="invalid-feedback" role="alert">
+                        {{ $message }}
+                    </span>
+                @enderror
             </div>
         
             <div class="form-group">
