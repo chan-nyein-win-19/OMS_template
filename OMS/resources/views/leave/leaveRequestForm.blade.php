@@ -16,13 +16,13 @@
 @endsection
 @section('content')
 
-
-
-
-    <div class="centered p-3">
+<div class="centered">
+          
+          
         <div class="row">
-            <div class="col-md-2"></div>
-            <div class="col-md-8" class="background:white;">
+            <div class="col-md-1"></div>
+            <div class="col-md-10" class="background:white;">
+            <div class="card p-5">
             <h1 class="text-center mt-5 mb-5">Leave Request Form</h1>
             <!-- @if($errors->any())
                   <div class="alert alert-warning">
@@ -362,13 +362,19 @@
                   
                
             </div>
-            <div class="col-md-2"></div>
-        </div>
+            </div>
+            
+            <div class="col-md-1"></div>
+        
+          </div>
 
 
       
-    </div>
-</div>
+ </div>
+  
+          
+
+   
     
 
     

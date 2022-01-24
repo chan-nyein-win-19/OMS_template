@@ -26,25 +26,27 @@
 </div>
 <div class="row">
     
-    <div class="col-md-4">
-   
-            <form action="{{url("/leaveRecord/searchLeave")}}" class="form-inline" method="post" >
+    <div class="col-md-4 text-center mb-3 col-sm-5">
+   <div style="display:flex;align-item:center;justify-content:center;">
+   <form action="{{url("/leaveRecord/searchLeave")}}" class="form-inline" method="post" >
             @csrf
                 
-                <div class="mr-3">
+                <div class="mr-3 mb-3">
                 <input type="date" name="date" id="date" class="form-control" value="{{$today}}">
                 </div>
-                <div class="">
+                <div class="mb-3">
                 <input type="submit" value="Search" class="btn btn-primary">
                 </div>
                 
             </form>
+   </div>
+            
     </div>
-    <div class="col-md-5"></div>
-    <div class="col-md-3">
+    <div class="col-md-5 col-sm-2"></div>
+    <div class="col-md-3 text-center mb-3 col-sm-5">
         @if(count($leaveRecords)!=0)
-        <a href="{{url("/leaves/edit/$today")}}" type="button" class="btn btn-primary mr-2">Edit Leave</a>
-        <a href="{{url("/leaveRequestForm/newLeave=true/$today")}}" type="button" class="btn btn-primary mr-2">AddNew</a>
+        <a href="{{url("/leaves/edit/$today")}}" type="button" class="btn btn-primary mr-2 mb-3">Edit Leave</a>
+        <a href="{{url("/leaveRequestForm/newLeave=true/$today")}}" type="button" class="btn btn-primary mr-2 mb-3">AddNew</a>
         
         @endif
     </div>

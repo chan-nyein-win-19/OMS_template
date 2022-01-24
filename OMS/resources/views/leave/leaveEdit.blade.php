@@ -19,23 +19,13 @@
 
 
 
-    <div class="centered p-3">
+    <div class="centered">
         <div class="row">
-            <div class="col-md-2"></div>
-            <div class="col-md-8" class="background:white;">
-            <h1 class="text-center mt-5 mb-5">Leave Edit Form</h1>
-            <!-- @if($errors->any())
-                  <div class="alert alert-warning">
-                      
-                          @foreach($errors->all() as $value)
-                          <span>{{$value}}</span><br>
-                          @endforeach
-                    
-
-                  </div>
-                  @endif -->
-                  
-                  <form id="newform" action="{{route('leaves.update',['leaf'=>$leaveRecord])}}" method="post">
+            <div class="col-md-1"></div>
+            <div class="col-md-10" class="background:white;">
+              <div class="card p-3">
+              <h1 class="text-center mt-5 mb-5">Leave Edit Form</h1>
+              <form id="newform" action="{{route('leaves.update',['leaf'=>$leaveRecord])}}" method="post">
                    @csrf
                    @method('PUT')
                    <input type="hidden" name="oldDate" value="{{$leaveRecord->date}}">
@@ -157,10 +147,15 @@
                          
                                
                   </form>
+              </div>
+            
+            
+                  
+                 
                   
                
             </div>
-            <div class="col-md-2"></div>
+            <div class="col-md-1"></div>
         </div>
 
 
@@ -174,6 +169,6 @@
    
 @endsection
 
-@section('script')
+<!-- @section('script')
 
-@endsection
+@endsection -->
