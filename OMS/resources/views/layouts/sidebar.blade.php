@@ -53,14 +53,12 @@
         <li class="app-sidebar__heading mt-4" style="text-decoration:none;">Leaves</li>
         <li>
             <a href="#">
-                <i class="metismenu-icon pe-7s fas fa-scroll" style="font-size: 16px;"></i>
-                    Leaves
-                <i class="fa fa-angle-down ml-2 opacity-8"></i>
+                <i class="metismenu-icon pe-7s fas fa-business-time" style="font-size: 16px;"></i>
+                   <span class="mr-3">Leaves&nbsp</span> 
+                <i class="fa fa-angle-down ml-5 opacity-8"></i>
             </a>
             <ul>
-                 <!-- <a href="{{url("/leaveRequestForm")}}" class="textstyle">
-                        Leave Request
-                </a> -->
+                
                 <li>
                     <a href="{{route('leaves.index')}}" style="text-decoration: none">
                         Leaves Request Form
