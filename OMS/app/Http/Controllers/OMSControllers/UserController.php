@@ -5,6 +5,7 @@ namespace App\Http\Controllers\OMSControllers;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Datatables;
 
 class UserController extends Controller
 {
@@ -15,7 +16,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $list = User::all();
+        return view('user.userlist', compact('list'));
     }
 
     /**
@@ -50,15 +52,32 @@ class UserController extends Controller
         //
     }
 
+    public function update(Request $request, User $user)
+    {
+        $edit=User::find($id);
+        
+        return view('users.updateuser',compact('edit'));
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user)
+    public function edit(User $user,$id)
     {
-        //
+       $user=  User::findOrFail($id)->update([
+    	'fname'=>request()->fname,
+    	'lname'=>request()->lname,
+        'email'=>request()->email,
+        'password'=>request()->password,
+        'employeeid'=>request()->employeeid,
+        'role'=>request()->role,
+        ]);
+
+       return view();
+        
     }
 
     /**
@@ -68,10 +87,7 @@ class UserController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
-    {
-        //
-    }
+   
 
     /**
      * Remove the specified resource from storage.
@@ -81,6 +97,9 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        //
+        $delete=User::find($user);
+        $delete->each->delete();
+
+        return back();
     }
 }
