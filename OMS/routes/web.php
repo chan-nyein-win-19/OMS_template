@@ -93,7 +93,7 @@ Route::get('/', function () {
 //end 
 
 // EmployeeLeave
-    Route::get('/leaveRequestForm/{newLeave}/{date}',[LeaveController::class,'addNew']);
+    Route::get('/leaveRequestForm/{date}',[LeaveController::class,'addNew']);
 
     Route::post('/leaveRecord/searchLeave',[LeaveController::class,'searchLeave']);
 // end
