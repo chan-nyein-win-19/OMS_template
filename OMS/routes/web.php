@@ -24,9 +24,12 @@ use App\Http\Controllers\OMSControllers\AttendanceController;
 |
 */
 
+Route::get('login',['as'=>'login','uses'=>function(){
+    return view('login.login');
+}]);
 Route::get('/', function () {
-  return view('login.login');
-});
+    return view('login.login');
+  });
 
 // login
     Route::post('/checklogin',[AuthController::class, 'checklogin']);
