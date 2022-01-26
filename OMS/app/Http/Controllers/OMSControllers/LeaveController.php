@@ -23,9 +23,9 @@ class LeaveController extends Controller
         $leaders=User::select('*')->where('role','Leader')->get();
         $senseis=User::select('*')->where('role','Sensei')->get();
         $today=date('Y-m-d');
-        $newLeave=false;
+        
         return view('leave.leaveRequestForm',compact([
-            'leaders','senseis','today','newLeave'
+            'leaders','senseis','today'
         ]));
        
     }
@@ -131,11 +131,13 @@ class LeaveController extends Controller
     public function edit($date)
     {
         //
+        $leaders=User::select('*')->where('role','Leader')->get();
+        $senseis=User::select('*')->where('role','Sensei')->get();
         $leaveRecord=Leaves::where([
             ['date',$date],['employeeId',auth()->user()->id]
             ])->first();
 
-            return view('leave.leaveEdit',compact(['leaveRecord']));
+            return view('leave.leaveEdit',compact(['leaveRecord','leaders','senseis']));
     }
 
     /**
@@ -170,6 +172,43 @@ class LeaveController extends Controller
                 $leaveRecord->comment=request()->get('comment');
                 $leaveRecord->save();
             }
+        $leaders=request()->leader;
+         $senseis=request()->sensei;
+ 
+         if($leaders!=null){
+ 
+             foreach($leaders as $leader){
+                 if(!is_null($leader) || $leader!=""){
+                     $leave=new Leaves;
+                     $leave->employeeId=request()->employeeId;
+                     $leave->date=request()->date;
+                     $leave->time=request()->time;
+                     $leave->reason=request()->reason;
+                     $leave->comment=request()->comment;
+                     $leave->status="Pending";
+                     $leave->leaderid=$leader;
+                     $leave->save();
+                 }
+                 
+             }
+         }
+ 
+         if($senseis!=null){
+            foreach($senseis as $sensei){
+                if(!is_null($sensei) || $sensei!=""){
+                 $leave=new Leaves;
+                 $leave->employeeId=request()->employeeId;
+                 $leave->date=request()->date;
+                 $leave->time=request()->time;
+                 $leave->reason=request()->reason;
+                 $leave->comment=request()->comment;
+                 $leave->status="Pending";
+                    $leave->leaderid=$sensei;
+                    $leave->save();
+                }
+            }
+         }
+
             $leaveRecords=Leaves::where([
                 ['date',request()->get('date')],['employeeId',auth()->user()->id]
                 ])->get();
@@ -205,19 +244,19 @@ class LeaveController extends Controller
         
     }
 
-    public function addNew($newLeave,$date){
-        $leaders=User::select('*')->where('role','Leader')->get();
-        $senseis=User::select('*')->where('role','Sensei')->get();
-        $today=date('Y-m-d');
+    // public function addNew($date){
+    //     $leaders=User::select('*')->where('role','Leader')->get();
+    //     $senseis=User::select('*')->where('role','Sensei')->get();
+    //     $today=date('Y-m-d');
 
-        $leaveRecord=Leaves::where([
-            ['date',$date],['employeeId',auth()->user()->id]
-            ])->first();
+    //     $leaveRecord=Leaves::where([
+    //         ['date',$date],['employeeId',auth()->user()->id]
+    //         ])->first();
         
-        return view('leave.leaveRequestForm',compact([
-            'leaders','senseis','today','newLeave','leaveRecord'
-        ]));
-    }
+    //     return view('leave.leaveRequestForm',compact([
+    //         'leaders','senseis','today','leaveRecord'
+    //     ]));
+    // }
 
     public function searchLeave(Request $request){
         $today=request()->date;
