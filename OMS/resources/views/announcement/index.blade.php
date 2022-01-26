@@ -22,7 +22,6 @@
         <table class="mb-0 table table-hover" id="table">
             <thead>
                 <tr>
-                    <th>Id</th>
                     <th>Title</th>
                     <th>Content</th>
                     <th>Action</th>
@@ -32,22 +31,19 @@
                 @foreach ($list as $item)
                 <tr>
                     <td>
-                        {{ $item->id }}
-                    </td>
-                    <td>
                         {{ $item->title }}
                     </td>
                     <td>
                         {{ $item->content }}
                     </td>                        
                     <td>                            
-                        <button class="mb-2 mr-2 btn-transition btn btn-outline-warning">
+                        <button class="mb-2 mr-2 btn-transition btn btn-outline-warning"  data-toggle="tooltip" title="Edit">
                             <i class="fa fa-fw"></i>
                         </button>
                         <form method="POST" action="">
                             @csrf
                             <input name="_method" type="hidden" value="DELETE">
-                            <button type="submit" class="mb-2 mr-2 btn-transition btn btn-outline-danger show_confirm" data-toggle="tooltip">
+                            <button type="submit" class="mb-2 mr-2 btn-transition btn btn-outline-danger show_confirm" data-toggle="tooltip" title="Delete">
                                 <i class="fa fa-fw"></i>
                             </button>
                         </form>
