@@ -104,7 +104,7 @@ class AnnouncementController extends Controller
     {
         $delete = $announcement::find($announcement->id);
         $delete -> delete();
-        return back();
+        return back()->with('anndelete','Announcement Deleted');
     }
 }
 ?>
