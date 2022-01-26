@@ -22,7 +22,6 @@
         <table class="mb-0 table table-hover" id="table">
             <thead>
                 <tr>
-                    <th>Id</th>
                     <th>Title</th>
                     <th>Content</th>
                     <th>Action</th>
@@ -31,9 +30,6 @@
             <tbody>
                 @foreach ($list as $item)
                 <tr>
-                    <td>
-                        {{ $item->id }}
-                    </td>
                     <td>
                         {{ $item->title }}
                     </td>
@@ -78,23 +74,7 @@
                 null,
                 null              
             ],
-            "aaSorting": [],            
-            
-            //"bProcessing": true,
-            //"bServerSide": true,
-            //"sAjaxSource": "http://127.0.0.1/table.php"   ,
-    
-            //,
-            //"sScrollY": "200px",
-            //"bPaginate": false,
-    
-            //"sScrollX": "100%",
-            //"sScrollXInner": "120%",
-            //"bScrollCollapse": true,
-            //Note: if you are applying horizontal scrolling (sScrollX) on a ".table-bordered"
-            //you may want to wrap the table inside a "div.dataTables_borderWrap" element
-    
-            //"iDisplayLength": 50    
+            "aaSorting": [],       
     
                 select: {
                     style: 'multi'
