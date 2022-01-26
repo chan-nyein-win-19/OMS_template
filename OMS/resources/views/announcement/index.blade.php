@@ -17,6 +17,9 @@
 @endsection
 
 @section('content')
+    @if(session('success'))
+        <div class="alert alert-success">{{session('success')}}</div>
+    @endif
     <div class="container">
         <h2 style="text-align: center;">Announcement List</h2><br>
         <table class="mb-0 table table-hover" id="table">
@@ -40,10 +43,14 @@
                     <td>
                         {{ $item->content }}
                     </td>                        
-                    <td>                            
+                    <td>  
+                        <form method="GET" action="{{ route('announcements.edit', $item->id) }}">
+                            @csrf
+                            @method('PUT')                         
                         <button class="mb-2 mr-2 btn-transition btn btn-outline-warning">
                             <i class="fa fa-fw"></i>
                         </button>
+                        </form>
                         <form method="POST" action="{{ route('announcements.destroy', $item->id) }}">
                             @csrf
                             <input name="_method" type="hidden" value="DELETE">

@@ -44,6 +44,12 @@ class AnnouncementController extends Controller
      */
     public function store(Request $request)
     {
+         $validateData= $request->validate([
+            'title' => 'required',
+            'content' => 'required',
+         ]);
+         
+
         $announcement = new Announcement;
         $announcement->title=request()->title;
         $announcement->content=request()->content;
@@ -87,11 +93,18 @@ class AnnouncementController extends Controller
     public function update(Request $request, $id)
     {
         
+        $validateData= $request->validate([
+            'title' => 'required',
+            'content' => 'required',
+         ]);
         $announcement = Announcement::find($id);
         $announcement->title=request()->title;
         $announcement->content=request()->content;
         $announcement->save();
-        return redirect("announcements/".$id."/edit")->with('success','Announcement has been updated successfully!!');
+        /*return redirect("announcements/".$id."/edit")->with('success','Announcement has been updated successfully!!');*/
+        return redirect("announcements")->with('success','Announcement has been updated successfully!!');
+        /*return back()->withErrors([
+    'email' => 'The provided credentials do not match our records.',*/
     }
 
     /**
