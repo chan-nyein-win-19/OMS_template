@@ -34,7 +34,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="textstyle">
+                    <a href="{{ url('/announcements/create') }}" class="textstyle">
                        Announcement Create
                     </a>
                 </li>
