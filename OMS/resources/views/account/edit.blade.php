@@ -20,7 +20,7 @@
                         @method('PUT')
 
                         <div class="row mb-3">
-                            <label for="employeeid" class="col-md-4 col-form-label text-md-end">{{ __('Employee ID') }}</label>
+                            <label for="employeeid" class="col-md-4 col-form-label text-md-end" style="font-weight:bold;">{{ __('Employee ID') }}</label>
 
                             <div class="col-md-6">
                                 <input id="employeeid" type="text" class="form-control @error('employeeid') is-invalid @enderror" name="employeeid" value="{{ $user->employeeid }}" disabled>
@@ -29,7 +29,7 @@
                         </div>
 
                         <div class="row mb-3">
-                            <label for="fname" class="col-md-4 col-form-label text-md-end">{{ __('FirstName') }}</label>
+                            <label for="fname" class="col-md-4 col-form-label text-md-end" style="font-weight:bold;">{{ __('FirstName') }}</label>
 
                             <div class="col-md-6">
                                 <input id="fname" type="text" class="form-control @error('fname') is-invalid @enderror" name="fname" value="{{ old('fname') ? old('fname') : $user->fname }}" autofocus>
@@ -44,7 +44,7 @@
 
 
                         <div class="row mb-3">
-                            <label for="lname" class="col-md-4 col-form-label text-md-end">{{ __('LastName') }}</label>
+                            <label for="lname" class="col-md-4 col-form-label text-md-end" style="font-weight:bold;">{{ __('LastName') }}</label>
 
                             <div class="col-md-6">
                                 <input id="lname" type="text" class="form-control @error('lname') is-invalid @enderror" name="lname" value="{{ old('lname') ? old('lname') : $user->lname  }}">
@@ -58,7 +58,7 @@
                         </div>
 
                         <div class="row mb-3">
-                            <label for="username" class="col-md-4 col-form-label text-md-end">{{ __('Username') }}</label>
+                            <label for="username" class="col-md-4 col-form-label text-md-end" style="font-weight:bold;">{{ __('Username') }}</label>
 
                             <div class="col-md-6">
                                 <input id="username" type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') ? old('username') : $user->username  }}" >
@@ -72,7 +72,7 @@
                         </div>
 
                         <div class="row mb-3">
-                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('E-Mail') }}</label>
+                            <label for="email" class="col-md-4 col-form-label text-md-end" style="font-weight:bold;">{{ __('E-Mail') }}</label>
 
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') ? old('email') : $user->email }}" >
