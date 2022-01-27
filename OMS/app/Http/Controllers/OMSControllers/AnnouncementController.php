@@ -102,6 +102,8 @@ class AnnouncementController extends Controller
      */
     public function destroy(Announcement $announcement)
     {
-        //
+        $delete= $announcement::find($announcement->id);
+        $delete->delete();
+        return back();
     }
 }
