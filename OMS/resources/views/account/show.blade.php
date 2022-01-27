@@ -11,7 +11,6 @@
                 <div class="card-body">
                     <form method="POST" action="">
                         @csrf
-
                         <div class="row mb-3">
                             <label for="employeeid" class="col-md-4 col-4 col-form-label text-md-end " style="font-weight:bold;">{{ __('Employee ID :') }}</label>
                             <label class="col-md-6 col-6 col-form-label"> {{ $user->employeeid}}<label>
@@ -74,7 +73,7 @@
                                 
                                 <a class="btn btn-primary" href="{{url('/accounts/'.$user->id.'/edit')}}">{{ __('Edit') }}</a>
 				 				&nbsp;&nbsp;
-					            <a class="btn btn-danger" href=""> {{ __('Cancel') }}</a>
+					            <a class="btn btn-danger" href="{{url('/announcements/show')}}"> {{ __('Cancel') }}</a>
                             </div>
 
                         </div>
