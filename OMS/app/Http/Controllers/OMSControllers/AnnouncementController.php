@@ -13,6 +13,13 @@ class AnnouncementController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+
+    public function __construct(){
+        $this->middleware('auth')->except(['index']);
+    }
+
+
     public function index()
     {
         $list =  Announcement::all();
@@ -95,9 +102,6 @@ class AnnouncementController extends Controller
      */
     public function destroy(Announcement $announcement)
     {
-        $delete = $announcement::find($announcement->id);
-        $delete -> delete();
-        return back();
+        //
     }
 }
-?>

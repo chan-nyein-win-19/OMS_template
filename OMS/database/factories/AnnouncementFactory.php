@@ -15,11 +15,7 @@ class AnnouncementFactory extends Factory
     {
         return [
             'title'=>$this->faker->sentence,
-<<<<<<< HEAD
-			'content'=>$this->faker->paragraph,
-=======
             'content'=>$this->faker->paragraph,
->>>>>>> UserLIst
         ];
     }
 }

@@ -29,7 +29,12 @@ Route::get('login',['as'=>'login','uses'=>function(){
 }]);
 Route::get('/', function () {
     return view('login.login');
-  });
+});
+
+Route::get('login',['as'=>'login','uses'=>function(){
+    return view('login.login');
+}]);
+
 
 // login
     Route::post('/checklogin',[AuthController::class, 'checklogin']);
@@ -48,32 +53,23 @@ Route::get('/', function () {
 // end
 
 // user
-    Route::resource('users',UserController::class);
+    Route::resource('users',UserController::class)->middleware('auth');
 // end
 
 // announcement
     Route::resource('announcements',AnnouncementController::class);
-
-    Route::match(['put', 'patch'],'announcements/{id}', 'AnnouncementController@update');
 // end
 
 // account
-    Route::resource('accounts',AccountController::class);
+    Route::resource('accounts',AccountController::class)->middleware('auth');
 
-    Route::get('/changepassword/{id}',[AccountController::class,'editPassword']);
+    Route::get('/changepassword/{id}',[AccountController::class,'editPassword'])->middleware('auth');
 
     Route::post('/changepassword/{id}',[AccountController::class,'changePassword']);
 // end
 
-
-// user
-    Route::resource(name: 'user', controller:EmployeeController::class);
-
-    Route::resource('users',UserController::class);
-// end
-
 //attendance
-    Route::get('/attendanceform',[AttendanceController::class, 'create']);
+    Route::get('/attendanceform',[AttendanceController::class, 'create'])->middleware('auth');
 
     Route::post('/attendanceform',[AttendanceController::class, 'store']);
 // end

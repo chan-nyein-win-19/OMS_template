@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
 use App\User;
+use App\Announcements;
 
 class DatabaseSeeder extends Seeder
 {
@@ -17,7 +18,7 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
 
-        \App\Models\Announcement::factory(20)->create();
+        \App\Models\Announcement::factory(10)->create();
 
         \App\Models\User::factory()->create([
             'fname'=>'a',

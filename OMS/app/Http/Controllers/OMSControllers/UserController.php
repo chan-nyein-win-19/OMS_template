@@ -17,7 +17,7 @@ class UserController extends Controller
     public function index()
     {
         $list = User::all();
-        return view('user.userlist', compact('list'));
+        return view('user.index', compact('list'));
     }
 
     /**
@@ -28,6 +28,7 @@ class UserController extends Controller
     public function create()
     {
         //
+        return view('user.create');
     }
 
     /**
@@ -38,7 +39,30 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+        $validateData= $request->validate([
+            'fname' => 'required',
+            'lname' => 'required',
+            'username' => 'required',
+            'email' => 'required|email|unique:users',
+            'password' => 'required|min:4',
+            'employeeid' => 'required|unique:users',
+            'role' => 'required'
+        ]);
+
+        $user= new User();
+        $user->fname=request()->fname;
+        $user->lname=request()->lname;
+        $user->username=request()->username;
+        $user->email=request()->email;
+        $user->password=request()->password;
+        $user->employeeid=request()->employeeid;
+        $user->role=request()->role;
+        $user->save();
+
+
+        return view('user.create')->with('success','Employee has been successfully added...');
+
     }
 
     /**
@@ -52,16 +76,51 @@ class UserController extends Controller
         //
     }
 
+    public function edit($id)
+    {
+
+        $edit=User::find($id);
+        
+        return view('user.edit',compact('edit'));
+        
+    }
+
+    public function update(Request $request,$id)
+    {
+
+        $validateData= $request->validate([
+            'fname' => 'required',
+            'lname' => 'required',
+            'username' => 'required',
+            'email' => 'required|email|unique:users,id',
+            'password' => 'required|min:4',
+            'employeeid' => 'required',
+            'role' => 'required'
+        ]);
+
+       
+
+        $user=  User::findOrFail($id)->update([
+            'fname'=>request()->fname,
+            'lname'=>request()->lname,
+            'email'=>request()->email,
+            'password'=>request()->password,
+            'employeeid'=>request()->employeeid,
+            'role'=>request()->role,
+            ]);
+    
+            
+            return redirect("users")->with('success','User has been updated successfully!');
+       
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user)
-    {
-        //
-    }
+   
 
     /**
      * Update the specified resource in storage.
@@ -70,10 +129,7 @@ class UserController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
-    {
-        //
-    }
+   
 
     /**
      * Remove the specified resource from storage.
