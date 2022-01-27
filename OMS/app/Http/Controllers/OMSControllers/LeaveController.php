@@ -61,12 +61,11 @@ class LeaveController extends Controller
         if($validator->fails()){
             return back()->withErrors($validator);
         }
-        $todayLeave=Leaves::where('date',request()->date);
-        if($todayLeave!=null){
-            return back()->withErrors(['leaveExists'=>'Today Leaves already exist.']);
-        }else{
-                
-         $leaders=request()->leader;
+        $todayLeave=Leaves::where([
+            ['date',$request->date],['employeeId',$request->employeeId]
+            ])->get();
+        if(sizeof($todayLeave)==0){
+            $leaders=request()->leader;
          $senseis=request()->sensei;
  
          if($leaders!=null){
@@ -105,6 +104,10 @@ class LeaveController extends Controller
  
         
          return view('successlogin');
+            
+        }else{
+                
+            return back()->withErrors(['leaveExists'=>'Today Leaves already exist.']);
         }
         
  
