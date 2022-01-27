@@ -105,7 +105,7 @@
                            
 				 				&nbsp;&nbsp;
                              <!-- <input type="reset" name="cancel" class="btn btn-danger" value="Cancel"/> -->
-                             <a class="btn btn-danger" href="{{url('/announcements/show')}}"> {{ __('Cancel') }}</a>
+                             <a class="btn btn-danger" href="{{url('/successlogin')}}"> {{ __('Cancel') }}</a>
                             </div>
                             
                         </div>
