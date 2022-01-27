@@ -9,6 +9,7 @@
 @section("content")
                     <div class="container">
                     <h2>User Account Table</h2>
+                    
                             <table class="mb-0 table table-hover" id="table">
                                 <thead>
                                     <tr>

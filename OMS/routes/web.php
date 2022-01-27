@@ -70,9 +70,27 @@ Route::get('/', function () {
 // end
 
 //attendance
+
+
     Route::get('/attendanceform',[AttendanceController::class, 'create']);
 
     Route::post('/attendanceform',[AttendanceController::class, 'store']);
+
+    Route::get('/attendanceList',[AttendanceController::class,'index']);
+
+    Route::get('/edit/{id}',[AttendanceController::class,'edit']);
+  
+    Route::post('/update/{id}',[AttendanceController::class, 'update']);
+    
+    Route::delete('/attendance/{id}', [AttendanceController::class, 'destroy']);
+
+    //attendanceList(Leader Role/Sensei Role)
+
+    Route::get('/attendanceshow',[AttendanceController::class, 'show']);
+
+
+
+
 // end
 
 // leave 
@@ -93,6 +111,8 @@ Route::get('/', function () {
     Route::get('/leaveRequestForm/{newLeave}/{date}',[LeaveController::class,'addNew']);
 
     Route::post('/leaveRecord/searchLeave',[LeaveController::class,'searchLeave']);
+
+
 // end
 
 // leaderLeave
