@@ -25,11 +25,17 @@
         <div class="col-md-10" class="background:white;">
             <div class="card p-5">
                 <h1 class="text-center mt-5 mb-5">Leave Request Form</h1>
+                @error('leaveExists')
+                <div class="row mb-5">
+                    <div class="col-sm-2">
 
+                    </div>
+                    <div class="col-sm-10">
+                        <span class="text-danger small">*{{$message}}</span><br>
+                    </div>
 
-
-
-
+                </div>
+                @enderror
                 <form id="newform" action="{{route('leaves.store')}}" method="POST">
                     @csrf
                     <div class="form-group row">
@@ -57,11 +63,7 @@
 
                         <label class="col-sm-2 col-form-label">Date*</label>
                         <div class="col-sm-10">
-                            <input type="date" class="form-control" id="date" name="date" @if(isset($leaveRecord->date))
-                            value="{{$leaveRecord->date}}"
-                            @else
-                            value="{{$today}}"
-                            @endif>
+                            <input type="date" class="form-control" id="date" name="date" value="{{$today}}">
                         </div>
                     </div>
                     @error('date')
@@ -81,18 +83,9 @@
                         <div class="col-sm-10">
                             <select class="form-control" id="time" name="time">
                                 <option value="" disabled selected>Choose Time</option>
-                                <option value="full" @if(isset($leaveRecord->time) && $leaveRecord->time =="full")
-                                    selected
-                                    @endif
-                                    >Full Day</option>
-                                <option value="morning" @if(isset($leaveRecord->time) && $leaveRecord->time =="morning")
-                                    selected
-                                    @endif
-                                    >Morning</option>
-                                <option value="evening" @if(isset($leaveRecord->time) && $leaveRecord->time =="evening")
-                                    selected
-                                    @endif
-                                    >Evening</option>
+                                <option value="full">Full Day</option>
+                                <option value="morning">Morning</option>
+                                <option value="evening">Evening</option>
                             </select>
                         </div>
                     </div>
@@ -124,8 +117,6 @@
 
                             <button type="button" class="btn btn-outline-secondary mt-3 " style="padding:7px;"
                                 id="add">+Add</button>
-
-
                         </div>
 
                     </div>
@@ -148,9 +139,6 @@
                             <button type="button" class="btn btn-outline-secondary mt-3 " style="padding:7px;"
                                 id="add1">+Add</button>
 
-
-
-
                         </div>
 
 
@@ -159,8 +147,7 @@
                     <div class="form-group row mt-3">
                         <label class="col-sm-2 col-form-label">Reason*</label>
                         <div class="col-sm-10">
-                            <textarea id="reason" cols="30" rows="5" class="form-control"
-                                name="reason">@if(isset($leaveRecord->reason)){{$leaveRecord->reason}}@endif</textarea>
+                            <textarea id="reason" cols="30" rows="5" class="form-control" name="reason"></textarea>
                         </div>
                     </div>
 
@@ -178,8 +165,7 @@
                     <div class="form-group row mt-3">
                         <label class="col-sm-2 col-form-label">Comment</label>
                         <div class="col-sm-10">
-                            <textarea id="comment" cols="30" rows="5" class="form-control"
-                                name="comment">@if(isset($leaveRecord->comment)){{$leaveRecord->comment}} @endif</textarea>
+                            <textarea id="comment" cols="30" rows="5" class="form-control" name="comment"></textarea>
                         </div>
                     </div>
                     @error('comment')
@@ -201,31 +187,14 @@
                                 clear</button>
                         </div>
                     </div>
-
-
                 </form>
-
-
-
             </div>
         </div>
 
         <div class="col-md-1"></div>
 
     </div>
-
-
-
 </div>
-
-
-
-
-
-
-
-
-
 @endsection
 
 @section('script')
@@ -271,16 +240,11 @@ document.addEventListener("DOMContentLoaded", function() {
          </select>
          <button type="button" onclick=cancelButton(this.id) class="btn btn-outline-danger ml-3 mt-2" id="${addElementId}">X</button>
         </div>
-
-       
-          
+         
  `
         result1.append(newdiv1)
         return false;
     }
-
-
-
 })
 </script>
 @endsection

@@ -3,6 +3,7 @@
 @section('title','Leave Edit')
 
 @section('style')
+<link rel="stylesheet" href="{{ asset('/storage/OMS/css/style.css') }}">
 <link rel="stylesheet" href="{{ asset('/storage/OMS/data-tables/jquery.dataTables.min.css') }}">
 <link rel="stylesheet" href="{{ asset('/storage/OMS/bootstrap5/bootstrap.min.css') }}">
 @endsection
@@ -15,9 +16,6 @@
 @parent
 @endsection
 @section('content')
-
-
-
 
 <div class="centered">
     <div class="row">
@@ -97,10 +95,44 @@
 
                     </div>
                     @enderror
+                    <div class="form-group row mt-3">
+                        <label class="col-sm-2 col-form-label">Incharge</label>
+                        <div class="col-sm-10">
+                            <label class="mt-2">Leader*</label>
 
+                            <div id="selectinput">
+                                <select class="form-control" id="leader" name="leader[]">
+                                    <option value="" disabled selected>Choose Leader</option>
+                                    @foreach($leaders as $leader)
+                                    <option value="{{$leader->id}}">{{$leader->fname}} {{$leader->lname}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
 
+                            <button type="button" class="btn btn-outline-secondary mt-3 " style="padding:7px;"
+                                id="add">+Add</button>
+                        </div>
+                    </div>
+                    <div class="form-group row mt-3">
+                        <label class="col-sm-2 col-form-label" id="sensei"></label>
+                        <div class="col-sm-10">
+                            <label class="mt-2">Sensei*</label>
 
+                            <div id="selectinput1">
 
+                                <select class="form-control" id="sensei" name="sensei[]">
+                                    <option value="" disabled selected>Choose Sensei</option>
+                                    @foreach($senseis as $sensei)
+                                    <option value="{{$sensei->id}}">{{$sensei->fname}} {{$sensei->lname}}</option>
+                                    @endforeach
+                                </select>
+
+                            </div>
+
+                            <button type="button" class="btn btn-outline-secondary mt-3 " style="padding:7px;"
+                                id="add1">+Add</button>
+                        </div>
+                    </div>
                     <div class="form-group row mt-3">
                         <label class="col-sm-2 col-form-label">Reason*</label>
                         <div class="col-sm-10">
@@ -150,27 +182,61 @@
 
                 </form>
             </div>
-
-
-
-
-
-
         </div>
         <div class="col-md-1"></div>
     </div>
-
-
-
 </div>
 </div>
-
-
-
-
 
 @endsection
 
 @section('script')
+<script>
+let addElementId = 0;
 
+function cancelButton(clicked_id) {
+    document.getElementById("addedDiv" + clicked_id).remove();
+}
+document.addEventListener("DOMContentLoaded", function() {
+    let addbutton = document.querySelector("#add");
+    let result = document.querySelector("#selectinput");
+    let addbutton1 = document.querySelector("#add1");
+    let result1 = document.querySelector("#selectinput1");
+    addbutton.onclick = function() {
+        addElementId += 1;
+        let newdiv = document.createElement('div')
+        newdiv.innerHTML = `
+        <div id="addedDiv${addElementId}" class="form-inline">
+                      <select  class="form-control mt-2 " name="leader[]">
+              <option value="" disabled selected>Choose another</option>
+              @foreach($leaders as $leader)
+
+                  <option value="{{$leader->id}}">{{$leader->fname}} {{$leader->lname}}</option>
+              @endforeach
+                  </select>
+        <button type="button" onclick=cancelButton(this.id) class="btn btn-outline-danger ml-3 mt-2" id="${addElementId}">X</button>
+        </div>
+
+`
+        result.append(newdiv)
+        return false;
+    }
+    addbutton1.onclick = function() {
+        let newdiv1 = document.createElement('div')
+        newdiv1.innerHTML = `
+        <div id="addedDiv${addElementId}" class="form-inline">
+        <select  class="form-control mt-2  " name="sensei[]">
+ <option value="" disabled selected>Choose another</option>
+ @foreach($senseis as $sensei)
+     <option value="{{$sensei->id}}">{{$sensei->fname}} {{$sensei->lname}}</option>
+ @endforeach
+         </select>
+         <button type="button" onclick=cancelButton(this.id) class="btn btn-outline-danger ml-3 mt-2" id="${addElementId}">X</button>
+        </div>        
+ `
+        result1.append(newdiv1)
+        return false;
+    }
+})
+</script>
 @endsection

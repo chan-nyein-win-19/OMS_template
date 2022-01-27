@@ -61,7 +61,11 @@ class LeaveController extends Controller
         if($validator->fails()){
             return back()->withErrors($validator);
         }
- 
+        $todayLeave=Leaves::where('date',request()->date);
+        if($todayLeave!=null){
+            return back()->withErrors(['leaveExists'=>'Today Leaves already exist.']);
+        }else{
+                
          $leaders=request()->leader;
          $senseis=request()->sensei;
  
@@ -101,6 +105,9 @@ class LeaveController extends Controller
  
         
          return view('successlogin');
+        }
+        
+ 
     }
 
     /**

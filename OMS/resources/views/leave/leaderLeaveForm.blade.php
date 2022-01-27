@@ -3,6 +3,7 @@
 @section('title','Leader Leaves')
 
 @section('style')
+<link rel="stylesheet" href="{{ asset('/storage/OMS/css/style.css') }}">
 <link rel="stylesheet" href="{{ asset('/storage/OMS/data-tables/jquery.dataTables.min.css') }}">
 <link rel="stylesheet" href="{{ asset('/storage/OMS/bootstrap5/bootstrap.min.css') }}">
 @endsection
@@ -27,7 +28,7 @@
 
     <div class="col-md-4 mb-3">
 
-        <form action="{{url("/leader/leaveRecord/searchLeave")}}" class="form-inline" method="post">
+        <form action="{{url('/leader/leaveRecord/searchLeave')}}" class="form-inline" method="post">
             @csrf
 
             <div class="mr-3">
@@ -45,13 +46,13 @@
         <select
             onchange="this.options[this.selectedIndex].value && (window.location= this.options[this.selectedIndex].value);"
             class="form-control" id="filterLeave">
-            <option value="{{url("/leader/leaveRecord/filterLeave/all/$today")}}" @if($filtering=='all' )selected
+            <option value='{{url("/leader/leaveRecord/filterLeave/all/$today")}}' @if($filtering=='all' )selected
                 @endif>All</option>
-            <option value="{{url("/leader/leaveRecord/filterLeave/Pending/$today")}}" @if($filtering=='Pending'
+            <option value='{{url("/leader/leaveRecord/filterLeave/Pending/$today")}}' @if($filtering=='Pending'
                 )selected @endif>Pending</option>
-            <option value="{{url("/leader/leaveRecord/filterLeave/Approved/$today")}}" @if($filtering=='Approved'
+            <option value='{{url("/leader/leaveRecord/filterLeave/Approved/$today")}}' @if($filtering=='Approved'
                 )selected @endif>Approved</option>
-            <option value="{{url("/leader/leaveRecord/filterLeave/Denied/$today")}}" @if($filtering=='Denied' )selected
+            <option value='{{url("/leader/leaveRecord/filterLeave/Denied/$today")}}' @if($filtering=='Denied' )selected
                 @endif>Denied</option>
 
         </select>
@@ -97,31 +98,23 @@
                 </td>
                 @if($leaveRecord->status==="Pending")
 
-                <td><a href="{{url("/leader/leaveStatus/$leaveRecord->id/approve/$today/$filtering")}}" type="button"
-                        class="btn btn-success mb-2">Approve</a> <a
-                        href="{{url("/leader/leaveStatus/$leaveRecord->id/deny/$today/$filtering")}}" type="button"
-                        class="btn btn-danger mb-2">Deny</a></td>
+                <td><a href='{{url("/leader/leaveStatus/$leaveRecord->id/approve/$today/$filtering")}}' type="button"
+                        class="btn btn-outline-success mb-2" data-toggle="tooltip" data-placement="top" title="Approve"><i class="fas fa-thumbs-up"></i></a> <a
+                        href='{{url("/leader/leaveStatus/$leaveRecord->id/deny/$today/$filtering")}}' type="button"
+                        class="btn btn-outline-danger mb-2" data-toggle="tooltip" data-placement="top" title="Deny"><i class="fas fa-thumbs-down"></i></a></td>
 
                 @elseif($leaveRecord->status=="Approved")
-                <td><a href="{{url("/leader/leaveStatus/$leaveRecord->id/cancel/$today/$filtering")}}" type="button"
-                        class="btn btn-success">Cancel</a></td>
+                <td><a href='{{url("/leader/leaveStatus/$leaveRecord->id/cancel/$today/$filtering")}}' type="button"
+                        class="btn btn-outline-success" data-toggle="tooltip" data-placement="top" title="Cancel Approval"><i class="fas fa-window-close"></i></a></td>
                 @else
-                <td><a href="{{url("/leader/leaveStatus/$leaveRecord->id/cancel/$today/$filtering")}}" type="button"
-                        class="btn btn-danger">Cancel</a></td>
+                <td><a href='{{url("/leader/leaveStatus/$leaveRecord->id/cancel/$today/$filtering")}}' type="button"
+                        class="btn btn-outline-danger" data-toggle="tooltip" data-placement="top" title="Cancel Denial"><i class="fas fa-window-close"></i></a></td>
                 @endif
-
-
             </tr>
             @endforeach
         </tbody>
-
-
-
     </table>
-
-
 </div>
-
 
 @endsection
 
@@ -129,7 +122,6 @@
 
 <script src="{{ asset('/storage/OMS/data-tables/jquery.js') }}"></script>
 <script src="{{ asset('/storage/OMS/data-tables/jquery.dataTables.min.js') }}"></script>
-<!-- <script src="{{ asset('/storage/OMS/sweetalert/sweetalert.min.js') }}"></script> -->
 <script>
 $(document).ready(function() {
     $('#leaveRecord').DataTable();

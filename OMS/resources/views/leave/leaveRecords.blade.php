@@ -3,6 +3,7 @@
 @section('title','Leave Records')
 
 @section('style')
+<link rel="stylesheet" href="{{ asset('/storage/OMS/css/style.css') }}">
 <link rel="stylesheet" href="{{ asset('/storage/OMS/data-tables/jquery.dataTables.min.css') }}">
 <link rel="stylesheet" href="{{ asset('/storage/OMS/bootstrap5/bootstrap.min.css') }}">
 @endsection
@@ -42,13 +43,10 @@
         </div>
 
     </div>
-    <div class="col-md-5 col-sm-2"></div>
-    <div class="col-md-3 text-center mb-3 col-sm-5">
+    <div class="col-md-6 col-sm-3"></div>
+    <div class="col-md-2 text-center mb-3 col-sm-4">
         @if(count($leaveRecords)!=0)
-        <a href="{{url("/leaves/edit/$today")}}" type="button" class="btn btn-primary mr-2 mb-3">Edit Leave</a>
-        <a href="{{url("/leaveRequestForm/newLeave=true/$today")}}" type="button"
-            class="btn btn-primary mr-2 mb-3">AddNew</a>
-
+        <a href='{{url("/leaves/edit/$today")}}' type="button" class="btn btn-primary mr-2 mb-3">Edit Leave</a>
         @endif
     </div>
 </div>
@@ -92,32 +90,67 @@
 
                 </td>
                 <td>
-                    <form action="{{route('leaves.destroy',['leaf'=>$leaveRecord])}}" method="post">
+                    <form action="{{route('leaves.destroy',['leaf'=>$leaveRecord])}}" method="post"
+                        id="form{{$leaveRecord->id}}">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn btn-danger">Delete</button>
+
+                        <button type="button" onclick=deleteRecord(this.id)
+                            class="btn-transition btn btn-outline-danger" id="{{$leaveRecord->id}}"
+                            data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-fw"></i></button>
+
+
                     </form>
                 </td>
             </tr>
             @endforeach
         </tbody>
-
-
-
     </table>
-
-
 </div>
 
 
 @endsection
 
 @section('script')
+
 <script src="{{ asset('/storage/OMS/data-tables/jquery.js') }}"></script>
 <script src="{{ asset('/storage/OMS/data-tables/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('/storage/OMS/bootbox/bootbox.all.js') }}"></script>
+<script src="{{ asset('/storage/OMS/bootbox/bootbox.js') }}"></script>
+<script src="{{ asset('/storage/OMS/bootbox/bootbox.locale.js') }}"></script>
+<script src="{{ asset('/storage/OMS/bootstrap5/bootstrap.min.js') }}"></script>
+<script src="{{ asset('/storage/OMS/bootstrap5/popper.min.js') }}"></script>
 <script>
 $(document).ready(function() {
     $('#leaveRecord').DataTable();
 });
+
+function deleteRecord($id) {
+    bootbox.confirm({
+        message: "Do You Really want to delete it?This can't be undone.",
+        buttons: {
+            confirm: {
+                label: 'Yes',
+                className: 'btn-success'
+            },
+            cancel: {
+                label: 'No',
+                className: 'btn-danger'
+            }
+        },
+        callback: function(result) {
+            if (result) {
+                let formToDelete = document.getElementById("form" + $id);
+                formToDelete.submit();
+                bootbox.alert({
+                    message: "Successfully Deleted!",
+                    callback: function() {
+                        console.log('This was logged in the callback!');
+                    }
+                })
+            }
+        }
+    });
+}
 </script>
 @endsection
