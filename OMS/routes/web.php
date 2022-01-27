@@ -33,7 +33,8 @@ Route::get('/', function () {
 
 
 // user
-Route::resource(name: 'user', controller:EmployeeController::class);
+// Route::resource(name: 'user', controller:EmployeeController::class);
 Route::resource('users',UserController::class);
+
 // end
 
