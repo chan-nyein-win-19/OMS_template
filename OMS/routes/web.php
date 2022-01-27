@@ -35,6 +35,7 @@ Route::get('login',['as'=>'login','uses'=>function(){
 
 // login
     Route::post('/checklogin',[AuthController::class, 'checklogin']);
+    Route::get('/successlogin',[AuthController::class, 'successlogin']);
 
     Route::get('/logout',[AuthController::class, 'logout']);
 // end
@@ -46,6 +47,7 @@ Route::get('login',['as'=>'login','uses'=>function(){
 // end
 
 // One Time Password and Set New Password
+    Route::get('/forgotpwd/checkemail/checkOTP',[AuthController::class, 'login']);
     Route::post('/forgotpwd/checkemail/checkOTP',[ResetPasswordController::class, 'checkOTP']);
 // end
 
@@ -54,7 +56,7 @@ Route::get('login',['as'=>'login','uses'=>function(){
 // end
 
 // announcement
-    Route::resource('announcements',AnnouncementController::class);
+    Route::resource('announcements',AnnouncementController::class)->middleware('auth');
 // end
 
 // account
