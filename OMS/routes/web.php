@@ -35,6 +35,7 @@ Route::get('login',['as'=>'login','uses'=>function(){
 
 // login
     Route::post('/checklogin',[AuthController::class, 'checklogin']);
+    Route::get('/successlogin',[AuthController::class, 'successlogin']);
 
     Route::get('/logout',[AuthController::class, 'logout']);
 // end
