@@ -65,13 +65,6 @@ Route::get('login',['as'=>'login','uses'=>function(){
     Route::post('/changepassword/{id}',[AccountController::class,'changePassword']);
 // end
 
-
-// user
-    Route::resource(name: 'user', controller:EmployeeController::class)->middleware('auth');
-
-    Route::resource('users',UserController::class)->middleware('auth');
-// end
-
 //attendance
     Route::get('/attendanceform',[AttendanceController::class, 'create'])->middleware('auth');
 

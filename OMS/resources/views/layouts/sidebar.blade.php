@@ -14,7 +14,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{ url('/user') }}" class="textstyle">
+                       <a href="{{ url('/users/create') }}" class="textstyle">
                            Employee Create
                         </a>
                    </li>
