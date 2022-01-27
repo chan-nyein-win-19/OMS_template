@@ -85,8 +85,7 @@ class AnnouncementController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
-        
+    {        
         $announcement = Announcement::find($id);
         $announcement->title=request()->title;
         $announcement->content=request()->content;
@@ -104,6 +103,6 @@ class AnnouncementController extends Controller
     {
         $delete= $announcement::find($announcement->id);
         $delete->delete();
-        return back();
+        return redirect('/announcements')->with('info','Your selected announcement has been deleted successfully');
     }
 }

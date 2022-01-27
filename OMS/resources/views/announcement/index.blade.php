@@ -17,6 +17,13 @@
 @endsection
 
 @section('content')
+
+    @if(session('info'))
+    <div class="alert alert-success">
+        {{ session('info') }}
+    </div>
+    @endif
+
     <div class="container">
         <h2 style="text-align: center;">Announcement List</h2><br>
         <table class="mb-0 table table-hover" id="table">
