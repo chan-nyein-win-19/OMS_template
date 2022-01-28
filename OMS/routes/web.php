@@ -74,6 +74,13 @@ Route::get('login',['as'=>'login','uses'=>function(){
     Route::get('/attendanceform',[AttendanceController::class, 'create'])->middleware('auth');
 
     Route::post('/attendanceform',[AttendanceController::class, 'store']);
+    Route::get('/attendanceList',[AttendanceController::class,'index']);
+
+    Route::get('/edit/{id}',[AttendanceController::class,'edit']);
+  
+    Route::post('/update/{id}',[AttendanceController::class, 'update']);
+    
+    Route::delete('/attendance/{id}', [AttendanceController::class, 'destroy']);
 // end
 
 // leave 
