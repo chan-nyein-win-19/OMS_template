@@ -15,10 +15,10 @@ class AttendanceController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function __construct()
-    {
-        $this->middleware('auth')->except(['store','create']);
-    }
+    // public function __construct()
+    // {
+    //     $this->middleware('auth')->except(['store','create']);
+    // }
 
     public function index()
     {

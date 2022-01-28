@@ -50,36 +50,24 @@ Route::get('login',['as'=>'login','uses'=>function(){
     Route::post('/forgotpwd/checkemail/checkOTP',[ResetPasswordController::class, 'checkOTP']);
 // end
 
-// user
-    Route::resource('users',UserController::class)->middleware('auth');
-// end
 
-// announcement
-    Route::resource('announcements',AnnouncementController::class)->middleware('auth');
-// end
+//Middleware Function
+Route::middleware(['auth'])->group(function(){
+    //user
+    Route::resource('users',UserController::class);
+    Route::resource(name: 'user', controller:EmployeeController::class);
 
-// account
-    Route::resource('accounts',AccountController::class)->middleware('auth');
+    //announcement
+    Route::resource('announcements',AnnouncementController::class);
 
-    Route::get('/changepassword/{id}',[AccountController::class,'editPassword'])->middleware('auth');
+    //account
+    Route::resource('accounts',AccountController::class);
+    Route::get('/changepassword/{id}',[AccountController::class,'editPassword']);
+    
+    //attendance
+    Route::get('/attendanceform',[AttendanceController::class, 'create']);
 
-    Route::post('/changepassword/{id}',[AccountController::class,'changePassword']);
-// end
-
-
-// user
-    Route::resource(name: 'user', controller:EmployeeController::class)->middleware('auth');
-
-    Route::resource('users',UserController::class)->middleware('auth');
-// end
-
-//attendance
-    Route::get('/attendanceform',[AttendanceController::class, 'create'])->middleware('auth');
-
-    Route::post('/attendanceform',[AttendanceController::class, 'store']);
-// end
-
-// leave 
+    //leaves
     Route::get('leaves/list',[
         'as'=>'leaves.show',
         'uses'=>'App\Http\Controllers\OMSControllers\LeaveController@show'
@@ -91,20 +79,32 @@ Route::get('login',['as'=>'login','uses'=>function(){
     ]);
 
     Route::resource('leaves',LeaveController::class,['except'=>'show','edit']);
-//end 
 
-// EmployeeLeave
+    // EmployeeLeave
     Route::get('/leaveRequestForm/{newLeave}/{date}',[LeaveController::class,'addNew']);
 
+    // leaderLeave
+    Route::get('/leader/leaveRecord',[LeaderLeaveController::class,'viewLeave']);
+    Route::get('/leader/leaveStatus/{id}/{status}/{date}/{filtering}',[LeaderLeaveController::class,'changeStatus']);
+    Route::get('/leader/leaveRecord/filterLeave/{filtering}/{date}',[LeaderLeaveController::class,'filterLeave']);
+
+});
+
+
+
+// account
+   Route::post('/changepassword/{id}',[AccountController::class,'changePassword']);
+// end
+
+
+//attendance
+    Route::post('/attendanceform',[AttendanceController::class, 'store']);
+// end
+
+// EmployeeLeave
     Route::post('/leaveRecord/searchLeave',[LeaveController::class,'searchLeave']);
 // end
 
 // leaderLeave
-    Route::get('/leader/leaveRecord',[LeaderLeaveController::class,'viewLeave']);
-
     Route::post('/leader/leaveRecord/searchLeave',[LeaderLeaveController::class,'findLeave']);
-
-    Route::get('/leader/leaveStatus/{id}/{status}/{date}/{filtering}',[LeaderLeaveController::class,'changeStatus']);
-    
-    Route::get('/leader/leaveRecord/filterLeave/{filtering}/{date}',[LeaderLeaveController::class,'filterLeave']);
 // end
