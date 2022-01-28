@@ -1,13 +1,15 @@
 @extends('layouts.app')
 
 @section("content")
+@if(session('success'))
+<div class="alert alert-success">{{session('success')}}</div>
+@endif
 
 
 <div class="container">
-    @if(session('success'))
-    <div class="alert alert-success">{{session('success')}}</div>
-    @endif
+
     <div class="row justify-content-center">
+
         <div class="col-md-8">
 
             <div class="card">
@@ -16,7 +18,6 @@
 
                 <div class="card-body">
                     <form method="POST" action=" {{ route('users.store') }}" novalidate>
-                        <!-- <form method="POST" action=""> -->
                         @csrf
 
                         <div class="row mb-3">
@@ -53,7 +54,8 @@
                                 class="col-md-4 col-form-label text-md-end">{{ __('Username') }}</label>
 
                             <div class="col-md-6">
-                                <input id="username" type="text" class="form-control" value="{{ old('username') }}">
+                                <input id="username" type="text" class="form-control" name="username"
+                                    value="{{ old('username') }}" autocomplete="username">
 
                                 @if($errors->has('username'))
                                 <span class='text-danger'>
@@ -83,8 +85,7 @@
                                 class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
 
                             <div class="col-md-6">
-                                <input id="password" type="password"
-                                    class="form-control @error('password') is-invalid @enderror" name="password">
+                                <input id="password" type="password" class="form-control" name="password"  value="{{ old('password') }}">
 
                                 @if($errors->has('password'))
                                 <span class='text-danger'>
@@ -100,7 +101,7 @@
 
                             <div class="col-md-6">
                                 <input id="employeeid" type="text"
-                                    class="form-control @error('employeeid') is-invalid @enderror" name="employeeid"
+                                    class="form-control" name="employeeid"
                                     value="{{ old('employeeid') }}">
 
                                 @if($errors->has('employeeid'))
