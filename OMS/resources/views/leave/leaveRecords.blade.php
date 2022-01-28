@@ -29,7 +29,7 @@
 
     <div class="col-md-4 text-center mb-3 col-sm-5">
         <div style="display:flex;align-item:center;justify-content:center;">
-            <form action="{{url("/leaveRecord/searchLeave")}}" class="form-inline" method="post">
+            <form action='{{url("/leaveRecord/searchLeave")}}' class="form-inline" method="post">
                 @csrf
 
                 <div class="mr-3 mb-3">
