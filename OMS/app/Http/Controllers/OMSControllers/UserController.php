@@ -111,7 +111,7 @@ class UserController extends Controller
             ]);
     
             
-            return redirect("users")->with('success','User has been updated successfully!');
+            return redirect("users")->with('updatesuccess','User has been updated successfully!');
        
     }
 

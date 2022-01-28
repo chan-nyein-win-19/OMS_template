@@ -1,13 +1,15 @@
 @extends('layouts.app')
 
 @section("content")
+@if(session('success'))
+<div class="alert alert-success">{{session('success')}}</div>
+@endif
 
 
 <div class="container">
-    @if(session('success'))
-    <div class="alert alert-success">{{session('success')}}</div>
-    @endif
+
     <div class="row justify-content-center">
+
         <div class="col-md-8">
 
             <div class="card">
@@ -83,7 +85,8 @@
                                 class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
 
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password" value="{{ old('password') }}" >
+                                <input id="password" type="password" class="form-control" name="password"
+                                    value="{{ old('password') }}">
 
                                 @if($errors->has('password'))
                                 <span class='text-danger'>
