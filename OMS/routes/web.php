@@ -7,7 +7,6 @@ use App\Http\Controllers\OMSControllers\AnnouncementController;
 use App\Http\Controllers\OMSControllers\AccountController;
 use App\Http\Controllers\OMSControllers\EmailSendController;
 use App\Http\Controllers\OMSControllers\ResetPasswordController;
-use App\Http\Controllers\OMSControllers\EmployeeController;
 use App\Http\Controllers\OMSControllers\UserController;
 use App\Http\Controllers\OMSControllers\LeaveController;
 use App\Http\Controllers\OMSControllers\LeaderLeaveController;
@@ -52,7 +51,6 @@ use App\Http\Controllers\OMSControllers\AttendanceController;
     
     //user
     Route::resource('users',UserController::class);
-    Route::resource(name: 'user', controller:EmployeeController::class);
     // end
 
     //announcement
