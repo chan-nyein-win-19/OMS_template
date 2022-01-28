@@ -85,8 +85,7 @@
                                 class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
 
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password"
-                                    value="{{ old('password') }}">
+                                <input id="password" type="password" class="form-control" name="password"  value="{{ old('password') }}">
 
                                 @if($errors->has('password'))
                                 <span class='text-danger'>
@@ -102,7 +101,7 @@
 
                             <div class="col-md-6">
                                 <input id="employeeid" type="text"
-                                    class="form-control @error('employeeid') is-invalid @enderror" name="employeeid"
+                                    class="form-control" name="employeeid"
                                     value="{{ old('employeeid') }}">
 
                                 @if($errors->has('employeeid'))
