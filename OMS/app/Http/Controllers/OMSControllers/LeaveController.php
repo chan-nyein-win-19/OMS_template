@@ -103,7 +103,7 @@ class LeaveController extends Controller
          }
  
         
-         return view('successlogin');
+         return redirect()->route('leaves.show');
             
         }else{
                 
