@@ -31,11 +31,6 @@ Route::get('/', function () {
     return view('login.login');
 });
 
-Route::get('login',['as'=>'login','uses'=>function(){
-    return view('login.login');
-}]);
-
-
 // login
     Route::post('/checklogin',[AuthController::class, 'checklogin']);
     Route::get('/successlogin',[AuthController::class, 'successlogin']);
@@ -71,20 +66,18 @@ Route::middleware(['auth'])->group(function(){
     //attendance
     Route::get('/attendanceform',[AttendanceController::class, 'create']);
 
-    Route::post('/changepassword/{id}',[AccountController::class,'changePassword']);
+   
 // end
 
 //attendance
-    Route::get('/attendanceform',[AttendanceController::class, 'create'])->middleware('auth');
+    
 
-    Route::post('/attendanceform',[AttendanceController::class, 'store']);
+   
     Route::get('/attendanceList',[AttendanceController::class,'index']);
 
     Route::get('/edit/{id}',[AttendanceController::class,'edit']);
   
-    Route::post('/update/{id}',[AttendanceController::class, 'update']);
-    
-    Route::delete('/attendance/{id}', [AttendanceController::class, 'destroy']);
+   
 // end
 
 // leave 
@@ -119,6 +112,9 @@ Route::middleware(['auth'])->group(function(){
 
 //attendance
     Route::post('/attendanceform',[AttendanceController::class, 'store']);
+    Route::post('/update/{id}',[AttendanceController::class, 'update']);
+    
+    Route::delete('/attendance/{id}', [AttendanceController::class, 'destroy']);
 // end
 
 // EmployeeLeave
@@ -128,7 +124,4 @@ Route::middleware(['auth'])->group(function(){
 // leaderLeave
     Route::post('/leader/leaveRecord/searchLeave',[LeaderLeaveController::class,'findLeave']);
 
-    Route::get('/leader/leaveStatus/{id}/{status}/{date}/{filtering}',[LeaderLeaveController::class,'changeStatus']);
-    
-    Route::get('/leader/leaveRecord/filterLeave/{filtering}/{date}',[LeaderLeaveController::class,'filterLeave']);
 // end
