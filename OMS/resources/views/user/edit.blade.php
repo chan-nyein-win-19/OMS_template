@@ -19,14 +19,14 @@
                             <label for="fname" class="col-md-4 col-form-label text-md-end">{{ __('FirstName') }}</label>
 
                             <div class="col-md-6">
-                                <input id="fname" type="text" class="form-control @error('fname') is-invalid @enderror"
-                                    name="fname" value="{{ old('fname') ? old('fname') : $edit->fname}}" autocomplete="fname" autofocus>
+                                <input id="fname" type="text" class="form-control" name="fname"
+                                    value="{{ old('fname') ? old('fname') : $edit->fname}}" autocomplete="fname"
+                                    autofocus>
 
-                                @error('fname')
-                                <span class="invalid-feedback" role="alert">
-                                    {{ $message }}
+                                @if($errors->has('fname'))
+                                <span class='text-danger'>The firstname is required
                                 </span>
-                                @enderror
+                                @endif
                             </div>
                         </div>
 
@@ -35,14 +35,13 @@
                             <label for="lname" class="col-md-4 col-form-label text-md-end">{{ __('LastName') }}</label>
 
                             <div class="col-md-6">
-                                <input id="lname" type="text" class="form-control @error('lname') is-invalid @enderror"
-                                    name="lname" value="{{ old('lname') ? old('lname') : $edit->lname}}" autocomplete="lname">
+                                <input id="lname" type="text" class="form-control" name="lname"
+                                    value="{{ old('lname') ? old('lname') : $edit->lname}}" autocomplete="lname">
 
-                                @error('lname')
-                                <span class="invalid-feedback" role="alert">
-                                    {{ $message }}
+                                @if($errors->has('lname'))
+                                <span class='text-danger'>The lastname is required
                                 </span>
-                                @enderror
+                                @endif
                             </div>
                         </div>
 
@@ -51,15 +50,14 @@
                                 class="col-md-4 col-form-label text-md-end">{{ __('Username') }}</label>
 
                             <div class="col-md-6">
-                                <input id="username" type="text"
-                                    class="form-control @error('username') is-invalid @enderror" name="username"
+                                <input id="username" type="text" class="form-control" name="username"
                                     value="{{old('username') ? old('username') : $edit->username}}">
 
-                                @error('username')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
+                                @if($errors->has('username'))
+                                <span class='text-danger'>
+                                    {{$errors->first('username')}}
                                 </span>
-                                @enderror
+                                @endif
                             </div>
                         </div>
 
@@ -68,14 +66,14 @@
                             <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('E-Mail') }}</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
-                                    name="email" value="{{old('email') ? old('email') : $edit->email}}">
+                                <input id="email" type="email" class="form-control" name="email"
+                                    value="{{old('email') ? old('email') : $edit->email}}">
 
-                                @error('email')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
+                                @if($errors->has('email'))
+                                <span class='text-danger'>
+                                    {{$errors->first('email')}}
                                 </span>
-                                @enderror
+                                @endif
                             </div>
                         </div>
 
@@ -86,15 +84,14 @@
                                 class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
 
                             <div class="col-md-6">
-                                <input id="password" type="password"
-                                    class="form-control @error('password') is-invalid @enderror" name="password"
+                                <input id="password" type="password" class="form-control" name="password"
                                     value="{{old('password') ? old('password') :  $edit->password}}">
 
-                                @error('password')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
+                                @if($errors->has('password'))
+                                <span class='text-danger'>
+                                    {{$errors->first('password')}}
                                 </span>
-                                @enderror
+                                @endif
                             </div>
                         </div>
 
@@ -104,15 +101,14 @@
                                 class="col-md-4 col-form-label text-md-end">{{ __('Employee ID') }}</label>
 
                             <div class="col-md-6">
-                                <input id="employeeid" type="text"
-                                    class="form-control @error('employeeid') is-invalid @enderror" name="employeeid"
+                                <input id="employeeid" type="text" class="form-control" name="employeeid"
                                     value="{{old('employeeid') ? old('employeeid') :  $edit->employeeid}}">
 
-                                @error('employeeid')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
+                                @if($errors->has('employeeid'))
+                                <span class='text-danger'>
+                                    {{$errors->first('employeeid')}}
                                 </span>
-                                @enderror
+                                @endif
                             </div>
                         </div>
 
@@ -121,18 +117,16 @@
 
                             <div class="col-md-6">
                                 <select class="form-control" type="role" name="role" value="">
-                                <option value="{{old('role') ? old('role') :  $edit->role}}">{{$edit->role}}</option>
-                                    
+                                    <option value="{{old('role') ? old('role') :  $edit->role}}">{{$edit->role}}
+                                    </option>
+
                                     <option value="Leader">{{ __('Leader') }}</option>
                                     <option value="Sensei">{{ __('Sensei') }}</option>
                                     <option value="Employee">{{ __('Employee') }}</option>
 
                                 </select>
-
-
                             </div>
                         </div>
-
 
 
                         <div class="row mb-0">
@@ -142,13 +136,13 @@
                                 </button>
 
                                 <button type="reset" class="btn btn-danger">
-                                <a href="{{ url('/users') }}" >  {{ __('Cancel') }}
+                                    {{ __('Cancel') }}
                                 </button>
-                                
-                                
+
+
                             </div>
 
-                            
+
                         </div>
                     </form>
                 </div>

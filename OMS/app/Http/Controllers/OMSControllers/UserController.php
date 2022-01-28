@@ -46,7 +46,7 @@ class UserController extends Controller
             'username' => 'required',
             'email' => 'required|email|unique:users',
             'password' => 'required|min:4',
-            'employeeid' => 'required|unique:users',
+            'employeeid' => 'required|unique:users|integer',
             'role' => 'required'
         ]);
 
@@ -59,7 +59,6 @@ class UserController extends Controller
         $user->employeeid=request()->employeeid;
         $user->role=request()->role;
         $user->save();
-
 
         return view('user.create')->with('success','Employee has been successfully added...');
 
@@ -87,18 +86,20 @@ class UserController extends Controller
 
     public function update(Request $request,$id)
     {
+        $user = User::find($id);
 
         $validateData= $request->validate([
             'fname' => 'required',
             'lname' => 'required',
             'username' => 'required',
-            'email' => 'required|email|unique:users,id',
+            // 'email' => 'required|email|unique:users,id',
+            'email' => 'required|email|unique:users,email,'.$user->id.'',
             'password' => 'required|min:4',
-            'employeeid' => 'required',
+            'employeeid' => 'required|unique:users,employeeid,'.$user->id.'|integer',
             'role' => 'required'
         ]);
 
-       
+      
 
         $user=  User::findOrFail($id)->update([
             'fname'=>request()->fname,
