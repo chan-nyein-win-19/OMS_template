@@ -60,7 +60,7 @@ class UserController extends Controller
         $user->role=request()->role;
         $user->save();
 
-        return view('user.create')->with('success','Employee has been successfully added...');
+        return back()->with('success','Employee has been successfully added...');
 
     }
 
