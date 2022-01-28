@@ -58,6 +58,7 @@ class AttendanceController extends Controller
             'checkIn'=>'required',
             'checkOut'=>'required',
             'lunchTime'=>'required',
+            'workHour'=>'required',
     
         ]);
     
@@ -146,6 +147,7 @@ class AttendanceController extends Controller
             'checkIn'=>'required',
             'checkOut'=>'required',
             'lunchTime'=>'required',
+            'workHour'=>'required',
     
         ]);
     

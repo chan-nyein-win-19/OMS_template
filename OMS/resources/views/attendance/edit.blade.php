@@ -96,7 +96,7 @@
                         <label class="form-check-label" for="inlineRadio1">Yes</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="leaveDay" id="inlineRadio2" value="NO" {{ $edit->leaveday == 'No' ? 'checked' : '' }}/>
+                        <input class="form-check-input" type="radio" name="leaveDay" id="inlineRadio2" value="No" {{ $edit->leaveday == 'No' ? 'checked' : '' }}/>
                         <label class="form-check-label" for="inlineRadio1">No</label>
                     </div>  
                     </div> 
@@ -143,7 +143,7 @@
                         <label class="form-check-label" for="inlineRadio1">Yes</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="wfh" id="inlineRadio2" value="No" {{ $edit->workfromhome == 'NO' ? 'checked' : '' }}/>
+                        <input class="form-check-input" type="radio" name="wfh" id="inlineRadio2" value="No" {{ $edit->workfromhome == 'No' ? 'checked' : '' }}/>
                         <label class="form-check-label" for="inlineRadio1">No</label>
                     </div>   
                     </div>   

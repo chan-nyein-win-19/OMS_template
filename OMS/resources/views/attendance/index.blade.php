@@ -49,16 +49,16 @@
 
                                                 <td>
 
+                                                <a type="button" class="btn btn1 btn-outline-primary mb-1" href="{{url('/edit/'.$item->id)}}"><i class="fa fa-fw"></i></a>
+
                                                 <form action="/attendance/{{ $item->id }}" method="POST">
 
                                                     @csrf
                                                     @method('DELETE')
                                                     <button class="btn btn2 btn-outline-danger show_confirm"><i class="fa fa-fw"></i></button>
                                                 </form>
-                    
-                                                    <a type="button" class="btn btn1 btn-outline-primary" href="{{url('/edit/'.$item->id)}}"><i class="fa fa-fw"></i></a>
-                                                    <!-- <a type="button" class="btn btn2 btn-outline-danger" href="{{url('/attendance/delete/$dailyattendance->id')}}">Delete</a> -->
-                                                </form>
+                                                 
+                                                
                                                 </td>
                                                 
 
