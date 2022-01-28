@@ -5,11 +5,11 @@
 
 <link href="{{ asset('/storage/OMS/attendance/attendanceform.css') }}" rel="stylesheet">
 
+<link rel="stylesheet" href="{{ asset('/storage/OMS/bootstrap5/bootstrap.min.css') }}">
+
 <div class="container pt-80 mb-100 text-center ">
 
-    <div class="col-12 pt-4 mb-5">
-        <h3 class="sub-title">Employee Attendance Form</h3>
-    </div>
+    
     <div class="row">
         
         <div class="col-sm-12">
@@ -22,12 +22,17 @@
                 </ol>
             </div>
         @endif
-        
+
+        <div class="main-card mb-3 card ">
+        <div class="card-body">
+        <div class="col-12 pt-4 mb-5">
+            <h3 class="sub-title">Employee Attendance Form</h3>
+        </div>
         <form method="post" action="" class="container">
             @csrf
             <div class="form-group row">
                 <label for="employeeId" class="col-sm-4 col-form-label" >Employee ID</label>
-                <div class="col-sm-8">
+                <div class="col-sm-6">
                 
                 <input type="text" class="form-control" id="employeeID" name="employeeID" value="{{Auth::user()->employeeid}}"  readonly>
                 </div>
@@ -35,7 +40,7 @@
 
             <div class="form-group row">
                 <label for="attendanceDate" class="col-sm-4 col-form-label">Attendance Date</label>
-                <div class="col-8">
+                <div class="col-sm-6">
                 <div class="md-form">
                     <input type="date" id="inputMDEx" class="form-control" name="attendanceDate">
  
@@ -46,14 +51,14 @@
 
             <div class="form-group row">
                 <label for="checkIn" class="col-sm-4 col-form-label" >Check in</label>
-                <div class="col-8" id="timepicker1">
+                <div class="col-sm-6" id="timepicker1">
                     <input type="time" id="time1" class="form-control" name="checkIn" onchange=getTimeDifference() value="00:00" >
                 </div>
             </div>
 
             <div class="form-group row">
                 <label for="checkOut" class="col-sm-4 col-form-label" >Check Out</label>
-                <div class="col-8" id="timepicker2">
+                <div class="col-sm-6" id="timepicker2">
                     <input type="time" id="time2" class="form-control time1" name="checkOut" onchange=getTimeDifference() value="00:00" >
                 </div>
             </div>
@@ -62,7 +67,7 @@
 
                 <label for="lunchTime" class="col-sm-4 col-form-label">Lunch Time</label>
                 
-                <div class="col-8">
+                <div class="col-sm-6">
                 
                 <input type="text" class="form-control" id="lunchThime" name="lunchTime" value="01:00:00" place-holder="01:00" readonly>
                
@@ -77,7 +82,7 @@
                 
                 
                     <!-- <input type="time" id="input3" class="form-control" name="checkOut" > -->
-                    <div class="col-sm-8">
+                    <div class="col-sm-6">
                 <input type="text" class="form-control" id="workHour" name="workHour" readonly><br>
                
                 </div>
@@ -88,9 +93,9 @@
 
             <div class="form-group row">
                     <label for="radio" class="col-form-label col-sm-4 pt-0">Leave Day</label>
-                    <div class="col-8">
+                    <div class="col-sm-6">
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="leaveDay" id="inlineRadio1" value="Yes" checked/>  
+                        <input class="form-check-input" type="radio" name="leaveDay" id="inlineRadio1" value="Yes" />  
                         <label class="form-check-label" for="inlineRadio1">Yes</label>
                     </div>
                     <div class="form-check form-check-inline">
@@ -104,13 +109,13 @@
 
             <div class="form-group row">
                     <label for="radio" class="col-form-label col-sm-4 pt-0">Half Day Leave</label>
-                    <div class="col-8">
+                    <div class="col-sm-6">
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="halfDayLeave" id="inlineRadio1" value="Yes" checked/>  
+                        <input class="form-check-input" type="radio" name="halfDayLeave" id="inlineRadio1" value="Yes" />  
                         <label class="form-check-label" for="inlineRadio1">Yes</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="halfDayLeave" id="inlineRadio2" value="No" checked/>
+                        <input class="form-check-input" type="radio" name="halfDayLeave" id="inlineRadio2" value="No"checked />
                         <label class="form-check-label" for="inlineRadio1">No</label>
                     </div>  
                     </div> 
@@ -118,9 +123,9 @@
             <div class="form-group row">
                     <label for="radio" class="col-form-label col-sm-4 pt-0">OT Time</label>
                     
-                    <div class="col-8">
+                    <div class="col-sm-6">
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="ottime" id="inlineRadio1" value="Yes" checked/>  
+                        <input class="form-check-input" type="radio" name="ottime" id="inlineRadio1" value="Yes" />  
                         <label class="form-check-label" for="inlineRadio1">Yes</label>
                     </div>
                     <div class="form-check form-check-inline">
@@ -132,9 +137,9 @@
 
             <div class="form-group row">
                     <label for="radio" class="col-form-label col-sm-4 pt-0">Work From Home</label>
-                    <div class="col-8">
+                    <div class="col-sm-6">
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="wfh" id="inlineRadio1" value="Yes" checked/>  
+                        <input class="form-check-input" type="radio" name="wfh" id="inlineRadio1" value="Yes" />  
                         <label class="form-check-label" for="inlineRadio1">Yes</label>
                     </div>
                     <div class="form-check form-check-inline">
@@ -142,14 +147,12 @@
                         <label class="form-check-label" for="inlineRadio1">No</label>
                     </div>   
                     </div>   
-            </div>
-
-            
+            </div>          
 
             
             <div class="form-group row">
             <div class="col-sm-4"></div>
-                <div class="col-sm-8">
+            <div class="col-sm-6">
                 <button type="submit" class="btn btn-primary">Add</button>
                 <button type="reset" class="btn btn-danger" id="cancel" >Cancle</button>
                 </div>
@@ -157,6 +160,8 @@
 
            
         </form>
+        </div>
+        </div>
 </div>
 </div>
 </div>

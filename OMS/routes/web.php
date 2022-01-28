@@ -105,6 +105,8 @@ use App\Http\Controllers\OMSControllers\AttendanceController;
 
 // EmployeeLeave
     Route::post('/leaveRecord/searchLeave',[LeaveController::class,'searchLeave']);
+
+
 // end
 
 // leaderLeave

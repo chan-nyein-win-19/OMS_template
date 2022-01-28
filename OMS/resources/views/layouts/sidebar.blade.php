@@ -8,20 +8,30 @@
                 <i class="metismenu-icon pe-7s fas fa-user" style="font-size: 16px;"></i>
                 Employee
                 <i class="fa fa-angle-down ml-5 opacity-8"></i>
-            </a>
-            <ul>
-                <li>
-                    <a href='{{url("/users")}}' class="textstyle">
-                        Employee List
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ url('/users/create') }}" class="textstyle">
-                        Employee Create
-                    </a>
-                </li>
-            </ul>
-        </li>
+                </a>
+                <ul>
+                    <li>
+                        <a href="{{ url('/users') }}" class="textstyle">
+                            Employee List
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ url('/user') }}" class="textstyle">
+                           Employee Create
+                        </a>
+                   </li>
+                   <li>
+                        <a href="{{ url('/attendanceList') }}" class="textstyle">
+                           Attendance List
+                        </a>
+                   </li>
+                   <li>
+                        <a href="{{ url('/attendanceform') }}" class="textstyle">
+                           Attendance Create
+                        </a>
+                   </li>
+               </ul>
+           </li>
         <li class="app-sidebar__heading mt-4">Announcements</li>
         <li>
             <a href="#">
@@ -38,6 +48,32 @@
                 <li>
                     <a href="{{ url('/announcements/create') }}" class="textstyle">
                         Announcement Create
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li class="app-sidebar__heading mt-4">Attendance</li>
+        <li>
+            <a href="#">
+                <i class="metismenu-icon pe-7s fas fa-briefcase" style="font-size: 16px;"></i>
+                
+                    <span class="ml-3">Attendance</span>
+                <i class="fa fa-angle-down ml-5 opacity-8"></i>
+            </a>
+            <ul>
+                <li>
+                    <a href="{{ url('/attendanceList') }}" class="textstyle">
+                           Attendance List
+                        </a>
+                </li>
+                <li>
+                        <a href="{{ url('/attendanceform') }}" class="textstyle">
+                           Attendance Create
+                        </a>
+                </li>
+                <li>
+                    <a href="{{ url('/attendanceshow') }}" class="textstyle">
+                       Attendance Show
                     </a>
                 </li>
             </ul>
