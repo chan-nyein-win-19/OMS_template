@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\OMSControllers;
-
+use App\Models\Announcement;
 
 // namespace App\Http\Controllers\Auth;
 // use AuthenticatesUsers;
@@ -34,11 +34,17 @@ class AuthController extends Controller
 
         if(Auth::attempt($user_data))
         {
-            return view('template.template');
+            return redirect('/successlogin');
         }else
         {
             return back()->with('error','Wrong Login');
         }
+    }
+
+    function successlogin(){
+        
+        $list = Announcement::latest()->paginate(4);
+        return view('template.template',compact('list'));
     }
 
     function logout()
