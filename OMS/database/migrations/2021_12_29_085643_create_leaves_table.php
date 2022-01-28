@@ -14,15 +14,19 @@ class CreateLeavesTable extends Migration
     public function up()
     {
         Schema::create('leaves', function (Blueprint $table) {
+
             $table->id();
             $table->integer('employeeId');
             $table->date('date');
+
             $table->text('reason');
+
             $table->text('comment');
             $table->text('status');
             $table->integer('leaderid');
             $table->text('time');
             $table->timestamps();
+
         });
     }
 

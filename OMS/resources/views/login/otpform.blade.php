@@ -48,7 +48,7 @@ One Time Password Form
                 @enderror
             </div>
             <div class="form-group">
-                <label>Comfirm Password</label>
+                <label>Confirm Password</label>
                 <input type="password" name="confirmPassword" class="form-control @error('confirmPassword') is-invalid @enderror" id="pass2" onkeyup='checkpwd();'/>
                 @error('confirmPassword')
                     <span class="invalid-feedback" role="alert">

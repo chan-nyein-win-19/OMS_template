@@ -54,18 +54,22 @@ Route::get('login',['as'=>'login','uses'=>function(){
     Route::post('/forgotpwd/checkemail/checkOTP',[ResetPasswordController::class, 'checkOTP']);
 // end
 
-// user
-    Route::resource('users',UserController::class)->middleware('auth');
-// end
 
-// announcement
-    Route::resource('announcements',AnnouncementController::class)->middleware('auth');
-// end
+//Middleware Function
+Route::middleware(['auth'])->group(function(){
+    //user
+    Route::resource('users',UserController::class);
+    Route::resource(name: 'user', controller:EmployeeController::class);
 
-// account
-    Route::resource('accounts',AccountController::class)->middleware('auth');
+    //announcement
+    Route::resource('announcements',AnnouncementController::class);
 
-    Route::get('/changepassword/{id}',[AccountController::class,'editPassword'])->middleware('auth');
+    //account
+    Route::resource('accounts',AccountController::class);
+    Route::get('/changepassword/{id}',[AccountController::class,'editPassword']);
+    
+    //attendance
+    Route::get('/attendanceform',[AttendanceController::class, 'create']);
 
     Route::post('/changepassword/{id}',[AccountController::class,'changePassword']);
 // end
@@ -95,17 +99,33 @@ Route::get('login',['as'=>'login','uses'=>function(){
     ]);
 
     Route::resource('leaves',LeaveController::class,['except'=>'show','edit']);
-//end 
 
 // EmployeeLeave
     Route::get('/leaveRequestForm/{date}',[LeaveController::class,'addNew']);
 
+    // leaderLeave
+    Route::get('/leader/leaveRecord',[LeaderLeaveController::class,'viewLeave']);
+    Route::get('/leader/leaveStatus/{id}/{status}/{date}/{filtering}',[LeaderLeaveController::class,'changeStatus']);
+    Route::get('/leader/leaveRecord/filterLeave/{filtering}/{date}',[LeaderLeaveController::class,'filterLeave']);
+
+});
+
+
+
+// account
+   Route::post('/changepassword/{id}',[AccountController::class,'changePassword']);
+// end
+
+
+//attendance
+    Route::post('/attendanceform',[AttendanceController::class, 'store']);
+// end
+
+// EmployeeLeave
     Route::post('/leaveRecord/searchLeave',[LeaveController::class,'searchLeave']);
 // end
 
 // leaderLeave
-    Route::get('/leader/leaveRecord',[LeaderLeaveController::class,'viewLeave']);
-
     Route::post('/leader/leaveRecord/searchLeave',[LeaderLeaveController::class,'findLeave']);
 
     Route::get('/leader/leaveStatus/{id}/{status}/{date}/{filtering}',[LeaderLeaveController::class,'changeStatus']);
