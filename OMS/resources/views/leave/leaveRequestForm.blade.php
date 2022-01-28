@@ -42,8 +42,9 @@
 
                         <label class="col-sm-2 col-form-label">EmployeeId*</label>
                         <div class="col-sm-10">
-                            <input type="number" class="form-control" id="employeeId" name="employeeId"
+                            <input type="number" class="form-control" id="employeeId"
                                 value="{{auth()->user()->employeeid}}" readonly>
+                            <input type="hidden" name="employeeId" value="{{auth()->user()->id}}">
                         </div>
                     </div>
                     @error('employeeId')
