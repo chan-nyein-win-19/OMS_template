@@ -11,7 +11,7 @@
                 </a>
                 <ul>
                     <li>
-                        <a href="{{ url('/users') }}" class="textstyle">
+                       <a href="{{ url('/users') }}" class="textstyle">
                             Employee List
                         </a>
                     </li>
@@ -78,11 +78,52 @@
                 </li>
             </ul>
         </li>
+        <li class="app-sidebar__heading mt-4">Attendance</li>
+        <li>
+            <a href="#" class="textstyle">
+                <i class="metismenu-icon pe-7s fas fa-list" style="font-size: 16px;"></i>
+                <span>Attendance</span>
+                <i class="fa fa-angle-down ml-5 opacity-8"></i>
+            </a>
+            <ul>
+                <li>
+                   <a href="#" class="textstyle">
+                    View Attendance Record
+                   </a>
+                </li>
+                <li>
+                   <a href="{{ url('/attendanceform') }}" class="textstyle">
+                    Attendance Create
+                   </a>
+                </li>
+            </ul>
+        </li>
+        <li class="app-sidebar__heading mt-4">Leave</li>
+        <li class="text">
+            <a href="#" class="textstyle">
+                <i class="metismenu-icon pe-7s fas fa-list"  style="font-size: 16px;"></i>
+                    Leave
+                    <i class="fa fa-angle-down ml-5 opacity-8"></i>
+                </a>
+                <ul>
+                    <li>
+                       <a href="#" class="textstyle">
+                        View Leave Request
+                       </a>
+                    </li>
+                    <li>
+                       <a href="#" class="textstyle">
+                        Approve Leave Request
+                       </a>
+                   </li>
+               </ul>
+        </li>
+        
         <li class="app-sidebar__heading mt-4">Assets</li>
         <li>
             <a href="#" class="textstyle">
                 <i class="metismenu-icon pe-7s fas fa-list" style="font-size: 16px;"></i>
-                <span class="ml-3">Assets</span>
+                <span>Assets</span>
                 <i class="fa fa-angle-down ml-5 opacity-8"></i>
             </a>
             <ul>
@@ -152,6 +193,7 @@
                 </li>
             </ul>
         </li>
+        
     </ul>
 </div>
 @endif
@@ -175,7 +217,7 @@
 
             </ul>
         </li>
-        <li class="app-sidebar__heading mt-4">Attendence</li>
+        <li class="app-sidebar__heading mt-4">Attendance</li>
         <li>
             <a href="#" class="textstyle">
                 <i class="metismenu-icon pe-7s fas fa-list" style="font-size: 16px;"></i>
@@ -233,7 +275,7 @@
                 </li>
             </ul>
         </li>
-        <li class="app-sidebar__heading mt-4">Attendence</li>
+        <li class="app-sidebar__heading mt-4">Attendance</li>
         <li>
             <a href="#" class="textstyle">
                 <i class="metismenu-icon pe-7s fas fa-list" style="font-size: 16px;"></i>
