@@ -6,7 +6,7 @@
 <link href="{{ asset('/storage/OMS/attendance/attendanceform.css') }}" rel="stylesheet">
 
 <link rel="stylesheet" href="{{ asset('/storage/OMS/bootstrap5/bootstrap.min.css') }}">
-
+<link rel="stylesheet" href="{{ asset('/storage/OMS/css/style.css') }}">
 <div class="container pt-80 mb-100 text-center ">
 
     

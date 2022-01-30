@@ -19,17 +19,7 @@
                         <a href="{{ url('/users/create') }}" class="textstyle">
                            Employee Create
                         </a>
-                   </li>
-                   <li>
-                        <a href="{{ url('/attendanceList') }}" class="textstyle">
-                           Attendance List
-                        </a>
-                   </li>
-                   <li>
-                        <a href="{{ url('/attendanceform') }}" class="textstyle">
-                           Attendance Create
-                        </a>
-                   </li>
+                    </li>
                </ul>
            </li>
         <li class="app-sidebar__heading mt-4">Announcements</li>
