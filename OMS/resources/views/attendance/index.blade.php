@@ -53,7 +53,7 @@
 
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button class="btn btn2 btn-outline-danger show_confirm"><i class="fa fa-fw"></i></button>
+                                                    <button class="btn btn2 btn-outline-danger show_confirm" data-toggle="tooltip" title="Delete"><i class="fa fa-fw"></i></button>
                                                 </form>
                                                  
                                                 
@@ -93,8 +93,7 @@
                 null,
                 null,
                 null,
-                null,
-                null           
+                null        
             ],
             "aaSorting": [],     
 
