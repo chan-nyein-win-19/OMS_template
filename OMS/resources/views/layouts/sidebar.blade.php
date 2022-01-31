@@ -46,9 +46,8 @@
         <li>
             <a href="#">
                 <i class="metismenu-icon pe-7s fas fa-briefcase" style="font-size: 16px;"></i>
-                
                     <span class="ml-3">Attendance</span>
-                <i class="fa fa-angle-down ml-5 opacity-8"></i>
+                <i class="fa fa-angle-down ml-3 opacity-8"></i>
             </a>
             <ul>
                 <li>
@@ -102,17 +101,17 @@
 
             </ul>
         </li>
-        <li class="app-sidebar__heading mt-4">Attendence</li>
+        <li class="app-sidebar__heading mt-4">Attendance</li>
         <li>
             <a href="#" class="textstyle">
                 <i class="metismenu-icon pe-7s fas fa-list" style="font-size: 16px;"></i>
-                <span class="">Attendence</span>
+                <span class="">Attendance</span>
                 <i class="fa fa-angle-down ml-5 opacity-8"></i>
             </a>
             <ul>
                 <li>
                     <a href='{{url("/attendanceshow")}}' class="textstyle">
-                        View Attendence Record
+                        View Attendance Record
                     </a>
                 </li>
             </ul>
@@ -155,17 +154,17 @@
 
             </ul>
         </li>
-        <li class="app-sidebar__heading mt-4">Attendence</li>
+        <li class="app-sidebar__heading mt-4">Attendance</li>
         <li>
             <a href="#" class="textstyle">
                 <i class="metismenu-icon pe-7s fas fa-list" style="font-size: 16px;"></i>
-                    <span class="">Attendence</span>
+                    <span class="">Attendance</span>
                 <i class="fa fa-angle-down ml-5 opacity-8"></i>
             </a>
             <ul>
                 <li>
                     <a href='{{url("/attendanceshow")}}' class="textstyle">
-                        View Attendence Record
+                        View Attendance Record
                     </a>
                 </li>
             </ul>
@@ -213,22 +212,22 @@
                 </li>
             </ul>
         </li>
-        <li class="app-sidebar__heading mt-4">Attendence</li>
+        <li class="app-sidebar__heading mt-4">Attendance</li>
         <li>
             <a href="#" class="textstyle">
                 <i class="metismenu-icon pe-7s fas fa-list" style="font-size: 16px;"></i>
-                    <span class="">Attendence</span>
+                    <span class="">Attendance</span>
                 <i class="fa fa-angle-down ml-5 opacity-8"></i>
             </a>
             <ul>
                 <li>
                     <a href='{{url("/attendanceform")}}' class="textstyle">
-                        Report Daily Attendence
+                        Report Daily Attendance
                     </a>
                 </li>
                 <li>
                     <a href='{{url("/attendanceList")}}' class="textstyle">
-                        View Attendence Record
+                        View Attendeace Record
                     </a>
                 </li>
             </ul>
