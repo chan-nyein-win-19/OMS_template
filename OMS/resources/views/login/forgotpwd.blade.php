@@ -35,9 +35,9 @@ Forgot Password Form
         @csrf
             <div class="form-group">
                 <label>Employee Email</label>
-                <input type="email" name="email" class="form-control @error('email') is-invalid @enderror"/>
+                <input type="email" name="email" class="form-control"/>
                 @error('email')
-                    <span class="invalid-feedback" role="alert">
+                    <span class="invalid-feedback">
                         {{ $message }}
                     </span>
                 @enderror
