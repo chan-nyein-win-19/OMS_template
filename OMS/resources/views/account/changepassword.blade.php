@@ -78,10 +78,10 @@
                         <hr>
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4">
-                            <input type="submit" name="update" value="Update" class="btn btn-primary">
+                            <input type="submit" name="update" value="Update" class="btn btn-primary" style="font-size: 14px;">
                            
 				 				&nbsp;&nbsp;
-                             <input type="reset" name="cancel" class="btn btn-danger" value="Cancel"/>
+                             <input type="reset" name="cancel" class="btn btn-danger" value="Cancel" style="font-size: 14px;">
                             </div>
                             
                         </div>

@@ -68,12 +68,12 @@
 
                    		 <hr>
 
-                        <div class="row mb-0">
-                            <div class="col-md-6 offset-md-4 justify-content-center">
+                        <div class="row mb-0" >
+                            <div class="col-md-6 offset-md-4 justify-content-center" > 
                                 
-                                <a class="btn btn-primary" href="{{url('/accounts/'.$user->id.'/edit')}}">{{ __('Edit') }}</a>
+                                <a class="btn btn-primary" style="font-size: 14px;" href="{{url('/accounts/'.$user->id.'/edit')}}">{{ __('Edit') }}</a>
 				 				&nbsp;&nbsp;
-					            <a class="btn btn-danger" href="{{url('/successlogin')}}"> {{ __('Cancel') }}</a>
+					            <a class="btn btn-danger" style="font-size: 14px;" href="{{url('/successlogin')}}"> {{ __('Cancel') }}</a>
                             </div>
 
                         </div>

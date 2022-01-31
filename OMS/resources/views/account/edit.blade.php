@@ -101,11 +101,11 @@
                         <hr>
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4">
-                            <input type="submit" name="Update" value="Update" class="btn btn-primary">
+                            <input type="submit" name="Update" value="Update" class="btn btn-primary" style="font-size: 14px;">
                            
 				 				&nbsp;&nbsp;
                              <!-- <input type="reset" name="cancel" class="btn btn-danger" value="Cancel"/> -->
-                             <a class="btn btn-danger" href="{{url('/successlogin')}}"> {{ __('Cancel') }}</a>
+                             <a class="btn btn-danger" style="font-size: 14px;" href="{{url('/successlogin')}}"> {{ __('Cancel') }}</a>
                             </div>
                             
                         </div>
