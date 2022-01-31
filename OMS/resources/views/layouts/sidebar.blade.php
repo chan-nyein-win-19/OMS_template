@@ -52,16 +52,6 @@
             </a>
             <ul>
                 <li>
-                    <a href="{{ url('/attendanceList') }}" class="textstyle">
-                           Attendance List
-                        </a>
-                </li>
-                <li>
-                        <a href="{{ url('/attendanceform') }}" class="textstyle">
-                           Attendance Create
-                        </a>
-                </li>
-                <li>
                     <a href="{{ url('/attendanceshow') }}" class="textstyle">
                        View Attendance Record
                     </a>
