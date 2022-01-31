@@ -23,7 +23,7 @@
                             <label for="employeeid" class="col-md-4 col-form-label text-md-end" style="font-weight:bold;">{{ __('Employee ID') }}</label>
 
                             <div class="col-md-6">
-                                <input id="employeeid" type="text" class="form-control @error('employeeid') is-invalid @enderror" name="employeeid" value="{{ $user->employeeid }}" disabled>
+                                <input type="text" class="form-control @error('employeeid') is-invalid @enderror" name="employeeid" value="{{ $user->employeeid }}" disabled>
 
                             </div>
                         </div>
@@ -32,7 +32,7 @@
                             <label for="fname" class="col-md-4 col-form-label text-md-end" style="font-weight:bold;">{{ __('FirstName') }}</label>
 
                             <div class="col-md-6">
-                                <input id="fname" type="text" class="form-control @error('fname') is-invalid @enderror" name="fname" value="{{ old('fname') ? old('fname') : $user->fname }}" autofocus>
+                                <input type="text" class="form-control @error('fname') is-invalid @enderror" name="fname" value="{{ old('fname') ? old('fname') : $user->fname }}" autofocus>
 
                                 @error('fname')
                                     <span class="invalid-feedback" role="alert">
@@ -47,7 +47,7 @@
                             <label for="lname" class="col-md-4 col-form-label text-md-end" style="font-weight:bold;">{{ __('LastName') }}</label>
 
                             <div class="col-md-6">
-                                <input id="lname" type="text" class="form-control @error('lname') is-invalid @enderror" name="lname" value="{{ old('lname') ? old('lname') : $user->lname  }}">
+                                <input type="text" class="form-control @error('lname') is-invalid @enderror" name="lname" value="{{ old('lname') ? old('lname') : $user->lname  }}">
 
                                 @error('lname')
                                     <span class="invalid-feedback" role="alert">
@@ -61,7 +61,7 @@
                             <label for="username" class="col-md-4 col-form-label text-md-end" style="font-weight:bold;">{{ __('Username') }}</label>
 
                             <div class="col-md-6">
-                                <input id="username" type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') ? old('username') : $user->username  }}" >
+                                <input type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') ? old('username') : $user->username  }}" >
 
                                 @error('username')
                                     <span class="invalid-feedback" role="alert">
@@ -75,7 +75,7 @@
                             <label for="email" class="col-md-4 col-form-label text-md-end" style="font-weight:bold;">{{ __('E-Mail') }}</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') ? old('email') : $user->email }}" >
+                                <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') ? old('email') : $user->email }}" >
 
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">

@@ -28,7 +28,7 @@
                             <label for="employeeid" class="col-md-4 col-form-label text-md-end" style="font-weight:bold;">{{ __('Employee ID') }}</label>
 
                             <div class="col-md-6">
-                                <input id="employeeid" type="text" class="form-control @error('employeeid') is-invalid @enderror" name="employeeid" value="{{ $user->employeeid }}" disabled>
+                                <input type="text" class="form-control @error('employeeid') is-invalid @enderror" name="employeeid" value="{{ $user->employeeid }}" disabled>
 
                             </div>
                         </div>
@@ -52,7 +52,7 @@
                             <label for="newpassword" class="col-md-4 col-form-label text-md-end" style="font-weight:bold;">{{ __('New Password') }}</label>
 
                             <div class="col-md-6">
-                                <input id="newpassword" type="password" class="form-control @error('newpassword') is-invalid @enderror" name="newpassword" value="" >
+                                <input type="password" class="form-control @error('newpassword') is-invalid @enderror" name="newpassword" value="" >
 
                                 @error('newpassword')
                                     <span class="invalid-feedback" role="alert">
@@ -66,7 +66,7 @@
                             <label for="confirmpassword" class="col-md-4 col-form-label text-md-end" style="font-weight:bold;">{{ __('Confirm Password') }}</label>
 
                             <div class="col-md-6">
-                                <input id="confirmpassword" type="password" class="form-control @error('confirmpassword') is-invalid @enderror" name="confirmpassword" value="" autocomplete="confirmpassword" >
+                                <input type="password" class="form-control @error('confirmpassword') is-invalid @enderror" name="confirmpassword" value="" autocomplete="confirmpassword" >
 
                                 @error('confirmpassword')
                                     <span class="invalid-feedback" role="alert">
