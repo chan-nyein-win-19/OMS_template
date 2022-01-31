@@ -73,7 +73,7 @@
                                 
                                 <a class="btn btn-primary" href="{{url('/accounts/'.$user->id.'/edit')}}">{{ __('Edit') }}</a>
 				 				&nbsp;&nbsp;
-					            <a class="btn btn-danger" href="{{url('/announcements/show')}}"> {{ __('Cancel') }}</a>
+					            <a class="btn btn-danger" href="{{url('/successlogin')}}"> {{ __('Cancel') }}</a>
                             </div>
 
                         </div>

@@ -43,12 +43,6 @@ class AccountController extends Controller
         
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Account  $account
-     * @return \Illuminate\Http\Response
-     */
 
      //Show account info
     public function show($id)
@@ -58,12 +52,7 @@ class AccountController extends Controller
         return view('account.show',compact('user'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Account  $account
-     * @return \Illuminate\Http\Response
-     */
+    
     // Update Account info
     public function edit($id)
     {
@@ -72,20 +61,16 @@ class AccountController extends Controller
         
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Account  $account
-     * @return \Illuminate\Http\Response
-     */
+   
     public function update(Request $request, $id)
     {
+        $id=Auth::user()->id;
+        $user = User::find($id);
         $validator=validator(request()->all(),[
             'fname'=>'required',
             'lname'=>'required',
             'username'=>'required',
-            'email'=>'required|email',
+            'email'=>'required|email|unique:users,email,'.$user->id.'|max:20',
             
         ]);
         if($validator->fails()){

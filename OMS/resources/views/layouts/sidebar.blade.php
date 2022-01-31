@@ -6,9 +6,9 @@
         <li class="text">
             <a href="#" class="textstyle">
                 <i class="metismenu-icon pe-7s fas fa-user" style="font-size: 16px;"></i>
-                Employee
+                    Employee
                 <i class="fa fa-angle-down ml-5 opacity-8"></i>
-                </a>
+            </a>
                 <ul>
                     <li>
                         <a href="{{ url('/users') }}" class="textstyle">
@@ -16,27 +16,17 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{ url('/user') }}" class="textstyle">
+                        <a href="{{ url('/users/create') }}" class="textstyle">
                            Employee Create
                         </a>
-                   </li>
-                   <li>
-                        <a href="{{ url('/attendanceList') }}" class="textstyle">
-                           Attendance List
-                        </a>
-                   </li>
-                   <li>
-                        <a href="{{ url('/attendanceform') }}" class="textstyle">
-                           Attendance Create
-                        </a>
-                   </li>
+                    </li>
                </ul>
            </li>
         <li class="app-sidebar__heading mt-4">Announcements</li>
         <li>
             <a href="#">
                 <i class="metismenu-icon pe-7s fas fa-scroll" style="font-size: 16px;"></i>
-                Announcements
+                    Announcements
                 <i class="fa fa-angle-down ml-2 opacity-8"></i>
             </a>
             <ul>
@@ -73,7 +63,7 @@
                 </li>
                 <li>
                     <a href="{{ url('/attendanceshow') }}" class="textstyle">
-                       Attendance Show
+                       View Attendance Record
                     </a>
                 </li>
             </ul>
@@ -131,7 +121,7 @@
             </a>
             <ul>
                 <li>
-                    <a href='{{url("/attendanceList")}}' class="textstyle">
+                    <a href='{{url("/attendanceshow")}}' class="textstyle">
                         View Attendence Record
                     </a>
                 </li>
@@ -163,7 +153,7 @@
         <li class="text">
             <a href="#" class="textstyle">
                 <i class="metismenu-icon pe-7s fas fa-business-time" style="font-size: 16px;"></i>
-                <span class="mr-3">Leaves&nbsp&nbsp</span>
+                    <span class="mr-3">Leaves&nbsp&nbsp</span>
                 <i class="fa fa-angle-down ml-5 opacity-8"></i>
             </a>
             <ul>
@@ -179,12 +169,12 @@
         <li>
             <a href="#" class="textstyle">
                 <i class="metismenu-icon pe-7s fas fa-list" style="font-size: 16px;"></i>
-                <span class="">Attendence</span>
+                    <span class="">Attendence</span>
                 <i class="fa fa-angle-down ml-5 opacity-8"></i>
             </a>
             <ul>
                 <li>
-                    <a href='{{url("/attendanceList")}}' class="textstyle">
+                    <a href='{{url("/attendanceshow")}}' class="textstyle">
                         View Attendence Record
                     </a>
                 </li>
@@ -194,7 +184,7 @@
         <li>
             <a href="#">
                 <i class="metismenu-icon pe-7s fas fa-scroll" style="font-size: 16px;"></i>
-                Announcements
+                    Announcements
                 <i class="fa fa-angle-down ml-3 opacity-8"></i>
             </a>
             <ul>
@@ -217,7 +207,7 @@
         <li class="text">
             <a href="#" class="textstyle">
                 <i class="metismenu-icon pe-7s fas fa-business-time" style="font-size: 16px;"></i>
-                <span class="mr-3">Leaves&nbsp&nbsp</span>
+                    <span class="mr-3">Leaves&nbsp&nbsp</span>
                 <i class="fa fa-angle-down ml-5 opacity-8"></i>
             </a>
             <ul>
@@ -237,7 +227,7 @@
         <li>
             <a href="#" class="textstyle">
                 <i class="metismenu-icon pe-7s fas fa-list" style="font-size: 16px;"></i>
-                <span class="">Attendence</span>
+                    <span class="">Attendence</span>
                 <i class="fa fa-angle-down ml-5 opacity-8"></i>
             </a>
             <ul>
@@ -257,7 +247,7 @@
         <li>
             <a href="#">
                 <i class="metismenu-icon pe-7s fas fa-scroll" style="font-size: 16px;"></i>
-                Announcements
+                    Announcements
                 <i class="fa fa-angle-down ml-3 opacity-8"></i>
             </a>
             <ul>

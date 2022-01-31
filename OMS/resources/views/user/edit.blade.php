@@ -135,9 +135,11 @@
                                     {{ __('Update') }}
                                 </button>
 
-                                <button type="reset" class="btn btn-danger">
+                                <!-- <button type="reset" class="btn btn-danger">
                                     {{ __('Cancel') }}
-                                </button>
+                                </button> -->
+
+                                <a href="{{url('/users')}}" class=" btn btn-danger">Cancel</a>
 
 
                             </div>
