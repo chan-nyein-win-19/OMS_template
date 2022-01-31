@@ -63,7 +63,7 @@
                 </li>
                 <li>
                     <a href="{{ url('/attendanceshow') }}" class="textstyle">
-                       Attendance Show
+                       View Attendance Record
                     </a>
                 </li>
             </ul>
@@ -121,7 +121,7 @@
             </a>
             <ul>
                 <li>
-                    <a href='{{url("/attendanceList")}}' class="textstyle">
+                    <a href='{{url("/attendanceshow")}}' class="textstyle">
                         View Attendence Record
                     </a>
                 </li>
@@ -174,7 +174,7 @@
             </a>
             <ul>
                 <li>
-                    <a href='{{url("/attendanceList")}}' class="textstyle">
+                    <a href='{{url("/attendanceshow")}}' class="textstyle">
                         View Attendence Record
                     </a>
                 </li>

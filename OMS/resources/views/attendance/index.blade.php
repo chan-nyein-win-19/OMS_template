@@ -49,7 +49,7 @@
 
                                                 <td>
 
-                                                <a type="button" class="btn btn1 btn-outline-primary mb-1" href="{{url('/edit/'.$item->id)}}"><i class="fa fa-fw"></i></a>
+                                                <a type="button" class="btn btn1 btn-outline-primary mb-1" href="{{url('/edit/'.$item->id)}}" data-toggle="tooltip" title="Edit"><i class="fa fa-fw"></i></a>
 
                                                 <form action="/attendance/{{ $item->id }}" method="POST">
 
