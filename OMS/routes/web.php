@@ -64,11 +64,8 @@ Route::middleware(['auth'])->group(function(){
 
     //attendance
         Route::get('/attendanceform',[AttendanceController::class, 'create']);
-        Route::post('/attendanceform',[AttendanceController::class, 'store']);
         Route::get('/attendanceList',[AttendanceController::class,'index']);
         Route::get('/edit/{id}',[AttendanceController::class,'edit']);
-        Route::post('/update/{id}',[AttendanceController::class, 'update']);
-        Route::delete('/attendance/{id}', [AttendanceController::class, 'destroy']);
         Route::get('/attendanceshow',[AttendanceController::class, 'show']);
     // end
 
