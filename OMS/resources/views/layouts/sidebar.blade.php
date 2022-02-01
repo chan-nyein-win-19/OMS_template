@@ -1,5 +1,5 @@
 {{--Admin  --}}
-@if ( Auth::user()->role == 'admin')
+@if ( Auth::user()->role == 'Admin')
 <div class="app-sidebar__inner">
     <ul class="vertical-nav-menu">
         <li class="app-sidebar__heading mt-4">Employee</li>
@@ -82,7 +82,7 @@
 @endif
 
 {{--Leader  --}}
-@if ( Auth::user()->role == 'leader')
+@if ( Auth::user()->role == 'Leader')
 <div class="app-sidebar__inner">
     <ul class="vertical-nav-menu">
         <li class="app-sidebar__heading mt-4">Employee</li>
@@ -135,7 +135,7 @@
 </div>
 @endif
 {{--Sensei  --}}
-@if ( Auth::user()->role == 'sensei')
+@if ( Auth::user()->role == 'Sensei')
 <div class="app-sidebar__inner">
     <ul class="vertical-nav-menu">
         <li class="app-sidebar__heading mt-4">Employee</li>
@@ -189,7 +189,7 @@
 @endif
 
 {{--Employee  --}}
-@if ( Auth::user()->role == 'employee')
+@if ( Auth::user()->role == 'Employee')
 <div class="app-sidebar__inner">
     <ul class="vertical-nav-menu">
         <li class="app-sidebar__heading mt-4">Employee</li>
