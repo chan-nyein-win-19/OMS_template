@@ -5,6 +5,7 @@ namespace App\Http\Controllers\OMSControllers;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Datatables;
 
 class UserController extends Controller
@@ -55,7 +56,7 @@ class UserController extends Controller
         $user->lname=request()->lname;
         $user->username=request()->username;
         $user->email=request()->email;
-        $user->password=request()->password;
+        $user->password= Hash::make(request()->password);
         $user->employeeid=request()->employeeid;
         $user->role=request()->role;
         $user->save();
@@ -79,6 +80,13 @@ class UserController extends Controller
     {
 
         $edit=User::find($id);
+
+    //     if( ! Hash::check( $edit->password , Input::get('password') ) )
+    //     {
+    //         return redirect::to('users/edit',compact('edit'))
+    //         ->with('message', 'Current Password Error !')
+    //     ->withInput();
+    // }
         
         return view('user.edit',compact('edit'));
         
@@ -105,13 +113,13 @@ class UserController extends Controller
             'fname'=>request()->fname,
             'lname'=>request()->lname,
             'email'=>request()->email,
-            'password'=>request()->password,
+            'password'=> Hash::make(request()->password),
             'employeeid'=>request()->employeeid,
             'role'=>request()->role,
             ]);
     
             
-            return redirect("users")->with('updatesuccess','User has been updated successfully!');
+            return redirect("users")->with('info','User has been updated successfully!');
        
     }
 
