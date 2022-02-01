@@ -54,8 +54,8 @@
 
                                 <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu dropdown-menu-right">
                                 @if(isset(Auth::user()->employeeid))
-                                    <a class="btn dropdown-item" tabindex="0" href="{{ url('/accounts/Auth::user()->id') }}">Account info</a>
-                                    <a class="btn dropdown-item" tabindex="0" href="{{ url('/changepassword/Auth::user()->id') }}">Change Password</a>
+                                    <a class="btn dropdown-item" tabindex="0" href="{{ url('/accounts/'.Auth::user()->id) }}">Account info</a>
+                                    <a class="btn dropdown-item" tabindex="0" href="{{ url('/changepassword/'.Auth::user()->id) }}">Change Password</a>
                                     <a class="btn dropdown-item" tabindex="0"  href="{{ url('/logout') }}">Logout</a>
                                 
                                 @endif

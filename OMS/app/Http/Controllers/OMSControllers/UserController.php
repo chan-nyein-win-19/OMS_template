@@ -5,6 +5,7 @@ namespace App\Http\Controllers\OMSControllers;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Datatables;
 
 class UserController extends Controller
@@ -46,7 +47,7 @@ class UserController extends Controller
             'username' => 'required',
             'email' => 'required|email|unique:users',
             'password' => 'required|min:4',
-            'employeeid' => 'required|unique:users',
+            'employeeid' => 'required|unique:users|integer',
             'role' => 'required'
         ]);
 
@@ -55,13 +56,12 @@ class UserController extends Controller
         $user->lname=request()->lname;
         $user->username=request()->username;
         $user->email=request()->email;
-        $user->password=request()->password;
+        $user->password= Hash::make(request()->password);
         $user->employeeid=request()->employeeid;
         $user->role=request()->role;
         $user->save();
 
-
-        return view('user.create')->with('success','Employee has been successfully added...');
+        return back()->with('success','Employee has been successfully added...');
 
     }
 
@@ -80,6 +80,13 @@ class UserController extends Controller
     {
 
         $edit=User::find($id);
+
+    //     if( ! Hash::check( $edit->password , Input::get('password') ) )
+    //     {
+    //         return redirect::to('users/edit',compact('edit'))
+    //         ->with('message', 'Current Password Error !')
+    //     ->withInput();
+    // }
         
         return view('user.edit',compact('edit'));
         
@@ -87,30 +94,32 @@ class UserController extends Controller
 
     public function update(Request $request,$id)
     {
+        $user = User::find($id);
 
         $validateData= $request->validate([
             'fname' => 'required',
             'lname' => 'required',
             'username' => 'required',
-            'email' => 'required|email|unique:users,id',
+            // 'email' => 'required|email|unique:users,id',
+            'email' => 'required|email|unique:users,email,'.$user->id.'',
             'password' => 'required|min:4',
-            'employeeid' => 'required',
+            'employeeid' => 'required|unique:users,employeeid,'.$user->id.'|integer',
             'role' => 'required'
         ]);
 
-       
+      
 
         $user=  User::findOrFail($id)->update([
             'fname'=>request()->fname,
             'lname'=>request()->lname,
             'email'=>request()->email,
-            'password'=>request()->password,
+            'password'=> Hash::make(request()->password),
             'employeeid'=>request()->employeeid,
             'role'=>request()->role,
             ]);
     
             
-            return redirect("users")->with('success','User has been updated successfully!');
+            return redirect("users")->with('info','User has been updated successfully!');
        
     }
 

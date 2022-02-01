@@ -18,7 +18,6 @@
                     <table class="mb-0 table table-hover" id="table">
                                             <thead>
                                             <tr>
-                                                <th>#</th>
                                                 <th>userid</th>
                                                 <th>Date</th>
                                                 <th>Check In</th>
@@ -35,7 +34,6 @@
                                         
                                             @foreach($dailyattendance as $item)
                                             <tr>
-                                                <td scope="row">{{ $item->id }}</td>
                                                 <td>{{ $item->userid }}</td>
                                                 <td>{{ $item->date }}</td>
                                                 <td>{{ $item->checkin }}</td>
@@ -77,7 +75,6 @@
                 null,
                 null,
                 null,  
-                null,
                 null,
                 null,
                 null,

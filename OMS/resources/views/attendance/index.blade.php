@@ -19,7 +19,6 @@
                     <table class="mb-0 table table-hover" id="table">
                                             <thead>
                                             <tr>
-                                                <th>#</th>
                                                 <th>userid</th>
                                                 <th>Date</th>
                                                 <th>Check In</th>
@@ -36,7 +35,6 @@
                                         
                                             @foreach($dailyattendance as $item)
                                             <tr>
-                                                <td scope="row">{{ $item->id }}</td>
                                                 <td>{{ $item->userid }}</td>
                                                 <td>{{ $item->date }}</td>
                                                 <td>{{ $item->checkin }}</td>
@@ -49,13 +47,13 @@
 
                                                 <td>
 
-                                                <a type="button" class="btn btn1 btn-outline-primary mb-1" href="{{url('/edit/'.$item->id)}}"><i class="fa fa-fw"></i></a>
+                                                <a type="button" class="btn btn1 btn-outline-primary mb-1" href="{{url('/edit/'.$item->id)}}" data-toggle="tooltip" title="Edit"><i class="fa fa-fw"></i></a>
 
                                                 <form action="/attendance/{{ $item->id }}" method="POST">
 
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button class="btn btn2 btn-outline-danger show_confirm"><i class="fa fa-fw"></i></button>
+                                                    <button class="btn btn2 btn-outline-danger show_confirm" data-toggle="tooltip" title="Delete"><i class="fa fa-fw"></i></button>
                                                 </form>
                                                  
                                                 
@@ -95,8 +93,7 @@
                 null,
                 null,
                 null,
-                null,
-                null           
+                null        
             ],
             "aaSorting": [],     
 
