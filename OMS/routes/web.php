@@ -65,6 +65,7 @@ use App\Http\Controllers\OMSControllers\AttendanceController;
     //attendance
     Route::get('/attendanceform',[AttendanceController::class, 'create']);
     Route::get('/attendanceList',[AttendanceController::class,'index']);
+    Route::get('/attendanceshow',[AttendanceController::class,'show']);
     Route::get('/edit/{id}',[AttendanceController::class,'edit']);
     // end
 
