@@ -15,6 +15,7 @@ class CreatePcsTable extends Migration
     {
         Schema::create('pcs', function (Blueprint $table) {
             $table->id();
+            $table->string('model');
             $table->string('CPU');
             $table->string('RAM');
             $table->string('storage');
