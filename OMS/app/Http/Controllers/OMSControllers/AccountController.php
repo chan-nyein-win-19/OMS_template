@@ -70,7 +70,7 @@ class AccountController extends Controller
             'fname'=>'required',
             'lname'=>'required',
             'username'=>'required',
-            'email'=>'required|email|unique:users,email,'.$user->id.'|max:20',
+            'email'=>'required|email|unique:users,email,'.$user->id.'|min:10',
             
         ]);
         if($validator->fails()){
