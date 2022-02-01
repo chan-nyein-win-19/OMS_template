@@ -8,6 +8,7 @@
         {{session('info')}}
     </div>
     @endif
+    
     @if(session('errormessage'))
     <div class="alert alert-danger">
         {{session('errormessage')}}
@@ -25,10 +26,10 @@
                         @csrf
 
                         <div class="row mb-3">
-                            <label for="employeeid" class="col-md-4 col-form-label text-md-end" style="font-weight:bold;">{{ __('Employee ID') }}</label>
+                            <label class="col-md-4 col-form-label text-md-end" style="font-weight:bold;">{{ __('Employee ID') }}</label>
 
                             <div class="col-md-6">
-                                <input type="text" class="form-control @error('employeeid') is-invalid @enderror" name="employeeid" value="{{ $user->employeeid }}" disabled>
+                                <input type="text" class="form-control" name="employeeid" value="{{ $user->employeeid }}" disabled>
 
                             </div>
                         </div>
@@ -36,26 +37,26 @@
                      
 
                         <div class="row mb-3">
-                            <label for="currentpassword" class="col-md-4 col-form-label text-md-end" style="font-weight:bold;">{{ __('Current Password') }}</label>
+                            <label class="col-md-4 col-form-label text-md-end" style="font-weight:bold;">{{ __('Current Password') }}</label>
 
                             <div class="col-md-6">
-                                <input id="currentpassword" type="password" class="form-control @error('currentpassword') is-invalid @enderror" name="currentpassword" value="" autocomplete="current-password">
-                                <input type="checkbox" onclick="myFunction()"> Show Password      
+                                <input id="currentpassword" type="password" class="form-control" name="currentpassword" value="" autocomplete="current-password">
+                                <input type="checkbox" onclick="myFunction()"> Show Password   <br>   
                                 @error('currentpassword')
-                                    <span class="invalid-feedback" role="alert">
+                                    <span class="text-danger">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label for="newpassword" class="col-md-4 col-form-label text-md-end" style="font-weight:bold;">{{ __('New Password') }}</label>
+                            <label class="col-md-4 col-form-label text-md-end" style="font-weight:bold;">{{ __('New Password') }}</label>
 
                             <div class="col-md-6">
-                                <input type="password" class="form-control @error('newpassword') is-invalid @enderror" name="newpassword" value="" >
+                                <input type="password" class="form-control" name="newpassword" value="" >
 
                                 @error('newpassword')
-                                    <span class="invalid-feedback" role="alert">
+                                    <span class="text-danger" >
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
@@ -63,13 +64,13 @@
                         </div>
 
                         <div class="row mb-3">
-                            <label for="confirmpassword" class="col-md-4 col-form-label text-md-end" style="font-weight:bold;">{{ __('Confirm Password') }}</label>
+                            <label class="col-md-4 col-form-label text-md-end" style="font-weight:bold;">{{ __('Confirm Password') }}</label>
 
                             <div class="col-md-6">
-                                <input type="password" class="form-control @error('confirmpassword') is-invalid @enderror" name="confirmpassword" value="" autocomplete="confirmpassword" >
+                                <input type="password" class="form-control" name="confirmpassword" value="" autocomplete="confirmpassword" >
 
                                 @error('confirmpassword')
-                                    <span class="invalid-feedback" role="alert">
+                                    <span class="text-danger">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
