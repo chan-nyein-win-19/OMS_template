@@ -7,12 +7,12 @@ Login Form
     <div class ="container box">
         <h3 class="text-center">Login Form</h3></br>
 
-        <!-- <script>
+        <script>
             $(document).ready(()=>{
                 $('[name="employeeid"]').focus();
             });
         </script>
- -->
+
         @if($message = Session::get('error'))
             <div class="alert alert-danger alert-block">
                 <button type="button" class="close" data-dismiss="alert">x</button>
