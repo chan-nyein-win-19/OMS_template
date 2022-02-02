@@ -40,9 +40,13 @@
                         {{ $item->content }}
                     </td>                        
                     <td>                            
-                        <button class="mb-2 mr-2 btn-transition btn btn-outline-warning"  data-toggle="tooltip" title="Edit">
-                            <i class="fa fa-fw"></i>
-                        </button>
+                        <form method="GET" action="{{ route('announcements.edit', $item->id) }}">
+                            @csrf
+                            @method('PUT')  
+                            <button class="mb-2 mr-2 btn-transition btn btn-outline-warning"  data-toggle="tooltip" title="Edit">
+                                <i class="fa fa-fw"></i>
+                            </button>
+                        </form>
                         <form method="POST" action="{{route('announcements.destroy',['announcement'=>$item])}}" id="form{{$item->id}}">
                             @csrf
                             <input name="_method" type="hidden" value="DELETE">
