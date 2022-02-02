@@ -31,27 +31,27 @@ One Time Password Form
             <input type="hidden" name="employeeid" value="{{ $employeeid }}">
             <div class="form-group">
                 <label>OTP Password</label>
-                <input type="number" name="otp" class="form-control @error('otp') is-invalid @enderror"/>
+                <input type="number" name="otp" class="form-control"/>
                 @error('otp')
-                    <span class="invalid-feedback" role="alert">
+                    <span class="invalid-feedback">
                         {{ $message }}
                     </span>
                 @enderror
             </div>
             <div class="form-group">
                 <label>New Password</label>
-                <input type="password" name="newPassword" class="form-control @error('newPassword') is-invalid @enderror" id="pass1" onkeyup='checkpwd();'/>
+                <input type="password" name="newPassword" class="form-control" id="pass1" onkeyup='checkpwd();'/>
                 @error('newPassword')
-                    <span class="invalid-feedback" role="alert">
+                    <span class="invalid-feedback">
                         {{ $message }}
                     </span>
                 @enderror
             </div>
             <div class="form-group">
-                <label>Comfirm Password</label>
-                <input type="password" name="confirmPassword" class="form-control @error('confirmPassword') is-invalid @enderror" id="pass2" onkeyup='checkpwd();'/>
+                <label>Confirm Password</label>
+                <input type="password" name="confirmPassword" class="form-control" id="pass2" onkeyup='checkpwd();'/>
                 @error('confirmPassword')
-                    <span class="invalid-feedback" role="alert">
+                    <span class="invalid-feedback">
                         {{ $message }}
                     </span>
                 @enderror

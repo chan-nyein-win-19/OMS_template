@@ -1,12 +1,14 @@
+{{--Admin  --}}
+@if ( Auth::user()->role == 'Admin')
 <div class="app-sidebar__inner">
     <ul class="vertical-nav-menu">
         <li class="app-sidebar__heading mt-4">Employee</li>
         <li class="text">
             <a href="#" class="textstyle">
-                <i class="metismenu-icon pe-7s fas fa-user"  style="font-size: 16px;"></i>
+                <i class="metismenu-icon pe-7s fas fa-user" style="font-size: 16px;"></i>
                     Employee
                 <i class="fa fa-angle-down ml-5 opacity-8"></i>
-                </a>
+            </a>
                 <ul>
                     <li>
                         <a href="{{ url('/users') }}" class="textstyle">
@@ -14,10 +16,10 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{ url('/user') }}" class="textstyle">
+                        <a href="{{ url('/users/create') }}" class="textstyle">
                            Employee Create
                         </a>
-                   </li>
+                    </li>
                </ul>
            </li>
         <li class="app-sidebar__heading mt-4">Announcements</li>
@@ -30,62 +32,221 @@
             <ul>
                 <li>
                     <a href="{{ url('/announcements') }}" style="text-decoration: none">
-                       Announcement Lists
+                        Announcement Lists
                     </a>
                 </li>
                 <li>
                     <a href="{{ url('/announcements/create') }}" class="textstyle">
-                       Announcement Create
+                        Announcement Create
                     </a>
                 </li>
             </ul>
         </li>
-        <li class="app-sidebar__heading mt-4" style="text-decoration:none;">Leaves</li>
+        <li class="app-sidebar__heading mt-4">Attendance</li>
         <li>
             <a href="#">
-                <i class="metismenu-icon pe-7s fas fa-scroll" style="font-size: 16px;"></i>
-                    Leaves
-                <i class="fa fa-angle-down ml-2 opacity-8"></i>
+                <i class="metismenu-icon pe-7s fas fa-briefcase" style="font-size: 16px;"></i>
+                    <span class="ml-3">Attendance</span>
+                <i class="fa fa-angle-down ml-3 opacity-8"></i>
             </a>
             <ul>
                 <li>
-                    <a href="{{route('leaves.index')}}" style="text-decoration: none">
-                        Leaves Request Form
-                    </a>
-                </li>
-                <li>
-                <a href="{{route('leaves.show')}}" style="text-decoration: none">
-                        Leave Records
-                    </a>
-                </li>
-                <li>
-                <a href="{{url('/leader/leaveRecord')}}" style="text-decoration: none">
-                        Leader Leaves
+                    <a href="{{ url('/attendanceshow') }}" class="textstyle">
+                       View Attendance Record
                     </a>
                 </li>
             </ul>
         </li>
-       
-        <li class="app-sidebar__heading">Assets</li>
+        <li class="app-sidebar__heading mt-4">Assets</li>
         <li>
             <a href="#" class="textstyle">
                 <i class="metismenu-icon pe-7s fas fa-list" style="font-size: 16px;"></i>
-                    <span class="ml-3">Assets</span>
+                <span class="ml-3">Assets</span>
                 <i class="fa fa-angle-down ml-5 opacity-8"></i>
-
             </a>
             <ul>
                 <li>
                     <a href="#" class="textstyle">
-                       Asset Lists
+                        Asset Lists
                     </a>
                 </li>
                 <li>
                     <a href="#" class="textstyle">
-                       Asset Create
+                        Asset Create
                     </a>
                 </li>
             </ul>
         </li>
     </ul>
 </div>
+@endif
+
+{{--Leader  --}}
+@if ( Auth::user()->role == 'Leader')
+<div class="app-sidebar__inner">
+    <ul class="vertical-nav-menu">
+        <li class="app-sidebar__heading mt-4">Employee</li>
+        <li class="text">
+            <a href="#" class="textstyle">
+                <i class="metismenu-icon pe-7s fas fa-business-time" style="font-size: 16px;"></i>
+                <span class="mr-3">Leaves&nbsp&nbsp</span>
+                <i class="fa fa-angle-down ml-5 opacity-8"></i>
+            </a>
+            <ul>
+                <li>
+                    <a href='{{url("/leader/leaveRecord")}}' class="textstyle">
+                        View Leave Request
+                    </a>
+                </li>
+
+            </ul>
+        </li>
+        <li class="app-sidebar__heading mt-4">Attendance</li>
+        <li>
+            <a href="#" class="textstyle">
+                <i class="metismenu-icon pe-7s fas fa-list" style="font-size: 16px;"></i>
+                <span class="">Attendance</span>
+                <i class="fa fa-angle-down ml-5 opacity-8"></i>
+            </a>
+            <ul>
+                <li>
+                    <a href='{{url("/attendanceshow")}}' class="textstyle">
+                        View Attendance Record
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li class="app-sidebar__heading mt-4">Announcements</li>
+        <li>
+            <a href="#">
+                <i class="metismenu-icon pe-7s fas fa-scroll" style="font-size: 16px;"></i>
+                Announcements
+                <i class="fa fa-angle-down ml-3 opacity-8"></i>
+            </a>
+            <ul>
+                <li>
+                    <a href="{{ url('/announcements') }}" style="text-decoration: none">
+                        Announcement Lists
+                    </a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</div>
+@endif
+{{--Sensei  --}}
+@if ( Auth::user()->role == 'Sensei')
+<div class="app-sidebar__inner">
+    <ul class="vertical-nav-menu">
+        <li class="app-sidebar__heading mt-4">Employee</li>
+        <li class="text">
+            <a href="#" class="textstyle">
+                <i class="metismenu-icon pe-7s fas fa-business-time" style="font-size: 16px;"></i>
+                    <span class="mr-3">Leaves&nbsp&nbsp</span>
+                <i class="fa fa-angle-down ml-5 opacity-8"></i>
+            </a>
+            <ul>
+                <li>
+                    <a href='{{url("/leader/leaveRecord")}}' class="textstyle">
+                        View Leave Request
+                    </a>
+                </li>
+
+            </ul>
+        </li>
+        <li class="app-sidebar__heading mt-4">Attendance</li>
+        <li>
+            <a href="#" class="textstyle">
+                <i class="metismenu-icon pe-7s fas fa-list" style="font-size: 16px;"></i>
+                    <span class="">Attendance</span>
+                <i class="fa fa-angle-down ml-5 opacity-8"></i>
+            </a>
+            <ul>
+                <li>
+                    <a href='{{url("/attendanceshow")}}' class="textstyle">
+                        View Attendance Record
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li class="app-sidebar__heading mt-4">Announcements</li>
+        <li>
+            <a href="#">
+                <i class="metismenu-icon pe-7s fas fa-scroll" style="font-size: 16px;"></i>
+                    Announcements
+                <i class="fa fa-angle-down ml-3 opacity-8"></i>
+            </a>
+            <ul>
+                <li>
+                    <a href="{{ url('/announcements') }}" style="text-decoration: none">
+                        Announcement Lists
+                    </a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</div>
+@endif
+
+{{--Employee  --}}
+@if ( Auth::user()->role == 'Employee')
+<div class="app-sidebar__inner">
+    <ul class="vertical-nav-menu">
+        <li class="app-sidebar__heading mt-4">Employee</li>
+        <li class="text">
+            <a href="#" class="textstyle">
+                <i class="metismenu-icon pe-7s fas fa-business-time" style="font-size: 16px;"></i>
+                    <span class="mr-3">Leaves&nbsp&nbsp</span>
+                <i class="fa fa-angle-down ml-5 opacity-8"></i>
+            </a>
+            <ul>
+                <li>
+                    <a href="{{route('leaves.index')}}" class="textstyle">
+                        Request Leave
+                    </a>
+                </li>
+                <li>
+                    <a href="{{route('leaves.show')}}" class="textstyle">
+                        View Leave List
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li class="app-sidebar__heading mt-4">Attendance</li>
+        <li>
+            <a href="#" class="textstyle">
+                <i class="metismenu-icon pe-7s fas fa-list" style="font-size: 16px;"></i>
+                    <span class="">Attendance</span>
+                <i class="fa fa-angle-down ml-5 opacity-8"></i>
+            </a>
+            <ul>
+                <li>
+                    <a href='{{url("/attendanceform")}}' class="textstyle">
+                        Report Daily Attendance
+                    </a>
+                </li>
+                <li>
+                    <a href='{{url("/attendanceList")}}' class="textstyle">
+                        View Attendeace Record
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li class="app-sidebar__heading mt-4">Announcements</li>
+        <li>
+            <a href="#">
+                <i class="metismenu-icon pe-7s fas fa-scroll" style="font-size: 16px;"></i>
+                    Announcements
+                <i class="fa fa-angle-down ml-3 opacity-8"></i>
+            </a>
+            <ul>
+                <li>
+                    <a href="{{ url('/announcements') }}" style="text-decoration: none">
+                        Announcement Lists
+                    </a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</div>
+@endif

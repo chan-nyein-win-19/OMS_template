@@ -33,18 +33,18 @@ Login Form
         @csrf
             <div class="form-group">
                 <label>Employee ID</label>
-                <input type="text" name="employeeid" class="form-control @error('employeeid') is-invalid @enderror"/>
+                <input type="text" name="employeeid" class="form-control"/>
                 @error('employeeid')
-                    <span class="invalid-feedback" role="alert">
+                    <span class="invalid-feedback">
                         {{ $message }}
                     </span>
                 @enderror
             </div>
             <div class="form-group">
                 <label>Password</label>
-                <input type="password" name="password" class="form-control @error('password') is-invalid @enderror"/>
+                <input type="password" name="password" class="form-control"/>
                 @error('password')
-                    <span class="invalid-feedback" role="alert">
+                    <span class="invalid-feedback">
                         {{ $message }}
                     </span>
                 @enderror

@@ -38,7 +38,9 @@ class ResetPasswordController extends Controller
         User::where('id',$request->get('employeeid'))->update([
             'password' => Hash::make($request->get('newPassword'))
         ]);
-        return view('login.login');
+       // return view('login.login');
+       return redirect('/forgotpwd/checkemail/checkOTP');
+          
        }
        else
        {
