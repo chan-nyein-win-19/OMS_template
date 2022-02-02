@@ -68,9 +68,11 @@
                 <label for="lunchTime" class="col-sm-4 col-form-label">Lunch Time</label>
                 
                 <div class="col-sm-6">
-                    
-                    <input type="text" class="form-control" id="lunchThime" name="lunchTime" value="01:00:00" place-holder="01:00" readonly>
-                                    
+                
+                <input type="text" class="form-control" id="lunchThime" name="lunchTime" value="01:00:00" place-holder="01:00" readonly>
+               
+                   
+
                 </div>
                 
             </div>
