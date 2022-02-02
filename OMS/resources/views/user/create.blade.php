@@ -126,7 +126,7 @@
                                 </select> -->
 
                                 <select class="form-control" name="role">
-                                <option disable>{{ __('Please select role') }}</option>
+                                    <option disable>{{ __('Please select role') }}</option>
                                     @foreach($role as $value)
                                     <option value="{{$value['name'] }}">{{ $value['name']}}</option>
                                     @endforeach

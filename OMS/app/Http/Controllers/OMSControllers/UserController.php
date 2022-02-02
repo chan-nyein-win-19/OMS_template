@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Role;
 use Datatables;
+use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
@@ -42,6 +43,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        
         
         $validateData= $request->validate([
             'fname' => 'required',
@@ -98,24 +100,43 @@ class UserController extends Controller
             'username' => 'required',
             // 'email' => 'required|email|unique:users,id',
             'email' => 'required|email|unique:users,email,'.$user->id.'',
-            'password' => 'required|min:4',
+            // 'password' => 'required|min:4',
             'employeeid' => 'required|unique:users,employeeid,'.$user->id.'|integer',
             'role' => 'required'
         ]);
 
+        // $validator = Validator::make($request->all(), [
+        //     'fname' => 'required',
+        //     'lname' => 'required',
+        //     'username' => 'required',
+        //     // 'email' => 'required|email|unique:users,id',
+        //     'email' => 'required|email|unique:users,email,'.$user->id.'',
+        //     'password' => 'required|min:4',
+        //     'employeeid' => 'required|unique:users,employeeid,'.$user->id.'|integer',
+        //     'role' => 'required'
+        // ]);
+
+
+        // if ($validator->fails()) {
+        //     return redirect('users')
+        //                 ->withErrors($validator)
+        //                 ->withInput($request->except('password'));
+        // }
       
 
         $user=  User::findOrFail($id)->update([
             'fname'=>request()->fname,
             'lname'=>request()->lname,
             'email'=>request()->email,
-            'password'=> Hash::make(request()->password),
+            // 'password'=> Hash::make(request()->password),
             'employeeid'=>request()->employeeid,
             'role'=>request()->role,
             ]);
     
             
-            return redirect("users")->with('info','User has been updated successfully!');
+            return redirect("users")->with('info','Employee has been updated successfully!');
+
+            // return back()->with('info','Employee has been updated successfully!');
        
     }
 

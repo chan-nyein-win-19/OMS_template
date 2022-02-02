@@ -2,6 +2,10 @@
 
 @section("content")
 
+@if(session('info'))
+<div class="alert alert-success">{{session('info')}}</div>
+@endif
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -77,9 +81,7 @@
                             </div>
                         </div>
 
-
-
-                        <div class="row mb-3">
+                        <!-- <div class="row mb-3">
                             <label for="password"
                                 class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
 
@@ -93,8 +95,7 @@
                                 </span>
                                 @endif
                             </div>
-                        </div>
-
+                        </div> -->
 
                         <div class="row mb-3">
                             <label for="employeeid"
@@ -127,13 +128,12 @@
                                 </select> -->
 
                                 <select class="form-control" name="role">
-                                <option disable>{{ __('Please select role') }}</option>
+                                    <option disable>{{ __('Please select role') }}</option>
 
                                     @foreach($role as $value)
-                                    <option value="{{$value->name }}"
-                                @if($value->name==$edit->role)
-                                selected
-                                @endif>{{$value->name}}
+                                    <option value="{{$value->name }}" @if($value->name==$edit->role)
+                                        selected
+                                        @endif>{{$value->name}}
 
                                     </option>
                                     @endforeach
