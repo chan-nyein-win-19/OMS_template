@@ -116,7 +116,7 @@
                             <label for="role" class="col-md-4 col-form-label text-md-end">{{ __('Role') }}</label>
 
                             <div class="col-md-6">
-                                <select class="form-control" type="role" name="role" value="">
+                                <!-- <select class="form-control" type="role" name="role" value="">
                                     <option value="{{old('role') ? old('role') :  $edit->role}}">{{$edit->role}}
                                     </option>
 
@@ -124,7 +124,26 @@
                                     <option value="Sensei">{{ __('Sensei') }}</option>
                                     <option value="Employee">{{ __('Employee') }}</option>
 
+                                </select> -->
+
+                                <select class="form-control" name="role">
+                                <option disable>{{ __('Please select role') }}</option>
+
+                                    @foreach($role as $value)
+                                    <option value="{{$value->name }}"
+                                @if($value->name==$edit->role)
+                                selected
+                                @endif>{{$value->name}}
+
+                                    </option>
+                                    @endforeach
                                 </select>
+
+                                @if($errors->has('role'))
+                                <span class='text-danger'>
+                                    {{$errors->first('role')}}
+                                </span>
+                                @endif
                             </div>
                         </div>
 

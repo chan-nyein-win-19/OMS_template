@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use App\Models\Role;
 use Datatables;
 
 class UserController extends Controller
@@ -29,7 +30,8 @@ class UserController extends Controller
     public function create()
     {
         //
-        return view('user.create');
+        $role=Role::all();
+        return view('user.create',compact('role'));
     }
 
     /**
@@ -58,6 +60,7 @@ class UserController extends Controller
         $user->email=request()->email;
         $user->password= Hash::make(request()->password);
         $user->employeeid=request()->employeeid;
+        // $user->role=request()->role;
         $user->role=request()->role;
         $user->save();
 
@@ -80,15 +83,8 @@ class UserController extends Controller
     {
 
         $edit=User::find($id);
-
-    //     if( ! Hash::check( $edit->password , Input::get('password') ) )
-    //     {
-    //         return redirect::to('users/edit',compact('edit'))
-    //         ->with('message', 'Current Password Error !')
-    //     ->withInput();
-    // }
-        
-        return view('user.edit',compact('edit'));
+        $role=Role::all();
+        return view('user.edit',compact('edit','role'));
         
     }
 

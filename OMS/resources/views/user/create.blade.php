@@ -85,7 +85,8 @@
                                 class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
 
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password"  value="{{ old('password') }}">
+                                <input id="password" type="password" class="form-control" name="password"
+                                    value="{{ old('password') }}">
 
                                 @if($errors->has('password'))
                                 <span class='text-danger'>
@@ -100,8 +101,7 @@
                                 class="col-md-4 col-form-label text-md-end">{{ __('Employee ID') }}</label>
 
                             <div class="col-md-6">
-                                <input id="employeeid" type="text"
-                                    class="form-control" name="employeeid"
+                                <input id="employeeid" type="text" class="form-control" name="employeeid"
                                     value="{{ old('employeeid') }}">
 
                                 @if($errors->has('employeeid'))
@@ -116,13 +116,20 @@
                             <label for="role" class="col-md-4 col-form-label text-md-end">{{ __('Role') }}</label>
 
                             <div class="col-md-6">
-                                <select class="form-control" type="role" name="role" value="{{ old('role') }}">
+                                <!-- <select class="form-control" type="role" name="role" value="{{ old('role') }}">
 
                                     <option value="">{{ __('Please select role') }}</option>
                                     <option value="Leader">{{ __('Leader') }}</option>
                                     <option value="Sensei">{{ __('Sensei') }}</option>
                                     <option value="Employee">{{ __('Employee') }}</option>
 
+                                </select> -->
+
+                                <select class="form-control" name="role">
+                                <option disable>{{ __('Please select role') }}</option>
+                                    @foreach($role as $value)
+                                    <option value="{{$value['name'] }}">{{ $value['name']}}</option>
+                                    @endforeach
                                 </select>
 
                                 @if($errors->has('role'))

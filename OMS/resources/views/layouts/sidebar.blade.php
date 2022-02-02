@@ -1,5 +1,5 @@
 {{--Admin  --}}
-@if ( Auth::user()->role == 'admin')
+@if ( Auth::user()->role == 'Admin')
 <div class="app-sidebar__inner">
     <ul class="vertical-nav-menu">
         <li class="app-sidebar__heading mt-4">Employee</li>
