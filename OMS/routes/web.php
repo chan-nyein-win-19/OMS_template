@@ -60,6 +60,7 @@ Route::middleware(['auth'])->group(function(){
     //account
         Route::resource('accounts',AccountController::class);
         Route::get('/changepassword/{id}',[AccountController::class,'editPassword']);
+        Route::post('/changepassword/{id}',[AccountController::class,'changePassword']);
     // end
 
     //attendance
@@ -96,9 +97,5 @@ Route::middleware(['auth'])->group(function(){
         Route::post('/leader/leaveRecord/searchLeave',[LeaderLeaveController::class,'findLeave']);
     // end
 
-    // account
-        Route::post('/changepassword/{id}',[AccountController::class,'changePassword']);
-   // end
 });
-
 
