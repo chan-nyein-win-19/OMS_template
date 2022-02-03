@@ -38,7 +38,7 @@
                             <form method="GET" action="{{ route('users.edit', $user->id) }}">
                                 @csrf
                                 @method('PUT')
-                                <button class="mb-2 mr-2 btn-transition btn btn-outline-warning" data-toggle="tooltip" title='Edit'>
+                                <button class="mb-2 mr-2 btn-transition btn btn-outline-primary" data-toggle="tooltip" title='Edit'>
                                     <i class="fa fa-fw"></i>
                                 </button>
                             </form>

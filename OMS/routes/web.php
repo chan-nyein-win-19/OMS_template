@@ -109,3 +109,7 @@ Route::middleware(['auth'])->group(function(){
 // leaderLeave
     Route::post('/leader/leaveRecord/searchLeave',[LeaderLeaveController::class,'findLeave']);
 // end
+
+Route::get('/subCategory',function(){
+    return view("SubCategory.subCategory");
+});
