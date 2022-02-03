@@ -60,6 +60,7 @@ Route::middleware(['auth'])->group(function(){
     //account
         Route::resource('accounts',AccountController::class);
         Route::get('/changepassword/{id}',[AccountController::class,'editPassword']);
+        Route::post('/changepassword/{id}',[AccountController::class,'changePassword']);
     // end
 
     //attendance
@@ -67,6 +68,9 @@ Route::middleware(['auth'])->group(function(){
         Route::get('/attendanceList',[AttendanceController::class,'index']);
         Route::get('/edit/{id}',[AttendanceController::class,'edit']);
         Route::get('/attendanceshow',[AttendanceController::class, 'show']);
+        Route::post('/attendanceform',[AttendanceController::class, 'store']);
+        Route::post('/update/{id}',[AttendanceController::class, 'update']);
+        Route::delete('/attendance/{id}', [AttendanceController::class, 'destroy']);
     // end
 
     // leave 
@@ -83,33 +87,15 @@ Route::middleware(['auth'])->group(function(){
 
     // EmployeeLeave
         Route::get('/leaveRequestForm/{date}',[LeaveController::class,'addNew']);
+        Route::post('/leaveRecord/searchLeave',[LeaveController::class,'searchLeave']);
     // end
 
     // leaderLeave
         Route::get('/leader/leaveRecord',[LeaderLeaveController::class,'viewLeave']);
         Route::get('/leader/leaveStatus/{id}/{status}/{date}/{filtering}',[LeaderLeaveController::class,'changeStatus']);
         Route::get('/leader/leaveRecord/filterLeave/{filtering}/{date}',[LeaderLeaveController::class,'filterLeave']);
+        Route::post('/leader/leaveRecord/searchLeave',[LeaderLeaveController::class,'findLeave']);
     // end
+
 });
 
-// account
-   Route::post('/changepassword/{id}',[AccountController::class,'changePassword']);
-// end
-
-//attendance
-    Route::post('/attendanceform',[AttendanceController::class, 'store']);
-    Route::post('/update/{id}',[AttendanceController::class, 'update']);
-    Route::delete('/attendance/{id}', [AttendanceController::class, 'destroy']);
-// end
-
-// EmployeeLeave
-    Route::post('/leaveRecord/searchLeave',[LeaveController::class,'searchLeave']);
-// end
-
-// leaderLeave
-    Route::post('/leader/leaveRecord/searchLeave',[LeaderLeaveController::class,'findLeave']);
-// end
-
-Route::get('/subCategory',function(){
-    return view("SubCategory.subCategory");
-});
