@@ -11,6 +11,7 @@ use App\Http\Controllers\OMSControllers\UserController;
 use App\Http\Controllers\OMSControllers\LeaveController;
 use App\Http\Controllers\OMSControllers\LeaderLeaveController;
 use App\Http\Controllers\OMSControllers\AttendanceController;
+use App\Http\Controllers\OMSControllers\PcController;
 
 /*
 |--------------------------------------------------------------------------
@@ -98,6 +99,10 @@ Route::middleware(['auth'])->group(function(){
         Route::get('/leader/leaveRecord/searchLeave',[LeaderLeaveController::class,'findLeave']);
         Route::post('/leader/leaveRecord/searchLeave',[LeaderLeaveController::class,'viewLeave']);
     // end
+
+    //PC
+        Route::get('/pc/add',[PcController::class,'create']);
+    //end
 
 });
 
