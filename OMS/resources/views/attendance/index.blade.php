@@ -13,13 +13,14 @@
 
 
 @section('content')   
+
 <div class="container">
                     <h2>Attendance List</h2>
                     
                     <table class="mb-0 table table-hover" id="table">
                                             <thead>
                                             <tr>
-                                                <th>userid</th>
+                                                <th>EmployeeId</th>
                                                 <th>Date</th>
                                                 <th>Check In</th>
                                                 <th>Check Out</th>
@@ -47,7 +48,7 @@
 
                                                 <td>
 
-                                                <a type="button" class="btn btn1 btn-outline-primary mb-1" href="{{url('/edit/'.$item->id)}}" data-toggle="tooltip" title="Edit"><i class="fa fa-fw"></i></a>
+                                                <a type="button" class="btn btn1 btn-outline-warning mb-1" href="{{url('/edit/'.$item->id)}}" data-toggle="tooltip" title="Edit"><i class="fa fa-fw"></i></a>
 
                                                 <form action="/attendance/{{ $item->id }}" method="POST">
 
@@ -66,9 +67,12 @@
                                             
                                             </tbody>
                                         </table>
+                                        
                     
             </div>
     @endsection
+
+    
 
     @section('script')   
     <script src="{{ asset('/storage/OMS/data-tables/jquery.js') }}"></script>
@@ -76,32 +80,9 @@
     <script src="{{ asset('/storage/OMS/sweetalert/sweetalert.min.js') }}"></script>
     
     <script type="text/javascript">
-        jQuery(function($) {
-        //initiate dataTables plugin
-        var myTable = 
-        $('#table')
-        //.wrap("<div class='dataTables_borderWrap' />")   //if you are applying horizontal scrolling (sScrollX)
-        .DataTable( {
-            bAutoWidth: false,
-            "aoColumns": [
-                null,
-                null,
-                null,
-                null,  
-                null,
-                null,
-                null,
-                null,
-                null,
-                null        
-            ],
-            "aaSorting": [],     
-
-            select: {
-                    style: 'multi'
-                }
-            });
-        });
+        $(document).ready( function () {
+        $('#table').DataTable();
+        } );
     </script>
 
 <script type="text/javascript">

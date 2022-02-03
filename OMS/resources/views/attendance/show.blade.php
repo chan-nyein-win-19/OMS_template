@@ -18,7 +18,7 @@
                     <table class="mb-0 table table-hover" id="table">
                                             <thead>
                                             <tr>
-                                                <th>userid</th>
+                                                <th>EmployeeId</th>
                                                 <th>Date</th>
                                                 <th>Check In</th>
                                                 <th>Check Out</th>
@@ -63,31 +63,8 @@
     <script src="{{ asset('/storage/OMS/sweetalert/sweetalert.min.js') }}"></script>
     
     <script type="text/javascript">
-        jQuery(function($) {
-        //initiate dataTables plugin
-        var myTable = 
-        $('#table')
-        //.wrap("<div class='dataTables_borderWrap' />")   //if you are applying horizontal scrolling (sScrollX)
-        .DataTable( {
-            bAutoWidth: false,
-            "aoColumns": [
-                null,
-                null,
-                null,
-                null,  
-                null,
-                null,
-                null,
-                null,
-                null
-                          
-            ],
-            "aaSorting": [],     
-
-            select: {
-                    style: 'multi'
-                }
-            });
-        });
+        $(document).ready( function () {
+        $('#table').DataTable();
+        } );
     </script>
     @endsection
