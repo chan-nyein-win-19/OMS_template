@@ -88,6 +88,7 @@ Route::middleware(['auth'])->group(function(){
     // EmployeeLeave
         Route::get('/leaveRequestForm/{date}',[LeaveController::class,'addNew']);
         Route::post('/leaveRecord/searchLeave',[LeaveController::class,'searchLeave']);
+        Route::get('/leaveRecord/searchLeave',[LeaveController::class,'show']);
     // end
 
     // leaderLeave
@@ -95,7 +96,7 @@ Route::middleware(['auth'])->group(function(){
         Route::get('/leader/leaveStatus/{id}/{status}/{date}/{filtering}',[LeaderLeaveController::class,'changeStatus']);
         Route::get('/leader/leaveRecord/filterLeave/{filtering}/{date}',[LeaderLeaveController::class,'filterLeave']);
         Route::get('/leader/leaveRecord/searchLeave',[LeaderLeaveController::class,'findLeave']);
-        Route::post('/leader/leaveRecord/searchLeave',[LeaderLeaveController::class,'findLeave']);
+        Route::post('/leader/leaveRecord/searchLeave',[LeaderLeaveController::class,'viewLeave']);
     // end
 
 });
