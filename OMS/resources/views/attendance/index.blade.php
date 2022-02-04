@@ -6,7 +6,6 @@
     <link rel="stylesheet" href="{{ asset('/storage/OMS/data-tables/jquery.dataTables.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/storage/OMS/bootstrap5/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/storage/OMS/css/style.css') }}">
-    <link rel="stylesheet" href="{{ asset('/storage/OMS/attendance/attendancelist.css') }}">
 @endsection
 
 @section('topbar')
@@ -22,7 +21,7 @@
         <h2>Attendance List</h2>
         <table class="mb-0 table table-hover" id="table">
             <thead>
-                <tr>
+                <tr class="text-center">
                     <th>EmployeeId</th>
                     <th>Date</th>
                     <th>Check In</th>
@@ -37,7 +36,7 @@
             </thead>
             <tbody>               
                 @foreach($dailyattendance as $item)
-                    <tr>
+                    <tr class="text-center">
                         <td>{{ $item->userid }}</td>
                         <td>{{ $item->date }}</td>
                         <td>{{ $item->checkin }}</td>
@@ -48,13 +47,13 @@
                         <td>{{ $item->halfdayleave }}</td>
                         <td>{{ $item->workfromhome}}</td>
                         <td>
-                            <a type="button" class="btn btn1 btn-outline-primary mb-1" href="{{url('/edit/'.$item->id)}}" data-toggle="tooltip" title="Edit">
+                            <a type="button" href="{{route('attendance.edit', $item->id)}}" class="mb-2  btn-transition btn btn-outline-primary" data-toggle="tooltip" title="Edit">
                                 <i class="fa fa-fw"></i>
                             </a>
                             <form action="/attendance/{{ $item->id }}" method="POST" id="form{{ $item->id }}">
                                 @csrf
                                 <input name="_method" type="hidden" value="DELETE">
-                                <button type="button" onclick=deleteRecord(this.id) class="mb-2 mr-2 btn-transition btn btn-outline-danger" data-toggle="tooltip" title="Delete" id="{{$item->id}}">
+                                <button type="button" onclick=deleteRecord(this.id) class="mb-2 btn-transition btn btn-outline-danger" data-toggle="tooltip" title="Delete" id="{{$item->id}}">
                                     <i class="fa fa-fw"></i>
                                 </button>
                             </form>
@@ -110,5 +109,3 @@
         }
     </script>
 @endsection
-
-   

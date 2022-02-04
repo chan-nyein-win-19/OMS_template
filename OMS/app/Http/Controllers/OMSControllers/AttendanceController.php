@@ -42,7 +42,7 @@ class AttendanceController extends Controller
     public function store(Request $request)
     {
         $validator=validator(request()->all(),[
-            'attendanceDate'=>'required',
+            'attendanceDate'=>'required|date|unique:dailyattendances,date,',
             'checkIn'=>'required',
             'checkOut'=>'required',
             'lunchTime'=>'required',
@@ -64,10 +64,10 @@ class AttendanceController extends Controller
         $dailyattendance->leaveday=request()->leaveDay;
         $dailyattendance->workfromhome=request()->wfh;
         $dailyattendance->ottime=request()->ottime;
-
+        
         $dailyattendance->save();
     
-        return redirect('/attendanceList');
+        return redirect('attendance');
     }
 
     /**
@@ -128,8 +128,7 @@ class AttendanceController extends Controller
             'workfromhome'=>request()->wfh,
             'ottime'=>request()->ottime,
         ]);
-
-        return redirect('/attendanceList');
+        return redirect('attendance');
     }
 
     /**
@@ -141,7 +140,7 @@ class AttendanceController extends Controller
     public function destroy($id)
     {
         $attendance = Dailyattendance::where('id',$id)->delete();
-        return redirect('/attendanceList');
+        return redirect('attendance');
     }
 }
 
