@@ -33,7 +33,6 @@ Route::get('/', function () {
 
 // login
     Route::post('/checklogin',[AuthController::class, 'checklogin']);
-    Route::get('/successlogin',[AuthController::class, 'successlogin']);
     Route::get('/logout',[AuthController::class, 'logout']);
 // end
 
@@ -50,6 +49,10 @@ Route::get('/', function () {
 //Middleware Function
 Route::middleware(['auth'])->group(function(){
     
+    //login
+        Route::get('/successlogin',[AuthController::class, 'successlogin']);
+    //end
+      
     //user
         Route::resource('users',UserController::class);
     // end
