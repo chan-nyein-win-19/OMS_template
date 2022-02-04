@@ -2,7 +2,7 @@
 
 @section("content")
  
-    <div class="container">
+  
     <div class="row justify-content-center">
         <div class="col-md-6">
             <div class="card">
@@ -50,14 +50,6 @@
                             </label>
                         </div>
 
-                        <!-- <div class="row mb-3">
-                            <label for="password" class="col-md-4 col-4 col-form-label text-md-end" style="font-weight:bold;">{{ __('Password :') }}</label>
-
-                            <label class="col-md-6 col-6 col-form-label">
-                             {{$user->password}}
-                            </label>
-                        </div> -->
-
                         <div class="row mb-3">
                             <label for="role" class="col-md-4 col-4 col-form-label text-md-end" style="font-weight:bold;">{{ __('Role :') }}</label>
 
@@ -68,15 +60,12 @@
 
                    		 <hr>
 
-                        <div class="row mb-0" >
-                            <div class="col-md-6 offset-md-4 justify-content-center" > 
-                                
-                                <a class="btn btn-primary" style="font-size: 14px;" href="{{url('/accounts/'.$user->id.'/edit')}}">{{ __('Edit') }}</a>
+                            <div class="text-center" >            
+                                <a class="mb-2 mr-2 btn btn-primary" style="font-size: 14px;" href="{{url('/accounts/'.$user->id.'/edit')}}">{{ __('Edit') }}</a>
 				 				&nbsp;&nbsp;
-					            <a class="btn btn-danger" style="font-size: 14px;" href="{{url('/successlogin')}}"> {{ __('Cancel') }}</a>
+					            <a class="mb-2 mr-2 btn btn-danger" style="font-size: 14px;" href="{{url('/successlogin')}}"> {{ __('Cancel') }}</a>
                             </div>
 
-                        </div>
 
                     </form>
                 </div>

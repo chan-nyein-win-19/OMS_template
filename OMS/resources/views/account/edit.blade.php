@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section("content")
-    <div class="container">
+    
         @if(session('info'))
             <div class="alert alert-success">
                 {{session('info')}}
@@ -67,14 +67,14 @@
                                 </div>
                             </div>
                             <hr>
-                            <div class="row mb-0">
-                                <div class="col-md-6 offset-md-4">
+                            
+                                <div class="text-center">
                                     <input type="submit" name="Update" value="Update" class="btn btn-primary" style="font-size: 14px;">
                                 
                                         &nbsp;&nbsp;
                                     <a class="btn btn-danger" style="font-size: 14px;" href="{{url('/successlogin')}}"> {{ __('Cancel') }}</a>
                                 </div>
-                            </div>
+                            
                         </form>
                     </div>
                 </div>
