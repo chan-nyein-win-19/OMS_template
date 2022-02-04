@@ -32,12 +32,14 @@ Route::get('/', function () {
 });
 
 // login
+    Route::get('/checklogin',[AuthController::class, 'login']);
     Route::post('/checklogin',[AuthController::class, 'checklogin']);
     Route::get('/logout',[AuthController::class, 'logout']);
 // end
 
 // Forgot Password
     Route::get('/forgotpwd',[EmailSendController::class, 'forgotpwd']);
+    Route::get('/forgotpwd/checkemail',[AuthController::class, 'login']);
     Route::post('/forgotpwd/checkemail',[EmailSendController::class, 'checkemail']);
 // end
 
@@ -75,6 +77,9 @@ Route::middleware(['auth'])->group(function(){
         Route::post('/attendanceform',[AttendanceController::class, 'store']);
         Route::post('/update/{id}',[AttendanceController::class, 'update']);
         Route::delete('/attendance/{id}', [AttendanceController::class, 'destroy']);
+
+        Route::get('/update/{id}',[AttendanceController::class, 'show']);
+        Route::get('/attendance/{id}', [AttendanceController::class, 'show']);
     // end
 
     // leave 
