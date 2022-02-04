@@ -16,19 +16,10 @@ class AttendanceController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    // public function __construct()
-    // {
-    //     $this->middleware('auth')->except(['store','create']);
-    // }
-
     public function index(Dailyattendance $dailyattendance)
     {
-        //
         $id=Auth::user()->employeeid;
-    
         $dailyattendance=Dailyattendance::where('userid',$id)->get();
-
-        
         return view('attendance.index',compact('dailyattendance'));
     }
 
@@ -39,7 +30,6 @@ class AttendanceController extends Controller
      */
     public function create()
     {
-        //
         return view('attendance.create');
     }
 
@@ -51,20 +41,16 @@ class AttendanceController extends Controller
      */
     public function store(Request $request)
     {
-        //
         $validator=validator(request()->all(),[
-           
             'attendanceDate'=>'required',
             'checkIn'=>'required',
             'checkOut'=>'required',
             'lunchTime'=>'required',
             'workHour'=>'required',
-    
         ]);
     
         if($validator->fails()) {
             return back()->withErrors($validator);
-    
         }
     
         $dailyattendance=new Dailyattendance;
@@ -78,12 +64,10 @@ class AttendanceController extends Controller
         $dailyattendance->leaveday=request()->leaveDay;
         $dailyattendance->workfromhome=request()->wfh;
         $dailyattendance->ottime=request()->ottime;
-    
-       
+
         $dailyattendance->save();
     
         return redirect('/attendanceList');
-        
     }
 
     /**
@@ -94,21 +78,9 @@ class AttendanceController extends Controller
      */
     public function show(Dailyattendance $dailyattendance)
     {
-        //       
-       
-            $dailyattendance=Dailyattendance::all();
-
-        
-            return view('attendance.show',compact('dailyattendance'));
-       
-       
-    }
-
-    
-    
-
-    
-    
+        $dailyattendance=Dailyattendance::all();
+        return view('attendance.show',compact('dailyattendance'));
+    } 
 
     /**
      * Show the form for editing the specified resource.
@@ -118,17 +90,10 @@ class AttendanceController extends Controller
      */
     public function edit($id)
     {
-        //
-
         $edit=Dailyattendance::find($id);
 
         return view('attendance.edit',compact('edit'));
     }
-
-
-   
-
-
 
     /**
      * Update the specified resource in storage.
@@ -139,37 +104,31 @@ class AttendanceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
-
         $validator=validator(request()->all(),[
-           
             'attendanceDate'=>'required',
             'checkIn'=>'required',
             'checkOut'=>'required',
             'lunchTime'=>'required',
             'workHour'=>'required',
-    
         ]);
     
         if($validator->fails()) {
             return back()->withErrors($validator);
-    
         }
 
         Dailyattendance::findOrFail($id)->update([
-            
-       
-        'userid'=>request()->employeeID,
-        'date'=>request()->attendanceDate,
-        'checkin'=>request()->checkIn,
-        'checkout'=>request()->checkOut,
-        'lunchtime'=>request()->lunchTime,
-        'workinghour'=>request()->workHour,
-        'halfdayleave'=>request()->halfDayLeave,
-        'leaveday'=>request()->leaveDay,
-        'workfromhome'=>request()->wfh,
-        'ottime'=>request()->ottime,
+            'userid'=>request()->employeeID,
+            'date'=>request()->attendanceDate,
+            'checkin'=>request()->checkIn,
+            'checkout'=>request()->checkOut,
+            'lunchtime'=>request()->lunchTime,
+            'workinghour'=>request()->workHour,
+            'halfdayleave'=>request()->halfDayLeave,
+            'leaveday'=>request()->leaveDay,
+            'workfromhome'=>request()->wfh,
+            'ottime'=>request()->ottime,
         ]);
+
         return redirect('/attendanceList');
     }
 
@@ -181,7 +140,6 @@ class AttendanceController extends Controller
      */
     public function destroy($id)
     {
-      
         $attendance = Dailyattendance::where('id',$id)->delete();
         return redirect('/attendanceList');
     }
