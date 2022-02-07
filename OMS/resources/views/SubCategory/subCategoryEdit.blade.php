@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title','Leave Edit')
+@section('title','SubCategory Update')
 
 @section('style')
 <link rel="stylesheet" href="{{ asset('/storage/OMS/css/style.css') }}">
@@ -34,10 +34,26 @@
             </div>
             <div class="form-group">
                 <input type="text" name="name" id="name" class="form-control mr-3" placeholder="SubCategory Name" value="{{ old('name')? old('name'):$subCategory->name }}"> 
+                @error('name')
+                <div class="row">
+                    <div class="col-sm-10">
+                    <span class="text-danger">*{{$message}}</span><br>
+                    </div>
+
+                </div>
+                @enderror
             </div>
             <div class="form-group">
                 <textarea name="description" id="description" rows="3" class="form-control mr-3"
                     placeholder="Enter Your Description.">{{old('description')? old('description'):$subCategory->description }}</textarea>
+            
+                    @error('description')
+                    <div class="row">
+                        <div class="col-sm-10">
+                        <span class="text-danger">*{{$message}}</span><br>
+                        </div>
+                    </div>
+                    @enderror
             </div>
             <div class="form-group">
                 <input type="submit" value="Update" class="btn btn-primary">

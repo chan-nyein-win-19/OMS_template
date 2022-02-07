@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title','Leave Records')
+@section('title','SubCategory')
 
 @section('style')
 <link rel="stylesheet" href="{{ asset('/storage/OMS/css/style.css') }}">
@@ -17,17 +17,7 @@
 @endsection
 
 @section('content')
-@error('name')
-<div class="row">
-    <div class="col-sm-2">
 
-    </div>
-    <div class="col-sm-10">
-        <span class="text-danger">*{{$message}}</span><br>
-    </div>
-
-</div>
-@enderror
 <div class="container-fluid">
     <div class="row">
         <h3 class="text-center mb-3">Subcategory</h3>
@@ -46,16 +36,42 @@
                                     <option value="{{$item->id}}">{{$item->name}}</option>
                                     @endforeach
                                 </select>
+                                @error('category')
+                                        <div class="row">
+                                        <div class="col-sm-10">
+                                        <span class="text-danger">*{{$message}}</span><br>
+                                        </div>
+
+                                    </div>
+                                    @enderror
                             </div>
                             <div class="form-group">
                                 <input type="text" name="name" id="name" class="form-control mr-3"
                                     placeholder="SubCategory Name">
+                                    @error('name')
+                                        <div class="row">
+                                        <div class="col-sm-10">
+                                        <span class="text-danger">*{{$message}}</span><br>
+                                        </div>
+
+                                    </div>
+                                    @enderror
                             </div>
                         </div>
                         <div class="col-6">
+
                             <div class="form-group">
                                 <textarea name="description" id="description" rows="3" class="form-control mr-3"
                                     placeholder="Enter Your Description."></textarea>
+
+                                    @error('description')
+                                        <div class="row">
+                                        <div class="col-sm-10">
+                                        <span class="text-danger">*{{$message}}</span><br>
+                                        </div>
+
+                                    </div>
+                                    @enderror
                             </div>
                             <div class="form-group">
                                 <input type="submit" value="Submit" class="btn btn-primary" style="float:right;">
@@ -90,7 +106,9 @@
                     <td>{{$value->category->name}}</td>
                     <td>{{$value->description}}</td>
                     <td>
-                        <a href="{{route('subCategory.edit',['subCategory'=>$value])}}" type="button" class="btn btn-primary">Edit</a>
+                        <a href="{{route('subCategory.edit',['subCategory'=>$value])}}" class="mb-2 mr-2 btn-transition btn btn-outline-primary" data-toggle="tooltip" title='Edit'>
+                                <i class="fa fa-fw"></i>
+                        </a>
                         <form action="{{route('subCategory.destroy',['subCategory'=>$value])}}" method="post"
                         id="form{{$value->id}}">
                         @csrf

@@ -41,6 +41,11 @@ class SubcategoryController extends Controller
     public function store(Request $request)
     {
         //
+        $validateData= $request->validate([
+            'name' => 'required',
+            'category' => 'required',
+            'description' => 'required',
+        ]);
         $subCategory=new SubCategory;
         $subCategory->name=$request->name;
         $subCategory->categoryId=$request->category;
@@ -85,6 +90,11 @@ class SubcategoryController extends Controller
     public function update(Request $request, SubCategory $subCategory)
     {
         //
+        $validateData= $request->validate([
+            'name' => 'required',
+            'category' => 'required',
+            'description' => 'required',
+        ]);
         $subCategory->name=$request->name;
         $subCategory->categoryId=$request->category;
         $subCategory->description=$request->description;
