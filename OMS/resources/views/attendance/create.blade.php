@@ -17,17 +17,6 @@
 @section('content')
 <div class="container pt-80 mb-100 text-center ">
     <div class="row">
-       
-            @if($errors->any())
-                <div class="alert alert-warning">
-                    <ol>
-                        @foreach($errors->all() as $value)
-                        <li> {{$value}} </li>
-                        @endforeach
-                    </ol>
-                </div>
-            @endif
-
         <div class="main-card mb-3 card ">
             <div class="card-body">
                 <div class="col-12 pt-4 mb-5">
@@ -38,41 +27,56 @@
                     <div class="form-group row">
                         <label for="employeeId" class="col-sm-4 col-form-label" >Employee ID</label>
                         <div class="col-sm-6">
-                        <input type="text" class="form-control" id="employeeID" name="employeeID" value="{{Auth::user()->employeeid}}"  readonly>
+                        <input type="text" class="form-control" name="employeeID" value="{{Auth::user()->employeeid}}"  readonly>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="attendanceDate" class="col-sm-4 col-form-label">Attendance Date</label>
                         <div class="col-sm-6">
-                            <div class="md-form">
-                                <input type="date" id="inputMDEx" class="form-control" name="attendanceDate">
-                            </div>
+                            <input type="date"class="form-control" name="attendanceDate">
+                            @error("attendanceDate")
+                             <span class="text-danger">{{$errors->first('attendanceDate')}}</span>
+                            @enderror  
                         </div>
                     </div>
+                   
                     <div class="form-group row">
                         <label for="checkIn" class="col-sm-4 col-form-label" >Check in</label>
                         <div class="col-sm-6" id="timepicker1">
                             <input type="time" id="time1" class="form-control" name="checkIn" onchange=getTimeDifference() value="00:00" >
                         </div>
+                        @error("checkIn")
+                      	 <span class="text-danger"> {{ $errors->first('checkIn') }} </span>
+                        @enderror  
                     </div>
                     <div class="form-group row">
                         <label for="checkOut" class="col-sm-4 col-form-label" >Check Out</label>
                         <div class="col-sm-6" id="timepicker2">
                             <input type="time" id="time2" class="form-control time1" name="checkOut" onchange=getTimeDifference() value="00:00" >
                         </div>
+                        @error("checkOut")
+                      	 <span class="text-danger"> {{ $errors->first('checkOut') }} </span>
+                        @enderror  
                     </div>
                     <div class="form-group row">
                         <label for="lunchTime" class="col-sm-4 col-form-label">Lunch Time</label>
                         <div class="col-sm-6">
                             <input type="text" class="form-control" id="lunchThime" name="lunchTime" value="01:00:00" place-holder="01:00" readonly>
                         </div>
+                        @error("lunchTime")
+                      	 <span class="text-danger"> {{ $errors->first('lunchTime') }} </span>
+                        @enderror  
                     </div>
                     <div class="form-group row">
                         <label for="workingHour" class="col-sm-4 col-form-label" >Working Hour</label>
                             <!-- <input type="time" id="input3" class="form-control" name="checkOut" > -->
                         <div class="col-sm-6">
-                            <input type="text" class="form-control" id="workHour" name="workHour" readonly><br>
+                            <input type="text" class="form-control" id="workHour" name="workHour" readonly>
+                            @error("workHour")
+                      	    <span class="text-danger"> {{ $errors->first('workHour') }} </span>
+                            @enderror  
                         </div>
+                        
                     </div>
                     <div class="form-group row">
                         <label for="radio" class="col-form-label col-sm-4 pt-0">Leave Day</label>
