@@ -51,7 +51,7 @@
             </a>
             <ul>
                 <li>
-                    <a href="{{ url('/attendanceshow') }}" class="textstyle">
+                    <a href="{{ url('/attendance/show') }}" class="textstyle">
                        View Attendance Record
                     </a>
                 </li>
@@ -110,7 +110,7 @@
             </a>
             <ul>
                 <li>
-                    <a href='{{url("/attendanceshow")}}' class="textstyle">
+                    <a href="{{ url('/attendance/show') }}" class="textstyle">
                         View Attendance Record
                     </a>
                 </li>
@@ -163,7 +163,7 @@
             </a>
             <ul>
                 <li>
-                    <a href='{{url("/attendanceshow")}}' class="textstyle">
+                    <a href="{{ url('/attendance/show') }}" class="textstyle">
                         View Attendance Record
                     </a>
                 </li>
@@ -221,13 +221,13 @@
             </a>
             <ul>
                 <li>
-                    <a href='{{url("/attendanceform")}}' class="textstyle">
+                    <a href="{{ url('/attendance/create') }}" class="textstyle">
                         Report Daily Attendance
                     </a>
                 </li>
                 <li>
-                    <a href='{{url("/attendanceList")}}' class="textstyle">
-                        View Attendeace Record
+                    <a href="{{ url('/attendance') }}" class="textstyle">
+                        View Attendance Record
                     </a>
                 </li>
             </ul>
