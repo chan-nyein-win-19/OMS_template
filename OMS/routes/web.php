@@ -11,6 +11,7 @@ use App\Http\Controllers\OMSControllers\UserController;
 use App\Http\Controllers\OMSControllers\LeaveController;
 use App\Http\Controllers\OMSControllers\LeaderLeaveController;
 use App\Http\Controllers\OMSControllers\AttendanceController;
+use App\Http\Controllers\OMSControllers\SubcategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -100,4 +101,6 @@ Route::middleware(['auth'])->group(function(){
     // end
 
 });
+
+Route::resource('subCategory',SubcategoryController::class);
 

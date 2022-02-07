@@ -17,50 +17,62 @@
 @endsection
 
 @section('content')
+@error('name')
+<div class="row">
+    <div class="col-sm-2">
+
+    </div>
+    <div class="col-sm-10">
+        <span class="text-danger">*{{$message}}</span><br>
+    </div>
+
+</div>
+@enderror
 <div class="container-fluid">
     <div class="row">
         <h3 class="text-center mb-3">Subcategory</h3>
         <div class="col-md-2 col-sm-1"></div>
         <div class="col-md-8 col-sm-10">
-            
+
             <div class="card p-3">
-            <form action="post" class="">
-                <div class="row">
-                    <div class="col-6">
-                    <div class="form-group">   
-                        <select name="category" id="category" class="form-control mr-3">
-                            <option value="" selected disabled>Category</option>
-                            <option value="1">1</option>
-                            <option value="1">2</option>
-                            <option value="1">2</option>
-                        </select>
-                </div>
-                <div class="form-group">
-                    <input type="text" name="name" id="name" class="form-control mr-3" placeholder>
-                </div>
-                    </div>
-                    <div class="col-6">
-                        <div class="form-group">
-                            <textarea name="description" id="description" rows="3" class="form-control mr-3" placeholder="Enter Your Description."></textarea>
+                <form action='{{url("/subCategory")}}' method="post">
+                    @csrf
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-group">
+                                <select name="category" id="category" class="form-control mr-3">
+                                    <option value="" selected disabled>Category</option>
+                                    @foreach($category as $item)
+                                    <option value="{{$item->id}}">{{$item->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="name" id="name" class="form-control mr-3"
+                                    placeholder="SubCategory Name">
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <input type="submit" value="Submit" class="btn btn-primary" style="float:right;">
+                        <div class="col-6">
+                            <div class="form-group">
+                                <textarea name="description" id="description" rows="3" class="form-control mr-3"
+                                    placeholder="Enter Your Description."></textarea>
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" value="Submit" class="btn btn-primary" style="float:right;">
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="row">
-                
-                </div>
-             </form>
+
+                </form>
             </div>
-            
+
         </div>
         <div class="col-md-2 col-sm-1"></div>
     </div>
-   <br>
+    <br>
     <hr>
     <div class="row mt-3">
-    <table class="mb-0 table table-hover" id="subCategory">
+        <table id="example" class="table table-striped" style="width:100%">
             <thead>
                 <tr>
                     <th>Id</th>
@@ -68,24 +80,35 @@
                     <th>Category</th>
                     <th>Description</th>
                     <th>Action</th>
-                </tr> 
+                </tr>
             </thead>
             <tbody>
-                
-                    <tr>
-                        <td>Id</td>
-                        <td>Name</td>
-                        <td>Category</td>
-                        <td>Description</td>
-                        <td>
-                            <button class="btn btn-primary">Update</button>
-                            <button class="btn btn-danger">Delete</button>
-                        </td>
-                    </tr>  
-                   
-                
+                @foreach($subCategory as $value)
+                <tr>
+                    <td>{{$value->id}}</td>
+                    <td>{{$value->name}}</td>
+                    <td>{{$value->category->name}}</td>
+                    <td>{{$value->description}}</td>
+                    <td>
+                        <a href="{{route('subCategory.edit',['subCategory'=>$value])}}" type="button" class="btn btn-primary">Edit</a>
+                        <form action="{{route('subCategory.destroy',['subCategory'=>$value])}}" method="post"
+                        id="form{{$value->id}}">
+                        @csrf
+                        @method('DELETE')
+
+                        <button type="button" onclick=deleteRecord(this.id)
+                            class="btn-transition btn btn-outline-danger" id="{{$value->id}}"
+                            data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-fw"></i></button>
+
+
+                    </form>
+                    </td>
+                    
+                </tr>
+                @endforeach
             </tbody>
-        </table>
+            </tabel>
+
     </div>
 </div>
 
@@ -103,7 +126,7 @@
 <script src="{{ asset('/storage/OMS/bootstrap5/popper.min.js') }}"></script>
 <script>
 $(document).ready(function() {
-    $('#subCategory').DataTable();
+    $('#example').DataTable();
 });
 
 function deleteRecord($id) {
