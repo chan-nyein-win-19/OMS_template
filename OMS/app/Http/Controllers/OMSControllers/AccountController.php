@@ -51,7 +51,7 @@ class AccountController extends Controller
             'email' =>request()->email,
         ]);
         
-        return redirect('/successlogin');
+        return redirect('/successlogin')->with('info','Account Information is updated!!');
     }
 
     //changePassword 
@@ -80,7 +80,7 @@ class AccountController extends Controller
             User::findOrFail(auth()->user()->id)->update([
                 'password'=> Hash::make($request->confirmpassword)
             ]);
-            return redirect('/successlogin'); 
+            return redirect('/successlogin')->with('info','Your password is changed!!'); 
         }
     }
 }

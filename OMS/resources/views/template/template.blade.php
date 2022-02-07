@@ -23,6 +23,11 @@
                 {{session('anndelete')}}
             </div>
         @endif
+        @if(session('info'))
+        <div class="alert alert-success">
+            {{session('info')}}
+        </div>
+        @endif
         <h3 class="mb-4">Latest Announcement</h3>
         @foreach($list as $item)
             <div class="card mb-2">
