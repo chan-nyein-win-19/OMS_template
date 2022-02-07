@@ -34,14 +34,11 @@
                     <div class="form-group row">
                         <label for="attendanceDate" class="col-sm-4 col-form-label">Attendance Date</label>
                         <div class="col-sm-6">
-                            <div class="md-form">
                             <input type="date" class="form-control" name="attendanceDate" value="{{$edit->date}}">
                             @error("attendanceDate")
-                      	    <span class="text-danger">{{$errors->first('attendanceDate')}}</span>
+                      	    <span class="text-danger float-left">{{$errors->first('attendanceDate')}}</span>
                             @enderror  
-                            </div>
                         </div>
-                       
                     </div>
 
                     <div class="form-group row">
@@ -81,7 +78,7 @@
                             <input type="text" class="form-control" id="workHour" name="workHour" readonly value="{{$edit->workinghour}}"><br>
                         </div>
                         @error("workHour")
-                      	 <span class="text-danger"> {{ $errors->first('workHour') }} </span>
+                      	 <span class="text-danger float-left"> {{ $errors->first('workHour') }} </span>
                         @enderror  
                     </div>
 

@@ -35,7 +35,7 @@
                         <div class="col-sm-6">
                             <input type="date"class="form-control" name="attendanceDate">
                             @error("attendanceDate")
-                             <span class="text-danger">{{$errors->first('attendanceDate')}}</span>
+                             <span class="text-danger float-left">{{$errors->first('attendanceDate')}}</span>
                             @enderror  
                         </div>
                     </div>
@@ -73,7 +73,7 @@
                         <div class="col-sm-6">
                             <input type="text" class="form-control" id="workHour" name="workHour" readonly>
                             @error("workHour")
-                      	    <span class="text-danger"> {{ $errors->first('workHour') }} </span>
+                      	    <span class="text-danger float-left"> {{ $errors->first('workHour') }} </span>
                             @enderror  
                         </div>
                         
