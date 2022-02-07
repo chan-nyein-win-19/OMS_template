@@ -1,11 +1,6 @@
 @extends('layouts.app')
 
 @section("content")
-    @if(session('info'))
-        <div class="alert alert-success">
-            {{session('info')}}
-        </div>
-    @endif
     
     @if(session('errormessage'))
         <div class="alert alert-danger">
