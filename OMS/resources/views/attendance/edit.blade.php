@@ -135,7 +135,7 @@
                         <div class="col-sm-4"></div>
                             <div class="col-sm-6">
                                 <button type="submit" class="btn btn-primary" style="width:100px; height:50px;">Add</button>
-                                <button type="reset" class="btn btn-danger" id="cancel" style="width:100px; height:50px;">Cancle</button>
+                                <button type="reset" class="btn btn-danger" id="cancel" style="width:100px; height:50px;">Cancel</button>
                             </div>
                         </div>
                     </div>  
