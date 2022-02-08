@@ -12,7 +12,7 @@ use App\Http\Controllers\OMSControllers\LeaveController;
 use App\Http\Controllers\OMSControllers\LeaderLeaveController;
 use App\Http\Controllers\OMSControllers\AttendanceController;
 use App\Http\Controllers\OMSControllers\PcController;
-
+use App\Http\Controllers\OMSControllers\BrandController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -102,4 +102,7 @@ Route::middleware(['auth'])->group(function(){
         Route::get('/pc/add',[PcController::class,'create']);
     //end
 
+    //brand
+    Route::resource('brands',BrandController::class);
+    //end
 });
