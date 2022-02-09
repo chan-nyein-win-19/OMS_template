@@ -59,8 +59,6 @@
 @endsection
 
 @section('script')
-
-
     <script src="{{ asset('/storage/OMS/data-tables/jquery.js') }}"></script>
     <script src="{{ asset('/storage/OMS/data-tables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('/storage/OMS/bootbox/bootbox.all.js') }}"></script>
