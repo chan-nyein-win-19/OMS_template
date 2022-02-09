@@ -119,9 +119,9 @@
             $('.alert-success').addClass('d-none');
         }, 3000);
     </script>
+    
     <script>
-        $(document).on('click','a.paginate_button',function(event){   
-            console.log('hi');
+        $(document).on('click','a.paginate_button',function(event){
             $('[data-toggle="tooltip"]').tooltip();                            
         })
     </script>

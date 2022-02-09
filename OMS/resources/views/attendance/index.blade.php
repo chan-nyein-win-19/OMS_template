@@ -73,6 +73,7 @@
     <script src="{{ asset('/storage/OMS/bootbox/bootbox.locale.js') }}"></script>
     <script src="{{ asset('/storage/OMS/bootstrap5/bootstrap.min.js') }}"></script>
     <script src="{{ asset('/storage/OMS/bootstrap5/popper.min.js') }}"></script>
+    <script src="{{ asset('/storage/OMS/bootstrap5/bootstrap.bundle.min.js') }}"></script>
     <script type="text/javascript">
         $(document).ready( function () {
             $('#table').DataTable();
@@ -107,5 +108,11 @@
                 }
             });
         }
+    </script>
+
+    <script>
+        $(document).on('click','a.paginate_button',function(event){ 
+            $('[data-toggle="tooltip"]').tooltip();                            
+        })
     </script>
 @endsection
