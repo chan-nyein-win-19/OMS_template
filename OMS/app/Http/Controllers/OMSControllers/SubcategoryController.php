@@ -19,7 +19,7 @@ class SubcategoryController extends Controller
         //
         $subCategory=subCategory::all();
         $category=Category::all();
-        return view("SubCategory.subCategory",compact(['subCategory','category']));
+        return view("SubCategory.index",compact(['subCategory','category']));
     }
 
     /**
@@ -46,6 +46,7 @@ class SubcategoryController extends Controller
             'category' => 'required',
             'description' => 'required',
         ]);
+
         $subCategory=new SubCategory;
         $subCategory->name=$request->name;
         $subCategory->categoryId=$request->category;
@@ -64,7 +65,7 @@ class SubcategoryController extends Controller
     {
         //
         $subCategory=SubCategory::all();
-        return view("SubCategory.subCategory",compact("subCategory"));
+        return view("SubCategory.index",compact("subCategory"));
     }
 
     /**
@@ -77,7 +78,7 @@ class SubcategoryController extends Controller
     {
         //
         $category=Category::all();
-        return view("SubCategory.subCategoryEdit",compact(['subCategory','category']));
+        return view("SubCategory.edit",compact(['subCategory','category']));
     }
 
     /**
@@ -95,6 +96,7 @@ class SubcategoryController extends Controller
             'category' => 'required',
             'description' => 'required',
         ]);
+        
         $subCategory->name=$request->name;
         $subCategory->categoryId=$request->category;
         $subCategory->description=$request->description;
