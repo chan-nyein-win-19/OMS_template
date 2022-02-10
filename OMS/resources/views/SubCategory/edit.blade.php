@@ -3,18 +3,19 @@
 @section('title','SubCategory Update')
 
 @section('style')
-<link rel="stylesheet" href="{{ asset('/storage/OMS/css/style.css') }}">
-<link rel="stylesheet" href="{{ asset('/storage/OMS/data-tables/jquery.dataTables.min.css') }}">
-<link rel="stylesheet" href="{{ asset('/storage/OMS/bootstrap5/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('/storage/OMS/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('/storage/OMS/data-tables/jquery.dataTables.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('/storage/OMS/bootstrap5/bootstrap.min.css') }}">
 @endsection
 
 @section('topbar')
-@parent
+    @parent
 @endsection
 
 @section('sidebar')
-@parent
+    @parent
 @endsection
+
 @section('content')
 <div class="container-fluid">
     <h3 class="text-center mb-5">SubCategory Update Form</h3>
@@ -23,7 +24,7 @@
             @csrf
             @method('PUT')
             <div class="form-group">
-                <select name="category" id="category" class="form-control mr-3">
+                <select name="category" class="form-control mr-3">
                     <option value="" disabled>Category</option>
                         @foreach($category as $item)
                             <option value="{{$item->id}}" 
@@ -35,7 +36,7 @@
                 </select>
             </div>
             <div class="form-group">
-                <input type="text" name="name" id="name" class="form-control mr-3" placeholder="SubCategory Name" value="{{ old('name')? old('name'):$subCategory->name }}"> 
+                <input type="text" name="name" class="form-control mr-3" placeholder="SubCategory Name" value="{{ old('name')? old('name') : $subCategory->name }}"> 
                     @error('name')
                         <div class="row">
                             <div class="col-sm-10">
@@ -45,9 +46,8 @@
                     @enderror
             </div>
             <div class="form-group">
-                <textarea name="description" id="description" rows="3" class="form-control mr-3"
-                    placeholder="Enter Your Description.">{{old('description')? old('description'):$subCategory->description }}</textarea>
-            
+                <textarea name="description" rows="3" class="form-control mr-3"
+                    placeholder="Enter Your Description.">{{ old('description') ? old('description'): $subCategory->description }}</textarea>
                     @error('description')
                         <div class="row">
                             <div class="col-sm-10">

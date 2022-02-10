@@ -16,7 +16,6 @@ class SubcategoryController extends Controller
      */
     public function index()
     {
-        //
         $subCategory=subCategory::all();
         $category=Category::all();
         return view("subCategory.index",compact(['subCategory','category']));
@@ -40,7 +39,6 @@ class SubcategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
         $validateData= $request->validate([
             'name' => 'required',
             'category' => 'required',
@@ -63,7 +61,6 @@ class SubcategoryController extends Controller
      */
     public function show(SubCategory $subCategory)
     {
-        //
         $subCategory=SubCategory::all();
         return view("subCategory.index",compact("subCategory"));
     }
@@ -76,7 +73,6 @@ class SubcategoryController extends Controller
      */
     public function edit(SubCategory $subCategory)
     {
-        //
         $category=Category::all();
         return view("subCategory.edit",compact(['subCategory','category']));
     }
@@ -90,7 +86,6 @@ class SubcategoryController extends Controller
      */
     public function update(Request $request, SubCategory $subCategory)
     {
-        //
         $validateData= $request->validate([
             'name' => 'required',
             'category' => 'required',
@@ -113,10 +108,7 @@ class SubcategoryController extends Controller
      */
     public function destroy(SubCategory $subCategory)
     {
-        //
         $subCategory->delete();
         return redirect('/subCategory');
     }
-
-   
 }
