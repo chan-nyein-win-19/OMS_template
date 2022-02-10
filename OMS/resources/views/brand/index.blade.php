@@ -36,7 +36,7 @@
                                 <div class="col-sm-10">
                                     <input type="text" class="form-control" name="name" value="{{ old('name') }}" placeholder="Please Enter Brand Name"  />
                                     @error("name")
-                                        <span class="text-danger"> {{ $errors->first('name') }} </span>
+                                        <span class="text-danger">{{ $errors->first('name') }}</span>
                                     @enderror
                                 </div>
                             </div>
@@ -45,7 +45,7 @@
                                 <div class="col-sm-10">
                                     <textarea class="form-control" rows="3" name="description" placeholder="Please Enter Description" >{{ old('description') }}</textarea>
                                     @error("description")
-                                        <span class="text-danger">{{ $errors->first('description') }} </span>
+                                        <span class="text-danger">{{ $errors->first('description') }}</span>
                                     @enderror
                                 </div>
                             </div> 
@@ -64,7 +64,6 @@
                 <table class="mb-0 table table-hover" id="brand">
                     <thead>
                         <tr>
-                            <th>Id</th>
                             <th>Name</th>
                             <th>Description</th>
                             <th>Action</th>
@@ -73,7 +72,6 @@
                     <tbody> 
                         @foreach ($brand as $item)               
                             <tr>
-                                <td>{{ $item->id }}</td>
                                 <td>{{ $item->name }}</td>
                                 <td>{{ $item->description }}</td> 
                                 <td>   
