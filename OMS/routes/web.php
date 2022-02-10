@@ -13,6 +13,8 @@ use App\Http\Controllers\OMSControllers\LeaderLeaveController;
 use App\Http\Controllers\OMSControllers\AttendanceController;
 use App\Http\Controllers\OMSControllers\PcController;
 use App\Http\Controllers\OMSControllers\BrandController;
+use App\Http\Controllers\OMSControllers\SubcategoryController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -49,25 +51,25 @@ Route::get('/', function () {
 //Middleware Function
 Route::middleware(['auth'])->group(function(){
     
-    //login
+    // login
         Route::get('/successlogin',[AuthController::class, 'successlogin']);
-    //end
+    // end
       
-    //user
+    // user
         Route::resource('users',UserController::class);
     // end
 
-    //announcement
+    // announcement
         Route::resource('announcements',AnnouncementController::class);
     // end
 
-    //account
+    // account
         Route::resource('accounts',AccountController::class);
         Route::get('/changepassword/{id}',[AccountController::class,'editPassword']);
         Route::post('/changepassword/{id}',[AccountController::class,'changePassword']);
     // end
 
-    //attendance
+    // attendance
         Route::resource('attendance',AttendanceController::class);
         Route::post('/update/{id}',[AttendanceController::class, 'update']);
     // end
@@ -82,7 +84,7 @@ Route::middleware(['auth'])->group(function(){
             'uses'=>'App\Http\Controllers\OMSControllers\LeaveController@edit'
         ]);
         Route::resource('leaves',LeaveController::class,['except'=>'show','edit']);
-    //end
+    // end
 
     // EmployeeLeave
         Route::get('/leaveRequestForm/{date}',[LeaveController::class,'addNew']);
@@ -98,11 +100,17 @@ Route::middleware(['auth'])->group(function(){
         Route::post('/leader/leaveRecord/searchLeave',[LeaderLeaveController::class,'viewLeave']);
     // end
 
-    //PC
+    // PC
         Route::get('/pc/add',[PcController::class,'create']);
+    // end
+
+    // brand
+        Route::resource('brands',BrandController::class);
     //end
 
-    //brand
-    Route::resource('brands',BrandController::class);
+    // subCategory
+        Route::resource('subCategory',SubcategoryController::class);
     //end
 });
+
+
