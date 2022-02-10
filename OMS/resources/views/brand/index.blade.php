@@ -103,9 +103,14 @@
     <script src="{{ asset('/storage/OMS/bootbox/bootbox.locale.js') }}"></script>
     <script src="{{ asset('/storage/OMS/bootstrap5/bootstrap.min.js') }}"></script>
     <script src="{{ asset('/storage/OMS/bootstrap5/popper.min.js') }}"></script>
+    <script src="{{ asset('/storage/OMS/bootstrap5/bootstrap.bundle.min.js') }}"></script>
     <script>
         $(document).ready(function() {
             $('#brand').DataTable();
+
+            setTimeout(() => {
+                $('.alert-success').addClass('d-none');
+            },3000);
         });
 
         function deleteRecord($id) {
@@ -135,5 +140,11 @@
                 }
             });
         }
+    </script>
+
+    <script>
+        $(document).on('click','a.paginate_button',function(event){
+            $('[data-toggle="tooltip"]').tooltip();                            
+        })
     </script>
 @endsection

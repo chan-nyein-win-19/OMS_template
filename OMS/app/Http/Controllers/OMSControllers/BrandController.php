@@ -28,7 +28,7 @@ class BrandController extends Controller
         $validateData= $request->validate([
             'name' => 'required|unique:brands,name',
             'description' => 'required',
-         ]);
+        ]);
        
         $brand = new Brand;
         $brand->name=request()->name;
