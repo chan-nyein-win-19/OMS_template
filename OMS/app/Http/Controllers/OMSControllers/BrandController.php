@@ -15,14 +15,7 @@ class BrandController extends Controller
         
         return view('brand.index',compact('brand'));
     }
-
-    
-    public function create()
-    {
-        
-    }
-
-    
+   
     public function store(Request $request)
     {
         $validateData= $request->validate([
@@ -37,31 +30,22 @@ class BrandController extends Controller
         return back()->with('info','Brands Successfully Added...');
     
     }
-
-     
-    public function show(Brand $brand)
-    {
-        //
-    }
-
-    
+   
     public function edit($id)
     {
         $edit=Brand::find($id);
         
         return view('brand.edit',compact('edit'));
     }
-
-    
     
     public function update(Request $request, $id)
     {
+        $brand=Brand::find($id);
         $validator= $request->validate([
-            'name' => 'required',
+            'name' => 'required|unique:brands,name,'.$brand->id,
             'description' => 'required',
          ]);
 
-        $brand = Brand::find($id);
         $brand->name=request()->name;
         $brand->description=request()->description;
         $brand->save();
