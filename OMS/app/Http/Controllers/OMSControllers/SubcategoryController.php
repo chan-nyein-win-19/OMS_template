@@ -19,7 +19,7 @@ class SubcategoryController extends Controller
         //
         $subCategory=subCategory::all();
         $category=Category::all();
-        return view("SubCategory.index",compact(['subCategory','category']));
+        return view("subCategory.index",compact(['subCategory','category']));
     }
 
     /**
@@ -65,7 +65,7 @@ class SubcategoryController extends Controller
     {
         //
         $subCategory=SubCategory::all();
-        return view("SubCategory.index",compact("subCategory"));
+        return view("subCategory.index",compact("subCategory"));
     }
 
     /**
@@ -78,7 +78,7 @@ class SubcategoryController extends Controller
     {
         //
         $category=Category::all();
-        return view("SubCategory.edit",compact(['subCategory','category']));
+        return view("subCategory.edit",compact(['subCategory','category']));
     }
 
     /**
