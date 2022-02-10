@@ -19,8 +19,13 @@ class CreatePcsTable extends Migration
             $table->string('ram');
             $table->string('storage');
             $table->string('model');
-            $table->integer('brandId');
-            $table->integer('assetId');
+            $table->string('itemcode');
+            $table->string('condition');
+            $table->double('currentprice');
+            $table->integer('purchaseid');
+            $table->integer('categoryid');
+            $table->integer('subcategoryid');
+            $table->integer('brandid');
             $table->timestamps();
         });
     }
