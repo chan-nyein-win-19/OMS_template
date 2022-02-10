@@ -82,7 +82,6 @@
         <table id="table" class="table table-striped" style="width:100%">
             <thead>
                 <tr>
-                    <th>Id</th>
                     <th>Name</th>
                     <th>Category</th>
                     <th>Description</th>
@@ -92,7 +91,6 @@
             <tbody>
                 @foreach($subCategory as $value)
                     <tr>
-                        <td>{{$value->id}}</td>
                         <td>{{$value->name}}</td>
                         <td>{{$value->category->name}}</td>
                         <td>{{$value->description}}</td>
@@ -105,7 +103,7 @@
                                 @method('DELETE')
                                     <button type="button" onclick=deleteRecord(this.id)
                                     class="btn-transition btn btn-outline-danger" id="{{$value->id}}"
-                                    data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-fw"></i></button>
+                                    data-toggle="tooltip" title="Delete"><i class="fa fa-fw"></i></button>
                             </form>
                         </td>    
                     </tr>
@@ -126,6 +124,7 @@
     <script src="{{ asset('/storage/OMS/bootbox/bootbox.locale.js') }}"></script>
     <script src="{{ asset('/storage/OMS/bootstrap5/bootstrap.min.js') }}"></script>
     <script src="{{ asset('/storage/OMS/bootstrap5/popper.min.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script>
         $(document).ready(function() {
             $('#table').DataTable();
@@ -158,5 +157,11 @@
                 }
             });
         }
+    </script>
+    
+    <script>
+        $(document).on('click','a.paginate_button',function(event){
+            $('[data-toggle="tooltip"]').tooltip();                            
+        })
     </script>
 @endsection
