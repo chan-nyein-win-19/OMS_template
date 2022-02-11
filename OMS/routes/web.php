@@ -12,6 +12,7 @@ use App\Http\Controllers\OMSControllers\LeaveController;
 use App\Http\Controllers\OMSControllers\LeaderLeaveController;
 use App\Http\Controllers\OMSControllers\AttendanceController;
 use App\Http\Controllers\OMSControllers\PcController;
+use App\Http\Controllers\OMSControllers\PcPurchaseController;
 
 /*
 |--------------------------------------------------------------------------
@@ -99,7 +100,7 @@ Route::middleware(['auth'])->group(function(){
     // end
 
     //PC
-        Route::get('/pc/add',[PcController::class,'create']);
+        Route::resource('purchase',PcPurchaseController::class);
     //end
 
 });
