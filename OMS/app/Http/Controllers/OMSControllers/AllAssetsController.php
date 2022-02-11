@@ -30,9 +30,11 @@ class AllAssetsController extends Controller
                 if($currentPrice<=0){
                     $currentPrice = 0;
                 }
-                $assets->currentprice=$currentPrice;
-                $assets->save();
+            }else{
+                $currentPrice=$purchasePrice;
             }
+            $assets->currentprice=$currentPrice;
+                $assets->save();
              
 
         }
@@ -54,9 +56,11 @@ class AllAssetsController extends Controller
                 if($currentPrice<=0){
                     $currentPrice = 0;
                 }
-                $Pc->currentprice = $currentPrice;
-                $Pc->save();
+            }else{
+                $currentPrice=$purchasePrice;
             }
+            $Pc->currentprice = $currentPrice;
+                $Pc->save();
              
 
         }
