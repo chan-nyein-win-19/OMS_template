@@ -110,7 +110,7 @@ Route::middleware(['auth'])->group(function(){
 
     // subCategory
         Route::resource('subCategory',SubcategoryController::class);
-    //end
+    //end 
 });
 
 
