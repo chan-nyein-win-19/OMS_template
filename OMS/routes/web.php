@@ -12,7 +12,7 @@ use App\Http\Controllers\OMSControllers\LeaveController;
 use App\Http\Controllers\OMSControllers\LeaderLeaveController;
 use App\Http\Controllers\OMSControllers\AttendanceController;
 use App\Http\Controllers\OMSControllers\SubcategoryController;
-
+use App\Http\Controllers\OMSControllers\AllAssetsController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -103,4 +103,5 @@ Route::middleware(['auth'])->group(function(){
 });
 
 Route::resource('subCategory',SubcategoryController::class);
+Route::get('/allAssetLists',[AllAssetsController::class,'showAllAssets']);
 
