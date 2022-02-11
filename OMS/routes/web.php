@@ -13,6 +13,8 @@ use App\Http\Controllers\OMSControllers\LeaderLeaveController;
 use App\Http\Controllers\OMSControllers\AttendanceController;
 use App\Http\Controllers\OMSControllers\PcController;
 use App\Http\Controllers\OMSControllers\PcPurchaseController;
+use App\Http\Controllers\OMSControllers\CategoryController;
+use App\Http\Controllers\OMSControllers\SubcategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -102,5 +104,13 @@ Route::middleware(['auth'])->group(function(){
     //PC
         Route::resource('purchase',PcPurchaseController::class);
     //end
+
+    //subCategory
+        Route::resource('subCategory',SubcategoryController::class);
+    //end
+    
+    //category
+        Route::resource('categories',CategoryController::class);
+    // end
 
 });

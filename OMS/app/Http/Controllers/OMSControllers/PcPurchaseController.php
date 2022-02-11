@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Purchase;
 use App\Models\Pc;
 use App\Models\Brand;
+use App\Models\Category;
+use App\Models\subCategory;
 use Illuminate\Http\Request;
 
 class PcPurchaseController extends Controller
@@ -29,7 +31,14 @@ class PcPurchaseController extends Controller
     {
         //
         $brand=Brand::all();
-        return view('pc.create',compact('brand'));
+     
+        $category=Category::all();
+        $subCategory=subCategory::all();
+
+        return view('pc.create',compact([
+            'brand','category','subCategory'
+        ]));
+        
        
     }
 
@@ -89,7 +98,7 @@ class PcPurchaseController extends Controller
         $pc->brandid=request()->brandid;
         $pc->save();
     }
-        return redirect('pc.create');
+        return back();
     }
 
     /**

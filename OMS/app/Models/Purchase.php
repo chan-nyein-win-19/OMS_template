@@ -12,7 +12,7 @@ class Purchase extends Model
 
     public function Category()
     {
-        return $this->belongsTo(Category::class);
+        return $this->hasMany(Category::class);
     }
 
     public function Brand()

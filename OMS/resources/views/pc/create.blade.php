@@ -44,7 +44,7 @@
                 <label for="priceperunit" class="col-sm-4 col-form-label" >Price Per Unit</label>
                 <div class="col-sm-6">
                 
-                <input type="text" class="form-control" name="priceperunit" value="">
+                <input type="text" class="form-control" name="priceperunit" id="priceperunit" onchange=totalPrice() >
                 </div>
             </div>
 
@@ -52,32 +52,37 @@
                 <label for="qty" class="col-sm-4 col-form-label" >Quantity</label>
                 <div class="col-sm-6">
                 
-                <input type="text" class="form-control" name="quantity" value="">
+                <input type="text" class="form-control" name="quantity" id="quantity" onchange=totalPrice() >
                 </div>
             </div>
 
             <div class="form-group row">
                 <label for="totalprice" class="col-sm-4 col-form-label" >Total Price</label>
                 <div class="col-sm-6">
-                
-                <input type="text" class="form-control" name="totalprice" value="">
+                <input type="text" class="form-control" name="totalprice" id="totalprice">
                 </div>
             </div>
 
             <div class="form-group row">
                 <label for="category" class="col-sm-4 col-form-label" >Category</label>
                 <div class="col-sm-6">
-                
-                <input type="text" class="form-control" name="categoryid" value="1">
-                </div>
+			    <select class="form-control" name="categoryid">
+                    @foreach($category as $value)
+				    <option value="{{$value['id']}}">{{$value['name']}}</option>
+                    @endforeach
+			    </select>
+            </div>
             </div>
 
             <div class="form-group row">
                 <label for="subcategory" class="col-sm-4 col-form-label" >Sub Category</label>
                 <div class="col-sm-6">
-                
-                <input type="text" class="form-control" name="subcategoryid" value="2">
-                </div>
+			    <select class="form-control" name="subcategoryid">
+                    @foreach($subCategory as $value)
+				    <option value="{{$value['id']}}">{{$value['name']}}</option>
+                    @endforeach
+			    </select>
+            </div>
             </div>
 
             <div class="form-group row">
@@ -173,4 +178,15 @@
 </div>
 </div>
 </div>
+@endsection
+@section('script')  
+<script>
+function totalPrice(){
+var x = parseInt(document.getElementById("priceperunit").value);
+var y = parseInt(document.getElementById("quantity").value);
+var result = parseInt(x*y);
+document.getElementById("totalprice").value =result;
+}
+</script>
+
 @endsection

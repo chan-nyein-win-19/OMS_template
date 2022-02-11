@@ -12,4 +12,5 @@ class Pc extends Model
     public function purchase(){
         return $this->belongsTo(Purchase::class,'purchaseId');
     }
+  
 }
