@@ -11,6 +11,7 @@ use App\Http\Controllers\OMSControllers\UserController;
 use App\Http\Controllers\OMSControllers\LeaveController;
 use App\Http\Controllers\OMSControllers\LeaderLeaveController;
 use App\Http\Controllers\OMSControllers\AttendanceController;
+use App\Http\Controllers\OMSControllers\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -90,6 +91,11 @@ Route::middleware(['auth'])->group(function(){
         Route::get('/leader/leaveStatus/{id}/{status}/{date}/{filtering}',[LeaderLeaveController::class,'changeStatus']);
         Route::get('/leader/leaveRecord/filterLeave/{filtering}/{date}',[LeaderLeaveController::class,'filterLeave']);
     // end
+    
+    //category
+        Route::resource('categories',CategoryController::class);
+    // end
+
 });
 
 // account
@@ -109,3 +115,11 @@ Route::middleware(['auth'])->group(function(){
 // leaderLeave
     Route::post('/leader/leaveRecord/searchLeave',[LeaderLeaveController::class,'findLeave']);
 // end
+
+Route::get('/subCategory',function(){
+
+    return view("SubCategory.subCategory");
+
+});
+
+

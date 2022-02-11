@@ -34,7 +34,7 @@
                 </div>
                 <p class="card-text" style="font-size: 15spx;">{{$item->content}}</p>
                 <div class="row mt-4">
-                    <div class="col-md-1">
+                    <!-- <div class="col-md-1">
                         <a class="btn btn-outline-primary" href="{{ route('announcements.edit', $item->id) }}">
                             Update</a>
                     </div>
@@ -46,7 +46,7 @@
                                 Delete
                             </button>
                         </form>
-                    </div>
+                    </div> -->
                     <div class="col-md-1">
                         <a class="btn btn-outline-info" href="{{route('announcements.show',['announcement'=>$item] )}}">
                         Detail</a>

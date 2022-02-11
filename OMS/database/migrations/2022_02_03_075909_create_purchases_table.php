@@ -16,9 +16,14 @@ class CreatePurchasesTable extends Migration
         Schema::create('purchases', function (Blueprint $table) {
             $table->id();
             $table->date('date');
-            $table->double('pricePerUnit');
+            $table->string('itemcode');
+            $table->string('condition');
             $table->integer('quantity');
-            $table->double('totalPrice');
+            $table->double('totalprice');
+            $table->double('priceperunit');
+            $table->integer('categoryid');
+            $table->integer('subcategoryid');
+            $table->integer('brandid');
             $table->timestamps();
         });
     }
