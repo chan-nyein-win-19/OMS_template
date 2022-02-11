@@ -6,6 +6,11 @@
 <link rel="stylesheet" href="{{ asset('/storage/OMS/css/style.css') }}">
 <link rel="stylesheet" href="{{ asset('/storage/OMS/data-tables/jquery.dataTables.min.css') }}">
 <link rel="stylesheet" href="{{ asset('/storage/OMS/bootstrap5/bootstrap.min.css') }}">
+<style>
+.tabbg {
+    background-color: green;
+}
+</style>
 @endsection
 
 @section('topbar')
@@ -22,9 +27,10 @@
         <li class="active mr-5"><a href="#pcList" data-toggle="tab">PCs</a></li>
         <li><a href="#otherList" data-toggle="tab">OtherAssets</a></li>
     </ul>
-    <div class="tab-content mt-5">
+    <div class="tab-content clearfix mt-5">
         <div class="tab-pane @if($activePC)active @endif" id="pcList">
-            <a href='{{url("/allAssetList/updatePcPrice")}}' type="button" class="btn btn-primary mb-3">UpdatePCPrice</a>
+            <a href='{{url("/allAssetList/updatePcPrice")}}' type="button"
+                class="btn btn-primary mb-3">UpdatePCPrice</a>
             <table id="pcTable" class="table table-striped" style="width:100%">
                 <thead>
                     <tr>
@@ -55,7 +61,8 @@
             </table>
         </div>
         <div class="tab-pane @if(!$activePC)active @endif" id="otherList">
-        <a href='{{url("/allAssetList/updateOthersPrice")}}' type="button" class="btn btn-primary mb-3">UpdateOtherPrice</a>
+            <a href='{{url("/allAssetList/updateOthersPrice")}}' type="button"
+                class="btn btn-primary mb-3">UpdateOtherPrice</a>
             <table id="otherTable" class="table table-striped" style="width:100%">
                 <thead>
                     <tr>
@@ -69,7 +76,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                @foreach($otherAssets as $asset)
+                    @foreach($otherAssets as $asset)
                     <tr>
                         <td>{{$asset->itemcode}}</td>
                         <td>{{$asset->condition}}</td>
@@ -78,7 +85,7 @@
                         <td>{{$asset->purchase->subcategory->name}}</td>
                         <td>{{$asset->purchase->priceperunit}}</td>
                         <td>{{$asset->currentprice}}</td>
-                        
+
                     </tr>
                     @endforeach
                 </tbody>
