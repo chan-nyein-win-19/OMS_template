@@ -3,17 +3,17 @@
 @section('title','Category')
 
 @section('style')
-<link rel="stylesheet" href="{{ asset('/storage/OMS/css/style.css') }}">
-<link rel="stylesheet" href="{{ asset('/storage/OMS/data-tables/jquery.dataTables.min.css') }}">
-<link rel="stylesheet" href="{{ asset('/storage/OMS/bootstrap5/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('/storage/OMS/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('/storage/OMS/data-tables/jquery.dataTables.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('/storage/OMS/bootstrap5/bootstrap.min.css') }}">
 @endsection
 
 @section('topbar')
-@parent
+    @parent
 @endsection
 
 @section('sidebar')
-@parent
+    @parent
 @endsection
 
 @section('content')
@@ -30,34 +30,33 @@
         <div class="col-md-10 col-sm-10">
             
             <div class="card p-3">
-                <form action="{{ route('categories.store') }}" method="post" id="cc">
+                <form action="{{ route('categories.store') }}" method="post">
                 @csrf              
                     <div class="position-relative row form-group">
-                        <label for="name" class="col-sm-2 col-form-label">
+                        <label class="col-sm-2 col-form-label">
                             Name<span style="color: red">*</span>
                         </label>                        
                         <div class="col-sm-10">
-                            <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" 
-                                data-toggle="tooltip" tooltip="Please enter name of the Category" />
+                            <input type="text" class="form-control" name="name" value="{{ old('name') }}" 
+                                placeholder="Please enter name of the Category" />
                             @error("name")
-                            <span class="text-danger"> {{ $errors->first('name') }} </span>
+                                <span class="text-danger"> {{ $errors->first('name') }} </span>
                             @enderror  
                         </div>
                     </div>
                 
                     <div class="position-relative row form-group">
-                        <label for="description" class="col-sm-2 col-form-label">
+                        <label class="col-sm-2 col-form-label">
                             Description<span style="color: red">*</span>
                         </label>
                         <div class="col-sm-10">
-                            <textarea id="description" type="textarea" class="form-control @error('description') @enderror" 
+                            <textarea class="form-control" 
                                 rows="3" name="description" placeholder="Description" >{{ old('description') }}</textarea>
                             <span class="text-danger"> 
                                 {{ $errors->first('description') }} 
                             </span>
                         </div>
                     </div> 
-
                     <div class="text-right">
                         <input type="submit" class="mb-2 mr-2 btn btn-primary" value="Submit" name="submit">
                     </div>
@@ -89,7 +88,7 @@
                         <form method="GET" action="{{ route('categories.edit', $item->id) }}">
                             @csrf
                             @method('PUT')                       
-                            <button class="mb-2 mr-2 btn-transition btn btn-outline-warning"  data-toggle="tooltip" title="Edit">
+                            <button class="mb-2 mr-2 btn-transition btn btn-outline-primary"  data-toggle="tooltip" title="Edit">
                                 <i class="fa fa-fw"></i>
                             </button>
                         </form>
@@ -121,16 +120,6 @@
 <script src="{{ asset('/storage/OMS/bootbox/bootbox.locale.js') }}"></script>
 <script src="{{ asset('/storage/OMS/bootstrap5/bootstrap.min.js') }}"></script>
 <script src="{{ asset('/storage/OMS/bootstrap5/popper.min.js') }}"></script>
-
-<script type="text/javascript">	
-    $(document).ready(()=>{
-        @if ($errors->first('name'))
-            $("input[name='name']").focus();
-        @elseif($errors->first('description')) 
-            $("textarea[name='description']").focus();
-        @endif
-    });
-</script>
 
 <script type="text/javascript">
     jQuery(function($) {
