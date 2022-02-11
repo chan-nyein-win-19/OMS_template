@@ -23,8 +23,8 @@
         <li><a href="#otherList" data-toggle="tab">OtherAssets</a></li>
     </ul>
     <div class="tab-content mt-5">
-        <div class="tab-pane active" id="pcList">
-            <h1>Pc</h1>
+        <div class="tab-pane @if($activePC)active @endif" id="pcList">
+            <a href='{{url("/allAssetList/updatePcPrice")}}' type="button" class="btn btn-primary mb-3">UpdatePCPrice</a>
             <table id="pcTable" class="table table-striped" style="width:100%">
                 <thead>
                     <tr>
@@ -33,9 +33,9 @@
                         <th>Model</th>
                         <th>Ram</th>
                         <th>Storage</th>
-                        <th>Condition</th>
-                        <th>PurchasePrice</th>
                         <th>PurchaseDate</th>
+                        <th>PurchasePrice</th>
+                        <th>CurrentPrice</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -46,27 +46,26 @@
                         <td>{{$pc->model}}</td>
                         <td>{{$pc->ram}}</td>
                         <td>{{$pc->storage}}</td>
-                        <td>{{$pc->condition}}</td>
-
-                        <td>{{$pc->purchase->priceperunit}}</td>
                         <td>{{$pc->purchase->date}}</td>
+                        <td>{{$pc->purchase->priceperunit}}</td>
+                        <td>{{$pc->currentprice}}</td>
                     </tr>
                     @endforeach
                 </tbody>
             </table>
         </div>
-        <div class="tab-pane" id="otherList">
-            <h1>Other</h1>
+        <div class="tab-pane @if(!$activePC)active @endif" id="otherList">
+        <a href='{{url("/allAssetList/updateOthersPrice")}}' type="button" class="btn btn-primary mb-3">UpdateOtherPrice</a>
             <table id="otherTable" class="table table-striped" style="width:100%">
                 <thead>
                     <tr>
                         <th>Itemcode</th>
                         <th>Condition</th>
-                        <th>PurchasePrice</th>
                         <th>PurchaseDate</th>
                         <th>Category</th>
                         <th>SubCategory</th>
-                        <th>Brand</th>
+                        <th>PurchasePrice</th>
+                        <th>CurrentPrice</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -74,12 +73,11 @@
                     <tr>
                         <td>{{$asset->itemcode}}</td>
                         <td>{{$asset->condition}}</td>
-                        <td>{{$asset->purchase->priceperunit}}</td>
                         <td>{{$asset->purchase->date}}</td>
                         <td>{{$asset->purchase->subcategory->category->name}}</td>
                         <td>{{$asset->purchase->subcategory->name}}</td>
-
-                        <td>{{$asset->purchase->brand->name}}</td>
+                        <td>{{$asset->purchase->priceperunit}}</td>
+                        <td>{{$asset->currentprice}}</td>
                         
                     </tr>
                     @endforeach

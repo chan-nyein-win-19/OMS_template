@@ -104,4 +104,6 @@ Route::middleware(['auth'])->group(function(){
 
 Route::resource('subCategory',SubcategoryController::class);
 Route::get('/allAssetLists',[AllAssetsController::class,'showAllAssets']);
+Route::get('/allAssetList/updateOthersPrice',[AllAssetsController::class,'currentOthersPrice']);
+Route::get('/allAssetList/updatePcPrice',[AllAssetsController::class,'currentPcPrice']);
 
