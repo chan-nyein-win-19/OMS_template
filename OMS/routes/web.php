@@ -12,6 +12,9 @@ use App\Http\Controllers\OMSControllers\LeaveController;
 use App\Http\Controllers\OMSControllers\LeaderLeaveController;
 use App\Http\Controllers\OMSControllers\AttendanceController;
 use App\Http\Controllers\OMSControllers\PcController;
+use App\Http\Controllers\OMSControllers\PurchaseController;
+use App\Http\Controllers\OMSControllers\OtherAssetController;
+use App\Http\Controllers\OMSControllers\AssetDetailController;
 
 /*
 |--------------------------------------------------------------------------
@@ -61,6 +64,11 @@ Route::middleware(['auth'])->group(function(){
         Route::resource('announcements',AnnouncementController::class);
     // end
 
+    //purchaseforotherasset
+        Route::resource('purchase',PurchaseController::class); 
+
+        Route::get('/findCategory/{id}',[PurchaseController::class,'findCategory']);
+    //end
     //account
         Route::resource('accounts',AccountController::class);
         Route::get('/changepassword/{id}',[AccountController::class,'editPassword']);
