@@ -86,7 +86,7 @@
                                 <form method="POST" action="{{ route('categories.destroy',['category'=>$item]) }}" id="form{{$item->id}}">
                                     @csrf
                                     <input name="_method" type="hidden" value="DELETE">
-                                    <button type="button" onclick=deleteCat(this.id) class="mb-2 mr-2 btn-transition btn btn-outline-danger" 
+                                    <button type="button" onclick=deleteRecord(this.id) class="mb-2 mr-2 btn-transition btn btn-outline-danger" 
                                         data-toggle="tooltip" title="Delete" id="{{ $item->id }}">
                                         <i class="fa fa-fw"></i>
                                     </button>
@@ -118,7 +118,7 @@
             }, 3000);
         });
 
-        function deleteCategory($id) {
+        function deleteRecord($id) {
             bootbox.confirm({
                 message: "Do You Really want to delete it?This can't be undone.",
                 buttons: {
