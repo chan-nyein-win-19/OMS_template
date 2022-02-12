@@ -65,15 +65,51 @@
                 <i class="fa fa-angle-down ml-5 opacity-8"></i>
             </a>
             <ul>
-                <li>
+                <!-- <li>
                     <a href="#" class="textstyle">
                         Asset Lists
                     </a>
-                </li>
+                </li> -->
                 <li>
                     <a href="#" class="textstyle">
-                        Asset Create
+                        <i class="metismenu-icon" ></i>
+                        <span class="ml-3"> Asset Lists</span>
+                        <i class="fa fa-angle-down ml-5 opacity-8"></i>
                     </a>
+                    <ul>
+                        <li>
+                            <a href="{{ url('/purchase') }}" class="textstyle">
+                                Other Purchase Lists
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="textstyle">
+                                PC
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <!-- <a href="#" class="textstyle">
+                        Asset Create
+                    </a> -->
+                    <a href="#" class="textstyle">
+                        <i class="metismenu-icon" ></i>
+                        <span class="ml-3"> Asset Create</span>
+                        <i class="fa fa-angle-down ml-5 opacity-8"></i>
+                    </a>
+                    <ul>
+                        <li>
+                            <a href="{{ url('/purchase/create') }}" class="textstyle">
+                                Other Assets
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="textstyle">
+                                PC
+                            </a>
+                        </li>
+                    </ul>
                 </li>
             </ul>
         </li>

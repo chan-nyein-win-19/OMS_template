@@ -16,6 +16,9 @@ use App\Http\Controllers\OMSControllers\BrandController;
 use App\Http\Controllers\OMSControllers\SubcategoryController;
 use App\Http\Controllers\OMSControllers\CategoryController;
 use App\Http\Controllers\OMSControllers\PcPurchaseController;
+use App\Http\Controllers\OMSControllers\PurchaseController;
+use App\Http\Controllers\OMSControllers\OtherAssetController;
+use App\Http\Controllers\OMSControllers\AssetDetailController;
 
 /*
 |--------------------------------------------------------------------------
@@ -65,7 +68,12 @@ Route::middleware(['auth'])->group(function(){
         Route::resource('announcements',AnnouncementController::class);
     // end
 
-    // account
+    // purchaseforotherasset
+        Route::resource('purchase',PurchaseController::class); 
+        Route::get('/findCategory/{id}',[PurchaseController::class,'findCategory']);
+    // end
+
+    //account
         Route::resource('accounts',AccountController::class);
         Route::get('/changepassword/{id}',[AccountController::class,'editPassword']);
         Route::post('/changepassword/{id}',[AccountController::class,'changePassword']);
@@ -102,13 +110,13 @@ Route::middleware(['auth'])->group(function(){
         Route::post('/leader/leaveRecord/searchLeave',[LeaderLeaveController::class,'viewLeave']);
     // end
 
-    //PC
+    // PC
         Route::resource('purchase',PcPurchaseController::class);
-    //end
+    // end
 
     // brand
         Route::resource('brands',BrandController::class);
-    //end
+    // end
 
     // category
         Route::resource('categories',CategoryController::class);
@@ -116,6 +124,6 @@ Route::middleware(['auth'])->group(function(){
     
     // subCategory
         Route::resource('subCategory',SubcategoryController::class);
-    //end
+    // end
 });
 
