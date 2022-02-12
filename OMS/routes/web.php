@@ -14,6 +14,7 @@ use App\Http\Controllers\OMSControllers\AttendanceController;
 use App\Http\Controllers\OMSControllers\PcController;
 use App\Http\Controllers\OMSControllers\BrandController;
 use App\Http\Controllers\OMSControllers\SubcategoryController;
+use App\Http\Controllers\OMSControllers\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -108,6 +109,10 @@ Route::middleware(['auth'])->group(function(){
         Route::resource('brands',BrandController::class);
     //end
 
+    // category
+        Route::resource('categories',CategoryController::class);
+    // end
+    
     // subCategory
         Route::resource('subCategory',SubcategoryController::class);
     //end
