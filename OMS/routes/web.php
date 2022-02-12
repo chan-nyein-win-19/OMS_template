@@ -15,6 +15,7 @@ use App\Http\Controllers\OMSControllers\PcController;
 use App\Http\Controllers\OMSControllers\BrandController;
 use App\Http\Controllers\OMSControllers\SubcategoryController;
 use App\Http\Controllers\OMSControllers\CategoryController;
+use App\Http\Controllers\OMSControllers\PcPurchaseController;
 
 /*
 |--------------------------------------------------------------------------
@@ -101,9 +102,9 @@ Route::middleware(['auth'])->group(function(){
         Route::post('/leader/leaveRecord/searchLeave',[LeaderLeaveController::class,'viewLeave']);
     // end
 
-    // PC
-        Route::get('/pc/add',[PcController::class,'create']);
-    // end
+    //PC
+        Route::resource('purchase',PcPurchaseController::class);
+    //end
 
     // brand
         Route::resource('brands',BrandController::class);
@@ -117,5 +118,4 @@ Route::middleware(['auth'])->group(function(){
         Route::resource('subCategory',SubcategoryController::class);
     //end
 });
-
 
