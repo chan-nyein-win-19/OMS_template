@@ -75,7 +75,6 @@ class PurchaseController extends Controller
         //dd($request->totalprice);
         $purchase = new Purchase;
         $purchase->date=request()->date;
-        $purchase->itemcode='001';
         $purchase->condition=request()->condition;
         $purchase->quantity=request()->quantity;
         $purchase->totalprice=request()->totalprice;
@@ -94,7 +93,7 @@ class PurchaseController extends Controller
             $assetDetail->purchaseId = $purchase->id;
             $assetDetail->save();
         }
-        return redirect('/purchase/create')->with('info','purchase Successfully Added...');
+        return redirect('/otherpurchase/create')->with('info','purchase Successfully Added...');
 
 
     }

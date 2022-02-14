@@ -1,30 +1,44 @@
 <?php
 
+
+
 use Illuminate\Database\Migrations\Migration;
+
 use Illuminate\Database\Schema\Blueprint;
+
 use Illuminate\Support\Facades\Schema;
 
-class CreateOthersTable extends Migration
+
+
+class CreateAssetDetailsTable extends Migration
+
 {
+
     /**
+
      * Run the migrations.
+
      *
+
      * @return void
+
      */
+
     public function up()
+
     {
-        Schema::create('others', function (Blueprint $table) {
+        Schema::create('asset_details', function (Blueprint $table) {
             $table->id();
-            $table->string('itemcode');
+            $table->integer('itemCode');
             $table->string('condition');
-            $table->double('currentprice');
-            $table->integer('purchaseid');
-            $table->integer('categoryid');
-            $table->integer('subcategoryid');
-            $table->integer('brandid');
+            $table->double('currentPrice');
+            $table->integer('purchaseId');
             $table->timestamps();
         });
+
     }
+
+
 
     /**
      * Reverse the migrations.
@@ -33,6 +47,7 @@ class CreateOthersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('others');
+        Schema::dropIfExists('asset_details');
     }
+
 }
