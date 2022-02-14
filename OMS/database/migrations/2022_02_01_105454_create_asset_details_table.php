@@ -14,13 +14,13 @@ class CreateAssetDetailsTable extends Migration
     public function up()
     {
         Schema::create('asset_details', function (Blueprint $table) {
-            
             $table->id();
             $table->integer('itemCode');
             $table->string('condition');
             $table->double('currentPrice');
             $table->integer('purchaseId');
             $table->timestamps();
+            
         });
     }
 
