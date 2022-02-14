@@ -8,11 +8,23 @@ use Illuminate\Database\Eloquent\Model;
 class Purchase extends Model
 {
     use HasFactory;
+    protected $guarded=[];
 
-    public function subCategory(){
-        return $this->belongsTo(SubCategory::class,'subcategoryid');
+    public function Category()
+    {
+        return $this->hasMany(Category::class);
     }
-    public function brand(){
-        return $this->belongsTo(Brand::class,'brandid');
+
+    public function Brand()
+    {
+        return $this->hasMany(Brand::class);
     }
+
+    public function subCategory()
+    {
+        return $this->hasMany(subCategory::class);
+    }
+
+    
+
 }

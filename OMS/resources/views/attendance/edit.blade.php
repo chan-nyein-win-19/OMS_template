@@ -1,175 +1,155 @@
 @extends('layouts.app')
 
-@section('content')
-
-
-<link href="{{ asset('/storage/OMS/attendance/attendanceform.css') }}" rel="stylesheet">
-
-<div class="container pt-80 mb-100 text-center ">
-
+@section('style')
     
-    <div class="row">
-        
-        <div class="col-sm-12">
-        @if($errors->any())
-            <div class="alert alert-warning">
-                <ol>
-                    @foreach($errors->all() as $value)
-                    <li> {{$value}} </li>
-                    @endforeach
-                </ol>
-            </div>
-        @endif
+    <link rel="stylesheet" href="{{ asset('/storage/OMS/bootstrap5/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('/storage/OMS/css/style.css') }}">
+@endsection
+
+@section('topbar')
+    @parent
+@endsection
+
+@section('sidebar')
+    @parent
+@endsection
+
+@section('content')
+<div class="container pt-80 mb-100 text-center ">
+    <div class="row">          
         <div class="main-card mb-3 card ">
-        <div class="card-body">
-        <div class="col-12 pt-4 mb-5">
-            <h3 class="sub-title">Employee Attendance Edit</h3>
-        </div>
-        <form method="post" action="{{url('/update/'.$edit['id'])}}" class="container">
-            @csrf
-            <div class="form-group row">
-                <label for="employeeId" class="col-sm-4 col-form-label" >Employee ID</label>
-                <div class="col-sm-6">
-                
-                <input type="text" class="form-control" id="employeeID" name="employeeID" value="{{$edit->userid}}"  readonly>
+            <div class="card-body">
+                <div class="col-12 pt-4 mb-5">
+                    <h3 class="sub-title">Employee Attendance Edit</h3>
                 </div>
-            </div>
-
-            <div class="form-group row">
-                <label for="attendanceDate" class="col-sm-4 col-form-label">Attendance Date</label>
-                <div class="col-sm-6">
-                <div class="md-form">
-                    <input type="date" id="inputMDEx" class="form-control" name="attendanceDate" value="{{$edit->date}}">
- 
-                </div>
-             </div>
-            </div>
-          
-
-            <div class="form-group row">
-                <label for="checkIn" class="col-sm-4 col-form-label" >Check in</label>
-                <div class="col-sm-6" id="timepicker1">
-                    <input type="time" id="time1" class="form-control" name="checkIn" onchange=getTimeDifference() value="{{$edit->checkin}}" >
-                </div>
-            </div>
-
-            <div class="form-group row">
-                <label for="checkOut" class="col-sm-4 col-form-label" >Check Out</label>
-                <div class="col-sm-6" id="timepicker2">
-                    <input type="time" id="time2" class="form-control time1" name="checkOut" onchange=getTimeDifference() value="{{$edit->checkout}}" >
-                </div>
-            </div>
-
-            <div class="form-group row">
-
-                <label for="lunchTime" class="col-sm-4 col-form-label">Lunch Time</label>
-                
-                <div class="col-sm-6">
-                
-                <input type="text" class="form-control" id="lunchThime" name="lunchTime" value="01:00:00" place-holder="01:00" readonly>
-               
-                   
-
-                </div>
-                
-            </div>
-
-            <div class="form-group row">
-                <label for="workingHour" class="col-sm-4 col-form-label" >Working Hour</label>
-                
-                
-                    <!-- <input type="time" id="input3" class="form-control" name="checkOut" > -->
-                    <div class="col-sm-6">
-                <input type="text" class="form-control" id="workHour" name="workHour" readonly value="{{$edit->workinghour}}"><br>
-               
-                </div>
-               
-                
-            </div>
-        
-
-            <div class="form-group row">
-                    <label for="radio" class="col-form-label col-sm-4 pt-0">Leave Day</label>
-                    <div class="col-sm-6">
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="leaveDay" id="inlineRadio1" value="Yes" {{ $edit->leaveday == 'Yes' ? 'checked' : '' }}/>  
-                        <label class="form-check-label" for="inlineRadio1">Yes</label>
+                <form method="post" action="{{url('/update/'.$edit['id'])}}" class="container">
+                    @csrf
+                    <div class="form-group row">
+                        <label for="employeeId" class="col-sm-4 col-form-label" >Employee ID</label>
+                        <div class="col-sm-6">
+                        <input type="text" class="form-control" name="employeeID" value="{{$edit->userid}}"  readonly>
+                        </div>
                     </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="leaveDay" id="inlineRadio2" value="No" {{ $edit->leaveday == 'No' ? 'checked' : '' }}/>
-                        <label class="form-check-label" for="inlineRadio1">No</label>
+
+                    <div class="form-group row">
+                        <label for="attendanceDate" class="col-sm-4 col-form-label">Attendance Date</label>
+                        <div class="col-sm-6">
+                            <input type="date" class="form-control" name="attendanceDate" value="{{$edit->date}}">
+                            @error("attendanceDate")
+                      	    <span class="text-danger float-left">{{$errors->first('attendanceDate')}}</span>
+                            @enderror  
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="checkIn" class="col-sm-4 col-form-label" >Check in</label>
+                        <div class="col-sm-6" id="timepicker1">
+                            <input type="time" id="time1" class="form-control" name="checkIn" onchange=getTimeDifference() value="{{$edit->checkin}}" >
+                        </div>
+                        @error("checkIn")
+                      	 <span class="text-danger"> {{ $errors->first('checkIn') }} </span>
+                        @enderror  
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="checkOut" class="col-sm-4 col-form-label" >Check Out</label>
+                        <div class="col-sm-6" id="timepicker2">
+                            <input type="time" id="time2" class="form-control time1" name="checkOut" onchange=getTimeDifference() value="{{$edit->checkout}}" >
+                        </div>
+                        @error("checkOut")
+                      	 <span class="text-danger"> {{ $errors->first('checkOut') }} </span>
+                        @enderror  
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="lunchTime" class="col-sm-4 col-form-label">Lunch Time</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" id="lunchThime" name="lunchTime" value="01:00:00" place-holder="01:00" readonly>
+                        </div> 
+                        @error("lunchTime")
+                      	 <span class="text-danger"> {{ $errors->first('lunchTime') }} </span>
+                        @enderror  
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="workingHour" class="col-sm-4 col-form-label" >Working Hour</label>
+                            <!-- <input type="time" id="input3" class="form-control" name="checkOut" > -->
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" id="workHour" name="workHour" readonly value="{{$edit->workinghour}}"><br>
+                        </div>
+                        @error("workHour")
+                      	 <span class="text-danger float-left"> {{ $errors->first('workHour') }} </span>
+                        @enderror  
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="radio" class="col-form-label col-sm-4 pt-0">Leave Day</label>
+                        <div class="col-sm-6">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="leaveDay" value="Yes" {{ $edit->leaveday == 'Yes' ? 'checked' : '' }}/>  
+                                <label class="form-check-label">Yes</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="leaveDay" value="No" {{ $edit->leaveday == 'No' ? 'checked' : '' }}/>
+                                <label class="form-check-label">No</label>
+                            </div>  
+                        </div> 
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="radio" class="col-form-label col-sm-4 pt-0">Half Day Leave</label>
+                        <div class="col-sm-6">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="halfDayLeave" value="Yes" {{ $edit->halfdayleave == 'Yes' ? 'checked' : '' }}/>  
+                                <label class="form-check-label">Yes</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="halfDayLeave" value="No" {{ $edit->halfdayleave == 'No' ? 'checked' : '' }}/>
+                                <label class="form-check-label">No</label>
+                            </div> 
+                        </div> 
+                    </div>
+                    <div class="form-group row">
+                        <label for="radio" class="col-form-label col-sm-4 pt-0">OT Time</label>
+                        <div class="col-sm-6">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="ottime" value="Yes" {{ $edit->ottime == 'Yes' ? 'checked' : '' }}/>  
+                                <label class="form-check-label" >Yes</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="ottime" value="No" {{ $edit->ottime == 'No' ? 'checked' : '' }}/>
+                                <label class="form-check-label">No</label>
+                            </div>  
+                        </div> 
+                    </div>
+                    <div class="form-group row">
+                        <label for="radio" class="col-form-label col-sm-4 pt-0">Work From Home</label>
+                        <div class="col-sm-6">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="wfh"  value="Yes" {{ $edit->workfromhome== 'Yes' ? 'checked' : '' }}/>  
+                                <label class="form-check-label" >Yes</label>
+                            </div>
+                        <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="wfh"  value="No" {{ $edit->workfromhome == 'No' ? 'checked' : '' }}/>
+                                <label class="form-check-label" for="inlineRadio1">No</label>
+                        </div>   
+                    </div>              
+                    <div class="form-group row">
+                        <div class="col-sm-4"></div>
+                            <div class="col-sm-6">
+                                <button type="submit" class="btn btn-primary" style="width:100px; height:50px;">Add</button>
+                                <button type="reset" class="btn btn-danger" id="cancel" style="width:100px; height:50px;">Cancel</button>
+                            </div>
+                        </div>
                     </div>  
-                    </div> 
+                </form>
             </div>
-
-            
-
-            <div class="form-group row">
-                    <label for="radio" class="col-form-label col-sm-4 pt-0">Half Day Leave</label>
-                    <div class="col-sm-6">
-                 
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="halfDayLeave" id="inlineRadio1" value="Yes" {{ $edit->halfdayleave == 'Yes' ? 'checked' : '' }}/>  
-                        <label class="form-check-label" for="inlineRadio1">Yes</label>
-                    </div>
-                    
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="halfDayLeave" id="inlineRadio2" value="No" {{ $edit->halfdayleave == 'No' ? 'checked' : '' }}/>
-                        <label class="form-check-label" for="inlineRadio1">No</label>
-                    </div> 
-                  
-                    </div> 
-            </div>
-            <div class="form-group row">
-                    <label for="radio" class="col-form-label col-sm-4 pt-0">OT Time</label>
-                    
-                    <div class="col-sm-6">
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="ottime" id="inlineRadio1" value="Yes" {{ $edit->ottime == 'Yes' ? 'checked' : '' }}/>  
-                        <label class="form-check-label" for="inlineRadio1">Yes</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="ottime" id="inlineRadio2" value="No" {{ $edit->ottime == 'No' ? 'checked' : '' }}/>
-                        <label class="form-check-label" for="inlineRadio1">No</label>
-                    </div>  
-                    </div> 
-            </div>
-
-            <div class="form-group row">
-                    <label for="radio" class="col-form-label col-sm-4 pt-0">Work From Home</label>
-                    <div class="col-sm-6">
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="wfh" id="inlineRadio1" value="Yes" {{ $edit->workfromhome== 'Yes' ? 'checked' : '' }}/>  
-                        <label class="form-check-label" for="inlineRadio1">Yes</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="wfh" id="inlineRadio2" value="No" {{ $edit->workfromhome == 'No' ? 'checked' : '' }}/>
-                        <label class="form-check-label" for="inlineRadio1">No</label>
-                    </div>   
-                    </div>   
-            </div>
-
-            
-
-            
-            <div class="form-group row">
-            <div class="col-sm-4"></div>
-            <div class="col-sm-6">
-                <button type="submit" class="btn btn-primary">Add</button>
-                <button type="reset" class="btn btn-danger" id="cancel" >Cancle</button>
-                </div>
-            </div>
-
-           
-        </form>
         </div>
-        </div>
+    </div>
 </div>
-</div>
-</div>
+@endsection
 
-
-
+@section('script')  
 <script >
   function timeStringToMins(time) {
   time = time.split(':');
@@ -202,10 +182,3 @@ if(diff>0){
 </script>
 
 @endsection
-
-
-
-<<<<<<< HEAD
-=======
-
->>>>>>> 5eff327a1c58463f9152aaaa99ef58764f4ac588

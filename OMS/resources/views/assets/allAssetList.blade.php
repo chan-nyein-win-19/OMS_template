@@ -23,12 +23,19 @@
 
 @section('content')
 <div class="container-fluid">
-    <ul class="nav nav-pills">
-        <li class="active mr-5"><a href="#pcList" data-toggle="tab">PCs</a></li>
-        <li><a href="#otherList" data-toggle="tab">OtherAssets</a></li>
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link @if($activePC)active @endif" id="home-tab" data-bs-toggle="tab" data-bs-target="#pcList" type="button"
+                role="tab" aria-controls="home" aria-selected="true">PCs</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link @if(!$activePC)active @endif" id="profile-tab" data-bs-toggle="tab" data-bs-target="#otherList" type="button"
+                role="tab" aria-controls="profile" aria-selected="false">OtherAssets</button>
+        </li>
+        
     </ul>
     <div class="tab-content clearfix mt-5">
-        <div class="tab-pane @if($activePC)active @endif" id="pcList">
+        <div class="tab-pane fade show @if($activePC)active @endif" id="pcList" role="tabpanel" aria-labelledby="home-tab">
             <a href='{{url("/allAssetList/updatePcPrice")}}' type="button"
                 class="btn btn-primary mb-3">UpdatePCPrice</a>
             <table id="pcTable" class="table table-striped" style="width:100%">
@@ -60,7 +67,7 @@
                 </tbody>
             </table>
         </div>
-        <div class="tab-pane @if(!$activePC)active @endif" id="otherList">
+        <div class="tab-pane fade show @if(!$activePC)active @endif" id="otherList" role="tabpanel" aria-labelledby="home-tab">
             <a href='{{url("/allAssetList/updateOthersPrice")}}' type="button"
                 class="btn btn-primary mb-3">UpdateOtherPrice</a>
             <table id="otherTable" class="table table-striped" style="width:100%">
