@@ -30,5 +30,7 @@ class DatabaseSeeder extends Seeder
             'role'=>'Admin',
             'remember_token' => Str::random(10),
         ]);
+
+        \App\Models\Purchase::factory(5)->create();
     }
 }

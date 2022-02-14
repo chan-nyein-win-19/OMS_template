@@ -69,7 +69,7 @@ Route::middleware(['auth'])->group(function(){
     // end
 
     // purchaseforotherasset
-        Route::resource('purchase',PurchaseController::class); 
+        Route::resource('otherpurchase',PurchaseController::class); 
         Route::get('/findCategory/{id}',[PurchaseController::class,'findCategory']);
     // end
 
@@ -111,7 +111,7 @@ Route::middleware(['auth'])->group(function(){
     // end
 
     // PC
-        Route::resource('purchase',PcPurchaseController::class);
+        Route::resource('pcpurchase',PcPurchaseController::class);
     // end
 
     // brand

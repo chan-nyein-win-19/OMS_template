@@ -171,7 +171,7 @@ class PurchaseController extends Controller
             $assetDetail->purchaseId = $purchase->id;
             $assetDetail->save();
         }
-        return redirect("purchase")->with('success','Updated successfully!!');
+        return redirect("otherpurchase")->with('success','Updated successfully!!');
     }
 
     /**
@@ -185,6 +185,6 @@ class PurchaseController extends Controller
         //
        $assetDetail = AssetDetails::where('purchaseId',$purchase->id)->delete();
        $purchase = Purchase::where('id',$purchase->id)->delete();
-       return redirect("purchase")->with('success','Successfully Deleted!!');
+       return redirect("otherpurchase")->with('success','Successfully Deleted!!');
     }
 }

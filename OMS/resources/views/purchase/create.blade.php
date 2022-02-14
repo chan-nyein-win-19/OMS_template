@@ -24,7 +24,7 @@
   <div class="main-card mb-3 card">
     <div class="card-body"><h5 class="card-title">Other Purchase Form</h5>
     	<br>
-        <form action="{{ route('purchase.store') }}" method="post" >
+        <form action="{{ route('otherpurchase.store') }}" method="post" >
         @csrf   
         <div class="position-relative row form-group">
           <label for="date" class="col-sm-2 col-form-label">Date<span style="color: red">*</span></label>
