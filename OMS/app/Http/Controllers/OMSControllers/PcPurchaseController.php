@@ -56,6 +56,9 @@ class PcPurchaseController extends Controller
             'priceperunit'=>'required',
             'quantity'=>'required',
             'totalprice'=>'required',
+            'category'=>'required',
+            'subcategory'=>'required',
+            'brand'=>'required',
             'cpu'=>'required',
             'ram'=>'required',
             'storage'=>'required',
@@ -76,9 +79,9 @@ class PcPurchaseController extends Controller
         $purchase->totalprice=request()->totalprice;
         $purchase->itemcode=request()->itemcode;
         $purchase->condition=request()->condition;
-        $purchase->categoryid=request()->categoryid;
-        $purchase->subcategoryid=request()->subcategoryid;
-        $purchase->brandid=request()->brandid;
+        $purchase->categoryid=request()->category;
+        $purchase->subcategoryid=request()->subcategory;
+        $purchase->brandid=request()->brand;
 
         $purchase->save();
         
@@ -93,9 +96,9 @@ class PcPurchaseController extends Controller
         $pc->condition=request()->condition;
         $pc->currentprice=request()->currentprice;
         $pc->purchaseid=$purchase->id;
-        $pc->categoryid=request()->categoryid;
-        $pc->subcategoryid=request()->subcategoryid;
-        $pc->brandid=request()->brandid;
+        $pc->categoryid=request()->category;
+        $pc->subcategoryid=request()->subcategory;
+        $pc->brandid=request()->brand;
         $pc->save();
     }
         return back();

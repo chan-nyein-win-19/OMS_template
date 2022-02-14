@@ -101,8 +101,11 @@ Route::middleware(['auth'])->group(function(){
         Route::post('/leader/leaveRecord/searchLeave',[LeaderLeaveController::class,'viewLeave']);
     // end
 
+    //PCPurchase
+        Route::resource('pcpurchase',PcPurchaseController::class);
+    //end
     //PC
-        Route::resource('purchase',PcPurchaseController::class);
+        Route::resource('pc',PcController::class);
     //end
 
     //subCategory

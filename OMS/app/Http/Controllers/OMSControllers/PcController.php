@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\OMSControllers;
 
 use App\Http\Controllers\Controller;
-use App\Models\PC;
+use App\Models\Pc;
 use Illuminate\Http\Request;
 
 class PcController extends Controller
@@ -16,6 +16,18 @@ class PcController extends Controller
     public function index()
     {
         //
+
+        // $data = Pc::join('brands', 'brands.id', '=', 'pcs.brandid')
+        //               ->join('categories', 'categories.id', '=', 'pcs.categoryid')
+        //               ->join('sub_categories','sub_categories.id','=','pcs.subcategoryid')
+        //               ->join('purchases','purchases.id','=','pcs.purchaseid')
+        //       		->get(['brands.name', 'categories.name', 'sub_categories.name']);
+
+
+
+        $pc=Pc::all();
+        return view('pc.index',compact('pc')
+        );
     }
 
     /**
@@ -49,6 +61,7 @@ class PcController extends Controller
     public function show(PC $pC)
     {
         //
+       
         
     }
 

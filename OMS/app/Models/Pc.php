@@ -12,5 +12,18 @@ class Pc extends Model
     public function purchase(){
         return $this->belongsTo(Purchase::class,'purchaseId');
     }
+    public function brand(){
+        return $this->belongsTo(Brand::class,'brandid');
+    }
+    public function category(){
+        return $this->belongsTo(Category::class,'categoryid');
+    }
+    public function subCategory(){
+        return $this->belongsTo(Brand::class,'subcategoryid');
+    }
+
+
+   
+
   
 }
