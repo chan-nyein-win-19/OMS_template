@@ -13,7 +13,11 @@ class CreatePurchasesTable extends Migration
      */
     public function up()
     {
+<<<<<<< HEAD:OMS/database/migrations/2022_02_03_075909_create_purchases_table.php
         Schema::create('purchases', function (Blueprint $table) {
+=======
+        Schema::create('asset_details', function (Blueprint $table) {
+>>>>>>> otherasset:OMS/database/migrations/2022_02_01_105454_create_asset_details_table.php
             $table->id();
             $table->date('date');
             $table->string('condition');
