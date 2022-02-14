@@ -28,13 +28,13 @@
         <div class="col-12 pt-4 mb-5">
             <h3 class="sub-title">PC Purchase Form</h3>
         </div>
-        <form method="post" action="" class="container">
+        <form method="post"  action="{{ route('purchase.store') }}" class="container">
             @csrf
             <div class="form-group row">
-                <label for="cpu" class="col-sm-4 col-form-label" >Date</label>
+                <label for="date" class="col-sm-4 col-form-label" >Date</label>
                 <div class="col-sm-6">
                 <div class="md-form">
-                    <input type="date" id="purchaseDate" class="form-control" name="purchaseDate">
+                    <input type="date" class="form-control" name="date">
  
                 </div>
                 </div>
@@ -44,7 +44,7 @@
                 <label for="priceperunit" class="col-sm-4 col-form-label" >Price Per Unit</label>
                 <div class="col-sm-6">
                 
-                <input type="text" class="form-control" id="priceperunit" name="priceperunit" value="">
+                <input type="text" class="form-control" name="priceperunit" id="priceperunit" onchange=totalPrice() >
                 </div>
             </div>
 
@@ -52,41 +52,46 @@
                 <label for="qty" class="col-sm-4 col-form-label" >Quantity</label>
                 <div class="col-sm-6">
                 
-                <input type="text" class="form-control" id="qty" name="qty" value="">
+                <input type="text" class="form-control" name="quantity" id="quantity" onchange=totalPrice() >
                 </div>
             </div>
 
             <div class="form-group row">
-                <label for="totalPrice" class="col-sm-4 col-form-label" >Total Price</label>
+                <label for="totalprice" class="col-sm-4 col-form-label" >Total Price</label>
                 <div class="col-sm-6">
-                
-                <input type="text" class="form-control" id="totalPrice" name="totalPrice" value="">
+                <input type="text" class="form-control" name="totalprice" id="totalprice">
                 </div>
             </div>
 
             <div class="form-group row">
                 <label for="category" class="col-sm-4 col-form-label" >Category</label>
                 <div class="col-sm-6">
-                
-                <input type="text" class="form-control" id="category" name="category" value="" readonly>
-                </div>
+			    <select class="form-control" name="categoryid">
+                    @foreach($category as $value)
+				    <option value="{{$value['id']}}">{{$value['name']}}</option>
+                    @endforeach
+			    </select>
+            </div>
             </div>
 
             <div class="form-group row">
                 <label for="subcategory" class="col-sm-4 col-form-label" >Sub Category</label>
                 <div class="col-sm-6">
-                
-                <input type="text" class="form-control" id="subcategory" name="subcategory" value="">
-                </div>
+			    <select class="form-control" name="subcategoryid">
+                    @foreach($subCategory as $value)
+				    <option value="{{$value['id']}}">{{$value['name']}}</option>
+                    @endforeach
+			    </select>
+            </div>
             </div>
 
             <div class="form-group row">
 			<label class="col-sm-4 col-form-label">Brand</label>
             <div class="col-sm-6">
-			    <select class="form-control" name="brand">
-			
-				    <option value=""></option>
-			
+			    <select class="form-control" name="brandid">
+                    @foreach($brand as $value)
+				    <option value="{{$value['id']}}">{{$value['name']}}</option>
+                    @endforeach
 			    </select>
             </div>
 		    </div>
@@ -95,15 +100,7 @@
                 <label for="cpu" class="col-sm-4 col-form-label" >CPU</label>
                 <div class="col-sm-6">
                 
-                <input type="text" class="form-control" id="cpu" name="cpu" value="">
-                </div>
-            </div>
-
-            <div class="form-group row">
-                <label for="cpu" class="col-sm-4 col-form-label" >CPU</label>
-                <div class="col-sm-6">
-                
-                <input type="text" class="form-control" id="cpu" name="cpu" value="">
+                <input type="text" class="form-control"  name="cpu" value="">
                 </div>
             </div>
 
@@ -111,7 +108,7 @@
                 <label for="ram" class="col-sm-4 col-form-label" >RAM</label>
                 <div class="col-sm-6">
                 
-                <input type="text" class="form-control" id="cpu" name="cpu" value="">
+                <input type="text" class="form-control" name="ram" value="">
                 </div>
             </div>
         
@@ -121,17 +118,17 @@
                 <label for="storage" class="col-sm-4 col-form-label" >Storage</label>
                 <div class="col-sm-6">
                 
-                <input type="text" class="form-control" id="storage" name="storage" value="">
+                <input type="text" class="form-control" name="storage" value="">
                 </div>
             </div>
      
           
 
             <div class="form-group row">
-                <label for="itemCode" class="col-sm-4 col-form-label" >Item Code</label>
+                <label for="itemcode" class="col-sm-4 col-form-label" >Item Code</label>
                 <div class="col-sm-6">
                 
-                <input type="text" class="form-control" id="itemCode" name="itemCode" value="">
+                <input type="text" class="form-control" name="itemcode" value="">
                 </div>
             </div>
     
@@ -141,7 +138,7 @@
                 <label for="model" class="col-sm-4 col-form-label" >Model</label>
                 <div class="col-sm-6">
                 
-                <input type="text" class="form-control" id="model" name="model" value="">
+                <input type="text" class="form-control" name="model" value="">
                 </div>
             </div>
             
@@ -151,16 +148,16 @@
                 <label for="condition" class="col-sm-4 col-form-label" >Conditon</label>
                 <div class="col-sm-6">
                 
-                <input type="text" class="form-control" id="condition" name="condition" value="">
+                <input type="text" class="form-control" name="condition" value="">
                 </div>
             </div>
         
 
             <div class="form-group row">
-                <label for="currentPrice" class="col-sm-4 col-form-label" >Current Price</label>
+                <label for="currentprice" class="col-sm-4 col-form-label" >Current Price</label>
                 <div class="col-sm-6">
                 
-                <input type="text" class="form-control" id="currentprice" name="currentprice" value="">
+                <input type="text" class="form-control" name="currentprice" value="">
                 </div>
             </div>
            
@@ -181,4 +178,15 @@
 </div>
 </div>
 </div>
+@endsection
+@section('script')  
+<script>
+function totalPrice(){
+var x = parseInt(document.getElementById("priceperunit").value);
+var y = parseInt(document.getElementById("quantity").value);
+var result = parseInt(x*y);
+document.getElementById("totalprice").value =result;
+}
+</script>
+
 @endsection
