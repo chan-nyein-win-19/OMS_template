@@ -50,7 +50,7 @@ class SubcategoryController extends Controller
         $subCategory->categoryId = $request->category;
         $subCategory->description = $request->description;
         $subCategory->save();
-        return redirect('/subCategory');
+        return redirect('/subCategory')->with('info','SubCategory has been added successfully');
     }
 
     /**
@@ -96,7 +96,7 @@ class SubcategoryController extends Controller
         $subCategory->categoryId = $request->category;
         $subCategory->description = $request->description;
         $subCategory->save();
-        return redirect('/subCategory');
+        return redirect('/subCategory')->with('info','SubCategory has been successfully updated');
 
     }
 
