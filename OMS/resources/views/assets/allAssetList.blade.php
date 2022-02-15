@@ -37,7 +37,7 @@
     <div class="tab-content clearfix mt-5">
         <div class="tab-pane fade show @if($activePC)active @endif" id="pcList" role="tabpanel" aria-labelledby="home-tab">
             <a href='{{url("/allAssetList/updatePcPrice")}}' type="button"
-                class="btn btn-primary mb-3">UpdatePCPrice</a>
+                class="btn btn-primary mb-3">Update Price</a>
             <table id="pcTable" class="table table-striped" style="width:100%">
                 <thead>
                     <tr>
@@ -69,7 +69,7 @@
         </div>
         <div class="tab-pane fade show @if(!$activePC)active @endif" id="otherList" role="tabpanel" aria-labelledby="home-tab">
             <a href='{{url("/allAssetList/updateOthersPrice")}}' type="button"
-                class="btn btn-primary mb-3">UpdateOtherPrice</a>
+                class="btn btn-primary mb-3">Update Price</a>
             <table id="otherTable" class="table table-striped" style="width:100%">
                 <thead>
                     <tr>
@@ -88,8 +88,8 @@
                         <td>{{$asset->itemcode}}</td>
                         <td>{{$asset->condition}}</td>
                         <td>{{$asset->purchase->date}}</td>
-                        <td>{{$asset->purchase->subcategory->category->name}}</td>
-                        <td>{{$asset->purchase->subcategory->name}}</td>
+                        <td>{{$asset->purchase->subCategory->category->name}}</td>
+                        <td>{{$asset->purchase->subCategory->name}}</td>
                         <td>{{$asset->purchase->priceperunit}}</td>
                         <td>{{$asset->currentprice}}</td>
 
