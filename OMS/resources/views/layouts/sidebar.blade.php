@@ -51,7 +51,7 @@
             </a>
             <ul>
                 <li>
-                    <a href="{{ url('/attendanceshow') }}" class="textstyle">
+                    <a href="{{ url('/attendance/show') }}" class="textstyle">
                        View Attendance Record
                     </a>
                 </li>
@@ -65,15 +65,51 @@
                 <i class="fa fa-angle-down ml-5 opacity-8"></i>
             </a>
             <ul>
-                <li>
+                <!-- <li>
                     <a href="#" class="textstyle">
                         Asset Lists
                     </a>
-                </li>
+                </li> -->
                 <li>
                     <a href="#" class="textstyle">
-                        Asset Create
+                        <i class="metismenu-icon" ></i>
+                        <span class="ml-3"> Asset Lists</span>
+                        <i class="fa fa-angle-down ml-5 opacity-8"></i>
                     </a>
+                    <ul>
+                        <li>
+                            <a href="{{ url('/otherpurchase') }}"  class="textstyle">
+                                Other Purchase Lists
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="textstyle">
+                                PC
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <!-- <a href="#" class="textstyle">
+                        Asset Create
+                    </a> -->
+                    <a href="#" class="textstyle">
+                        <i class="metismenu-icon" ></i>
+                        <span class="ml-3"> Asset Create</span>
+                        <i class="fa fa-angle-down ml-5 opacity-8"></i>
+                    </a>
+                    <ul>
+                        <li>
+                            <a href="{{ url('/otherpurchase/create') }}" class="textstyle">
+                                Other Assets
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="textstyle">
+                                PC
+                            </a>
+                        </li>
+                    </ul>
                 </li>
             </ul>
         </li>
@@ -110,7 +146,7 @@
             </a>
             <ul>
                 <li>
-                    <a href='{{url("/attendanceshow")}}' class="textstyle">
+                    <a href="{{ url('/attendance/show') }}" class="textstyle">
                         View Attendance Record
                     </a>
                 </li>
@@ -163,7 +199,7 @@
             </a>
             <ul>
                 <li>
-                    <a href='{{url("/attendanceshow")}}' class="textstyle">
+                    <a href="{{ url('/attendance/show') }}" class="textstyle">
                         View Attendance Record
                     </a>
                 </li>
@@ -221,13 +257,13 @@
             </a>
             <ul>
                 <li>
-                    <a href='{{url("/attendanceform")}}' class="textstyle">
+                    <a href="{{ url('/attendance/create') }}" class="textstyle">
                         Report Daily Attendance
                     </a>
                 </li>
                 <li>
-                    <a href='{{url("/attendanceList")}}' class="textstyle">
-                        View Attendeace Record
+                    <a href="{{ url('/attendance') }}" class="textstyle">
+                        View Attendance Record
                     </a>
                 </li>
             </ul>

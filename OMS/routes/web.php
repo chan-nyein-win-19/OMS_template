@@ -11,7 +11,14 @@ use App\Http\Controllers\OMSControllers\UserController;
 use App\Http\Controllers\OMSControllers\LeaveController;
 use App\Http\Controllers\OMSControllers\LeaderLeaveController;
 use App\Http\Controllers\OMSControllers\AttendanceController;
+use App\Http\Controllers\OMSControllers\PcController;
+use App\Http\Controllers\OMSControllers\BrandController;
+use App\Http\Controllers\OMSControllers\SubcategoryController;
 use App\Http\Controllers\OMSControllers\CategoryController;
+use App\Http\Controllers\OMSControllers\PcPurchaseController;
+use App\Http\Controllers\OMSControllers\PurchaseController;
+use App\Http\Controllers\OMSControllers\OtherAssetController;
+use App\Http\Controllers\OMSControllers\AssetDetailController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,7 +40,6 @@ Route::get('/', function () {
 
 // login
     Route::post('/checklogin',[AuthController::class, 'checklogin']);
-    Route::get('/successlogin',[AuthController::class, 'successlogin']);
     Route::get('/logout',[AuthController::class, 'logout']);
 // end
 
@@ -50,24 +56,32 @@ Route::get('/', function () {
 //Middleware Function
 Route::middleware(['auth'])->group(function(){
     
-    //user
+    // login
+        Route::get('/successlogin',[AuthController::class, 'successlogin']);
+    // end
+      
+    // user
         Route::resource('users',UserController::class);
     // end
 
-    //announcement
+    // announcement
         Route::resource('announcements',AnnouncementController::class);
+    // end
+
+    // purchaseforotherasset
+        Route::resource('otherpurchase',PurchaseController::class); 
+        Route::get('/findCategory/{id}',[PurchaseController::class,'findCategory']);
     // end
 
     //account
         Route::resource('accounts',AccountController::class);
         Route::get('/changepassword/{id}',[AccountController::class,'editPassword']);
+        Route::post('/changepassword/{id}',[AccountController::class,'changePassword']);
     // end
 
-    //attendance
-        Route::get('/attendanceform',[AttendanceController::class, 'create']);
-        Route::get('/attendanceList',[AttendanceController::class,'index']);
-        Route::get('/edit/{id}',[AttendanceController::class,'edit']);
-        Route::get('/attendanceshow',[AttendanceController::class, 'show']);
+    // attendance
+        Route::resource('attendance',AttendanceController::class);
+        Route::post('/update/{id}',[AttendanceController::class, 'update']);
     // end
 
     // leave 
@@ -80,46 +94,36 @@ Route::middleware(['auth'])->group(function(){
             'uses'=>'App\Http\Controllers\OMSControllers\LeaveController@edit'
         ]);
         Route::resource('leaves',LeaveController::class,['except'=>'show','edit']);
-    //end
+    // end
 
     // EmployeeLeave
         Route::get('/leaveRequestForm/{date}',[LeaveController::class,'addNew']);
+        Route::post('/leaveRecord/searchLeave',[LeaveController::class,'searchLeave']);
+        Route::get('/leaveRecord/searchLeave',[LeaveController::class,'show']);
     // end
 
     // leaderLeave
         Route::get('/leader/leaveRecord',[LeaderLeaveController::class,'viewLeave']);
         Route::get('/leader/leaveStatus/{id}/{status}/{date}/{filtering}',[LeaderLeaveController::class,'changeStatus']);
         Route::get('/leader/leaveRecord/filterLeave/{filtering}/{date}',[LeaderLeaveController::class,'filterLeave']);
+        Route::get('/leader/leaveRecord/searchLeave',[LeaderLeaveController::class,'findLeave']);
+        Route::post('/leader/leaveRecord/searchLeave',[LeaderLeaveController::class,'viewLeave']);
     // end
-    
-    //category
+
+    // PC
+        Route::resource('pcpurchase',PcPurchaseController::class);
+    // end
+
+    // brand
+        Route::resource('brands',BrandController::class);
+    // end
+
+    // category
         Route::resource('categories',CategoryController::class);
     // end
-
+    
+    // subCategory
+        Route::resource('subCategory',SubcategoryController::class);
+    // end
 });
-
-// account
-   Route::post('/changepassword/{id}',[AccountController::class,'changePassword']);
-// end
-
-//attendance
-    Route::post('/attendanceform',[AttendanceController::class, 'store']);
-    Route::post('/update/{id}',[AttendanceController::class, 'update']);
-    Route::delete('/attendance/{id}', [AttendanceController::class, 'destroy']);
-// end
-
-// EmployeeLeave
-    Route::post('/leaveRecord/searchLeave',[LeaveController::class,'searchLeave']);
-// end
-
-// leaderLeave
-    Route::post('/leader/leaveRecord/searchLeave',[LeaderLeaveController::class,'findLeave']);
-// end
-
-Route::get('/subCategory',function(){
-
-    return view("SubCategory.subCategory");
-
-});
-
 

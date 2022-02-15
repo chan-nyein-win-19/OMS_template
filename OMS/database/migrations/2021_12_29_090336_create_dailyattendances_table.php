@@ -17,7 +17,7 @@ class CreateDailyattendancesTable extends Migration
         Schema::create('dailyattendances', function (Blueprint $table) {
             $table->id();
             $table->String('userid');
-            $table->date('date');
+            $table->date('date')->unique();
             $table->time('checkin');
             $table->time('checkout');
             $table->String('lunchtime');

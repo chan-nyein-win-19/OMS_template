@@ -20,16 +20,6 @@ class CategoryController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        return view('category.index');
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -50,17 +40,6 @@ class CategoryController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
@@ -68,9 +47,8 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        $list = Category::all();
         $edit = Category::find($id);
-        return view('category.edit',compact('edit','list'));
+        return view('category.edit',compact('edit'));
     }
 
     /**
