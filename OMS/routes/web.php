@@ -11,7 +11,9 @@ use App\Http\Controllers\OMSControllers\UserController;
 use App\Http\Controllers\OMSControllers\LeaveController;
 use App\Http\Controllers\OMSControllers\LeaderLeaveController;
 use App\Http\Controllers\OMSControllers\AttendanceController;
-
+use App\Http\Controllers\OMSControllers\PurchaseController;
+use App\Http\Controllers\OMSControllers\OtherAssetController;
+use App\Http\Controllers\OMSControllers\AssetDetailController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -57,6 +59,9 @@ Route::middleware(['auth'])->group(function(){
         Route::resource('announcements',AnnouncementController::class);
     // end
 
+        Route::resource('purchase',PurchaseController::class);
+        Route::resource('otherasset',OtherAssetController::class);
+        Route::resource('assetdetail',AssetDetailController::class);
     //account
         Route::resource('accounts',AccountController::class);
         Route::get('/changepassword/{id}',[AccountController::class,'editPassword']);
@@ -109,3 +114,6 @@ Route::middleware(['auth'])->group(function(){
 // leaderLeave
     Route::post('/leader/leaveRecord/searchLeave',[LeaderLeaveController::class,'findLeave']);
 // end
+
+    Route::get('/findCategory/{id}',[PurchaseController::class,'findCategory']);
+    Route::get('/findBrand/{id}',[PurchaseController::class,'findBrand']);

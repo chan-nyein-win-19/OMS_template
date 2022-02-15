@@ -15,9 +15,14 @@ class CreateOtherAssetsTable extends Migration
     {
         Schema::create('other_assets', function (Blueprint $table) {
             $table->id();
-            $table->integer('subCategoryId');
-            $table->integer('assetId');
-            $table->integer('brandId');
+            $table->double('currentprice');
+            $table->integer('quantity');
+            $table->integer('totalprice');
+            $table->integer('purchaseid');
+            $table->integer('categoryid');
+            $table->integer('subcategoryid');
+            $table->integer('brandid');
+            $table->string('condition');
             $table->timestamps();
         });
     }

@@ -30,12 +30,11 @@
                          @if(!$errors->first('title') ) 
                            <input id="title" type="text" class="form-control" name="title" value="{{ old('title')? old('title'):$edit->title }}" placeholder="Please enter title of the Content"/>
                           @endif
-                         @if($errors->first('title') || $errors->first('content'))
-                            @if($errors->first('title'))
+                         @if($errors->first('title'))
                                  <input id="title" type="text" class="form-control" name="title" value="{{ old('title') }}" placeholder="Please enter title of the Content"/>
                                  <span class="text-danger"> {{ $errors->first('title') }} </span>
-                            @endif
-                          @endif
+                         @endif
+                          
                           
                     </div>
                 </div>
@@ -47,12 +46,11 @@
                                 <textarea id="content" type="textarea" class="form-control @error('content') @enderror" rows="8" name="content" placeholder="Contents" >{{ old('content')? old('content'):$edit->content }}</textarea>
                             
                         @endif
-                        @if($errors->first('content') || $errors->first('title') )
-                            @if($errors->first('content'))
+                        @if($errors->first('content'))
                                 <textarea id="content" type="textarea" class="form-control @error('content') @enderror" rows="8" name="content" placeholder="Contents">{{ old('content') }}</textarea>
                              <span class="text-danger"> {{ $errors->first('content') }} </span>
-                             @endif
-                        @endif
+                         @endif
+                        
                     
                 	</div>
             	</div>
