@@ -24,40 +24,37 @@
         <div class="col-md-8 col-sm-10">
             
             <div class="card p-3">
-            <form action="post" class="">
-                <div class="row">
-                    <div class="col-6">
-                    <div class="form-group">   
-                        <select name="category" id="category" class="form-control mr-3">
-                            <option value="" selected disabled>Category</option>
-                            <option value="1">1</option>
-                            <option value="1">2</option>
-                            <option value="1">2</option>
-                        </select>
-                </div>
-                <div class="form-group">
-                    <input type="text" name="name" id="name" class="form-control mr-3" placeholder>
-                </div>
-                    </div>
-                    <div class="col-6">
-                        <div class="form-group">
-                            <textarea name="description" id="description" rows="3" class="form-control mr-3" placeholder="Enter Your Description."></textarea>
+                <form action="post" class="">
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-group">   
+                                <select name="category" id="category" class="form-control mr-3">
+                                    <option value="" selected disabled>Category</option>
+                                    <option value="1">1</option>
+                                    <option value="1">2</option>
+                                    <option value="1">2</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="name" id="name" class="form-control mr-3" placeholder>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <input type="submit" value="Submit" class="btn btn-primary" style="float:right;">
+                        <div class="col-6">
+                            <div class="form-group">
+                                <textarea name="description" id="description" rows="3" class="form-control mr-3" placeholder="Enter Your Description."></textarea>
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" value="Submit" class="btn btn-primary" style="float:right;">
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="row">
-                
-                </div>
-             </form>
+                </form>
             </div>
             
         </div>
         <div class="col-md-2 col-sm-1"></div>
     </div>
-   <br>
+    <br>
     <hr>
     <div class="row mt-3">
     <table class="mb-0 table table-hover" id="subCategory">

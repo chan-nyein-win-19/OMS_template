@@ -21,8 +21,9 @@
 	@if(session('info'))
 		<div class="alert alert-success">{{session('info')}}</div>
 	@endif
-  <div class="main-card mb-3 card">
-        <div class="card-body"><h5 class="card-title">Announcement Form</h5>
+    <div class="main-card mb-3 card">
+        <div class="card-body">
+            <h5 class="card-title">Announcement Form</h5>
         	<br>
             <form action="{{ route('announcements.store') }}" method="post" id="cc" >
             @csrf              
