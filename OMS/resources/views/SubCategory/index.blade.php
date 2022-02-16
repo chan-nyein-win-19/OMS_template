@@ -83,7 +83,7 @@
     <br>
     <hr>
     <div class="row mt-3">
-        <table id="table" class="table table-striped" style="width:100%">
+        <table id="table" class="table table-hover" style="width:100%">
             <thead>
                 <tr>
                     <th>Name</th>
