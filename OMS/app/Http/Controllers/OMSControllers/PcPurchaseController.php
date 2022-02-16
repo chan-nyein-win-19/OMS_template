@@ -53,9 +53,9 @@ class PcPurchaseController extends Controller
         //
         $validator=validator(request()->all(),[
             'date'=>'required',
-            'priceperunit'=>'required',
-            'quantity'=>'required',
-            'totalprice'=>'required',
+            'priceperunit'=>'required|integer',
+            'quantity'=>'required|integer',
+            'totalprice'=>'required|integer',
             'category'=>'required',
             'subcategory'=>'required',
             'brand'=>'required',
@@ -65,7 +65,7 @@ class PcPurchaseController extends Controller
             'itemcode'=>'required',
             'model'=>'required',
             'condition'=>'required',
-            'currentprice'=>'required',
+            'currentprice'=>'required|integer',
         ]);
     
         if($validator->fails()) {
@@ -77,7 +77,6 @@ class PcPurchaseController extends Controller
         $purchase->priceperunit=request()->priceperunit;
         $purchase->quantity=request()->quantity;
         $purchase->totalprice=request()->totalprice;
-        $purchase->itemcode=request()->itemcode;
         $purchase->condition=request()->condition;
         $purchase->categoryid=request()->category;
         $purchase->subcategoryid=request()->subcategory;

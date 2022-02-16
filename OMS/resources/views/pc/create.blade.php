@@ -32,7 +32,7 @@
                     <div class="form-group row">
                         <label for="priceperunit" class="col-sm-4 col-form-label" >Price Per Unit<span style="color:red">*</span></label>
                             <div class="col-sm-6">
-                            <input type="text" class="form-control" name="priceperunit" id="priceperunit" onchange=totalPrice() >
+                            <input type="text" class="form-control" name="priceperunit" id="priceperunit" onkeyup=totalPrice() >
                             @error("priceperunit")
                                 <span class="text-danger float-left">{{$errors->first('priceperunit')}}</span>
                             @enderror  
@@ -42,7 +42,7 @@
                     <div class="form-group row">
                         <label for="qty" class="col-sm-4 col-form-label" >Quantity<span style="color:red">*</span></label>
                         <div class="col-sm-6"> 
-                        <input type="text" class="form-control" name="quantity" id="quantity" onchange=totalPrice() >
+                        <input type="text" class="form-control" name="quantity" id="quantity" onkeyup=totalPrice() >
                         @error("quantity")
                             <span class="text-danger float-left">{{$errors->first('quantity')}}</span>
                         @enderror  
@@ -51,7 +51,7 @@
                     <div class="form-group row">
                         <label for="totalprice" class="col-sm-4 col-form-label" >Total Price<span style="color:red">*</span></label>
                         <div class="col-sm-6">
-                        <input type="text" class="form-control" name="totalprice" id="totalprice">
+                        <input type="text" class="form-control" name="totalprice" id="totalprice" readonly>
                         @error("totalprice")
                             <span class="text-danger float-left">{{$errors->first('totalprice')}}</span>
                         @enderror  
@@ -176,8 +176,13 @@
 function totalPrice(){
 var x = parseInt(document.getElementById("priceperunit").value);
 var y = parseInt(document.getElementById("quantity").value);
-var result = parseInt(x*y);
+var result = x*y;
+
+if(isNaN(result)) {
+    document.getElementById("result").value=0;
+}else{
 document.getElementById("totalprice").value =result;
+}
 }
 </script>
 
