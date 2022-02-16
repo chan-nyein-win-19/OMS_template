@@ -53,9 +53,9 @@ class PcPurchaseController extends Controller
         //
         $validator=validator(request()->all(),[
             'date'=>'required',
-            'priceperunit'=>'required|integer',
-            'quantity'=>'required|integer',
-            'totalprice'=>'required|integer',
+            'priceperunit'=>'required|integer|min:1',
+            'quantity'=>'required|integer|min:1',
+            'totalprice'=>'required|integer|min:1',
             'category'=>'required',
             'subcategory'=>'required',
             'brand'=>'required',
@@ -100,7 +100,7 @@ class PcPurchaseController extends Controller
         $pc->brandid=request()->brand;
         $pc->save();
     }
-        return back();
+        return back()->with('success','PC Purchase has been added successfully!!');
     }
 
     /**

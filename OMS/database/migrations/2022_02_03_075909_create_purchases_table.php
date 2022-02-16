@@ -17,9 +17,9 @@ class CreatePurchasesTable extends Migration
             $table->id();
             $table->date('date');
             $table->string('condition');
-            $table->integer('quantity');
-            $table->double('totalprice');
-            $table->double('priceperunit');
+            $table->integer('quantity')->unsigned();
+            $table->double('totalprice')->unsigned();
+            $table->double('priceperunit')->unsigned();
             $table->integer('categoryid');
             $table->integer('subcategoryid');
             $table->integer('brandid');

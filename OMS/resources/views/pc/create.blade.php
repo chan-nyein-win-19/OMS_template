@@ -10,6 +10,9 @@
 
 <div class="container pt-80 mb-100 text-center ">
     <div class="row">
+        @if(session('success'))
+        <div class="alert alert-success">{{session('success')}}</div>
+        @endif
         <div class="main-card mb-3 card ">
             <div class="card-body">
                 <div class="col-12 pt-4 mb-5">
@@ -151,7 +154,7 @@
                     <div class="form-group row">
                         <label for="currentprice" class="col-sm-4 col-form-label" >Current Price<span style="color:red">*</span></label>
                         <div class="col-sm-6">
-                        <input type="text" class="form-control" name="currentprice" value="">
+                        <input type="number" class="form-control" name="currentprice" value="">
                         @error("currentprice")
                             <span class="text-danger float-left">{{$errors->first('currentprice')}}</span>
                         @enderror
