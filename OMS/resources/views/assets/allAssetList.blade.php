@@ -38,7 +38,7 @@
         <div class="tab-pane fade show @if($activePC)active @endif" id="pcList" role="tabpanel" aria-labelledby="home-tab">
             <a href='{{url("/allAssetList/updatePcPrice")}}' type="button"
                 class="btn btn-primary mb-3">Update Price</a>
-            <table id="pcTable" class="table table-striped" style="width:100%">
+            <table id="pcTable" class="table table-hover" style="width:100%">
                 <thead>
                     <tr>
                         <th>Itemcode</th>
@@ -70,7 +70,7 @@
         <div class="tab-pane fade show @if(!$activePC)active @endif" id="otherList" role="tabpanel" aria-labelledby="home-tab">
             <a href='{{url("/allAssetList/updateOthersPrice")}}' type="button"
                 class="btn btn-primary mb-3">Update Price</a>
-            <table id="otherTable" class="table table-striped" style="width:100%">
+            <table id="otherTable" class="table table-hover" style="width:100%">
                 <thead>
                     <tr>
                         <th>Itemcode</th>
