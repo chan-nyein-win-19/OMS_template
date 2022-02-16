@@ -1,5 +1,19 @@
 @extends('layouts.app')
 
+@section('title','account information')
+
+@section('style')
+
+@endsection
+
+@section('topbar')
+    @parent
+@endsection
+
+@section('sidebar')
+    @parent
+@endsection
+
 @section("content")
     <div class="row justify-content-center">
         <div class="col-md-8">
