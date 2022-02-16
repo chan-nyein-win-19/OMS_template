@@ -48,6 +48,16 @@
                                 @enderror
                             </div>
                             <div class="form-group">
+                                <input type="text" name="itemcode" class="form-control mr-3" placeholder="Item Code">
+                                @error('itemcode')
+                                <div class="row">
+                                    <div class="col-sm-10">
+                                        <span class="text-danger">*{{$message}}</span><br>
+                                    </div>
+                                </div>
+                                @enderror
+                            </div>
+                            <div class="form-group">
                                 <input type="text" name="name" class="form-control mr-3" placeholder="SubCategory Name">
                                 @error('name')
                                 <div class="row">
@@ -87,6 +97,7 @@
             <thead>
                 <tr>
                     <th>Name</th>
+                    <th>ItemCode</td>
                     <th>Category</th>
                     <th>Description</th>
                     <th>Action </th>
@@ -96,6 +107,7 @@
                 @foreach($subCategory as $value)
                 <tr>
                     <td>{{$value->name}}</td>
+                    <td>{{$value->itemcode}}</td>
                     <td>{{$value->category->name}}</td>
                     <td>{{$value->description}}</td>
                     <td>

@@ -39,14 +39,28 @@ class SubcategoryController extends Controller
      */
     public function store(Request $request)
     {
+
+        // $validator=validator(request()->all(),[
+        //     'name' => 'required',
+        //     'itemcode'=>'required|unique:sub_categories|string',
+        //     'category' => 'required',
+        //     'description' => 'required',
+        // ]);
+
+        // if($validator->fails()){
+        //     return back()->withErrors($validator);
+        // }
+
         $validateData = $request->validate([
             'name' => 'required',
+            'itemcode'=>'required|unique:sub_categories|string',
             'category' => 'required',
             'description' => 'required',
         ]);
-
+       
         $subCategory = new SubCategory;
         $subCategory->name = $request->name;
+        $subCategory->itemcode = $request->itemcode;
         $subCategory->categoryId = $request->category;
         $subCategory->description = $request->description;
         $subCategory->save();
@@ -84,15 +98,21 @@ class SubcategoryController extends Controller
      * @param  \App\Models\SubCategory  $subCategory
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, SubCategory $subCategory)
-    {
+    // public function update(Request $request, SubCategory $subCategory)
+    // {
+        public function update(Request $request, $id)
+        {
+        $subCategory = SubCategory::find($id);
+
         $validateData = $request->validate([
             'name' => 'required',
+            'itemcode'=>'required|unique:sub_categories,itemcode,'.$subCategory->id.'|string',
             'category' => 'required',
             'description' => 'required',
         ]);
         
         $subCategory->name = $request->name;
+        $subCategory->itemcode = $request->itemcode;
         $subCategory->categoryId = $request->category;
         $subCategory->description = $request->description;
         $subCategory->save();
