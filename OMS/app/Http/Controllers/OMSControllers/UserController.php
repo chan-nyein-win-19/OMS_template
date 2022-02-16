@@ -44,7 +44,7 @@ class UserController extends Controller
             'lname' => 'required',
             'username' => 'required',
             'email' => 'required|email|unique:users',
-            'password' => 'required|min:4',
+            'password' => 'required|min:3',
             'employeeid' => 'required|unique:users|integer',
             'role' => 'required'
         ]);
