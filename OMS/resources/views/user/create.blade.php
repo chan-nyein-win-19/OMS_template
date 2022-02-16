@@ -3,9 +3,6 @@
 @section('title','user account create')
 
 @section("content")
-    @if(session('success'))
-        <div class="alert alert-success">{{session('success')}}</div>
-    @endif
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
@@ -88,6 +85,7 @@
                                 <div class="col-md-6">
                                     <select class="form-control" name="role">
                                         <option value="">{{ __('Please select role') }}</option>
+                                        <option value="Admin">{{ __('Admin') }}</option>
                                         <option value="Leader">{{ __('Leader') }}</option>
                                         <option value="Sensei">{{ __('Sensei') }}</option>
                                         <option value="Employee">{{ __('Employee') }}</option>

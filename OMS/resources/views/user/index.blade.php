@@ -17,6 +17,9 @@
 @endsection
 
 @section("content")
+    @if(session('success'))
+        <div class="alert alert-success">{{session('success')}}</div>
+    @endif
     <div class="container">
         <h2 style="text-align: center;">User Account List</h2><br>
         <table class="mb-0 table table-hover" id="table">
@@ -34,12 +37,12 @@
             <tbody>
                 @foreach($list as $user)
                     <tr>
-                        <td>{{ $user['fname'] }}</td>
-                        <td>{{ $user['lname'] }}</td>
-                        <td>{{ $user['username'] }}</td>
-                        <td>{{ $user['email'] }}</td>
-                        <td>{{ $user['employeeid'] }}</td>
-                        <td>{{ $user['role'] }}</td>
+                        <td>{{ $user->fname }}</td>
+                        <td>{{ $user->lname }}</td>
+                        <td>{{ $user->username }}</td>
+                        <td>{{ $user->email }}</td>
+                        <td>{{ $user->employeeid }}</td>
+                        <td>{{ $user->role }}</td>
                         <td>
                             <a href="{{ route('users.edit', $user->id) }}" class="mb-2 mr-2 btn-transition btn btn-outline-primary" data-toggle="tooltip" title='Edit'>
                                 <i class="fa fa-fw"></i>
@@ -121,7 +124,9 @@
                 }
             });
         }
-        
+        setTimeout(() => {
+            $('.alert-success').addClass('d-none');
+        }, 3000);
     </script>
     
     <script>

@@ -77,6 +77,7 @@
                                 <label class="col-md-4 col-form-label text-md-end">{{ __('Role') }}</label>
                                 <div class="col-md-6">
                                     <select class="form-control" name="role">
+                                        <option value="Admin">{{ __('Admin') }}</option>
                                         <option value="Leader">{{ __('Leader') }}</option>
                                         <option value="Sensei">{{ __('Sensei') }}</option>
                                         <option value="Employee">{{ __('Employee') }}</option>
