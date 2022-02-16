@@ -22,9 +22,9 @@
 		<div class="alert alert-success">{{session('info')}}</div>
 	@endif
   <div class="main-card mb-3 card">
-    <div class="card-body"><h5 class="card-title">Edit Other Purchase Form</h5>
+    <div class="card-body"><h5 class="card-title">Other Purchase Update Form</h5>
     	<br>
-        <form action="{{ route('purchase.update',[$purchasedetail->id]) }}" method="post" >
+        <form action="{{ route('otherpurchase.update',[$purchasedetail->id]) }}" method="post" >
         @csrf
         @method('PUT')  
         <div class="position-relative row form-group">
@@ -75,7 +75,7 @@
         </div>
         <div class="position-relative row form-group"><label for="subcategory" class="col-sm-2 col-form-label">Sub Category<span style="color: red">*</span></label>
             <div class="col-sm-10">
-               <select class="subcategory form-control" name="subcategory" readonly>
+               <select class="subcategory form-control" name="subcategory">
                     @foreach($subcategory as $subcategories)
                         <option value="{{$subcategories->id}}" {{$purchasedetail->subcategoryid == $subcategories->id ? 'selected' : ''}}>{{$subcategories->name}}</option>
                     @endforeach
@@ -102,8 +102,8 @@
             </div>
         </div> 
         <div class="text-center">
-            <input type="Submit" class="mb-2 mr-2 btn btn-primary" value="Upload" name="submit">
-            <button class="mb-2 mr-2 btn btn-danger" type="reset">Clear</button>
+            <input type="Submit" class="mb-2 mr-2 btn btn-primary" value="Update" name="submit">
+            <a href="{{ url('/otherpurchase') }}" class="mb-2 mr-2 btn btn-danger">Cancel</a>
         </div>
            
         </form>
@@ -119,10 +119,16 @@
 <script type="text/javascript">
 	
 	 $(document).ready(()=>{
-    @if ($errors->first('pricePerUnit'))
-			$("input[name='pricePerUnit']").focus();
-		@elseif($errors->first('condition')) 
-			$("textarea[name='condition']").focus();
+      @if ($errors->first('priceperunit'))
+			$("input[name='priceperunit']").focus();
+		@elseif($errors->first('quantity')) 
+      $("input[name='quantity']").focus();
+    @elseif($errors->first('category')) 
+      $("select[name='category']").focus();
+     @elseif($errors->first('brand')) 
+      $("select[name='brand']").focus();
+    @elseif($errors->first('condition')) 
+      $("textarea[name='condition']").focus();
 		@endif
      });
 </script>
@@ -140,7 +146,6 @@
       var div=$(this).parent().parent().parent();
       var op=" ";
       console.log(div);
-
       $.ajax({
         type: 'get',
         url:'/findCategory/'+cat_id,
@@ -164,8 +169,37 @@
         }
       });
     });
-        
+    $(document).on('change','.subcategory',function(){
+      console.log("change");
+
+      var cat_id=$(this).val();
+      var div=$(this).parent().parent().parent();
+      var op=" ";
+      console.log(div);
+
+      $.ajax({
+        type: 'get',
+        url:'/findBrand/'+cat_id,
+        data:{'id':cat_id},
+        success:function(data){
+          console.log('success')
+          console.log(data.length);
+          op+='<option value="0" selected disabled>Choose Brand</option>';
+          
+          for(var i=0;i<data.length;i++){
+            op+='<option value="'+data[i].id+'">'+data[i].name+'</option>';
+          }
+          div.find('.brand').html(" ");
+          div.find('.brand').append(op);
+         /* $('#subcategory').append(op);
+          $('select[name="subcategory"]').append(op);*/
+          console.log(div.find('.brand'));
+        },
+        error:function(){
+        }
       });
+    });
+  });
 
 function add(e){
   var priceperunit = document.getElementById('priceperunit').value;
