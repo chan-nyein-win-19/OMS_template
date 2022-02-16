@@ -19,7 +19,7 @@ class Pc extends Model
         return $this->belongsTo(Category::class,'categoryid');
     }
     public function subCategory(){
-        return $this->belongsTo(Brand::class,'subcategoryid');
+        return $this->belongsTo(subCategory::class,'subcategoryid');
     }
 
 

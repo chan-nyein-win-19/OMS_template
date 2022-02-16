@@ -137,8 +137,10 @@ class PcController extends Controller
      * @param  \App\Models\PC  $pC
      * @return \Illuminate\Http\Response
      */
-    public function destroy(PC $pC)
+    public function destroy($id)
     {
         //
+        $pc = Pc::where('id',$id)->delete();
+        return redirect('pc');
     }
 }
