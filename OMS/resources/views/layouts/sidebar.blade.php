@@ -78,6 +78,11 @@
                     </a>
                     <ul>
                         <li>
+                            <a href="{{ url('/assetdetail') }}"  class="textstyle">
+                                Asset Detail Lists
+                            </a>
+                        </li>
+                        <li>
                             <a href="{{ url('/otherpurchase') }}"  class="textstyle">
                                 Other Purchase Lists
                             </a>

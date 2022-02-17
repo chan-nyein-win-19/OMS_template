@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title','announcement list')
+@section('title','Asset Detail list')
 
 @section('style')
 <link rel="stylesheet" href="{{ asset('/storage/OMS/data-tables/jquery.dataTables.min.css') }}">
@@ -20,9 +20,8 @@
     @if(session('success'))
         <div class="alert alert-success">{{session('success')}}</div>
     @endif
-
     <div class="container">
-        <h2 style="text-align: center;">Purchase List</h2><br>
+        <h2 style="text-align: center;">Asset Detail List</h2><br>
         <table class="mb-0 table table-hover" id="table">
             <thead>
                 <tr>
@@ -35,44 +34,43 @@
                     <th>Category</th>
                     <th>SubCategory</th>
                     <th>Brand</th>
-                   
                     <th>Action</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($list as $item)
+                @foreach ($assetdetail as $item)
                 <tr>
                     <td>
-                        {{ $item->id }}
+                        {{ $item->purchaseId }}
                     </td>
                     <td>
-                        {{ $item->date }}
+                        {{ $item->purchase->date }}
                     </td>
                     <td>
                         {{ $item->condition }}
                     </td>
                     <td>
-                        {{ $item->quantity }}
+                        {{ $item->purchase->quantity }}
                     </td>
                     <td>
-                        {{ $item->totalprice }}
+                        {{ $item->purchase->totalprice }}
                     </td>
                     <td>
-                        {{ $item->priceperunit }}
+                        {{ $item->purchase->priceperunit }}
                     </td> 
                     <td>
-                        {{ $item->categoryid }}
+                        {{ $item->purchase->subCategory->Category->name }}
                     </td> 
                     <td>
-                        {{ $item->subcategoryid }}
+                        {{ $item->purchase->subCategory->name }}
                     </td> 
                     <td>
-                        {{ $item->brandid }}
+                        {{ $item->purchase->brand->name }}
                     </td>       
                                      
                     <td>     
                     <a href="{{ route('otherpurchase.edit', $item->id) }}" class="mb-2 mr-2 btn-transition btn btn-outline-primary" data-toggle="tooltip" title='Edit'>
-                    <i class="fa fa-fw"></i>
+                                <i class="fa fa-fw"></i>
                     </a>
                         <form method="POST" action="{{route('otherpurchase.destroy',['otherpurchase'=>$item])}}" id="form{{$item->id}}">
                             @csrf

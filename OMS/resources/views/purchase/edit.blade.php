@@ -34,7 +34,7 @@
             </div>
         </div> 
         <div class="position-relative row form-group">
-          <label for="priceperunit" class="col-sm-2 col-form-label">Price Per Unit<span style="color: red">*</span></label>
+            <label for="priceperunit" class="col-sm-2 col-form-label">Price Per Unit<span style="color: red">*</span></label>
             <div class="col-sm-10">
               <input type="text" class="form-control" name="priceperunit" id="priceperunit" value="{{ old('priceperunit')? old('priceperunit') : $purchasedetail->priceperunit }}" placeholder="Please enter Price Per Unit"  onkeyup="add(this)"/>
                @error("priceperunit")

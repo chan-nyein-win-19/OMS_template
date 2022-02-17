@@ -55,7 +55,7 @@ class PurchaseController extends Controller
      */
     public function store(Request $request)
     {
-       $validateData= $request->validate([
+        $validateData= $request->validate([
             'priceperunit'=>'required',
             'quantity'=>'required',
             'totalprice'=>'required',
@@ -86,8 +86,6 @@ class PurchaseController extends Controller
             $assetDetail->save();
         }
         return redirect('/otherpurchase/create')->with('info','purchase Successfully Added...');
-
-
     }
 
     /**
@@ -127,7 +125,7 @@ class PurchaseController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //dd($id);
+       
         $validateData= $request->validate([
             'priceperunit'=>'required',
             'quantity'=>'required',
@@ -137,7 +135,6 @@ class PurchaseController extends Controller
             'brand'=>'required',
             'condition'=>'required',
          ]);
-
         $delete = AssetDetails::where('purchaseId',$id)->delete();
         Purchase::where('id',$id)->update([
             'date'=>$request->date,

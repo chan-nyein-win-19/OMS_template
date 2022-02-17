@@ -80,7 +80,6 @@
         <div class="position-relative row form-group"><label for="content" class="col-sm-2 col-form-label">Brand<span style="color: red">*</span></label>
             <div class="col-sm-10">
                 <select class="brand form-control" name="brand">
-                 
                 </select>
                 <span class="text-danger"> {{ $errors->first('brand') }} </span>
             </div>

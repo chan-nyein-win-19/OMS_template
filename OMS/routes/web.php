@@ -107,6 +107,7 @@ Route::middleware(['auth'])->group(function(){
 
     // purchaseforotherasset
         Route::resource('otherpurchase',PurchaseController::class); 
+        Route::resource('assetdetail',AssetDetailController::class); 
         Route::get('/findCategory/{id}',[PurchaseController::class,'findCategory']);
         Route::get('/findBrand/{id}',[PurchaseController::class,'findBrand']);
     // end
