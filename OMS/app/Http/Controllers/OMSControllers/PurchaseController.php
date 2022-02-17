@@ -21,7 +21,10 @@ class PurchaseController extends Controller
     {
         //
         $list =  Purchase::all();
+        
+        /*$list = Purchase::with('category')->get();*/
         return view('purchase.index', compact('list'));
+
     }
 
     /**

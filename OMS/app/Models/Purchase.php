@@ -10,19 +10,19 @@ class Purchase extends Model
     use HasFactory;
     protected $guarded=[];
 
-    public function Category()
+    public function category()
     {
-        return $this->hasMany(Category::class);
+        return $this->belongsTo(Category::class,'categoryId');
     }
 
     public function Brand()
     {
-        return $this->hasMany(Brand::class);
+        return $this->belongsTo(Brand::class,'brandId');
     }
 
     public function subCategory()
     {
-        return $this->hasMany(subCategory::class);
+        return $this->belongsTo(subCategory::class,'subcategoryId');
     }
 
     
