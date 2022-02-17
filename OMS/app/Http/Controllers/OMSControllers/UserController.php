@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Datatables;
 
 class UserController extends Controller
 {
@@ -28,7 +27,6 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
         return view('user.create');
     }
 
@@ -41,105 +39,63 @@ class UserController extends Controller
     public function store(Request $request)
     {
         
-        $validateData= $request->validate([
+        $validateData = $request->validate([
             'fname' => 'required',
             'lname' => 'required',
             'username' => 'required',
             'email' => 'required|email|unique:users',
-            'password' => 'required|min:4',
+            'password' => 'required|min:3',
             'employeeid' => 'required|unique:users|integer',
             'role' => 'required'
         ]);
 
-        $user= new User();
-        $user->fname=request()->fname;
-        $user->lname=request()->lname;
-        $user->username=request()->username;
-        $user->email=request()->email;
-        $user->password= Hash::make(request()->password);
-        $user->employeeid=request()->employeeid;
-        $user->role=request()->role;
+        $user = new User();
+        $user->fname = request()->fname;
+        $user->lname = request()->lname;
+        $user->username = request()->username;
+        $user->email = request()->email;
+        $user->password = Hash::make(request()->password);
+        $user->employeeid = request()->employeeid;
+        $user->role = request()->role;
         $user->save();
 
-        return back()->with('success','Employee has been successfully added...');
-
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function show(User $user)
-    {
-        //
+        return redirect('users')->with('success','User has been created successfully!!');;
     }
 
     public function edit($id)
     {
-
-        $edit=User::find($id);
-
-    //     if( ! Hash::check( $edit->password , Input::get('password') ) )
-    //     {
-    //         return redirect::to('users/edit',compact('edit'))
-    //         ->with('message', 'Current Password Error !')
-    //     ->withInput();
-    // }
+        $edit = User::find($id);
         
         return view('user.edit',compact('edit'));
-        
     }
 
     public function update(Request $request,$id)
     {
         $user = User::find($id);
 
-        $validateData= $request->validate([
+        $validateData = $request->validate([
             'fname' => 'required',
             'lname' => 'required',
             'username' => 'required',
-            // 'email' => 'required|email|unique:users,id',
             'email' => 'required|email|unique:users,email,'.$user->id.'',
-            'password' => 'required|min:4',
             'employeeid' => 'required|unique:users,employeeid,'.$user->id.'|integer',
             'role' => 'required'
         ]);
 
-      
-
-        $user=  User::findOrFail($id)->update([
-            'fname'=>request()->fname,
-            'lname'=>request()->lname,
-            'email'=>request()->email,
-            'password'=> Hash::make(request()->password),
-            'employeeid'=>request()->employeeid,
-            'role'=>request()->role,
-            ]);
-    
-            
-            return redirect("users")->with('info','User has been updated successfully!');
-       
+        $user = User::findOrFail($id)->update(
+            [
+                'fname'=>request()->fname,
+                'lname'=>request()->lname,
+                'email'=>request()->email,
+                'employeeid'=>request()->employeeid,
+                'role'=>request()->role,
+            ]
+        );
+        
+        return redirect("users")->with('success','User has been updated successfully!');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
-   
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
-   
-
+    
     /**
      * Remove the specified resource from storage.
      *
@@ -148,8 +104,8 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        $delete=User::find($user);
-        $delete->each->delete();
+        $user = User::find($user->id);
+        $user->delete();
 
         return back();
     }
