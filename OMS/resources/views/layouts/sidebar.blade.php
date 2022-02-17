@@ -78,7 +78,7 @@
                     </a>
                     <ul>
                         <li>
-                            <a href="{{ url('/purchase') }}" class="textstyle">
+                            <a href="{{ url('/otherpurchase') }}"  class="textstyle">
                                 Other Purchase Lists
                             </a>
                         </li>
@@ -100,7 +100,7 @@
                     </a>
                     <ul>
                         <li>
-                            <a href="{{ url('/purchase/create') }}" class="textstyle">
+                            <a href="{{ url('/otherpurchase/create') }}" class="textstyle">
                                 Other Assets
                             </a>
                         </li>

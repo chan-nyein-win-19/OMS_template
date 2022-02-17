@@ -26,8 +26,14 @@
             <thead>
                 <tr>
                     <th>PurchaseID</th>
-                    <th>quantity</th>
+                    <th>Date</th>
+                    <th>Condition</th>
+                    <th>Quantity</th>
                     <th>TotalPrice</th>
+                    <th>PricePerUnit</th>
+                    <th>Category</th>
+                    <th>SubCategory</th>
+                    <th>Brand</th>
                    
                     <th>Action</th>
                 </tr>
@@ -39,20 +45,35 @@
                         {{ $item->id }}
                     </td>
                     <td>
+                        {{ $item->date }}
+                    </td>
+                    <td>
+                        {{ $item->condition }}
+                    </td>
+                    <td>
                         {{ $item->quantity }}
                     </td>
                     <td>
                         {{ $item->totalprice }}
+                    </td>
+                    <td>
+                        {{ $item->priceperunit }}
+                    </td> 
+                    <td>
+                        {{ $item->categoryid }}
+                    </td> 
+                    <td>
+                        {{ $item->subcategoryid }}
+                    </td> 
+                    <td>
+                        {{ $item->brandid }}
                     </td>       
                                      
                     <td>     
-                    <form method="GET" action="{{ route('purchase.edit', $item->id) }}">
-                         @csrf                     
-                        <button class="mb-2 mr-2 btn-transition btn btn-outline-warning"  data-toggle="tooltip" title="Edit">
-                            <i class="fa fa-fw"></i>
-                        </button>
-                    </form>
-                        <form method="POST" action="{{route('purchase.destroy',['purchase'=>$item])}}" id="form{{$item->id}}">
+                    <a href="{{ route('otherpurchase.edit', $item->id) }}" class="mb-2 mr-2 btn-transition btn btn-outline-primary" data-toggle="tooltip" title='Edit'>
+                                <i class="fa fa-fw"></i>
+                    </a>
+                        <form method="POST" action="{{route('otherpurchase.destroy',['otherpurchase'=>$item])}}" id="form{{$item->id}}">
                             @csrf
                             <input name="_method" type="hidden" value="DELETE">
                             <button type="button" onclick=deleteRecord(this.id) class="mb-2 mr-2 btn-transition btn btn-outline-danger" data-toggle="tooltip" title="Delete" id="{{$item->id}}">
@@ -68,14 +89,15 @@
 @endsection
 
 @section('script')
+
 <script src="{{ asset('/storage/OMS/data-tables/jquery.js') }}"></script>
 <script src="{{ asset('/storage/OMS/data-tables/jquery.dataTables.min.js') }}"></script>
-<script src="{{ asset('/storage/OMS/sweetalert/sweetalert.min.js') }}"></script>
 <script src="{{ asset('/storage/OMS/bootbox/bootbox.all.js') }}"></script>
 <script src="{{ asset('/storage/OMS/bootbox/bootbox.js') }}"></script>
 <script src="{{ asset('/storage/OMS/bootbox/bootbox.locale.js') }}"></script>
 <script src="{{ asset('/storage/OMS/bootstrap5/bootstrap.min.js') }}"></script>
 <script src="{{ asset('/storage/OMS/bootstrap5/popper.min.js') }}"></script>
+<script src="{{ asset('/storage/OMS/bootstrap5/bootstrap.bundle.min.js') }}"></script>
 
 <script type="text/javascript">
 jQuery(function($) {
@@ -88,7 +110,14 @@ jQuery(function($) {
             "aoColumns": [
                 null,
                 null,
-                null
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
                        
 
             ],
