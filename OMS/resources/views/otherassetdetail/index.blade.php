@@ -21,7 +21,7 @@
         <div class="alert alert-success">{{session('success')}}</div>
     @endif
     <div class="container">
-        <h2 style="text-align: center;">Asset Detail List</h2><br>
+        <h2 style="text-align: center;">Other Asset Detail List</h2><br>
         <table class="mb-0 table table-hover" id="table">
             <thead>
                 <tr>
