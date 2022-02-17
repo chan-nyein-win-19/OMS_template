@@ -1,5 +1,21 @@
 @extends('layouts.app')
 
+@section('title','change password')
+
+@section('style')
+    <link rel="stylesheet" href="{{ asset('/storage/OMS/data-tables/jquery.dataTables.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('/storage/OMS/bootstrap5/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('/storage/OMS/css/style.css') }}">
+@endsection
+
+@section('topbar')
+    @parent
+@endsection
+
+@section('sidebar')
+    @parent
+@endsection
+
 @section("content")
     
     @if(session('errormessage'))
@@ -58,9 +74,9 @@
                             <hr>
                            
                                 <div class="text-center">
-                                    <input type="submit" name="update" value="Update" class="btn btn-primary" style="font-size: 14px;">
+                                    <input type="submit" name="update" value="Update" class="btn btn-primary">
                                         &nbsp;&nbsp;
-                                    <input type="reset" name="cancel" class="btn btn-danger" value="Cancel" style="font-size: 14px;">
+                                    <input type="reset" name="cancel" class="btn btn-danger" value="Cancel">
                                 </div>
                            
                         </form>
