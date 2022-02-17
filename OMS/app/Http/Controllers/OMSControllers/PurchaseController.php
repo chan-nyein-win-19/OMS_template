@@ -84,10 +84,25 @@ class PurchaseController extends Controller
         $purchase->brandid=request()->brand;
         $purchase->save();
 
-
+        $lastAssets=AssetDetails::join('purchases','purchases.id','=','asset_details.purchaseId')
+                    ->where('subcategoryid',request()->subcategory)->latest('asset_details.id')->first();
+        $code=0;
+        if($lastAssets!=null){
+            $lastItemCode=explode('-',$lastAssets->itemCode);
+            $code=$lastItemCode[1];
+        }
+        $subCategory=SubCategory::where('id',request()->subcategory)->first();
+        if($subCategory!=null){
+            $prefix=$subCategory->itemcode;
+        }
+        
+        
+        
         for($i = 0; $i<$purchase->quantity; $i++){
             $assetDetail = new AssetDetails;
-            $assetDetail->itemCode='001';
+            $code=$code+1;
+            $itemCode=$prefix.'-'.$code;
+            $assetDetail->itemCode=$itemCode;
             $assetDetail->condition=request()->condition;
             $assetDetail->currentPrice = request()->priceperunit;
             $assetDetail->purchaseId = $purchase->id;
