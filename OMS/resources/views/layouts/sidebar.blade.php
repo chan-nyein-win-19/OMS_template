@@ -65,11 +65,7 @@
                 <i class="fa fa-angle-down ml-5 opacity-8"></i>
             </a>
             <ul>
-                <!-- <li>
-                    <a href="#" class="textstyle">
-                        Asset Lists
-                    </a>
-                </li> -->
+                
                 <li>
                     <a href="#" class="textstyle">
                         <i class="metismenu-icon" ></i>
@@ -163,6 +159,26 @@
                         <i class="metismenu-icon" ></i>
                         <span class="ml-3">Assets-CurrentPrice</span>
                         <i class="fa fa-angle-down ml-5 opacity-8"></i>
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li class="app-sidebar__heading mt-4">Pc Rent</li>
+        <li>
+            <a href="#">
+                <i class="metismenu-icon pe-7s fas fa-laptop" style="font-size: 16px;"></i>
+                    <span class="ml-3">PC Rent</span>
+                <i class="fa fa-angle-down ml-5 opacity-8"></i>
+            </a>
+            <ul>
+                <li>
+                    <a href="{{ url('/pcrent') }}" class="textstyle">
+                       Rent List
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ url('/pcrent/create') }}" class="textstyle">
+                       Rent Form
                     </a>
                 </li>
             </ul>
