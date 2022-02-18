@@ -9,7 +9,6 @@ use App\Models\AssetDetails;
 
 class AllAssetsController extends Controller
 {
-    
     public function showAllAssets(){
         $pcList = Pc::all();
         $otherAssets = AssetDetails::all();
@@ -34,9 +33,10 @@ class AllAssetsController extends Controller
                 $currentPrice = $purchasePrice;
             }
             $assets->currentPrice = $currentPrice;
-                $assets->save();
+            $assets->save();
         }
-        $pcList=Pc::all();
+
+        $pcList = Pc::all();
         $otherAssets = AssetDetails::all();
         $activePC = false;
         return view('assets.allAssetList',compact(['pcList','otherAssets','activePC']));
@@ -49,7 +49,7 @@ class AllAssetsController extends Controller
             $purchasePrice = $Pc->purchase->priceperunit;
             $purchaseDate = strtotime($Pc->purchase->date);
             $yearDiff = floor(($todayDate-$purchaseDate)/(60*60*24*365.25));
-            if($yearDiff>0){
+            if($yearDiff > 0){
                 $currentPrice = $purchasePrice-(($purchasePrice)*(0.1*$yearDiff));
                 if($currentPrice <= 0){
                     $currentPrice = 0;
@@ -57,10 +57,8 @@ class AllAssetsController extends Controller
             }else{
                 $currentPrice = $purchasePrice;
             }
-                $Pc->currentprice = $currentPrice;
-                $Pc->save();
-             
-
+            $Pc->currentprice = $currentPrice;
+            $Pc->save();
         }
         return redirect("/allAssetLists");
     }

@@ -16,7 +16,7 @@ class BrandController extends Controller
      */
     public function index()
     {
-        $brand=  Brand::all();
+        $brand = Brand::all();
         $subcategory = subCategory::all();
         return view("brand.index",compact(['brand','subcategory']));
     }
@@ -40,7 +40,7 @@ class BrandController extends Controller
    
     public function edit($id)
     {
-        $edit=Brand::find($id);
+        $edit = Brand::find($id);
         $subcategory = subCategory::all();
         return view('brand.edit',compact('edit','subcategory'));
     }

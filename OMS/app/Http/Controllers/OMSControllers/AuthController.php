@@ -18,11 +18,11 @@ class AuthController extends Controller
     public function checklogin(Request $request)
     {
         $this->validate($request,[
-           'employeeid'=>'required',
-           'password'=>'required|alphaNum|min:3'      
+           'employeeid' => 'required',
+           'password' => 'required|alphaNum|min:3'      
         ]);
 
-        $user_data= array(
+        $user_data = array(
            'employeeid' => $request->get('employeeid'),
            'password'=> $request->get('password')
         );

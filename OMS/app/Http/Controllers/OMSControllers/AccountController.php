@@ -33,7 +33,7 @@ class AccountController extends Controller
 
         $user = User::find($id);
 
-        $validator=validator(request()->all(),[
+        $validator = validator(request()->all(),[
             'fname' => 'required',
             'lname' => 'required',
             'username' => 'required',
@@ -47,7 +47,7 @@ class AccountController extends Controller
         User::findOrFail($id)->update([
             'fname' => request()->fname,
             'lname' => request()->lname,
-            'username' =>request()->username,
+            'username' => request()->username,
             'email' => request()->email,
         ]);
         
@@ -57,7 +57,7 @@ class AccountController extends Controller
     //changePassword 
     public function editPassword($id)
     {
-        $id=Auth::user()->id;
+        $id = Auth::user()->id;
         $user = User::find($id);
         return view('account.changepassword',compact('user'));
     }
@@ -65,7 +65,7 @@ class AccountController extends Controller
     public function changePassword(Request $request){   
         $this->validate($request, [
             'currentpassword' => 'required',
-            'newpassword'     => 'required|min:3',
+            'newpassword' => 'required|min:3',
             'confirmpassword' => 'required|same:newpassword',
         ]);
 

@@ -84,7 +84,7 @@ class PurchaseController extends Controller
             $assetDetail->purchaseId = $purchase->id;
             $assetDetail->save();
         }
-        return redirect('/otherpurchase/create')->with('info','purchase Successfully Added...');
+        return redirect('otherpurchase')->with('success','purchase Successfully Added...');
     }
 
     /**

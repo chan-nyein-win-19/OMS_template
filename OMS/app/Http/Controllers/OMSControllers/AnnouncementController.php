@@ -13,11 +13,6 @@ class AnnouncementController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-
-
-   
-
-
     public function index()
     {
         $list =  Announcement::all();
@@ -42,17 +37,27 @@ class AnnouncementController extends Controller
      */
     public function store(Request $request)
     {
+<<<<<<< HEAD
          $validateData = $request->validate([
+=======
+        $validateData = $request->validate([
+>>>>>>> 1e5bfd89d829b09308195dd4398b5cc777acb200
             'title' => 'required',
             'content' => 'required',
-         ]);
+        ]);
          
-
         $announcement = new Announcement;
+<<<<<<< HEAD
         $announcement->title = request()->title;
         $announcement->content = request()->content;
         $announcement->save();
         return redirect('/announcements/create')->with('info','Announcements Successfully Added...');
+=======
+        $announcement -> title=request()->title;
+        $announcement -> content=request()->content;
+        $announcement -> save();
+        return redirect('announcements')->with('success','Announcements Successfully Added...');
+>>>>>>> 1e5bfd89d829b09308195dd4398b5cc777acb200
     }
 
     /**
@@ -63,7 +68,7 @@ class AnnouncementController extends Controller
      */
     public function show($id)
     {
-        $ann=Announcement::find($id);
+        $ann = Announcement::find($id);
         
         return view('announcement.show',compact('ann'));
     }
@@ -94,7 +99,7 @@ class AnnouncementController extends Controller
         $validateData= $request->validate([
             'title' => 'required',
             'content' => 'required',
-         ]);
+        ]);
         $announcement = Announcement::find($id);
         $announcement->title = request()->title;
         $announcement->content = request()->content;

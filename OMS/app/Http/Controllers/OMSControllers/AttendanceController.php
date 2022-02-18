@@ -67,7 +67,7 @@ class AttendanceController extends Controller
         
         $dailyattendance->save();
     
-        return redirect('attendance');
+        return redirect('attendance')->with('success','Attendance record has been saved successfully!!');
     }
 
     /**
@@ -78,7 +78,7 @@ class AttendanceController extends Controller
      */
     public function show(Dailyattendance $dailyattendance)
     {
-        $dailyattendance=Dailyattendance::all();
+        $dailyattendance = Dailyattendance::all();
         return view('attendance.show',compact('dailyattendance'));
     } 
 
@@ -90,7 +90,7 @@ class AttendanceController extends Controller
      */
     public function edit($id)
     {
-        $edit=Dailyattendance::find($id);
+        $edit = Dailyattendance::find($id);
 
         return view('attendance.edit',compact('edit'));
     }
@@ -104,12 +104,12 @@ class AttendanceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $validator=validator(request()->all(),[
-            'attendanceDate'=>'required',
-            'checkIn'=>'required',
-            'checkOut'=>'required',
-            'lunchTime'=>'required',
-            'workHour'=>'required',
+        $validator = validator(request()->all(),[
+            'attendanceDate' => 'required',
+            'checkIn' => 'required',
+            'checkOut' => 'required',
+            'lunchTime' => 'required',
+            'workHour' => 'required',
         ]);
     
         if($validator->fails()) {
@@ -128,7 +128,7 @@ class AttendanceController extends Controller
             'workfromhome'=>request()->wfh,
             'ottime'=>request()->ottime,
         ]);
-        return redirect('attendance');
+        return redirect('attendance')->with('success','Attendance record has been updated successfully!!');;
     }
 
     /**
