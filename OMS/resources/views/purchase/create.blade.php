@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title','announcement list')
+@section('title','Other Asset Purchase')
 
 @section('style')
     <link rel="stylesheet" href="{{ asset('/storage/OMS/data-tables/jquery.dataTables.min.css') }}">
@@ -54,9 +54,6 @@
           <label for="totalprice" class="col-sm-2 col-form-label">Total Price<span style="color: red">*</span></label>
           <div class="col-sm-10">
             <input id="totalprice" type="text" class="form-control" name="totalprice" value="{{ old('totalprice') }}" onkeyup="add(this)" readonly/>
-            @error("totalprice")
-             <span class="text-danger"> {{ $errors->first('totalprice') }} </span>
-            @enderror  
           </div>
         </div>
         <div class="position-relative row form-group"><label for="content" class="col-sm-2 col-form-label">Category<span style="color: red">*</span></label>
@@ -74,19 +71,15 @@
         </div>
         <div class="position-relative row form-group"><label for="subcategory" class="col-sm-2 col-form-label">Sub Category<span style="color: red">*</span></label>
             <div class="col-sm-10">
-               <select class="subcategory form-control" name="subcategory" readonly>
-                 
+               <select class="subcategory form-control" name="subcategory">
+               <option selected disabled>Choose Item </option>
                 </select>
                 <span class="text-danger"> {{ $errors->first('subcategory') }} </span>
             </div>
         </div>
         <div class="position-relative row form-group"><label for="content" class="col-sm-2 col-form-label">Brand<span style="color: red">*</span></label>
             <div class="col-sm-10">
-               <select class="form-control" name="brand">
-               <option selected disabled>Choose Brand </option>
-                  @foreach($brand as $brands)
-                  <option value="{{$brands->id}}">{{$brands->name}}</option>
-                  @endforeach
+                <select class="brand form-control" name="brand">
                 </select>
                 <span class="text-danger"> {{ $errors->first('brand') }} </span>
             </div>
@@ -115,13 +108,16 @@
 
 <script type="text/javascript">
 	
-	 $(document).ready(()=>{
-    @if ($errors->first('pricePerUnit'))
-			$("input[name='pricePerUnit']").focus();
-		@elseif($errors->first('condition')) 
-			$("textarea[name='condition']").focus();
-		@endif
-     });
+  @if ($errors->first('priceperunit'))
+            $("input[name='priceperunit']").focus();
+        @elseif($errors->first('quantity')) 
+      $("input[name='quantity']").focus();
+    @elseif($errors->first('condition')) 
+      $("textarea[name='condition']").focus();
+    @elseif($errors->first('category') || $errors->first('subcategory') || $errors->first('brand') ) 
+      $("select[name='category']").focus();
+    @endif
+  });
 </script>
 <script type = "text/javascript" 
          src = "https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js">
@@ -137,7 +133,6 @@
       var div=$(this).parent().parent().parent();
       var op=" ";
       console.log(div);
-
       $.ajax({
         type: 'get',
         url:'/findCategory/'+cat_id,
@@ -161,8 +156,37 @@
         }
       });
     });
-        
+    $(document).on('change','.subcategory',function(){
+      console.log("change");
+
+      var cat_id=$(this).val();
+      var div=$(this).parent().parent().parent();
+      var op=" ";
+      console.log(div);
+
+      $.ajax({
+        type: 'get',
+        url:'/findBrand/'+cat_id,
+        data:{'id':cat_id},
+        success:function(data){
+          console.log('success')
+          console.log(data.length);
+          op+='<option value="0" selected disabled>Choose Brand</option>';
+          
+          for(var i=0;i<data.length;i++){
+            op+='<option value="'+data[i].id+'">'+data[i].name+'</option>';
+          }
+          div.find('.brand').html(" ");
+          div.find('.brand').append(op);
+         /* $('#subcategory').append(op);
+          $('select[name="subcategory"]').append(op);*/
+          console.log(div.find('.brand'));
+        },
+        error:function(){
+        }
       });
+    });
+  });
 
 function add(e){
   var priceperunit = document.getElementById('priceperunit').value;

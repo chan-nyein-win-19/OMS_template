@@ -68,11 +68,6 @@ Route::middleware(['auth'])->group(function(){
         Route::resource('announcements',AnnouncementController::class);
     // end
 
-    // purchaseforotherasset
-        Route::resource('otherpurchase',PurchaseController::class); 
-        Route::get('/findCategory/{id}',[PurchaseController::class,'findCategory']);
-    // end
-
     //account
         Route::resource('accounts',AccountController::class);
         Route::get('/changepassword/{id}',[AccountController::class,'editPassword']);
@@ -108,6 +103,13 @@ Route::middleware(['auth'])->group(function(){
         Route::get('/leader/leaveRecord/filterLeave/{filtering}/{date}',[LeaderLeaveController::class,'filterLeave']);
         Route::get('/leader/leaveRecord/searchLeave',[LeaderLeaveController::class,'findLeave']);
         Route::post('/leader/leaveRecord/searchLeave',[LeaderLeaveController::class,'viewLeave']);
+    // end
+
+    // purchaseforotherasset
+        Route::resource('otherpurchase',PurchaseController::class); 
+        Route::resource('assetdetail',AssetDetailController::class); 
+        Route::get('/findCategory/{id}',[PurchaseController::class,'findCategory']);
+        Route::get('/findBrand/{id}',[PurchaseController::class,'findBrand']);
     // end
 
     // PC

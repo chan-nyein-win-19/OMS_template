@@ -37,20 +37,16 @@ class PurchaseController extends Controller
         $brand = Brand::all();
         return view('purchase.create',compact('category','subCategory','brand'));
     }
-
-    // public static function getUserByID($id){
-    //      $category=Category::all();
-    //     $subCategory = SubCategory::findOrFail($id);
-       
-    //     return view('purchase.create',compact('subCategory','category'));
-    // }
-
     public static function findCategory(Request $request){
         $data=SubCategory::select('name','id')->where ('categoryId',$request->id)->take(100)->get();
 
         return response()->json($data);
     }
 
+    public static function findBrand(Request $request){
+        $data=Brand::select('name','id')->where ('subcategoryId',$request->id)->take(100)->get();
+        return response()->json($data);
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -59,7 +55,7 @@ class PurchaseController extends Controller
      */
     public function store(Request $request)
     {
-        $validator=validator(request()->all(),[
+        $validateData= $request->validate([
             'priceperunit'=>'required',
             'quantity'=>'required',
             'totalprice'=>'required',
@@ -67,11 +63,7 @@ class PurchaseController extends Controller
             'subcategory'=>'required',
             'brand'=>'required',
             'condition'=>'required',
-        ]);
-    
-        if($validator->fails()) {
-            return back()->withErrors($validator);
-        }
+         ]);
         //dd($request->totalprice);
         $purchase = new Purchase;
         $purchase->date=request()->date;
@@ -94,8 +86,6 @@ class PurchaseController extends Controller
             $assetDetail->save();
         }
         return redirect('/otherpurchase/create')->with('info','purchase Successfully Added...');
-
-
     }
 
     /**
@@ -133,9 +123,10 @@ class PurchaseController extends Controller
      * @param  \App\Models\Purchase  $purchase
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Purchase $purchase)
+    public function update(Request $request, $id)
     {
-        $validator=validator(request()->all(),[
+       
+        $validateData= $request->validate([
             'priceperunit'=>'required',
             'quantity'=>'required',
             'totalprice'=>'required',
@@ -143,16 +134,10 @@ class PurchaseController extends Controller
             'subcategory'=>'required',
             'brand'=>'required',
             'condition'=>'required',
-        ]);
-    
-        if($validator->fails()) {
-            return back()->withErrors($validator);
-        }
-
-        $delete = AssetDetails::where('purchaseId',$purchase->id)->delete();
-        Purchase::where('id',$purchase->id)->update([
+         ]);
+        $delete = AssetDetails::where('purchaseId',$id)->delete();
+        Purchase::where('id',$id)->update([
             'date'=>$request->date,
-            'itemcode'=>'001',
             'condition'=>$request->condition,
             'quantity'=>$request->quantity,
             'totalprice'=>$request->totalprice,
@@ -167,10 +152,10 @@ class PurchaseController extends Controller
             $assetDetail->itemCode='001';
             $assetDetail->condition=request()->condition;
             $assetDetail->currentPrice = request()->priceperunit;
-            $assetDetail->purchaseId = $purchase->id;
+            $assetDetail->purchaseId = $id;
             $assetDetail->save();
         }
-        return redirect("purchase")->with('success','Updated successfully!!');
+        return redirect('otherpurchase')->with('success','Updated successfully!!');
     }
 
     /**
@@ -179,11 +164,11 @@ class PurchaseController extends Controller
      * @param  \App\Models\Purchase  $purchase
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Purchase $purchase)
+    public function destroy($id)
     {
         //
-       $assetDetail = AssetDetails::where('purchaseId',$purchase->id)->delete();
-       $purchase = Purchase::where('id',$purchase->id)->delete();
-       return redirect("purchase")->with('success','Successfully Deleted!!');
+       $assetDetail = AssetDetails::where('purchaseId',$id)->delete();
+       $purchase = Purchase::where('id',$id)->delete();
+       return redirect('otherpurchase')->with('success','Successfully Deleted!!');
     }
 }
