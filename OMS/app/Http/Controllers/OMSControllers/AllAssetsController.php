@@ -5,22 +5,22 @@ namespace App\Http\Controllers\OMSControllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Pc;
-use App\Models\Others;
+use App\Models\AssetDetails;
 
 class AllAssetsController extends Controller
 {
     //
     public function showAllAssets(){
         $pcList = Pc::all();
-        $otherAssets = Others::all();
+        $otherAssets = AssetDetails::all();
         $activePC = true;
         return view('assets.allAssetList',compact(['pcList','otherAssets','activePC']));
 
     }
     public function currentOthersPrice(){
-        $assetLists=Others::all();
+        $assetLists=AssetDetails::all();
         foreach($assetLists as $assets){
-            $currentPrice = $assets->currentprice;
+            $currentPrice = $assets->currentPrice;
             $todayDate = time();
             $purchasePrice = $assets->purchase->priceperunit;
             $purchaseDate = strtotime($assets->purchase->date);
@@ -33,13 +33,13 @@ class AllAssetsController extends Controller
             }else{
                 $currentPrice=$purchasePrice;
             }
-            $assets->currentprice=$currentPrice;
+            $assets->currentPrice=$currentPrice;
                 $assets->save();
              
 
         }
         $pcList=Pc::all();
-        $otherAssets = Others::all();
+        $otherAssets = AssetDetails::all();
         $activePC = false;
         return view('assets.allAssetList',compact(['pcList','otherAssets','activePC']));
     }

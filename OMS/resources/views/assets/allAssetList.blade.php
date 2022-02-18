@@ -85,13 +85,13 @@
                 <tbody>
                     @foreach($otherAssets as $asset)
                     <tr>
-                        <td>{{$asset->itemcode}}</td>
+                        <td>{{$asset->itemCode}}</td>
                         <td>{{$asset->condition}}</td>
                         <td>{{$asset->purchase->date}}</td>
                         <td>{{$asset->purchase->subCategory->category->name}}</td>
                         <td>{{$asset->purchase->subCategory->name}}</td>
                         <td>{{$asset->purchase->priceperunit}}</td>
-                        <td>{{$asset->currentprice}}</td>
+                        <td>{{$asset->currentPrice}}</td>
 
                     </tr>
                     @endforeach
