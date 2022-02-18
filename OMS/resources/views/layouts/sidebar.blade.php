@@ -69,7 +69,7 @@
                 <li>
                     <a href="#" class="textstyle">
                         <i class="metismenu-icon" ></i>
-                        <span class="ml-3"> Asset Lists</span>
+                        <span class="ml-3 mr-3"> Asset Lists&nbsp</span>
                         <i class="fa fa-angle-down ml-5 opacity-8"></i>
                     </a>
                     <ul>
@@ -91,12 +91,10 @@
                     </ul>
                 </li>
                 <li>
-                    <!-- <a href="#" class="textstyle">
-                        Asset Create
-                    </a> -->
+                    
                     <a href="#" class="textstyle">
                         <i class="metismenu-icon" ></i>
-                        <span class="ml-3"> Asset Create</span>
+                        <span class="ml-3"> Asset Create&nbsp&nbsp</span>
                         <i class="fa fa-angle-down ml-5 opacity-8"></i>
                     </a>
                     <ul>
@@ -115,7 +113,7 @@
                 <li>
                     <a href="#" class="textstyle">
                         <i class="metismenu-icon" ></i>
-                        <span class="ml-3">Brand</span>
+                        <span class="ml-3 mr-5">Brand</span>
                         <i class="fa fa-angle-down ml-5 opacity-8"></i>
                     </a>
                     <ul>
@@ -129,7 +127,7 @@
                 <li>
                     <a href="#" class="textstyle">
                         <i class="metismenu-icon" ></i>
-                        <span class="ml-3">Category</span>
+                        <span class="ml-3 mr-4">Category&nbsp</span>
                         <i class="fa fa-angle-down ml-5 opacity-8"></i>
                     </a>
                     <ul>
@@ -143,8 +141,8 @@
                 <li>
                     <a href="#" class="textstyle">
                         <i class="metismenu-icon" ></i>
-                        <span class="ml-3">SubCategories</span>
-                        <i class="fa fa-angle-down ml-5 opacity-8"></i>
+                        <span class="ml-3 mr-3">SubCategories&nbsp&nbsp&nbsp</span>
+                        <i class="fa fa-angle-down ml-3 opacity-8"></i>
                     </a>
                     <ul>
                         <li>
@@ -157,8 +155,8 @@
                 <li>
                     <a href="{{ url('/allAssetLists') }}" class="textstyle">
                         <i class="metismenu-icon" ></i>
-                        <span class="ml-3">Assets-CurrentPrice</span>
-                        <i class="fa fa-angle-down ml-5 opacity-8"></i>
+                        <span class="ml-3">Assets-CurrentPrice&nbsp</span>
+                        <i class="fa fa-angle-down ml-2 opacity-8"></i>
                     </a>
                 </li>
             </ul>
