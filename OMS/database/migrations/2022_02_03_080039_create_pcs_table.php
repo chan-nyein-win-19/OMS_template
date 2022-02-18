@@ -15,13 +15,14 @@ class CreatePcsTable extends Migration
     {
         Schema::create('pcs', function (Blueprint $table) {
             $table->id();
+            $table->string('itemcode');
             $table->string('cpu');
             $table->string('ram');
             $table->string('storage');
             $table->string('model');
-            $table->string('itemcode');
             $table->string('condition');
             $table->double('currentprice');
+            $table->string('status');
             $table->integer('purchaseid');
             $table->integer('categoryid');
             $table->integer('subcategoryid');

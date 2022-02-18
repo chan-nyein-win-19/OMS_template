@@ -124,15 +124,7 @@
                         @enderror 
                         </div>
                     </div>
-                    <div class="form-group row">
-                        <label for="itemcode" class="col-sm-4 col-form-label" >Item Code<span style="color:red">*</span></label>
-                        <div class="col-sm-6">
-                        <input type="text" class="form-control" name="itemcode" value="">
-                        @error("itemcode")
-                            <span class="text-danger float-left">{{$errors->first('itemcode')}}</span>
-                        @enderror 
-                        </div>
-                    </div>
+                  
                     <div class="form-group row">
                         <label for="model" class="col-sm-4 col-form-label" >Model<span style="color:red">*</span></label>
                         <div class="col-sm-6">

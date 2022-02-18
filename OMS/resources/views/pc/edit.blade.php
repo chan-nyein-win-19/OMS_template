@@ -12,7 +12,7 @@
         <div class="main-card mb-3 card ">
             <div class="card-body">
                 <div class="col-12 pt-4 mb-5">
-                    <h3 class="sub-title">PC Purchase Form</h3>
+                    <h3 class="sub-title">PC Update Form</h3>
                 </div>
                 <form method="post" action="{{ route('pc.update',[$edit->id]) }}"  class="container">
                     @csrf

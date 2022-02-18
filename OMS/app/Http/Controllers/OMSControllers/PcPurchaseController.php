@@ -62,7 +62,6 @@ class PcPurchaseController extends Controller
             'cpu'=>'required',
             'ram'=>'required',
             'storage'=>'required',
-            'itemcode'=>'required',
             'model'=>'required',
             'condition'=>'required',
             'currentprice'=>'required|integer',
@@ -85,19 +84,34 @@ class PcPurchaseController extends Controller
         $purchase->save();
         
 
+        if($validator->fails()) {
+            return back()->withErrors($validator);
+        }
+        $lastPC=Pc::join('purchases','purchases.id','=','pcs.purchaseid')
+                    ->select('*')->latest('pcs.id')->first();
+        $code=0;
+        if($lastPC!=null){
+        $lastItemCode=explode('-',$lastPC->itemcode);
+        $code=$lastItemCode[1];
+        }
+
         for($x=0;$x<$purchase->quantity;$x++){
+            $code=$code+1;
+            $itemcode="PC-".$code;
         $pc=new Pc();
         $pc->cpu=request()->cpu;
         $pc->ram=request()->ram;
         $pc->storage=request()->storage;
         $pc->model=request()->model;
         $pc->itemcode=request()->itemcode;
+        $pc->itemcode=$itemcode;
         $pc->condition=request()->condition;
         $pc->currentprice=request()->currentprice;
         $pc->purchaseid=$purchase->id;
         $pc->categoryid=request()->category;
         $pc->subcategoryid=request()->subcategory;
         $pc->brandid=request()->brand;
+        $pc->status='available';
         $pc->save();
     }
         return back()->with('success','PC Purchase has been added successfully!!');
