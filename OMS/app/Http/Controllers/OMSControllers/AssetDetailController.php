@@ -15,7 +15,6 @@ class AssetDetailController extends Controller
      */
     public function index()
     {
-        //
         $assetdetail =  AssetDetails::all();
         return view('assetdetail.index', compact('assetdetail'));
     }

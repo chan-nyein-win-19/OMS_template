@@ -47,9 +47,4 @@ class AuthController extends Controller
        Auth::logout();
        return view('login.login');
     }
-
-    // public function __construct()
-    // {
-    //     $this->middleware('guest')->except('logout');
-    // }
 }

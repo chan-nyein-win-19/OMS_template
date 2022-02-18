@@ -15,7 +15,7 @@ class AccountController extends Controller
     //Show account info
     public function show($id)
     {
-        $id=Auth::user()->id;
+        $id = Auth::user()->id;
         $user = User::find($id);
         return view('account.show',compact('user'));
     }
@@ -29,15 +29,15 @@ class AccountController extends Controller
 
     public function update(Request $request, $id)
     {
-        $id=Auth::user()->id;
+        $id = Auth::user()->id;
 
         $user = User::find($id);
 
         $validator=validator(request()->all(),[
-            'fname'=>'required',
-            'lname'=>'required',
-            'username'=>'required',
-            'email'=>'required|email|unique:users,email,'.$user->id.'|min:10',
+            'fname' => 'required',
+            'lname' => 'required',
+            'username' => 'required',
+            'email' => 'required|email|unique:users,email,'.$user->id.'|min:10',
         ]);
 
         if($validator->fails()){
@@ -45,10 +45,10 @@ class AccountController extends Controller
         }
 
         User::findOrFail($id)->update([
-            'fname'=>request()->fname,
-            'lname'=>request()->lname,
+            'fname' => request()->fname,
+            'lname' => request()->lname,
             'username' =>request()->username,
-            'email' =>request()->email,
+            'email' => request()->email,
         ]);
         
         return redirect('/successlogin')->with('info','Account Information is updated!!');
@@ -64,7 +64,7 @@ class AccountController extends Controller
   
     public function changePassword(Request $request){   
         $this->validate($request, [
-            'currentpassword'     => 'required',
+            'currentpassword' => 'required',
             'newpassword'     => 'required|min:3',
             'confirmpassword' => 'required|same:newpassword',
         ]);
@@ -78,7 +78,7 @@ class AccountController extends Controller
         }
         else{
             User::findOrFail(auth()->user()->id)->update([
-                'password'=> Hash::make($request->confirmpassword)
+                'password' => Hash::make($request->confirmpassword)
             ]);
             return redirect('/successlogin')->with('info','Your password is changed!!'); 
         }

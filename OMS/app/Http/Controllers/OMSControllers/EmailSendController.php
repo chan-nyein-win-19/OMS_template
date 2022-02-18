@@ -44,8 +44,8 @@ class EmailSendController extends Controller
         if($otp == NULL)
         {
             $otp1 = new Otp;
-            $otp1->employeeid=$user->id;
-            $otp1->otp=$number;
+            $otp1->employeeid = $user->id;
+            $otp1->otp = $number;
     
             $otp1->save();
         }

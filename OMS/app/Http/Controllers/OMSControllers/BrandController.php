@@ -23,16 +23,16 @@ class BrandController extends Controller
    
     public function store(Request $request)
     {
-        $validate= $request->validate([
+        $validate = $request->validate([
             'name' => 'required|unique:brands,name',
             'description' => 'required',
             'subcategory'=>'required',
         ]);
       
         $brand = new Brand;
-        $brand->name=request()->name;
-        $brand->description=request()->description;
-        $brand->subcategoryId=request()->subcategory;
+        $brand->name = request()->name;
+        $brand->description = request()->description;
+        $brand->subcategoryId = request()->subcategory;
         $brand->save();
         return back()->with('info','Brands Successfully Added...');
     
@@ -56,16 +56,16 @@ class BrandController extends Controller
     public function update(Request $request, $id)
     {
         $brand = Brand::find($id);
-        $validator= $request->validate([
+        $validator = $request->validate([
             'name' => 'required|unique:brands,name,'.$brand->id.'|string',
             'description' => 'required',
             'subcategory'=>'required',
          ]);
        
         $brand = Brand::find($id);
-        $brand->name=request()->name;
-        $brand->description=request()->description;
-        $brand->subcategoryId=request()->subcategory;
+        $brand->name = request()->name;
+        $brand->description = request()->description;
+        $brand->subcategoryId = request()->subcategory;
         $brand->save();
         return redirect("brands")->with('info','Brand has been updated successfully!!');
         

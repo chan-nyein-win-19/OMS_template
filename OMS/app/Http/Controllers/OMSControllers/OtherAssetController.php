@@ -19,7 +19,7 @@ class OtherAssetController extends Controller
     public function index()
     {
         //
-        $list =  AssetDetails::all();
+        $list = AssetDetails::all();
         
         return view('otherassetdetail.index', compact('list'));
     }
@@ -64,7 +64,6 @@ class OtherAssetController extends Controller
      */
     public function edit($id)
     {
-        //
         $purchasedetail = AssetDetails::find($id);
         $assetdetail = AssetDetails::where('purchaseId',$id)->get();
         $brand = Brand::all();
@@ -82,14 +81,13 @@ class OtherAssetController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
-        $validateData= $request->validate([
+        $validateData = $request->validate([
             'condition' => 'required',
             'currentPrice' => 'required',
          ]);
         $assetdetail = AssetDetails::find($id);
-        $assetdetail->condition=request()->condition;
-        $assetdetail->currentPrice=request()->currentPrice;
+        $assetdetail->condition = request()->condition;
+        $assetdetail->currentPrice = request()->currentPrice;
         $assetdetail->save();
         return redirect("otherAsset")->with('success',$assetdetail->itemcode.'Asset has been updated successfully!!');
     }

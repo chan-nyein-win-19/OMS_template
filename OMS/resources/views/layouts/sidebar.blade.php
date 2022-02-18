@@ -322,21 +322,6 @@
                 </li>
             </ul>
         </li>
-        <li class="app-sidebar__heading mt-4">Announcements</li>
-        <li>
-            <a href="#">
-                <i class="metismenu-icon pe-7s fas fa-scroll" style="font-size: 16px;"></i>
-                    Announcements
-                <i class="fa fa-angle-down ml-3 opacity-8"></i>
-            </a>
-            <ul>
-                <li>
-                    <a href="{{ url('/announcements') }}" style="text-decoration: none">
-                        Announcement Lists
-                    </a>
-                </li>
-            </ul>
-        </li>
     </ul>
 </div>
 @endif

@@ -29,11 +29,10 @@ class PcPurchaseController extends Controller
      */
     public function create()
     {
-        //
-        $brand=Brand::all();
+        $brand = Brand::all();
      
-        $category=Category::all();
-        $subCategory=subCategory::all();
+        $category = Category::all();
+        $subCategory = subCategory::all();
 
         return view('pc.create',compact([
             'brand','category','subCategory'
@@ -50,8 +49,7 @@ class PcPurchaseController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        $validator=validator(request()->all(),[
+        $validator = validator(request()->all(),[
             'date'=>'required',
             'priceperunit'=>'required',
             'quantity'=>'required',
@@ -69,33 +67,33 @@ class PcPurchaseController extends Controller
             return back()->withErrors($validator);
         }
     
-        $purchase=new Purchase();
-        $purchase->date=request()->date;
-        $purchase->priceperunit=request()->priceperunit;
-        $purchase->quantity=request()->quantity;
-        $purchase->totalprice=request()->totalprice;
-        $purchase->itemcode=request()->itemcode;
-        $purchase->condition=request()->condition;
-        $purchase->categoryid=request()->categoryid;
-        $purchase->subcategoryid=request()->subcategoryid;
-        $purchase->brandid=request()->brandid;
+        $purchase = new Purchase();
+        $purchase->date = request()->date;
+        $purchase->priceperunit = request()->priceperunit;
+        $purchase->quantity = request()->quantity;
+        $purchase->totalprice = request()->totalprice;
+        $purchase->itemcode = request()->itemcode;
+        $purchase->condition = request()->condition;
+        $purchase->categoryid = request()->categoryid;
+        $purchase->subcategoryid = request()->subcategoryid;
+        $purchase->brandid = request()->brandid;
 
         $purchase->save();
         
 
         for($x=0;$x<$purchase->quantity;$x++){
-        $pc=new Pc();
-        $pc->cpu=request()->cpu;
-        $pc->ram=request()->ram;
-        $pc->storage=request()->storage;
-        $pc->model=request()->model;
-        $pc->itemcode=request()->itemcode;
-        $pc->condition=request()->condition;
-        $pc->currentprice=request()->currentprice;
-        $pc->purchaseid=$purchase->id;
-        $pc->categoryid=request()->categoryid;
-        $pc->subcategoryid=request()->subcategoryid;
-        $pc->brandid=request()->brandid;
+        $pc = new Pc();
+        $pc->cpu = request()->cpu;
+        $pc->ram = request()->ram;
+        $pc->storage = request()->storage;
+        $pc->model = request()->model;
+        $pc->itemcode = request()->itemcode;
+        $pc->condition = request()->condition;
+        $pc->currentprice = request()->currentprice;
+        $pc->purchaseid = $purchase->id;
+        $pc->categoryid = request()->categoryid;
+        $pc->subcategoryid = request()->subcategoryid;
+        $pc->brandid = request()->brandid;
         $pc->save();
     }
         return back();

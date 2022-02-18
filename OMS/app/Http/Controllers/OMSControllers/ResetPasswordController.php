@@ -14,7 +14,7 @@ class ResetPasswordController extends Controller
     //
     function checkOTP(Request $request)
    {
-    $validator= validator(request()->all(),[
+    $validator = validator(request()->all(),[
         'otp'=>'required',
         'newPassword'=>'required|string|min:3',
         'confirmPassword'=>'required|string|min:3',
@@ -29,7 +29,7 @@ class ResetPasswordController extends Controller
         return view('login.otpform',compact('employeeid'))->withErrors($validator);
       }
 
-       $otp =Otp::where('employeeid',$request->get('employeeid'))->first();
+       $otp = Otp::where('employeeid',$request->get('employeeid'))->first();
        
 
        if($otp->otp == $request->get('otp'))

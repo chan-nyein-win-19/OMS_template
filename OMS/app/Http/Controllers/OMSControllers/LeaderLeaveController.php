@@ -14,9 +14,9 @@ class LeaderLeaveController extends Controller
 
     //Leader Section
      public function viewLeave(){
-        $today=date('Y-m-d');
-        $filtering='all';
-        $leaveRecords=Leaves::where('date',$today)->where([
+        $today = date('Y-m-d');
+        $filtering = 'all';
+        $leaveRecords = Leaves::where('date',$today)->where([
             ['date',$today],['leaderId',auth()->user()->id]
             ])->get();
 
@@ -26,9 +26,9 @@ class LeaderLeaveController extends Controller
     }
 
     public function findLeave(Request $request){
-        $today=request()->date;
-        $filtering=request()->filtering;
-        $leaveRecords=Leaves::where('date',$today)->where([
+        $today = request()->date;
+        $filtering = request()->filtering;
+        $leaveRecords = Leaves::where('date',$today)->where([
         ['date',$today],['leaderId',auth()->user()->id]
         ])->get();
         
@@ -38,9 +38,9 @@ class LeaderLeaveController extends Controller
     }
 
     public function changeStatus($id,$status,$date,$filtering){
-       $leave=Leaves::find($id);
-       $today=$date;
-       if($status=="approve"){
+       $leave = Leaves::find($id);
+       $today = $date;
+       if($status == "approve"){
            $leave->update([
                'status'=>"Approved"
            ]);
@@ -53,13 +53,13 @@ class LeaderLeaveController extends Controller
                'status'=>"Pending"
            ]);
        }
-       $today=request()->date;
-            if($filtering=='all'){
-                $leaveRecords=Leaves::where([
+       $today = request()->date;
+            if($filtering == 'all'){
+                $leaveRecords = Leaves::where([
                     ['date',$today],['leaderId',auth()->user()->id]
                     ])->get();
             }else{
-                $leaveRecords=Leaves::where([
+                $leaveRecords = Leaves::where([
                     ['date',$today],['status',$filtering],['leaderId',auth()->user()->id]
                     ])->get();
             }
@@ -70,13 +70,13 @@ class LeaderLeaveController extends Controller
     }
 
     public function filterLeave($filtering,$date){
-        $today=$date;
-        if($filtering=='all'){
-            $leaveRecords=Leaves::where([
+        $today = $date;
+        if($filtering == 'all'){
+            $leaveRecords = Leaves::where([
                 ['date',$today],['leaderId',auth()->user()->id]
                 ])->get();
         }else{
-            $leaveRecords=Leaves::where([
+            $leaveRecords = Leaves::where([
                 ['date',$today],['status',$filtering],['leaderId',auth()->user()->id]
                 ])->get();
         }

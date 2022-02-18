@@ -19,7 +19,7 @@ class PurchaseController extends Controller
      */
     public function index()
     {
-        $list =  Purchase::all();
+        $list = Purchase::all();
         return view('purchase.index', compact('list'));
 
     }
@@ -32,19 +32,19 @@ class PurchaseController extends Controller
     public function create()
     {
         //
-        $category=Category::all();
-        $subCategory=SubCategory::all();  
+        $category = Category::all();
+        $subCategory = SubCategory::all();  
         $brand = Brand::all();
         return view('purchase.create',compact('category','subCategory','brand'));
     }
     public static function findCategory(Request $request){
-        $data=SubCategory::select('name','id')->where ('categoryId',$request->id)->take(100)->get();
+        $data = SubCategory::select('name','id')->where ('categoryId',$request->id)->take(100)->get();
 
         return response()->json($data);
     }
 
     public static function findBrand(Request $request){
-        $data=Brand::select('name','id')->where ('subcategoryId',$request->id)->take(100)->get();
+        $data = Brand::select('name','id')->where ('subcategoryId',$request->id)->take(100)->get();
         return response()->json($data);
     }
     /**
@@ -55,7 +55,7 @@ class PurchaseController extends Controller
      */
     public function store(Request $request)
     {
-        $validateData= $request->validate([
+        $validateData = $request->validate([
             'priceperunit'=>'required',
             'quantity'=>'required',
             'totalprice'=>'required',
@@ -65,21 +65,21 @@ class PurchaseController extends Controller
             'condition'=>'required',
          ]);
         $purchase = new Purchase;
-        $purchase->date=request()->date;
-        $purchase->condition=request()->condition;
-        $purchase->quantity=request()->quantity;
-        $purchase->totalprice=request()->totalprice;
-        $purchase->priceperunit=request()->priceperunit;
-        $purchase->categoryid=request()->category;
-        $purchase->subcategoryid=request()->subcategory;
-        $purchase->brandid=request()->brand;
+        $purchase->date = request()->date;
+        $purchase->condition = request()->condition;
+        $purchase->quantity = request()->quantity;
+        $purchase->totalprice = request()->totalprice;
+        $purchase->priceperunit = request()->priceperunit;
+        $purchase->categoryid = request()->category;
+        $purchase->subcategoryid = request()->subcategory;
+        $purchase->brandid = request()->brand;
         $purchase->save();
 
 
         for($i = 0; $i<$purchase->quantity; $i++){
             $assetDetail = new AssetDetails;
-            $assetDetail->itemCode='001';
-            $assetDetail->condition=request()->condition;
+            $assetDetail->itemCode = '001';
+            $assetDetail->condition = request()->condition;
             $assetDetail->currentPrice = request()->priceperunit;
             $assetDetail->purchaseId = $purchase->id;
             $assetDetail->save();
@@ -125,7 +125,7 @@ class PurchaseController extends Controller
     public function update(Request $request, $id)
     {
        
-        $validateData= $request->validate([
+        $validateData = $request->validate([
             'priceperunit'=>'required',
             'quantity'=>'required',
             'totalprice'=>'required',
@@ -148,8 +148,8 @@ class PurchaseController extends Controller
 
         for($i = 0; $i<$request->quantity; $i++){
             $assetDetail = new AssetDetails;
-            $assetDetail->itemCode='001';
-            $assetDetail->condition=request()->condition;
+            $assetDetail->itemCode = '001';
+            $assetDetail->condition = request()->condition;
             $assetDetail->currentPrice = request()->priceperunit;
             $assetDetail->purchaseId = $id;
             $assetDetail->save();
