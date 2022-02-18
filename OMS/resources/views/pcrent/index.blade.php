@@ -41,7 +41,7 @@
                         <td>{{ $item->employeeId}}</td>
                         <td>{{ $item->employeename}}</td>
                         <td>{{ $item->pc->itemcode}}</td>
-                        <td>{{ $item->brand->name}}</td>
+                        <td>{{ $item->pc->brand->name}}</td>
                         <td>{{ $item->pc->ram}}</td>
                         <td>{{ $item->pc->storage}}</td>
                         <td>{{ $item->pc->cpu}}</td>
