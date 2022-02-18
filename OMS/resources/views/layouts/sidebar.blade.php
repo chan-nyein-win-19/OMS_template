@@ -88,8 +88,8 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#" class="textstyle">
-                                PC
+                            <a href="{{url('/pc')}}" class="textstyle">
+                                PC Lists
                             </a>
                         </li>
                     </ul>
@@ -110,7 +110,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#" class="textstyle">
+                            <a href="{{url('/pcpurchase/create')}}" class="textstyle">
                                 PC
                             </a>
                         </li>
