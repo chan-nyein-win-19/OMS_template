@@ -3,7 +3,9 @@
 @section('title','account information')
 
 @section('style')
-
+    <link rel="stylesheet" href="{{ asset('/storage/OMS/data-tables/jquery.dataTables.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('/storage/OMS/bootstrap5/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('/storage/OMS/css/style.css') }}">
 @endsection
 
 @section('topbar')
@@ -61,9 +63,9 @@
                             </div>
                             <hr>
                             <div class="text-center" >            
-                                <a class="mb-2 mr-2 btn btn-primary" style="font-size: 14px;" href="{{url('/accounts/'.$user->id.'/edit')}}">{{ __('Edit') }}</a>
+                                <a class="btn btn-primary" style="width:70px" href="{{url('/accounts/'.$user->id.'/edit')}}">{{ __('Edit') }}</a>
 				 				&nbsp;&nbsp;
-					            <a class="mb-2 mr-2 btn btn-danger" style="font-size: 14px;" href="{{url('/successlogin')}}"> {{ __('Cancel') }}</a>
+					            <a class="btn btn-danger" href="{{url('/successlogin')}}"> {{ __('Cancel') }}</a>
                             </div>
                         </form>
                     </div>
