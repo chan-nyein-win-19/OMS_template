@@ -41,16 +41,18 @@ class SubcategoryController extends Controller
     {
         $validateData = $request->validate([
             'name' => 'required',
+            'itemcode'=>'required|unique:sub_categories|string',
             'category' => 'required',
             'description' => 'required',
         ]);
-
+       
         $subCategory = new SubCategory;
         $subCategory->name = $request->name;
+        $subCategory->itemcode = $request->itemcode;
         $subCategory->categoryId = $request->category;
         $subCategory->description = $request->description;
         $subCategory->save();
-        return redirect('/subCategory');
+        return redirect('/subCategory')->with('info','SubCategory has been added successfully');
     }
 
     /**
@@ -84,19 +86,24 @@ class SubcategoryController extends Controller
      * @param  \App\Models\SubCategory  $subCategory
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, SubCategory $subCategory)
+ 
+    public function update(Request $request, $id)
     {
+        $subCategory = SubCategory::find($id);
+
         $validateData = $request->validate([
             'name' => 'required',
+            'itemcode'=>'required|unique:sub_categories,itemcode,'.$subCategory->id.'|string',
             'category' => 'required',
             'description' => 'required',
         ]);
         
         $subCategory->name = $request->name;
+        $subCategory->itemcode = $request->itemcode;
         $subCategory->categoryId = $request->category;
         $subCategory->description = $request->description;
         $subCategory->save();
-        return redirect('/subCategory');
+        return redirect('/subCategory')->with('info','SubCategory has been successfully updated');
 
     }
 
