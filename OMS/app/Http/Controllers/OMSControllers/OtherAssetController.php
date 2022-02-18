@@ -8,6 +8,7 @@ use App\Models\AssetDetails;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\SubCategory;
+use App\Models\Purchase;
 
 class OtherAssetController extends Controller
 {
@@ -20,7 +21,6 @@ class OtherAssetController extends Controller
     {
         //
         $list =  AssetDetails::all();
-        
         return view('otherassetdetail.index', compact('list'));
     }
 
@@ -103,5 +103,13 @@ class OtherAssetController extends Controller
     public function destroy($id)
     {
         //
+        $delete = AssetDetails::find($id);
+        $purchase = Purchase::find($delete->purchaseId);
+        $purchase->quantity = $purchase->quantity-1;
+        $purchase->update();
+        //dd($purchase->quantity);
+
+        $delete -> delete();
+        return redirect('otherAsset')->with('success','Successfully Deleted!!');
     }
 }

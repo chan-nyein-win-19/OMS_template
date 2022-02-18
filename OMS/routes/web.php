@@ -19,7 +19,6 @@ use App\Http\Controllers\OMSControllers\CategoryController;
 use App\Http\Controllers\OMSControllers\PcPurchaseController;
 use App\Http\Controllers\OMSControllers\PurchaseController;
 use App\Http\Controllers\OMSControllers\OtherAssetController;
-use App\Http\Controllers\OMSControllers\AssetDetailController;
 
 /*
 |--------------------------------------------------------------------------
@@ -108,7 +107,7 @@ Route::middleware(['auth'])->group(function(){
 
     // purchaseforotherasset
         Route::resource('otherpurchase',PurchaseController::class); 
-        Route::resource('assetdetail',AssetDetailController::class); 
+        Route::resource('otherAsset',OtherAssetController::class);
         Route::get('/findCategory/{id}',[PurchaseController::class,'findCategory']);
         Route::get('/findBrand/{id}',[PurchaseController::class,'findBrand']);
     // end
@@ -127,10 +126,6 @@ Route::middleware(['auth'])->group(function(){
     
     // subCategory
         Route::resource('subCategory',SubcategoryController::class);
-    // end
-
-    // OtherAsset
-        Route::resource('otherAsset',OtherAssetController::class);
     // end
     
     //subCategory
