@@ -16,7 +16,7 @@ class Purchase extends Model
         return $this->belongsTo(Category::class,'categoryid');
     }
 
-    public function Brand()
+    public function brand()
     {
         return $this->belongsTo(Brand::class,'brandid');
     }
