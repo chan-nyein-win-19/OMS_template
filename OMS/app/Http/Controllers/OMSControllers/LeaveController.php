@@ -17,7 +17,7 @@ class LeaveController extends Controller
      */
     public function index()
     {
-        //
+        
         $leaders=User::select('*')->where('role','Leader')->get();
         $senseis=User::select('*')->where('role','Sensei')->get();
         $today=date('Y-m-d');
@@ -47,10 +47,8 @@ class LeaveController extends Controller
      */
     public function store(Request $request)
     {
-        //
         $validator=validator(request()->all(),[
             'employeeId'=>'required',
-         //   'date'=>'required|after:'.date('Y-m-d'),
             'date'=>'required|after:yesterday',
             'time'=>'required',
             'reason'=>'required|max:300',
@@ -138,7 +136,6 @@ class LeaveController extends Controller
      */
     public function edit($date)
     {
-        //
         $leaders=User::select('*')->where('role','Leader')->get();
         $senseis=User::select('*')->where('role','Sensei')->get();
         $leaveRecord=Leaves::where([
@@ -160,7 +157,6 @@ class LeaveController extends Controller
         //
         $validator=validator(request()->all(),[
             'employeeId'=>'required',
-         //   'date'=>'required|after:'.date('Y-m-d'),
             'date'=>'required|after:yesterday',
             'time'=>'required',
             'reason'=>'required|max:300',
@@ -233,8 +229,6 @@ class LeaveController extends Controller
      */
     public function destroy(Leaves $leaf)
     {
-        //
-        //$leave= Leaves::find($id);
         $today=$leaf->date;
         if($leaf->employeeId==auth()->user()->id)
         {
@@ -251,20 +245,6 @@ class LeaveController extends Controller
        
         
     }
-
-    // public function addNew($date){
-    //     $leaders=User::select('*')->where('role','Leader')->get();
-    //     $senseis=User::select('*')->where('role','Sensei')->get();
-    //     $today=date('Y-m-d');
-
-    //     $leaveRecord=Leaves::where([
-    //         ['date',$date],['employeeId',auth()->user()->id]
-    //         ])->first();
-        
-    //     return view('leave.leaveRequestForm',compact([
-    //         'leaders','senseis','today','leaveRecord'
-    //     ]));
-    // }
 
     public function searchLeave(Request $request){
         $today=request()->date;

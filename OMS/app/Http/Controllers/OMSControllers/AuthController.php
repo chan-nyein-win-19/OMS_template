@@ -2,11 +2,6 @@
 
 namespace App\Http\Controllers\OMSControllers;
 use App\Models\Announcement;
-
-// namespace App\Http\Controllers\Auth;
-// use AuthenticatesUsers;
-
-
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Validator;

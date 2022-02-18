@@ -19,10 +19,7 @@ class PurchaseController extends Controller
      */
     public function index()
     {
-        //
         $list =  Purchase::all();
-        
-        /*$list = Purchase::with('category')->get();*/
         return view('purchase.index', compact('list'));
 
     }
@@ -67,7 +64,6 @@ class PurchaseController extends Controller
             'brand'=>'required',
             'condition'=>'required',
          ]);
-        //dd($request->totalprice);
         $purchase = new Purchase;
         $purchase->date=request()->date;
         $purchase->condition=request()->condition;

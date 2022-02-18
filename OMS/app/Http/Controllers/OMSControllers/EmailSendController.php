@@ -14,7 +14,6 @@ use App\Models\Otp;
 
 class EmailSendController extends Controller
 {
-    //
     public function forgotpwd()
     {
         return view('login.forgotpwd');

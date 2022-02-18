@@ -70,7 +70,6 @@ class OtherAssetController extends Controller
         $brand = Brand::all();
         $category = Category::all();
         $subcategory = SubCategory::all();
-       // $subcategory = SubCategory::where('categoryId',$purchasedetail->categoryid)->get();
         return view('otherassetdetail.edit',compact('purchasedetail','assetdetail','brand','category','subcategory'));
     }
 
@@ -92,7 +91,6 @@ class OtherAssetController extends Controller
         $assetdetail->condition=request()->condition;
         $assetdetail->currentPrice=request()->currentPrice;
         $assetdetail->save();
-        /*return redirect("announcements/".$id."/edit")->with('success','Announcement has been updated successfully!!');*/
         return redirect("otherAsset")->with('success',$assetdetail->itemcode.'Asset has been updated successfully!!');
     }
 

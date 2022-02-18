@@ -15,9 +15,7 @@ class AnnouncementController extends Controller
      */
 
 
-    // public function __construct(){
-    //     $this->middleware('auth')->except(['index']);
-    // }
+   
 
 
     public function index()
@@ -101,10 +99,7 @@ class AnnouncementController extends Controller
         $announcement->title=request()->title;
         $announcement->content=request()->content;
         $announcement->save();
-        /*return redirect("announcements/".$id."/edit")->with('success','Announcement has been updated successfully!!');*/
         return redirect("announcements")->with('success','Announcement has been updated successfully!!');
-        /*return back()->withErrors([
-    'email' => 'The provided credentials do not match our records.',*/
     }
 
     /**
