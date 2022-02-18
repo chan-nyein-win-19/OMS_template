@@ -16,6 +16,9 @@ class PcController extends Controller
     public function index()
     {
         //
+        $pc=Pc::all();
+        return view('pc.index',compact('pc')
+        );
     }
 
     /**
