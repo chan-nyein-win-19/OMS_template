@@ -26,7 +26,6 @@
         <table class="mb-0 table table-hover" id="table">
             <thead>
                 <tr>
-                    <th>PurchaseID</th>
                     <th>Date</th>
                     <th>Condition</th>
                     <th>Quantity</th>
@@ -42,9 +41,6 @@
                 @foreach ($list as $item)
                 <tr>
                     <td>
-                        {{ $item->id }}
-                    </td>
-                    <td>
                         {{ $item->date }}
                     </td>
                     <td>
@@ -54,20 +50,21 @@
                         {{ $item->quantity }}
                     </td>
                     <td>
-                        {{ $item->totalprice }}
+                        {{ $item->totalPrice }}
                     </td>
                     <td>
-                        {{ $item->priceperunit }}
+                        {{ $item->pricePerUnit }}
                     </td> 
                     <td>
-                        {{ $item->categoryid }}
+                        {{ $item->category->name }}
                     </td> 
                     <td>
-                        {{ $item->subcategoryid }}
+                        {{ $item->subcategory->name }}
                     </td> 
                     <td>
-                        {{ $item->brandid }}
-                    </td>            
+                        {{ $item->brand->name }}
+                    </td>       
+                                     
                     <td>     
                         <a href="{{ route('otherpurchase.edit', $item->id) }}" class="mb-2 mr-2 btn-transition btn btn-outline-primary" data-toggle="tooltip" title='Edit'>
                             <i class="fa fa-fw"></i>
@@ -116,26 +113,8 @@
                         null,
                         null,
                         null,
-                            
-
                     ],
                     "aaSorting": [],
-
-                    //"bProcessing": true,
-                    //"bServerSide": true,
-                    //"sAjaxSource": "http://127.0.0.1/table.php"   ,
-
-                    //,
-                    //"sScrollY": "200px",
-                    //"bPaginate": false,
-
-                    //"sScrollX": "100%",
-                    //"sScrollXInner": "120%",
-                    //"bScrollCollapse": true,
-                    //Note: if you are applying horizontal scrolling (sScrollX) on a ".table-bordered"
-                    //you may want to wrap the table inside a "div.dataTables_borderWrap" element
-
-                    //"iDisplayLength": 50    
 
                     select: {
                         style: 'multi'
