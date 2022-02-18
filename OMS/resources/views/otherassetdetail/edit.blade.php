@@ -3,7 +3,6 @@
 @section('title','Other Asset Detail')
 
 @section('style')
-    <link rel="stylesheet" href="{{ asset('/storage/OMS/data-tables/jquery.dataTables.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/storage/OMS/bootstrap5/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/storage/OMS/css/style.css') }}">
 @endsection
@@ -49,15 +48,6 @@
                @enderror  
             </div>
         </div>
-        <!-- <div class="position-relative row form-group">
-          <label for="price" class="col-sm-2 col-form-label">Price <span style="color: red">*</span></label>
-            <div class="col-sm-10">
-              <input type="text" class="form-control" name="currentPrice" id="currentPrice" value="{{ $subcategory }}" placeholder="Please enter Price"  onkeyup="add(this)"/>
-               @error("price")
-               <span class="text-danger"> {{ $errors->first('currentprice') }} </span>
-               @enderror  
-            </div>
-        </div> -->
         <div class="position-relative row form-group"><label for="content" class="col-sm-2 col-form-label">Category<span style="color: red">*</span></label>
           <div class="col-sm-10">
             <select class="category form-control" name="category">
@@ -152,8 +142,6 @@
           }
           div.find('.subcategory').html(" ");
           div.find('.subcategory').append(op);
-         /* $('#subcategory').append(op);
-          $('select[name="subcategory"]').append(op);*/
           console.log(div.find('.subcategory'));
         },
         error:function(){
@@ -183,8 +171,6 @@
           }
           div.find('.brand').html(" ");
           div.find('.brand').append(op);
-         /* $('#subcategory').append(op);
-          $('select[name="subcategory"]').append(op);*/
           console.log(div.find('.brand'));
         },
         error:function(){
@@ -198,7 +184,7 @@ function add(e){
   var quantity = document.getElementById('quantity').value;
    document.getElementById('totalprice').value = priceperunit*quantity;
   console.log(pricePerUnit*quantity);
-  //console.log(e.value);
+  
 }
 </script>
 
