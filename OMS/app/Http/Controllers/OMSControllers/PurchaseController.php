@@ -112,7 +112,6 @@ class PurchaseController extends Controller
         $category = Category::all();
         $subcategory = SubCategory::where('categoryId',$purchasedetail->categoryid)->get();
         $brand = Brand::where('subcategoryId',$purchasedetail->subcategoryid)->get();
-        //dd($subcategory);
         return view('purchase.edit',compact('purchasedetail','assetdetail','brand','category','subcategory'));
     }
 
