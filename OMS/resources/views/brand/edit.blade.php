@@ -39,6 +39,19 @@
                             @enderror    
                         </div>
                     </div> 
+                    <div class="position-relative row form-group">
+                        <label class="col-sm-2 col-form-label">Sub Category<span style="color: red">*</span></label>
+                            <div class="col-sm-10">
+                                <select class="form-control" name="subcategory">
+                                <option value="" disabled>Sub Category</option>
+                                    @foreach($subcategory as $value)
+                                        <option value="{{$value->id}}">{{$value->name}} </option>
+                                    @endforeach
+			                    </select> 
+                                    <span class="text-danger"> {{ $errors->first('subcategory') }} </span>
+                                
+                            </div>
+                    </div>
                 <div class="text-center">
                     <input type="Submit" class="mb-2 mr-2 btn btn-primary" value="Update" name="submit">
                     <a href="{{ url('/brands') }}" class="mb-2 mr-2 btn btn-danger">Cancel</a>
