@@ -14,6 +14,7 @@ use App\Http\Controllers\OMSControllers\AttendanceController;
 use App\Http\Controllers\OMSControllers\PcController;
 use App\Http\Controllers\OMSControllers\BrandController;
 use App\Http\Controllers\OMSControllers\SubcategoryController;
+use App\Http\Controllers\OMSControllers\AllAssetsController;
 use App\Http\Controllers\OMSControllers\CategoryController;
 use App\Http\Controllers\OMSControllers\PcPurchaseController;
 use App\Http\Controllers\OMSControllers\PurchaseController;
@@ -132,4 +133,9 @@ Route::middleware(['auth'])->group(function(){
         Route::resource('otherAsset',OtherAssetController::class);
     // end
 });
+
+Route::resource('subCategory',SubcategoryController::class);
+Route::get('/allAssetLists',[AllAssetsController::class,'showAllAssets']);
+Route::get('/allAssetList/updateOthersPrice',[AllAssetsController::class,'currentOthersPrice']);
+Route::get('/allAssetList/updatePcPrice',[AllAssetsController::class,'currentPcPrice']);
 

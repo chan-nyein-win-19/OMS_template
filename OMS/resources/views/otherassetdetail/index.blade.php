@@ -84,7 +84,6 @@
 <script src="{{ asset('/storage/OMS/data-tables/jquery.dataTables.min.js') }}"></script>
 <script src="{{ asset('/storage/OMS/bootbox/bootbox.all.js') }}"></script>
 <script src="{{ asset('/storage/OMS/bootbox/bootbox.js') }}"></script>
-<script src="{{ asset('/storage/OMS/bootbox/bootbox.locale.js') }}"></script>
 <script src="{{ asset('/storage/OMS/bootstrap5/bootstrap.min.js') }}"></script>
 <script src="{{ asset('/storage/OMS/bootstrap5/popper.min.js') }}"></script>
 <script src="{{ asset('/storage/OMS/bootstrap5/bootstrap.bundle.min.js') }}"></script>
@@ -110,23 +109,7 @@ jQuery(function($) {
                        
 
             ],
-            "aaSorting": [],
-
-            //"bProcessing": true,
-            //"bServerSide": true,
-            //"sAjaxSource": "http://127.0.0.1/table.php"   ,
-
-            //,
-            //"sScrollY": "200px",
-            //"bPaginate": false,
-
-            //"sScrollX": "100%",
-            //"sScrollXInner": "120%",
-            //"bScrollCollapse": true,
-            //Note: if you are applying horizontal scrolling (sScrollX) on a ".table-bordered"
-            //you may want to wrap the table inside a "div.dataTables_borderWrap" element
-
-            //"iDisplayLength": 50    
+            "aaSorting": [],   
 
             select: {
                 style: 'multi'
@@ -163,23 +146,7 @@ function deleteRecord($id) {
         }
     });
 }
-// $('.show_confirm').click(function(event) {
-//     var form = $(this).closest("form");
-//     var name = $(this).data("name");
-//     event.preventDefault();
-//     swal({
-//             title: `Are you sure you want to delete this announcement?`,
-//             text: "If you delete this, it will be gone forever.",
-//             icon: "warning",
-//             buttons: true,
-//             dangerMode: true,
-//         })
-//         .then((willDelete) => {
-//             if (willDelete) {
-//                 form.submit();
-//             }
-//         });
-// });
+
 </script>
 
 @endsection

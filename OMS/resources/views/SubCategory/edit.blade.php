@@ -4,7 +4,6 @@
 
 @section('style')
     <link rel="stylesheet" href="{{ asset('/storage/OMS/css/style.css') }}">
-    <link rel="stylesheet" href="{{ asset('/storage/OMS/data-tables/jquery.dataTables.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/storage/OMS/bootstrap5/bootstrap.min.css') }}">
 @endsection
 
@@ -34,6 +33,16 @@
                             </option>
                         @endforeach
                 </select>
+            </div>
+            <div class="form-group">
+                <input type="text" name="itemcode" class="form-control mr-3" placeholder="Prefix" value="{{ old('itemcode')? old('itemcode') : $subCategory->itemcode }}"> 
+                    @error('itemcode')
+                        <div class="row">
+                            <div class="col-sm-10">
+                                <span class="text-danger">*{{$message}}</span><br>
+                            </div>
+                        </div>
+                    @enderror
             </div>
             <div class="form-group">
                 <input type="text" name="name" class="form-control mr-3" placeholder="SubCategory Name" value="{{ old('name')? old('name') : $subCategory->name }}"> 
