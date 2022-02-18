@@ -12,8 +12,6 @@ class Pc extends Model
     public function purchase(){
         return $this->belongsTo(Purchase::class,'purchaseid');
     }
-<<<<<<< HEAD
-=======
     public function brand(){
         return $this->belongsTo(Brand::class,'brandid');
     }
@@ -27,6 +25,5 @@ class Pc extends Model
 
    
 
->>>>>>> 6fd3f9f904791cd1f3cdc6284b308fe3b2e91038
   
 }

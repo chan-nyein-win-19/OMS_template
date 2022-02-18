@@ -31,7 +31,7 @@
         <div class="col-12 pt-4 mb-5">
             <h3 class="sub-title">PC Purchase Form</h3>
         </div>
-        <form method="post"  action="{{ route('purchase.store') }}" class="container">
+        <form method="post"  action="{{ route('pcpurchase.store') }}" class="container">
             @csrf
             <div class="form-group row">
                 <label for="date" class="col-sm-4 col-form-label" >Date</label>

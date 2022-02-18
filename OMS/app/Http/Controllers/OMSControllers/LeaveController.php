@@ -17,9 +17,9 @@ class LeaveController extends Controller
      */
     public function index()
     {
-        $leaders = User::select('*')->where('role','Leader')->get();
-        $senseis = User::select('*')->where('role','Sensei')->get();
-        $today = date('Y-m-d');
+        $leaders=User::select('*')->where('role','Leader')->get();
+        $senseis=User::select('*')->where('role','Sensei')->get();
+        $today=date('Y-m-d');
         
         return view('leave.leaveRequestForm',compact([
             'leaders','senseis','today'
@@ -36,11 +36,11 @@ class LeaveController extends Controller
     public function store(Request $request)
     {
         $validator = validator(request()->all(),[
-            'employeeId'=>'required',
-            'date'=>'required|after:yesterday',
-            'time'=>'required',
-            'reason'=>'required|max:300',
-            'comment'=>'required|max:300'
+            'employeeId' => 'required',
+            'date' => 'required|after:yesterday',
+            'time' => 'required',
+            'reason' => 'required|max:300',
+            'comment' => 'required|max:300'
         ]);
         if($validator->fails()){
             return back()->withErrors($validator);
@@ -62,7 +62,7 @@ class LeaveController extends Controller
  
             foreach($leaders as $leader){
                 if(!is_null($leader) || $leader!=""){
-                    $leave=new Leaves;
+                    $leave = new Leaves;
                     $leave->employeeId = request()->employeeId;
                     $leave->date = request()->date;
                     $leave->time = request()->time;

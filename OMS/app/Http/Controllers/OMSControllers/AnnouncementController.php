@@ -37,27 +37,16 @@ class AnnouncementController extends Controller
      */
     public function store(Request $request)
     {
-<<<<<<< HEAD
-         $validateData = $request->validate([
-=======
         $validateData = $request->validate([
->>>>>>> 1e5bfd89d829b09308195dd4398b5cc777acb200
             'title' => 'required',
             'content' => 'required',
         ]);
          
         $announcement = new Announcement;
-<<<<<<< HEAD
-        $announcement->title = request()->title;
-        $announcement->content = request()->content;
-        $announcement->save();
-        return redirect('/announcements/create')->with('info','Announcements Successfully Added...');
-=======
         $announcement -> title=request()->title;
         $announcement -> content=request()->content;
         $announcement -> save();
         return redirect('announcements')->with('success','Announcements Successfully Added...');
->>>>>>> 1e5bfd89d829b09308195dd4398b5cc777acb200
     }
 
     /**
