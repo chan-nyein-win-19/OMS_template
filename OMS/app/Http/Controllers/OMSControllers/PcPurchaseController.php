@@ -51,52 +51,68 @@ class PcPurchaseController extends Controller
     {
         $validator = validator(request()->all(),[
             'date'=>'required',
-            'priceperunit'=>'required',
-            'quantity'=>'required',
-            'totalprice'=>'required',
+            'priceperunit'=>'required|integer|min:1',
+            'quantity'=>'required|integer|min:1',
+            'totalprice'=>'required|integer|min:1',
+            'category'=>'required',
+            'subcategory'=>'required',
+            'brand'=>'required',
             'cpu'=>'required',
             'ram'=>'required',
             'storage'=>'required',
-            'itemcode'=>'required',
             'model'=>'required',
             'condition'=>'required',
-            'currentprice'=>'required',
+            'currentprice'=>'required|integer',
         ]);
     
         if($validator->fails()) {
             return back()->withErrors($validator);
         }
     
-        $purchase = new Purchase();
-        $purchase->date = request()->date;
-        $purchase->priceperunit = request()->priceperunit;
-        $purchase->quantity = request()->quantity;
-        $purchase->totalprice = request()->totalprice;
-        $purchase->itemcode = request()->itemcode;
-        $purchase->condition = request()->condition;
-        $purchase->categoryid = request()->categoryid;
-        $purchase->subcategoryid = request()->subcategoryid;
-        $purchase->brandid = request()->brandid;
+        $purchase=new Purchase();
+        $purchase->date=request()->date;
+        $purchase->priceperunit=request()->priceperunit;
+        $purchase->quantity=request()->quantity;
+        $purchase->totalprice=request()->totalprice;
+        $purchase->condition=request()->condition;
+        $purchase->categoryid=request()->category;
+        $purchase->subcategoryid=request()->subcategory;
+        $purchase->brandid=request()->brand;
 
         $purchase->save();
         
 
+        if($validator->fails()) {
+            return back()->withErrors($validator);
+        }
+        $lastPC=Pc::join('purchases','purchases.id','=','pcs.purchaseid')
+                    ->select('*')->latest('pcs.id')->first();
+        $code=0;
+        if($lastPC!=null){
+        $lastItemCode=explode('-',$lastPC->itemcode);
+        $code=$lastItemCode[1];
+        }
+
         for($x=0;$x<$purchase->quantity;$x++){
-        $pc = new Pc();
-        $pc->cpu = request()->cpu;
-        $pc->ram = request()->ram;
-        $pc->storage = request()->storage;
-        $pc->model = request()->model;
-        $pc->itemcode = request()->itemcode;
-        $pc->condition = request()->condition;
-        $pc->currentprice = request()->currentprice;
-        $pc->purchaseid = $purchase->id;
-        $pc->categoryid = request()->categoryid;
-        $pc->subcategoryid = request()->subcategoryid;
-        $pc->brandid = request()->brandid;
+            $code=$code+1;
+            $itemcode="PC-".$code;
+        $pc=new Pc();
+        $pc->cpu=request()->cpu;
+        $pc->ram=request()->ram;
+        $pc->storage=request()->storage;
+        $pc->model=request()->model;
+        $pc->itemcode=request()->itemcode;
+        $pc->itemcode=$itemcode;
+        $pc->condition=request()->condition;
+        $pc->currentprice=request()->currentprice;
+        $pc->purchaseid=$purchase->id;
+        $pc->categoryid=request()->category;
+        $pc->subcategoryid=request()->subcategory;
+        $pc->brandid=request()->brand;
+        $pc->status='available';
         $pc->save();
     }
-        return back();
+        return back()->with('success','PC Purchase has been added successfully!!');
     }
 
     /**

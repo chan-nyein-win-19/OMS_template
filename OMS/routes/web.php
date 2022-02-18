@@ -13,10 +13,11 @@ use App\Http\Controllers\OMSControllers\LeaderLeaveController;
 use App\Http\Controllers\OMSControllers\AttendanceController;
 use App\Http\Controllers\OMSControllers\PcController;
 use App\Http\Controllers\OMSControllers\BrandController;
+use App\Http\Controllers\OMSControllers\PcrentController;
+use App\Http\Controllers\OMSControllers\PcPurchaseController;
+use App\Http\Controllers\OMSControllers\CategoryController;
 use App\Http\Controllers\OMSControllers\SubcategoryController;
 use App\Http\Controllers\OMSControllers\AllAssetsController;
-use App\Http\Controllers\OMSControllers\CategoryController;
-use App\Http\Controllers\OMSControllers\PcPurchaseController;
 use App\Http\Controllers\OMSControllers\PurchaseController;
 use App\Http\Controllers\OMSControllers\OtherAssetController;
 use App\Http\Controllers\OMSControllers\AssetDetailController;
@@ -111,7 +112,19 @@ Route::middleware(['auth'])->group(function(){
         Route::resource('assetdetail',AssetDetailController::class); 
         Route::get('/findCategory/{id}',[PurchaseController::class,'findCategory']);
         Route::get('/findBrand/{id}',[PurchaseController::class,'findBrand']);
-    // end
+    //end
+
+    //PCPurchase
+        Route::resource('pcpurchase',PcPurchaseController::class);
+    //end
+
+    //PcRent
+        Route::resource('pcrent',PcrentController::class);
+    //end
+
+    //PC
+        Route::resource('pc',PcController::class);
+    //end
 
     // PC
         Route::resource('pcpurchase',PcPurchaseController::class);
@@ -133,14 +146,11 @@ Route::middleware(['auth'])->group(function(){
         Route::resource('otherAsset',OtherAssetController::class);
     // end
     
-    //subCategory
-    Route::resource('subCategory',SubcategoryController::class);
-    //end
 
     //allAssetLists
-    Route::get('/allAssetLists',[AllAssetsController::class,'showAllAssets']);
-    Route::get('/allAssetList/updateOthersPrice',[AllAssetsController::class,'currentOthersPrice']);
-    Route::get('/allAssetList/updatePcPrice',[AllAssetsController::class,'currentPcPrice']);
+        Route::get('/allAssetLists',[AllAssetsController::class,'showAllAssets']);
+        Route::get('/allAssetList/updateOthersPrice',[AllAssetsController::class,'currentOthersPrice']);
+        Route::get('/allAssetList/updatePcPrice',[AllAssetsController::class,'currentPcPrice']);
     //end
 });
 

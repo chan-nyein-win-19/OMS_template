@@ -23,6 +23,9 @@
             </div>
         @endif
 
+        @if(session('success'))
+        <div class="alert alert-success">{{session('success')}}</div>
+        @endif
         <div class="main-card mb-3 card ">
         <div class="card-body">
         <div class="col-12 pt-4 mb-5">
@@ -40,139 +43,134 @@
                 </div>
             </div>
 
-            <div class="form-group row">
-                <label for="priceperunit" class="col-sm-4 col-form-label" >Price Per Unit</label>
-                <div class="col-sm-6">
-                
-                <input type="text" class="form-control" name="priceperunit" id="priceperunit" onchange=totalPrice() >
-                </div>
-            </div>
+                    <div class="form-group row">
+                        <label for="priceperunit" class="col-sm-4 col-form-label" >Price Per Unit<span style="color:red">*</span></label>
+                            <div class="col-sm-6">
+                            <input type="text" class="form-control" name="priceperunit" id="priceperunit" onkeyup=totalPrice() >
+                            @error("priceperunit")
+                                <span class="text-danger float-left">{{$errors->first('priceperunit')}}</span>
+                            @enderror  
+                            </div>
+                    </div>
 
-            <div class="form-group row">
-                <label for="qty" class="col-sm-4 col-form-label" >Quantity</label>
-                <div class="col-sm-6">
-                
-                <input type="text" class="form-control" name="quantity" id="quantity" onchange=totalPrice() >
-                </div>
-            </div>
-
-            <div class="form-group row">
-                <label for="totalprice" class="col-sm-4 col-form-label" >Total Price</label>
-                <div class="col-sm-6">
-                <input type="text" class="form-control" name="totalprice" id="totalprice">
-                </div>
-            </div>
-
-            <div class="form-group row">
-                <label for="category" class="col-sm-4 col-form-label" >Category</label>
-                <div class="col-sm-6">
-			    <select class="form-control" name="categoryid">
-                    @foreach($category as $value)
-				    <option value="{{$value['id']}}">{{$value['name']}}</option>
-                    @endforeach
-			    </select>
-            </div>
-            </div>
-
-            <div class="form-group row">
-                <label for="subcategory" class="col-sm-4 col-form-label" >Sub Category</label>
-                <div class="col-sm-6">
-			    <select class="form-control" name="subcategoryid">
-                    @foreach($subCategory as $value)
-				    <option value="{{$value['id']}}">{{$value['name']}}</option>
-                    @endforeach
-			    </select>
-            </div>
-            </div>
-
-            <div class="form-group row">
-			<label class="col-sm-4 col-form-label">Brand</label>
-            <div class="col-sm-6">
-			    <select class="form-control" name="brandid">
-                    @foreach($brand as $value)
-				    <option value="{{$value['id']}}">{{$value['name']}}</option>
-                    @endforeach
-			    </select>
-            </div>
-		    </div>
-
-            <div class="form-group row">
-                <label for="cpu" class="col-sm-4 col-form-label" >CPU</label>
-                <div class="col-sm-6">
-                
-                <input type="text" class="form-control"  name="cpu" value="">
-                </div>
-            </div>
-
-            <div class="form-group row">
-                <label for="ram" class="col-sm-4 col-form-label" >RAM</label>
-                <div class="col-sm-6">
-                
-                <input type="text" class="form-control" name="ram" value="">
-                </div>
-            </div>
-        
-          
-
-            <div class="form-group row">
-                <label for="storage" class="col-sm-4 col-form-label" >Storage</label>
-                <div class="col-sm-6">
-                
-                <input type="text" class="form-control" name="storage" value="">
-                </div>
-            </div>
-     
-          
-
-            <div class="form-group row">
-                <label for="itemcode" class="col-sm-4 col-form-label" >Item Code</label>
-                <div class="col-sm-6">
-                
-                <input type="text" class="form-control" name="itemcode" value="">
-                </div>
-            </div>
-    
-          
-
-            <div class="form-group row">
-                <label for="model" class="col-sm-4 col-form-label" >Model</label>
-                <div class="col-sm-6">
-                
-                <input type="text" class="form-control" name="model" value="">
-                </div>
-            </div>
-            
-          
-
-            <div class="form-group row">
-                <label for="condition" class="col-sm-4 col-form-label" >Conditon</label>
-                <div class="col-sm-6">
-                
-                <input type="text" class="form-control" name="condition" value="">
-                </div>
-            </div>
-        
-
-            <div class="form-group row">
-                <label for="currentprice" class="col-sm-4 col-form-label" >Current Price</label>
-                <div class="col-sm-6">
-                
-                <input type="text" class="form-control" name="currentprice" value="">
-                </div>
-            </div>
-           
-          
-            
-            <div class="form-group row">
-            <div class="col-sm-4"></div>
-            <div class="col-sm-6">
-                <button type="submit" class="btn btn-primary">Add</button>
-                <button type="reset" class="btn btn-danger" id="cancel" >Cancle</button>
-                </div>
-            </div>
-
-           
-        </form>
+                    <div class="form-group row">
+                        <label for="qty" class="col-sm-4 col-form-label" >Quantity<span style="color:red">*</span></label>
+                        <div class="col-sm-6"> 
+                        <input type="text" class="form-control" name="quantity" id="quantity" onkeyup=totalPrice() >
+                        @error("quantity")
+                            <span class="text-danger float-left">{{$errors->first('quantity')}}</span>
+                        @enderror  
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="totalprice" class="col-sm-4 col-form-label" >Total Price<span style="color:red">*</span></label>
+                        <div class="col-sm-6">
+                        <input type="text" class="form-control" name="totalprice" id="totalprice" readonly>
+                        @error("totalprice")
+                            <span class="text-danger float-left">{{$errors->first('totalprice')}}</span>
+                        @enderror  
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="category" class="col-sm-4 col-form-label" >Category<span style="color:red">*</span></label>
+                        <div class="col-sm-6">
+                        <select class="form-control" name="category" readonly>
+                            <option selected disabled>Choose Category</option>
+                            @foreach($category as $value)
+                            <option value="{{$value['id']}}">{{$value['name']}}</option>
+                            @endforeach
+                        </select>
+                        <span class="text-danger float-left">{{$errors->first('category')}}</span>
+                    </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="subcategory" class="col-sm-4 col-form-label" >Sub Category<span style="color:red">*</span></label>
+                        <div class="col-sm-6">
+                        <select class="form-control" name="subcategory" readonly>
+                            <option selected disabled>Choose SubCategory</option>
+                            @foreach($subCategory as $value)
+                            <option value="{{$value['id']}}">{{$value['name']}}</option>
+                            @endforeach
+                        </select>
+                        <span class="text-danger float-left">{{$errors->first('subcategory')}}</span>
+                    </div>
+                    </div>
+                    <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">Brand<span style="color:red">*</span></label>
+                    <div class="col-sm-6">
+                        <select class="form-control" name="brand" readonly>
+                            <option selected disabled>Choose Brand</option>
+                            @foreach($brand as $value)
+                            <option value="{{$value['id']}}">{{$value['name']}}</option>
+                            @endforeach
+                        </select>
+                        <span class="text-danger float-left">{{$errors->first('brand')}}</span>
+                    </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="cpu" class="col-sm-4 col-form-label" >CPU<span style="color:red">*</span></label>
+                        <div class="col-sm-6">
+                        
+                        <input type="text" class="form-control"  name="cpu" value="">
+                        @error("cpu")
+                            <span class="text-danger float-left">{{$errors->first('cpu')}}</span>
+                        @enderror  
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="ram" class="col-sm-4 col-form-label" >RAM<span style="color:red">*</span></label>
+                        <div class="col-sm-6">    
+                        <input type="text" class="form-control" name="ram" value="">
+                        @error("ram")
+                            <span class="text-danger float-left">{{$errors->first('ram')}}</span>
+                        @enderror 
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="storage" class="col-sm-4 col-form-label" >Storage<span style="color:red">*</span></label>
+                        <div class="col-sm-6">
+                        <input type="text" class="form-control" name="storage" value="">
+                        @error("storage")
+                            <span class="text-danger float-left">{{$errors->first('storage')}}</span>
+                        @enderror 
+                        </div>
+                    </div>
+                  
+                    <div class="form-group row">
+                        <label for="model" class="col-sm-4 col-form-label" >Model<span style="color:red">*</span></label>
+                        <div class="col-sm-6">
+                        <input type="text" class="form-control" name="model" value="">
+                        @error("model")
+                            <span class="text-danger float-left">{{$errors->first('model')}}</span>
+                        @enderror 
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="condition" class="col-sm-4 col-form-label" >Conditon<span style="color:red">*</span></label>
+                        <div class="col-sm-6">
+                        <input type="text" class="form-control" name="condition" value="">
+                        @error("condition")
+                            <span class="text-danger float-left">{{$errors->first('condition')}}</span>
+                        @enderror 
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="currentprice" class="col-sm-4 col-form-label" >Current Price<span style="color:red">*</span></label>
+                        <div class="col-sm-6">
+                        <input type="number" class="form-control" name="currentprice" value="">
+                        @error("currentprice")
+                            <span class="text-danger float-left">{{$errors->first('currentprice')}}</span>
+                        @enderror
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                    <div class="col-sm-4"></div>
+                    <div class="col-sm-6">
+                        <button type="submit" class="btn btn-primary">Add</button>
+                        <button type="reset" class="btn btn-danger" id="cancel" >Cancle</button>
+                        </div>
+                    </div>
+                </form>
         </div>
         </div>
 </div>
@@ -184,8 +182,13 @@
 function totalPrice(){
 var x = parseInt(document.getElementById("priceperunit").value);
 var y = parseInt(document.getElementById("quantity").value);
-var result = parseInt(x*y);
+var result = x*y;
+
+if(isNaN(result)) {
+    document.getElementById("result").value=0;
+}else{
 document.getElementById("totalprice").value =result;
+}
 }
 </script>
 
