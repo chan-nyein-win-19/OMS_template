@@ -32,7 +32,6 @@
                     <th>Category</th>
                     <th>SubCategory</th>
                     <th>Brand</th>
-                   
                     <th>Action</th>
                 </tr>
             </thead>
@@ -63,7 +62,7 @@
                     <a href="{{ route('otherAsset.edit', $item->id) }}" class="mb-2 mr-2 btn-transition btn btn-outline-primary" data-toggle="tooltip" title='Edit'>
                                 <i class="fa fa-fw"></i>
                     </a>
-                        <form method="POST" action="{{route('otherpurchase.destroy',['otherpurchase'=>$item])}}" id="form{{$item->id}}">
+                        <form method="POST" action="{{route('otherAsset.destroy', $item->id )}}" id="form{{$item->id}}">
                             @csrf
                             <input name="_method" type="hidden" value="DELETE">
                             <button type="button" onclick=deleteRecord(this.id) class="mb-2 mr-2 btn-transition btn btn-outline-danger" data-toggle="tooltip" title="Delete" id="{{$item->id}}">

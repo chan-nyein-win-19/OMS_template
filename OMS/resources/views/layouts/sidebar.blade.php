@@ -78,7 +78,7 @@
                     </a>
                     <ul>
                         <li>
-                            <a href="{{ url('/assetdetail') }}"  class="textstyle">
+                            <a href="{{ url('/otherAsset') }}"  class="textstyle">
                                 Asset Detail Lists
                             </a>
                         </li>
