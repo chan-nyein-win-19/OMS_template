@@ -12,16 +12,16 @@ class Purchase extends Model
 
     public function category()
     {
-        return $this->belongsTo(Category::class,'categoryId');
+        return $this->belongsTo(Category::class,'categoryid');
     }
 
     public function Brand()
     {
-        return $this->belongsTo(Brand::class,'brandId');
+        return $this->belongsTo(Brand::class,'brandid');
     }
 
     public function subCategory()
     {
-        return $this->belongsTo(subCategory::class,'subcategoryId');
+        return $this->belongsTo(subCategory::class,'subcategoryid');
     }
 }
