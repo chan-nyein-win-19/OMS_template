@@ -41,14 +41,14 @@ class SubcategoryController extends Controller
     {
         $validateData = $request->validate([
             'name' => 'required',
-            'itemcode'=>'required|unique:sub_categories|string',
+            'prefix'=>'required|unique:sub_categories|string',
             'category' => 'required',
             'description' => 'required',
         ]);
        
         $subCategory = new SubCategory;
         $subCategory->name = $request->name;
-        $subCategory->itemcode = $request->itemcode;
+        $subCategory->prefix = $request->prefix;
         $subCategory->categoryId = $request->category;
         $subCategory->description = $request->description;
         $subCategory->save();
@@ -93,13 +93,13 @@ class SubcategoryController extends Controller
 
         $validateData = $request->validate([
             'name' => 'required',
-            'itemcode'=>'required|unique:sub_categories,itemcode,'.$subCategory->id.'|string',
+            'prefix'=>'required|unique:sub_categories,prefix,'.$subCategory->id.'|string',
             'category' => 'required',
             'description' => 'required',
         ]);
         
         $subCategory->name = $request->name;
-        $subCategory->itemcode = $request->itemcode;
+        $subCategory->prefix = $request->prefix;
         $subCategory->categoryId = $request->category;
         $subCategory->description = $request->description;
         $subCategory->save();

@@ -36,8 +36,8 @@
                 </select>
             </div>
             <div class="form-group">
-                <input type="text" name="itemcode" class="form-control mr-3" placeholder="itemcode" value="{{ old('itemcode')? old('itemcode') : $subCategory->itemcode }}"> 
-                    @error('itemcode')
+                <input type="text" name="prefix" class="form-control mr-3" placeholder="Prefix" value="{{ old('prefix')? old('prefix') : $subCategory->prefix }}"> 
+                    @error('prefix')
                         <div class="row">
                             <div class="col-sm-10">
                                 <span class="text-danger">*{{$message}}</span><br>

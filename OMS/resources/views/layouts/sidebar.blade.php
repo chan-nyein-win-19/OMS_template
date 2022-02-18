@@ -111,6 +111,27 @@
                         </li>
                     </ul>
                 </li>
+                <li>
+                    <a href="#" class="textstyle">
+                        <i class="metismenu-icon" ></i>
+                        <span class="ml-3">SubCategories</span>
+                        <i class="fa fa-angle-down ml-5 opacity-8"></i>
+                    </a>
+                    <ul>
+                        <li>
+                            <a href="{{ url('/subCategory') }}" class="textstyle">
+                               List&Create
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="{{ url('/allAssetLists') }}" class="textstyle">
+                        <i class="metismenu-icon" ></i>
+                        <span class="ml-3">Assets-CurrentPrice</span>
+                        <i class="fa fa-angle-down ml-5 opacity-8"></i>
+                    </a>
+                </li>
             </ul>
         </li>
     </ul>
