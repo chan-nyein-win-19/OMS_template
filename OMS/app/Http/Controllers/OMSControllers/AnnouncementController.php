@@ -46,7 +46,7 @@ class AnnouncementController extends Controller
         $announcement -> title=request()->title;
         $announcement -> content=request()->content;
         $announcement -> save();
-        return redirect('/announcements/create')->with('info','Announcements Successfully Added...');
+        return redirect('announcements')->with('success','Announcements Successfully Added...');
     }
 
     /**

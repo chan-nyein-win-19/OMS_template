@@ -90,7 +90,7 @@ class LeaveController extends Controller
                 }
             }
         }
-        return redirect()->route('leaves.show');
+        return redirect()->route('leaves.show')->with('info','Leave request successfully submitted');
             
         }else{
             return back()->withErrors(['leaveExists'=>'Today Leaves already exist.']);
@@ -251,7 +251,7 @@ class LeaveController extends Controller
 
         return view('leave.leaveRecords',compact([
             'today','leaveRecords'
-        ]))->with('info','Successfully deleted');
+        ]));
 
         }else{
             return redirect("/");

@@ -122,6 +122,9 @@
 <script>
 $(document).ready(function() {
     $('#leaveRecord').DataTable();
+    setTimeout(() => {
+                $('.alert-success').addClass('d-none');
+            },3000);
 });
 
 function deleteRecord($id) {

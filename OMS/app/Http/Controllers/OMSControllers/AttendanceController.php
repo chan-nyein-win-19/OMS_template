@@ -67,7 +67,7 @@ class AttendanceController extends Controller
         
         $dailyattendance->save();
     
-        return redirect('attendance');
+        return redirect('attendance')->with('success','Attendance record has been saved successfully!!');
     }
 
     /**
@@ -128,7 +128,7 @@ class AttendanceController extends Controller
             'workfromhome'=>request()->wfh,
             'ottime'=>request()->ottime,
         ]);
-        return redirect('attendance');
+        return redirect('attendance')->with('success','Attendance record has been updated successfully!!');;
     }
 
     /**
