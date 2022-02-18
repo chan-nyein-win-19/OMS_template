@@ -132,10 +132,15 @@ Route::middleware(['auth'])->group(function(){
     // OtherAsset
         Route::resource('otherAsset',OtherAssetController::class);
     // end
+    //subCategory
+    Route::resource('subCategory',SubcategoryController::class);
+    //end
+    //allAssetLists
+    Route::get('/allAssetLists',[AllAssetsController::class,'showAllAssets']);
+    Route::get('/allAssetList/updateOthersPrice',[AllAssetsController::class,'currentOthersPrice']);
+    Route::get('/allAssetList/updatePcPrice',[AllAssetsController::class,'currentPcPrice']);
+    //end
 });
 
-Route::resource('subCategory',SubcategoryController::class);
-Route::get('/allAssetLists',[AllAssetsController::class,'showAllAssets']);
-Route::get('/allAssetList/updateOthersPrice',[AllAssetsController::class,'currentOthersPrice']);
-Route::get('/allAssetList/updatePcPrice',[AllAssetsController::class,'currentPcPrice']);
+
 
