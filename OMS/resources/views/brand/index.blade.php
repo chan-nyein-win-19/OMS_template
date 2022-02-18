@@ -91,22 +91,23 @@
                     </thead>
                     <tbody> 
                         @foreach ($brand as $item)               
-                        <tr>
-                            <td>{{ $item->name }}</td>
-                            <td>{{ $item->description }}</td> 
-                            <td>   
-                                <a href="{{ route('brands.edit', $item->id) }}" class="mb-2 mr-2 btn-transition btn btn-outline-primary" data-toggle="tooltip" title='Edit'>
-                                    <i class="fa fa-fw"></i>
-                                </a>
-                                <form method="POST" action="{{ route('brands.destroy',['brand'=>$item]) }}" id="form{{ $item->id }}">
-                                    @csrf
-                                    <input name="_method" type="hidden" value="DELETE">
-                                    <button type="button" onclick=deleteRecord(this.id) class="mb-2 mr-2 btn-transition btn btn-outline-danger" data-toggle="tooltip" title="Delete" id="{{$item->id}}">
-                                        <i class="fa fa-fw"></i>
-                                    </button>
-                                </form>
-                            </td> 
-                        </tr>  
+                            <tr>
+                                <td>{{ $item->name }}</td>
+                                <td>{{ $item->description }}</td> 
+                                <td>{{ $item->subcategory->name }}</td>
+                                <td>  
+                                    <a href="{{ route('brands.edit', $item->id) }}" class="mb-2 mr-2 btn-transition btn btn-outline-primary" data-toggle="tooltip" title='Edit'>
+                                        <i class="fa fa-fw"></i>
+                                    </a>
+                                    <form method="POST" action="{{ route('brands.destroy',['brand'=>$item]) }}" id="form{{ $item->id }}">
+                                        @csrf
+                                        <input name="_method" type="hidden" value="DELETE">
+                                        <button type="button" onclick=deleteRecord(this.id) class="mb-2 mr-2 btn-transition btn btn-outline-danger" data-toggle="tooltip" title="Delete" id="{{$item->id}}">
+                                            <i class="fa fa-fw"></i>
+                                        </button>
+                                    </form>
+                                </td> 
+                            </tr>  
                         @endforeach 
                     </tbody>
                 </table>
