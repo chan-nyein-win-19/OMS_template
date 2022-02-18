@@ -50,10 +50,10 @@
                         {{ $item->quantity }}
                     </td>
                     <td>
-                        {{ $item->totalPrice }}
+                        {{ $item->totalprice }}
                     </td>
                     <td>
-                        {{ $item->pricePerUnit }}
+                        {{ $item->priceperunit }}
                     </td> 
                     <td>
                         {{ $item->category->name }}
@@ -103,7 +103,6 @@
                 .DataTable({
                     bAutoWidth: false,
                     "aoColumns": [
-                        null,
                         null,
                         null,
                         null,
