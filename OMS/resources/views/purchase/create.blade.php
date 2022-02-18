@@ -117,7 +117,7 @@
     @elseif($errors->first('category') || $errors->first('subcategory') || $errors->first('brand') ) 
       $("select[name='category']").focus();
     @endif
-  });
+  
 </script>
 <script type = "text/javascript" 
          src = "https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js">
@@ -192,7 +192,7 @@ function add(e){
   var priceperunit = document.getElementById('priceperunit').value;
   var quantity = document.getElementById('quantity').value;
    document.getElementById('totalprice').value = priceperunit*quantity;
-  console.log(pricePerUnit*quantity);
+  // console.log(pricePerUnit*quantity);
   //console.log(e.value);
 }
 </script>
