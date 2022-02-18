@@ -16,23 +16,23 @@ class BrandController extends Controller
      */
     public function index()
     {
-        $brand=  Brand::all();
+        $brand = Brand::all();
         $subcategory = subCategory::all();
         return view("brand.index",compact(['brand','subcategory']));
     }
    
     public function store(Request $request)
     {
-        $validate= $request->validate([
+        $validate = $request->validate([
             'name' => 'required|unique:brands,name',
             'description' => 'required',
             'subcategory'=>'required',
         ]);
       
         $brand = new Brand;
-        $brand->name=request()->name;
-        $brand->description=request()->description;
-        $brand->subcategoryId=request()->subcategory;
+        $brand->name = request()->name;
+        $brand->description = request()->description;
+        $brand->subcategoryId = request()->subcategory;
         $brand->save();
         return back()->with('info','Brands Successfully Added...');
     
@@ -40,7 +40,7 @@ class BrandController extends Controller
    
     public function edit($id)
     {
-        $edit=Brand::find($id);
+        $edit = Brand::find($id);
         $subcategory = subCategory::all();
         return view('brand.edit',compact('edit','subcategory'));
     }
@@ -63,9 +63,9 @@ class BrandController extends Controller
          ]);
        
         $brand = Brand::find($id);
-        $brand->name=request()->name;
-        $brand->description=request()->description;
-        $brand->subcategoryId=request()->subcategory;
+        $brand->name = request()->name;
+        $brand->description = request()->description;
+        $brand->subcategoryId = request()->subcategory;
         $brand->save();
         return redirect("brands")->with('info','Brand has been updated successfully!!');
         

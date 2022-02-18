@@ -18,8 +18,8 @@ class AttendanceController extends Controller
 
     public function index(Dailyattendance $dailyattendance)
     {
-        $id=Auth::user()->employeeid;
-        $dailyattendance=Dailyattendance::where('userid',$id)->get();
+        $id = Auth::user()->employeeid;
+        $dailyattendance = Dailyattendance::where('userid',$id)->get();
         return view('attendance.index',compact('dailyattendance'));
     }
 
@@ -41,29 +41,29 @@ class AttendanceController extends Controller
      */
     public function store(Request $request)
     {
-        $validator=validator(request()->all(),[
-            'attendanceDate'=>'required|date|unique:dailyattendances,date,',
-            'checkIn'=>'required',
-            'checkOut'=>'required',
-            'lunchTime'=>'required',
-            'workHour'=>'required',
+        $validator = validator(request()->all(),[
+            'attendanceDate' => 'required|date|unique:dailyattendances,date,',
+            'checkIn' => 'required',
+            'checkOut' => 'required',
+            'lunchTime' => 'required',
+            'workHour' => 'required',
         ]);
     
         if($validator->fails()) {
             return back()->withErrors($validator);
         }
     
-        $dailyattendance=new Dailyattendance;
-        $dailyattendance->userid=request()->employeeID;
-        $dailyattendance->date=request()->attendanceDate;
-        $dailyattendance->checkin=request()->checkIn;
-        $dailyattendance->checkout=request()->checkOut;
-        $dailyattendance->lunchtime=request()->lunchTime;
-        $dailyattendance->workinghour=request()->workHour;
-        $dailyattendance->halfdayleave=request()->halfDayLeave;
-        $dailyattendance->leaveday=request()->leaveDay;
-        $dailyattendance->workfromhome=request()->wfh;
-        $dailyattendance->ottime=request()->ottime;
+        $dailyattendance = new Dailyattendance;
+        $dailyattendance->userid = request()->employeeID;
+        $dailyattendance->date = request()->attendanceDate;
+        $dailyattendance->checkin = request()->checkIn;
+        $dailyattendance->checkout = request()->checkOut;
+        $dailyattendance->lunchtime = request()->lunchTime;
+        $dailyattendance->workinghour = request()->workHour;
+        $dailyattendance->halfdayleave = request()->halfDayLeave;
+        $dailyattendance->leaveday = request()->leaveDay;
+        $dailyattendance->workfromhome = request()->wfh;
+        $dailyattendance->ottime = request()->ottime;
         
         $dailyattendance->save();
     
@@ -78,7 +78,7 @@ class AttendanceController extends Controller
      */
     public function show(Dailyattendance $dailyattendance)
     {
-        $dailyattendance=Dailyattendance::all();
+        $dailyattendance = Dailyattendance::all();
         return view('attendance.show',compact('dailyattendance'));
     } 
 
@@ -90,7 +90,7 @@ class AttendanceController extends Controller
      */
     public function edit($id)
     {
-        $edit=Dailyattendance::find($id);
+        $edit = Dailyattendance::find($id);
 
         return view('attendance.edit',compact('edit'));
     }
@@ -104,12 +104,12 @@ class AttendanceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $validator=validator(request()->all(),[
-            'attendanceDate'=>'required',
-            'checkIn'=>'required',
-            'checkOut'=>'required',
-            'lunchTime'=>'required',
-            'workHour'=>'required',
+        $validator = validator(request()->all(),[
+            'attendanceDate' => 'required',
+            'checkIn' => 'required',
+            'checkOut' => 'required',
+            'lunchTime' => 'required',
+            'workHour' => 'required',
         ]);
     
         if($validator->fails()) {
