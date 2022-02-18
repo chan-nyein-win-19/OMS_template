@@ -25,27 +25,33 @@
 
     <div class="container-fluid">
         <div class="row">
-            <h3 class="text-center mb-3">Brand</h3>
+            <h2 class="text-center mb-3">Brand</h2>
             <div class="col-md-1 col-sm-1"></div>
                 <div class="col-md-10 col-sm-10">
                     <div class="card p-3">
                         <form action="" method="post">
                             @csrf              
                             <div class="position-relative row form-group">
-                                <label class="col-sm-2 col-form-label">Name<span style="color: red">*</span></label>
+                                <label class="col-sm-2 col-form-label"> Name
+                                    <span style="color: red">*</span>
+                                </label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" name="name" value="{{ old('name') }}" placeholder="Please Enter Brand Name"  />
+                                    <input type="text" class="form-control" name="name" value="{{ old('name') }}" 
+                                        placeholder="Please Enter Brand Name"/>
                                     @error("name")
-                                        <span class="text-danger">{{ $errors->first('name') }}</span>
+                                    <span class="text-danger">{{ $errors->first('name') }}</span>
                                     @enderror
                                 </div>
                             </div>
                             <div class="position-relative row form-group">
-                                <label class="col-sm-2 col-form-label">Description<span style="color: red">*</span></label>
+                                <label class="col-sm-2 col-form-label"> Description
+                                    <span style="color: red">*</span>
+                                </label>
                                 <div class="col-sm-10">
-                                    <textarea class="form-control" rows="3" name="description" placeholder="Please Enter Description" >{{ old('description') }}</textarea>
+                                    <textarea class="form-control" rows="3" name="description" 
+                                        placeholder="Please Enter Description" >{{ old('description') }}</textarea>
                                     @error("description")
-                                        <span class="text-danger">{{ $errors->first('description') }}</span>
+                                    <span class="text-danger">{{ $errors->first('description') }}</span>
                                     @enderror
                                 </div>
                             </div> 
@@ -71,22 +77,22 @@
                     </thead>
                     <tbody> 
                         @foreach ($brand as $item)               
-                            <tr>
-                                <td>{{ $item->name }}</td>
-                                <td>{{ $item->description }}</td> 
-                                <td>   
-                                    <a href="{{ route('brands.edit', $item->id) }}" class="mb-2 mr-2 btn-transition btn btn-outline-primary" data-toggle="tooltip" title='Edit'>
-                                        <i class="fa fa-fw"></i>
-                                    </a>
-                                    <form method="POST" action="{{ route('brands.destroy',['brand'=>$item]) }}" id="form{{ $item->id }}">
-                                        @csrf
-                                        <input name="_method" type="hidden" value="DELETE">
-                                        <button type="button" onclick=deleteRecord(this.id) class="mb-2 mr-2 btn-transition btn btn-outline-danger" data-toggle="tooltip" title="Delete" id="{{$item->id}}">
-                                            <i class="fa fa-fw"></i>
-                                        </button>
-                                    </form>
-                                </td> 
-                            </tr>  
+                        <tr>
+                            <td>{{ $item->name }}</td>
+                            <td>{{ $item->description }}</td> 
+                            <td>   
+                                <a href="{{ route('brands.edit', $item->id) }}" class="mb-2 mr-2 btn-transition btn btn-outline-primary" data-toggle="tooltip" title='Edit'>
+                                    <i class="fa fa-fw"></i>
+                                </a>
+                                <form method="POST" action="{{ route('brands.destroy',['brand'=>$item]) }}" id="form{{ $item->id }}">
+                                    @csrf
+                                    <input name="_method" type="hidden" value="DELETE">
+                                    <button type="button" onclick=deleteRecord(this.id) class="mb-2 mr-2 btn-transition btn btn-outline-danger" data-toggle="tooltip" title="Delete" id="{{$item->id}}">
+                                        <i class="fa fa-fw"></i>
+                                    </button>
+                                </form>
+                            </td> 
+                        </tr>  
                         @endforeach 
                     </tbody>
                 </table>
