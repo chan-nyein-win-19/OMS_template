@@ -21,15 +21,6 @@ class SubcategoryController extends Controller
         return view("subCategory.index",compact(['subCategory','category']));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
