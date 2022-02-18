@@ -80,7 +80,16 @@ class PcPurchaseController extends Controller
         $purchase->brandid=request()->brand;
 
         $purchase->save();
-        
+        if($validator->fails()) {
+            return back()->withErrors($validator);
+        }
+        $lastPC=Pc::join('purchases','purchases.id','=','pcs.purchaseid')
+                    ->select('*')->latest('pcs.id')->first();
+        $code=0;
+        if($lastPC!=null){
+        $lastItemCode=explode('-',$lastPC->itemcode);
+        $code=$lastItemCode[1];
+        }
 
         if($validator->fails()) {
             return back()->withErrors($validator);
@@ -101,7 +110,6 @@ class PcPurchaseController extends Controller
         $pc->ram=request()->ram;
         $pc->storage=request()->storage;
         $pc->model=request()->model;
-        $pc->itemcode=request()->itemcode;
         $pc->itemcode=$itemcode;
         $pc->condition=request()->condition;
         $pc->currentprice=request()->currentprice;
