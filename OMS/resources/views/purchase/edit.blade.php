@@ -81,8 +81,7 @@
         </div>
         <div class="position-relative row form-group"><label for="content" class="col-sm-2 col-form-label">Brand<span style="color: red">*</span></label>
           <div class="col-sm-10">
-            <select class="form-control" name="brand">
-              <option selected disabled>Choose Brand </option>
+            <select class="brand form-control" name="brand">
                 @foreach($brand as $brands)
                   <option value="{{$brands->id}}" {{$purchasedetail->brandid == $brands->id ? 'selected' : ''}}>{{$brands->name}}</option>
                 @endforeach
@@ -163,6 +162,7 @@
             }
             div.find('.brand').html(" ");
             div.find('.brand').append(op);
+            //$('.brand').attr('disabled', false);
           },
           error:function(error){
             console.log(error);
