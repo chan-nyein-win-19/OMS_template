@@ -29,7 +29,7 @@ class CreateAssetDetailsTable extends Migration
     {
         Schema::create('asset_details', function (Blueprint $table) {
             $table->id();
-            $table->integer('itemCode');
+            $table->string('itemCode');
             $table->string('condition');
             $table->double('currentPrice');
             $table->integer('purchaseId');
