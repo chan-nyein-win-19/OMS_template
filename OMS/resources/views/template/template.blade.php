@@ -38,7 +38,9 @@
                         {{ $item->created_at->diffForHumans() }}
                     </div>
                     <p class="card-text" style="font-size: 15spx;">{{$item->content}}</p>
+                    
                     <div class="row mt-4">
+                    @if ( Auth::user()->role == 'Admin')
                         <div class="col-md-1">
                             <a class="btn btn-outline-primary" href="{{ route('announcements.edit', $item->id) }}">
                                 Update
@@ -53,6 +55,7 @@
                                 </button>
                             </form>
                         </div>
+                        @endif
                         <div class="col-md-1">
                             <a class="btn btn-outline-info" href="{{route('announcements.show',['announcement'=>$item] )}}">
                                 Detail
