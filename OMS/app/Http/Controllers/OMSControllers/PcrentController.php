@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Pcrent;
 use App\Models\Pc;
 use Illuminate\Http\Request;
+use Validator;
 
 class PcrentController extends Controller
 {
@@ -43,14 +44,18 @@ class PcrentController extends Controller
      */
     public function store(Request $request)
     {
-        //
-         $validator=validator(request()->all(),[
+        $validator=validator(request()->all(),[
             'employeeid'=>'required',
             'employeename'=>'required',
             'pcid'=>'required',
             'remark'=>'required',
             'error'=>'required',
-         ]);
+        ]);
+         
+        if($validator->fails()) {
+            return back()->withErrors($validator);
+        }
+        
         $pcrent=new Pcrent();
         $pcrent->employeeId=request()->employeeid;
         $pcrent->employeename=request()->employeename;
@@ -128,6 +133,9 @@ class PcrentController extends Controller
     {
         //
         $pcrent = Pcrent::where('id',$id)->delete();
+        $pc=Pc::find(request()->pc);
+        $pc->status='available';
+        $pc->save();
         return redirect('pcrent');
     }
 }
