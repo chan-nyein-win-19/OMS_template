@@ -130,15 +130,6 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="currentprice" class="col-sm-4 col-form-label" >Current Price<span style="color:red">*</span></label>
-                        <div class="col-sm-6">
-                        <input type="number" class="form-control" name="currentprice" value="">
-                        @error("currentprice")
-                            <span class="text-danger float-left">{{$errors->first('currentprice')}}</span>
-                        @enderror
-                        </div>
-                    </div>
-                    <div class="form-group row">
                     <div class="col-sm-4"></div>
                     <div class="col-sm-6">
                         <button type="submit" class="btn btn-primary">Add</button>

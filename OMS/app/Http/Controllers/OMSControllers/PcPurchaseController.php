@@ -63,7 +63,6 @@ class PcPurchaseController extends Controller
             'storage'=>'required',
             'model'=>'required',
             'condition'=>'required',
-            'currentprice'=>'required|integer',
         ]);
         
         //pcpurchase
@@ -117,13 +116,13 @@ class PcPurchaseController extends Controller
         $pc->model=request()->model;
         $pc->itemcode=$itemcode;
         $pc->condition=request()->condition;
-        $pc->currentprice=request()->currentprice;
+        $pc->currentprice=request()->priceperunit;
         $pc->purchaseid=$pcpurchase->id;
         $pc->brandid=request()->brand;
         $pc->status='available';
         $pc->save();
     }
-        return retirect('pcpurchase')->with('success','PC Purchase has been added successfully!!');
+        return redirect('pcpurchase')->with('success','PC Purchase has been added successfully!!');
     }
 
     /**
