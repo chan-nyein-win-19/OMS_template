@@ -40,7 +40,7 @@
                 <tr>
                     
                     <td>
-                        {{ $item->date }}
+                        {{ $item->itemCode }}
                     </td>
                     <td>
                         {{ $item->condition }}
@@ -115,6 +115,11 @@ jQuery(function($) {
             }
         });
 });
+$(document).ready(function() {
+           setTimeout(() => {
+                $('.alert-success').addClass('d-none');;
+            }, 3000);
+        });
 </script>
 
 <script type="text/javascript">

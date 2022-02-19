@@ -29,7 +29,7 @@
           <div class="position-relative row form-group">
             <label for="date" class="col-sm-2 col-form-label">Item Code<span style="color: red">*</span></label>
               <div class="col-sm-10">
-                 <input type="text" class="form-control" name="itemCode" value=""/>
+                 <input type="text" class="form-control" name="itemCode" value="{{$purchasedetail->itemCode}}" readonly/>
               </div>
           </div> 
           <div class="position-relative row form-group">
