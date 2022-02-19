@@ -38,19 +38,18 @@
                     </div>
 
                     <div class="form-group row">
-                        <label for="category" class="col-sm-4 col-form-label" >Pc<span style="color:red">*</span></label>
+                        <label for="pc" class="col-sm-4 col-form-label" >Pc<span style="color:red">*</span></label>
                         <div class="col-sm-6">
-                        <select class="form-control" name="category" readonly>
+                        <select class="form-control" name="pc" readonly>
                             @foreach($pc as $value)
-                            <option value="{{$value->id}}">{{$value->itemcode}}</option>
+                            <option value="{{$value->id}}"{{ $edit->pc->pcid == $value->id ? 'selected' : ''}}>{{$value->itemcode}}</option>
                             @endforeach
                         </select>
-                    </div>
+                        </div>
                     </div>      
                     <div class="form-group row">
                         <label for="remark" class="col-sm-4 col-form-label" >Remark<span style="color:red">*</span></label>
                         <div class="col-sm-6">
-                        
                         <input type="text" class="form-control"  name="remark" value="{{ old('remark') ? old('remark') : $edit->remark }}">
                         @error("remark")
                             <span class="text-danger float-left">{{$errors->first('remark')}}</span>
