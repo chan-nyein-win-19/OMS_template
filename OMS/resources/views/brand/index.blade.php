@@ -78,7 +78,6 @@
         </div>
         <br>
         <hr>
-        <div class="card p-3">
             <div class="row mt-3">
                 <table class="mb-0 table table-hover" id="brand">
                     <thead>
@@ -112,8 +111,8 @@
                     </tbody>
                 </table>
             </div>
-        </div>
     </div>
+    
 @endsection
 
 @section('script')

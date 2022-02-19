@@ -120,7 +120,7 @@
                     <div class="col-sm-4"></div>
                     <div class="col-sm-6">
                         <button type="submit" class="btn btn-primary">Update</button>
-                        <button type="reset" class="btn btn-danger" id="cancel" >Cancle</button>
+                        <button type="reset" class="btn btn-danger">Clear</button>
                         </div>
                     </div>
                 </form>

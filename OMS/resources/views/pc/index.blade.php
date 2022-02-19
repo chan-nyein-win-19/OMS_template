@@ -17,6 +17,7 @@
 @endsection
 
 @section('content')   
+   
     <div class="container">
         <h2>PC List</h2>
         <table class="mb-0 table table-hover" id="table">

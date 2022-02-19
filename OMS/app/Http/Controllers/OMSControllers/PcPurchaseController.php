@@ -120,7 +120,7 @@ class PcPurchaseController extends Controller
         $pc->status='available';
         $pc->save();
     }
-        return back()->with('success','PC Purchase has been added successfully!!');
+        return redirect('/pc')->with('success','PC Purchase has been added successfully!!');
     }
 
     /**
