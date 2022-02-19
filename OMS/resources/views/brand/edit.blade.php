@@ -53,15 +53,15 @@
                             </div>
                         </div> 
                         <div class="position-relative row form-group">
-                        <label class="col-sm-2 col-form-label">Sub Category<span style="color: red">*</span></label>
+                        <label class="col-sm-2 col-form-label">Category<span style="color: red">*</span></label>
                             <div class="col-sm-10">
-                                <select class="form-control" name="subcategory">
-                                <option value="" disabled>Sub Category</option>
-                                    @foreach($subcategory as $value)
-                                        <option value="{{$value->id}}">{{$value->name}} </option>
+                                <select class="form-control" name="category">
+                                <option value="" disabled>Category</option>
+                                    @foreach($category as $value)
+                                        <option value="{{$value->id}}" @if($value->id==$edit->categoryId) selected @endif>{{$value->name}}</option>
                                     @endforeach
 			                    </select> 
-                                    <span class="text-danger"> {{ $errors->first('subcategory') }} </span>
+                                    <span class="text-danger"> {{ $errors->first('category') }} </span>
                                 
                             </div>
                     </div>

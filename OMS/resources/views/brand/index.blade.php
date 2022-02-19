@@ -56,15 +56,15 @@
                                 </div>
                             </div> 
                             <div class="position-relative row form-group">
-                                <label class="col-sm-2 col-form-label">Sub Category<span style="color: red">*</span></label>
+                                <label class="col-sm-2 col-form-label">Category<span style="color: red">*</span></label>
                                 <div class="col-sm-10">
-                                    <select class="form-control" name="subcategory">
-                                    <option value="" selected disabled>Choose Sub Category</option>
-                                        @foreach($subcategory as $value)
+                                    <select class="form-control" name="category">
+                                    <option value="" selected disabled>Choose Category</option>
+                                        @foreach($category as $value)
                                             <option value="{{$value->id}}">{{$value->name}}</option>
                                         @endforeach
 			                        </select> 
-                                    <span class="text-danger"> {{ $errors->first('subcategory') }} </span>
+                                    <span class="text-danger"> {{ $errors->first('category') }} </span>
                                 
                                 </div>
                             </div>
@@ -85,7 +85,7 @@
                         <tr>
                             <th>Name</th>
                             <th>Description</th>
-                            <th>SubCategory</th>
+                            <th>Category</th>
                             <th>Action</th>
                         </tr> 
                     </thead>
@@ -94,7 +94,7 @@
                             <tr>
                                 <td>{{ $item->name }}</td>
                                 <td>{{ $item->description }}</td> 
-                                <td>{{ $item->subcategory->name }}</td>
+                                <td>{{ $item->category->name }}</td>
                                 <td>  
                                     <a href="{{ route('brands.edit', $item->id) }}" class="mb-2 mr-2 btn-transition btn btn-outline-primary" data-toggle="tooltip" title='Edit'>
                                         <i class="fa fa-fw"></i>

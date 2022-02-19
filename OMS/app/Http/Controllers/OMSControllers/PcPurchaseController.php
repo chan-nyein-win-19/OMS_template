@@ -31,8 +31,8 @@ class PcPurchaseController extends Controller
     {
         $brand = Brand::all();
      
-        $category = Category::all();
-        $subCategory = subCategory::all();
+        $category = Category::where('name','Electronic')->get();
+        $subCategory = subCategory::where('name','PC')->get();
 
         return view('pc.create',compact([
             'brand','category','subCategory'
