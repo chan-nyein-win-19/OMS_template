@@ -76,7 +76,9 @@
         </div>
         <div class="position-relative row form-group"><label for="content" class="col-sm-2 col-form-label">Brand<span style="color: red">*</span></label>
           <div class="col-sm-10">
-            <select class="brand form-control" name="brand"></select>
+            <select class="brand form-control" name="brand">
+           
+            </select>
               <span class="text-danger"> {{ $errors->first('brand') }} </span>
           </div>
         </div>
@@ -131,6 +133,7 @@
 
             div.find('.subcategory').html(" ");
             div.find('.subcategory').append(op);
+            console.log(op);
           },
           error:function(error){
             console.log(error);
@@ -139,25 +142,29 @@
       });
 
       $(document).on('change','.subcategory',function(){
-        var cat_id=$(this).val();
+        var subcat_id=$(this).val();
         var div=$(this).parent().parent().parent();
         var op=" ";
+        console.log(subcat_id);
 
         $.ajax({
           type: 'get',
-          url:'/findBrand/'+cat_id,
-          data:{'id':cat_id},
+          url:'/findBrand/'+subcat_id,
+          data:{'id':subcat_id},
           success:function(data){
 
-            op+='<option value="0" selected disabled>Choose Brand</option>';
+           op+='<option value="0" selected disabled>Choose Brand</option>';
             
             for(var i=0;i<data.length;i++){
               op+='<option value="'+data[i].id+'">'+data[i].name+'</option>';
             }
             div.find('.brand').html(" ");
             div.find('.brand').append(op);
+            console.log(data);
+            console.log(op);
           },
           error:function(){
+
             console.log(error);
           }
         });
