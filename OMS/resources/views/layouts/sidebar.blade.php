@@ -2,6 +2,7 @@
 @if ( Auth::user()->role == 'Admin')
 <div class="app-sidebar__inner">
     <ul class="vertical-nav-menu">
+    <li class="app-sidebar__heading mt-4">Brand,Category,Subcategory</li>
         <li class="app-sidebar__heading mt-4">Employee</li>
         <li class="text">
             <a href="#" class="textstyle">
