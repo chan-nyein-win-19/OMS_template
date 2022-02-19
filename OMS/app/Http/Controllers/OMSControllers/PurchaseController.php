@@ -9,6 +9,7 @@ use App\Models\AssetDetails;
 use App\Models\Category;
 use App\Models\SubCategory;
 use App\Models\Brand;
+use App\Models\Subbrand;
 
 class PurchaseController extends Controller
 {
@@ -38,6 +39,7 @@ class PurchaseController extends Controller
         $category=Category::all();
         $subCategory=SubCategory::all();  
         $brand = Brand::all();
+
         return view('purchase.create',compact('category','subCategory','brand'));
     }
     public static function findCategory(Request $request){
@@ -47,7 +49,17 @@ class PurchaseController extends Controller
     }
 
     public static function findBrand(Request $request){
-        $data=Brand::select('name','id')->where ('subcategoryId',$request->id)->take(100)->get();
+
+    $data1=Subbrand::select('brandId','id')->where ('subcategoryId',$request->id)->take(100)->get();
+    
+    $data=array();
+    $length = sizeof($data1);
+
+    for($i = 0; $i<$length; $i++){
+        $d = Brand::find($data1[$i]->brandId);
+        array_push($data, $d);
+    }
+      
         return response()->json($data);
     }
     /**
