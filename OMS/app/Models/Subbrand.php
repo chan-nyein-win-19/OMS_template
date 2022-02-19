@@ -12,7 +12,7 @@ class Subbrand extends Model
 
     public function brand()
     {
-        return $this->belongsTo(Brand::class,'brandid');
+        return $this->belongsTo(Brand::class,'brandId');
     }
    
 }
