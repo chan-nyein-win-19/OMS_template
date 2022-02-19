@@ -42,7 +42,7 @@
                         <div class="col-sm-6">
                         <select class="form-control" name="pc" readonly>
                             @foreach($pc as $value)
-                            <option value="{{$value->id}}"{{ $edit->pc->pcid == $value->id ? 'selected' : ''}}>{{$value->itemcode}}</option>
+                            <option value="{{$value->id}}"{{ $edit->pcid == $value->id ? 'selected' : ''}}>{{$value->itemcode}}</option>
                             @endforeach
                         </select>
                         </div>
