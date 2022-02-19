@@ -16,7 +16,8 @@
     @parent
 @endsection
 
-@section('content')   
+@section('content')  
+     
     <div class="container">
         <h2>PC Rent List</h2>
         <table class="mb-0 table table-hover" id="table">
