@@ -11,7 +11,5 @@ class Pcrent extends Model
     public function pc(){
         return $this->belongsTo(Pc::class,'pcid');
     }
-    public function brand(){
-        return $this->belongsTo(Brand::class,'id');
-    }
+    
 }

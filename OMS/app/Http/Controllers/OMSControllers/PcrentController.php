@@ -44,18 +44,16 @@ class PcrentController extends Controller
      */
     public function store(Request $request)
     {
-        $validator=validator(request()->all(),[
+       $validator = validator(request()->all(),[
             'employeeid'=>'required',
             'employeename'=>'required',
-            'pcid'=>'required',
+            'pc'=>'required',
             'remark'=>'required',
             'error'=>'required',
         ]);
-         
-        if($validator->fails()) {
+        if($validator->fails()){
             return back()->withErrors($validator);
         }
-        
         $pcrent=new Pcrent();
         $pcrent->employeeId=request()->employeeid;
         $pcrent->employeename=request()->employeename;
@@ -63,6 +61,7 @@ class PcrentController extends Controller
         $pcrent->error=request()->error;
         $pcrent->remark=request()->remark;
         $pcrent->save();
+
         $pc=Pc::find(request()->pc);
         $pc->status='unavailable';
         $pc->save();
@@ -132,10 +131,11 @@ class PcrentController extends Controller
     public function destroy($id)
     {
         //
-        $pcrent = Pcrent::where('id',$id)->delete();
-        $pc=Pc::find(request()->pc);
+        $pcrent = Pcrent::find($id);
+        $pc=Pc::find($pcrent->pcid);
         $pc->status='available';
         $pc->save();
+        $pcrent->delete();
         return redirect('pcrent');
     }
 }

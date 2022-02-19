@@ -1,18 +1,20 @@
 @extends('layouts.app')
-
-@section('content')
-
-
+@section('style')
 <link href="{{ asset('/storage/OMS/attendance/attendanceform.css') }}" rel="stylesheet">
 
 <link rel="stylesheet" href="{{ asset('/storage/OMS/bootstrap5/bootstrap.min.css') }}">
 <link rel="stylesheet" href="{{ asset('/storage/OMS/css/style.css') }}">
+@endsection
+@section('content')
+
+@if(session('success'))
+        <div class="alert alert-success">{{session('success')}}</div>
+        @endif
+
 
 <div class="container pt-80 mb-100 text-center ">
     <div class="row">
-        @if(session('success'))
-        <div class="alert alert-success">{{session('success')}}</div>
-        @endif
+       
         <div class="main-card mb-3 card ">
             <div class="card-body">
                 <div class="col-12 pt-4 mb-5">
