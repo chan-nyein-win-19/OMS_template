@@ -17,39 +17,43 @@
 @endsection
 
 @section('content')   
-   
     <div class="container">
-        <h2>PC List</h2>
+        <h2>PC Purchase List</h2>
         <table class="mb-0 table table-hover" id="table">
             <thead>
                 <tr class="text-center">
+                    <th>Date</th>
                     <th>Brand</th>
                     <th>CPU</th>
                     <th>RAM</th>
                     <th>Storage</th>
-                    <th>Item Code</th>
                     <th>Model</th>
                     <th>Condition</th>
                     <th>Current Price</th>
+                    <th>Quantity</th>
+                    <th>Total Price</th>
                     <th>Action</th>
                 </tr>
             </thead>
             <tbody>               
-                @foreach($pc as $item)
+                @foreach($pcpurchase as $item)
                     <tr class="text-center">
+                        <td>{{ $item-> date}}</td>
                         <td>{{ $item->brand->name}}</td>
                         <td>{{ $item-> cpu}}</td>
                         <td>{{ $item-> ram}}</td>
                         <td>{{ $item-> storage}}</td>
-                        <td>{{ $item-> itemcode}}</td>
                         <td>{{ $item-> model}}</td>
                         <td>{{ $item-> condition}}</td>
-                        <td>{{ $item-> currentprice}}</td>
+                        <td>{{ $item-> priceperunit}}</td>
+                        <td>{{ $item-> quantity}}</td>
+                        <td>{{ $item-> totalprice}}</td>
+                     
                         <td>
-                            <a type="button" href="{{route('pc.edit', $item->id)}}" class="mb-2  btn-transition btn btn-outline-primary" data-toggle="tooltip" title="Edit">
+                            <a type="button" href="{{route('pcpurchase.edit', $item->id)}}" class="mb-2  btn-transition btn btn-outline-primary" data-toggle="tooltip" title="Edit">
                                 <i class="fa fa-fw"></i>
                             </a>
-                            <form action="/pc/{{ $item->id }}" method="POST" id="form{{ $item->id }}">
+                            <form action="/pcpurchase/{{ $item->id }}" method="POST" id="form{{ $item->id }}">
                                 @csrf
                                 <input name="_method" type="hidden" value="DELETE">
                                 <button type="button" onclick=deleteRecord(this.id) class="mb-2 btn-transition btn btn-outline-danger" data-toggle="tooltip" title="Delete" id="{{$item->id}}">
