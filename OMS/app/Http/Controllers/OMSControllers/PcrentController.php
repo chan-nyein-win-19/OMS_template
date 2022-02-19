@@ -66,7 +66,7 @@ class PcrentController extends Controller
         $pc->status='unavailable';
         $pc->save();
     
-        return back()->with('success','PC Purchase has been added successfully!!');
+        return redirect('pcrent')->with('success','PC Rent has been added successfully!!');
     }
 
     /**

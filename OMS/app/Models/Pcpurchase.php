@@ -5,20 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Pc extends Model
+class Pcpurchase extends Model
 {
     use HasFactory;
-
-    public function purchase(){
-        return $this->belongsTo(Purchase::class,'purchaseid');
-    }
-    public function brand(){
+    public function brand()
+    {
         return $this->belongsTo(Brand::class,'brandid');
     }
-   
-
-
-   
-
-  
 }

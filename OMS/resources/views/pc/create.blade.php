@@ -38,7 +38,6 @@
                 <div class="col-sm-6">
                 <div class="md-form">
                     <input type="date" class="form-control" name="date">
- 
                 </div>
                 </div>
             </div>
@@ -70,30 +69,6 @@
                             <span class="text-danger float-left">{{$errors->first('totalprice')}}</span>
                         @enderror  
                         </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="category" class="col-sm-4 col-form-label" >Category<span style="color:red">*</span></label>
-                        <div class="col-sm-6">
-                        <select class="form-control" name="category" readonly>
-                            <option selected disabled>Choose Category</option>
-                            @foreach($category as $value)
-                            <option value="{{$value['id']}}">{{$value['name']}}</option>
-                            @endforeach
-                        </select>
-                        <span class="text-danger float-left">{{$errors->first('category')}}</span>
-                    </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="subcategory" class="col-sm-4 col-form-label" >Sub Category<span style="color:red">*</span></label>
-                        <div class="col-sm-6">
-                        <select class="form-control" name="subcategory" readonly>
-                            <option selected disabled>Choose SubCategory</option>
-                            @foreach($subCategory as $value)
-                            <option value="{{$value['id']}}">{{$value['name']}}</option>
-                            @endforeach
-                        </select>
-                        <span class="text-danger float-left">{{$errors->first('subcategory')}}</span>
-                    </div>
                     </div>
                     <div class="form-group row">
                     <label class="col-sm-4 col-form-label">Brand<span style="color:red">*</span></label>
@@ -167,7 +142,7 @@
                     <div class="col-sm-4"></div>
                     <div class="col-sm-6">
                         <button type="submit" class="btn btn-primary">Add</button>
-                        <button type="reset" class="btn btn-danger" id="cancel" >Cancle</button>
+                        <button type="reset" class="btn btn-danger" id="cancel" >Clear</button>
                         </div>
                     </div>
                 </form>

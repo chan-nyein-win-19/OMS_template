@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePcsTable extends Migration
+class CreatePcpurchasesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,17 @@ class CreatePcsTable extends Migration
      */
     public function up()
     {
-        Schema::create('pcs', function (Blueprint $table) {
+        Schema::create('pcpurchases', function (Blueprint $table) {
             $table->id();
-            $table->string('itemcode');
+            $table->date('date');
             $table->string('cpu');
             $table->string('ram');
             $table->string('storage');
             $table->string('model');
             $table->string('condition');
-            $table->double('currentprice');
-            $table->string('status');
-            $table->integer('purchaseid');
+            $table->integer('quantity')->unsigned();
+            $table->double('totalprice')->unsigned();
+            $table->double('priceperunit')->unsigned();
             $table->integer('brandid');
             $table->timestamps();
         });
@@ -36,6 +36,6 @@ class CreatePcsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pcs');
+        Schema::dropIfExists('pcpurchases');
     }
 }
