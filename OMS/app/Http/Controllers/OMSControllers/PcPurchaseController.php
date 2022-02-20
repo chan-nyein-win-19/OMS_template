@@ -7,6 +7,7 @@ use App\Models\Pcpurchase;
 use App\Models\Pc;
 use App\Models\Brand;
 use App\Models\Category;
+use App\Models\Subbrand;
 use App\Models\subCategory;
 use Illuminate\Http\Request;
 
@@ -32,13 +33,10 @@ class PcPurchaseController extends Controller
      */
     public function create()
     {
-        $brand = Brand::all();
-     
-        $category = Category::where('name','Electronic')->get();
-        $subCategory = subCategory::where('name','PC')->get();
-
+        $subCategory = subCategory::where('name','PC')->first();
+        $brand = Subbrand::where('subcategoryId',$subCategory->id)->get();
         return view('pc.create',compact([
-            'brand','category','subCategory'
+            'brand','subCategory'
         ]));
         
        

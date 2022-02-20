@@ -76,7 +76,7 @@
                         <select class="form-control" name="brand" readonly>
                             <option selected disabled>Choose Brand</option>
                             @foreach($brand as $value)
-                            <option value="{{$value['id']}}">{{$value['name']}}</option>
+                            <option value="{{$value->brand->id}}">{{$value->brand->name}}</option>
                             @endforeach
                         </select>
                         <span class="text-danger float-left">{{$errors->first('brand')}}</span>
