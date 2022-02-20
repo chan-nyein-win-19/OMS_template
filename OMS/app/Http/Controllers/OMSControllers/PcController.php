@@ -3,7 +3,8 @@
 namespace App\Http\Controllers\OMSControllers;
 
 use App\Http\Controllers\Controller;
-use App\Models\PC;
+use App\Models\Pc;
+use App\Models\Pcpurchase;
 use App\Models\Subbrand;
 use App\Models\subCategory;
 use Illuminate\Http\Request;
@@ -32,7 +33,8 @@ class PcController extends Controller
         $edit=Pc::find($id);
         $subCategory = subCategory::where('name','PC')->first();
         $brand = Subbrand::where('subcategoryId',$subCategory->id)->get();
-        return view('pc.edit',compact(['edit','brand']));                
+        $pc = Pc::where('purchaseid',$id)->get();
+        return view('pc.edit',compact(['edit','brand', 'pc']));                
     }
 
     /**
@@ -81,9 +83,12 @@ class PcController extends Controller
      */
     public function destroy($id)
     {
-        $pc = Pc::where('id',$id)->delete();
-        $pc->quantity = $pc->quantity-1;
-        $pc->update();
-        return redirect('pc');
+        $delete = Pc::find($id);
+        $pcPurchase = Pcpurchase::find($delete->purchaseid);
+        $pcPurchase->quantity = $pcPurchase->quantity-1;
+        $pcPurchase->update();
+
+        $delete->delete();
+        return redirect('pc')->with('success','Successfully Deleted!!');
     }
 }

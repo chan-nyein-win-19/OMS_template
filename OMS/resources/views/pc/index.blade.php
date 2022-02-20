@@ -49,7 +49,7 @@
                             <a type="button" href="{{route('pc.edit', $item->id)}}" class="mb-2  btn-transition btn btn-outline-primary" data-toggle="tooltip" title="Edit">
                                 <i class="fa fa-fw"></i>
                             </a>
-                            <form action="/pc/{{ $item->id }}" method="POST" id="form{{ $item->id }}">
+                            <form action="{{route('pc.destroy', $item->id) }}" method="POST" id="form{{ $item->id }}">
                                 @csrf
                                 <input name="_method" type="hidden" value="DELETE">
                                 <button type="button" onclick=deleteRecord(this.id) class="mb-2 btn-transition btn btn-outline-danger" data-toggle="tooltip" title="Delete" id="{{$item->id}}">
