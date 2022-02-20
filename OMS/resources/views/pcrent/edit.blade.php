@@ -22,7 +22,7 @@
                             <div class="col-sm-6">
                             <input type="text" class="form-control" id="employeeid" name="employeeid" value="{{ old('employeeid') ? old('employeeid') : $edit->employeeId }}">
                             @error("employeeid")
-                                <span class="text-danger float-left">{{$errors->first('employeeid')}}</span>
+                            <span class="text-danger float-left">{{$errors->first('employeeid')}}</span>
                             @enderror  
                             </div>
                     </div>
@@ -103,8 +103,7 @@
                     document.getElementById('employeename').value=data[i].username;
                 }            
             }
-            });       
-            
+            });                   
         }
         
     });
