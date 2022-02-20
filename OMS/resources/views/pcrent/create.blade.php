@@ -35,7 +35,7 @@
                     <div class="form-group row">
                         <label for="employeename" class="col-sm-4 col-form-label" >Employee Name<span style="color:red">*</span></label>
                         <div class="col-sm-6"> 
-                        <input type="text" class="form-control" id="employeename" name="employeename" >
+                        <input type="text" class="form-control" id="employeename" name="employeename" readonly>
                         @error("employeename")
                             <span class="text-danger float-left">{{$errors->first('employeename')}}</span>
                         @enderror  

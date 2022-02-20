@@ -4,10 +4,8 @@ namespace App\Http\Controllers\OMSControllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\PC;
-use App\Models\Category;
-use App\Models\Brand;
+use App\Models\Subbrand;
 use App\Models\subCategory;
-use App\Models\Purchase;
 use Illuminate\Http\Request;
 
 class PcController extends Controller
@@ -67,11 +65,9 @@ class PcController extends Controller
     public function edit($id)
     {
         $edit=Pc::find($id);
-        $category=Category::all();
-        $brand=Brand::all();
-        $subCategory=subCategory::all();
-        $purchase=Purchase::all();
-        return view('pc.edit',compact(['edit','brand','category','subCategory', 'purchase']));                
+        $subCategory = subCategory::where('name','PC')->first();
+        $brand = Subbrand::where('subcategoryId',$subCategory->id)->get();
+        return view('pc.edit',compact(['edit','brand']));                
     }
 
     /**
