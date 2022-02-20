@@ -56,7 +56,7 @@
                         {{ $item->priceperunit }}
                     </td> 
                     <td>
-                        {{ $item->category->name }}
+                        {{ $item->subCategory->category->name }}
                     </td> 
                     <td>
                         {{ $item->subcategory->name }}

@@ -178,7 +178,7 @@ class PcPurchaseController extends Controller
         if($validator->fails()) {
             return back()->withErrors($validator);
         }
-       
+        $delete = Pc::where('purchaseid',$id)->delete();
         $pcpurchase=Pcpurchase::find($id);
         $pcpurchase->date=request()->date;
         $pcpurchase->priceperunit=request()->priceperunit;
@@ -191,6 +191,31 @@ class PcPurchaseController extends Controller
         $pcpurchase->condition=request()->condition;
         $pcpurchase->brandid=request()->brand;
         $pcpurchase->save();
+
+        $lastPC=Pc::join('purchases','purchases.id','=','pcs.purchaseid')
+                    ->select('*')->latest('pcs.id')->first();
+        $code=0;
+        if($lastPC!=null){
+        $lastItemCode=explode('-',$lastPC->itemcode);
+        $code=$lastItemCode[1];
+        }
+
+        for($x=0;$x<$pcpurchase->quantity;$x++){
+            $code=$code+1;
+            $itemcode="PC-".$code;
+        $pc=new Pc();
+        $pc->cpu=request()->cpu;
+        $pc->ram=request()->ram;
+        $pc->storage=request()->storage;
+        $pc->model=request()->model;
+        $pc->itemcode=$itemcode;
+        $pc->condition=request()->condition;
+        $pc->currentprice=request()->priceperunit;
+        $pc->purchaseid=$pcpurchase->id;
+        $pc->brandid=request()->brand;
+        $pc->status='available';
+        $pc->save();
+    }
         return redirect("pcpurchase")->with('info','Pc Purchsae has been updated successfully!!');;
     }
 

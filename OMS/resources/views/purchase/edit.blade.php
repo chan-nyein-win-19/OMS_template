@@ -43,7 +43,7 @@
         <div class="position-relative row form-group">
         	<label for="quantity" class="col-sm-2 col-form-label">Quantity<span style="color: red">*</span></label>
           <div class="col-sm-10">
-            <input id="quantity" type="text" class="form-control" name="quantity" value="{{ old('quantity')? old('quantity') : $purchasedetail->quantity }}" placeholder="Please enter quantity" onkeyup="add(this)" />
+            <input id="quantity" type="numeric" class="form-control" name="quantity" value="{{ old('quantity')? old('quantity') : $purchasedetail->quantity }}" placeholder="Please enter quantity" onkeyup="add(this)" />
             @error("quantity")
               <span class="text-danger"> {{ $errors->first('quantity') }} </span>
             @enderror  
@@ -82,9 +82,9 @@
         <div class="position-relative row form-group"><label for="content" class="col-sm-2 col-form-label">Brand<span style="color: red">*</span></label>
           <div class="col-sm-10">
             <select class="brand form-control" name="brand">
-                @foreach($brand as $brands)
-                  <option value="{{$brands->id}}" {{$purchasedetail->brandid == $brands->id ? 'selected' : ''}}>{{$brands->name}}</option>
-                @endforeach
+            @foreach($brand as $brands)
+            <option value="{{$brands->brandId}}" {{$purchasedetail->brandid == $brands->id ? 'selected' : ''}} selected>{{$brands->brand->name}}</option>
+            @endforeach
             </select>
             <span class="text-danger"> {{ $errors->first('brand') }} </span>
           </div>

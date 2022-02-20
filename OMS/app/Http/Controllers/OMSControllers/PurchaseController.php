@@ -9,6 +9,7 @@ use App\Models\AssetDetails;
 use App\Models\Category;
 use App\Models\SubCategory;
 use App\Models\Brand;
+use App\Models\Subbrand;
 
 class PurchaseController extends Controller
 {
@@ -35,6 +36,7 @@ class PurchaseController extends Controller
         $category = Category::all();
         $subCategory = SubCategory::all();  
         $brand = Brand::all();
+
         return view('purchase.create',compact('category','subCategory','brand'));
     }
     public static function findCategory(Request $request){
@@ -44,7 +46,17 @@ class PurchaseController extends Controller
     }
 
     public static function findBrand(Request $request){
-        $data = Brand::select('name','id')->where ('subcategoryId',$request->id)->take(100)->get();
+
+    $data1=Subbrand::select('brandId','id')->where ('subcategoryId',$request->id)->take(100)->get();
+    
+    $data=array();
+    $length = sizeof($data1);
+
+    for($i = 0; $i<$length; $i++){
+        $d = Brand::find($data1[$i]->brandId);
+        array_push($data, $d);
+    }
+      
         return response()->json($data);
     }
     /**
@@ -123,10 +135,11 @@ class PurchaseController extends Controller
     {
         //
         $purchasedetail = Purchase::find($id);
+        //dd($purchasedetail);
         $assetdetail = AssetDetails::where('purchaseId',$id)->get();
         $category = Category::all();
         $subcategory = SubCategory::where('categoryId',$purchasedetail->categoryid)->get();
-        $brand = Brand::where('subcategoryId',$purchasedetail->subcategoryid)->get();
+        $brand = Subbrand::select('brandId')->where('brandId',$purchasedetail->brandid)->distinct('brandId')->get();
         return view('purchase.edit',compact('purchasedetail','assetdetail','brand','category','subcategory'));
     }
 
@@ -139,7 +152,6 @@ class PurchaseController extends Controller
      */
     public function update(Request $request, $id)
     {
-       
         $validateData = $request->validate([
             'priceperunit'=>'required',
             'quantity'=>'required',

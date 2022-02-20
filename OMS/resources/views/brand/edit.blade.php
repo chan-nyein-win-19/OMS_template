@@ -25,7 +25,7 @@
             <div class="col-md-1 col-sm-1"></div>
             <div class="col-md-10 col-sm-10">
                 <div class="card p-3">
-                    <form action="{{ route('brands.update', [$edit->id]) }}" method="post">
+                    <form action="{{ route('subbrands.update', [$edit->id]) }}" method="post">
                         @csrf
                         @method('PUT')
                         <div class="position-relative row form-group">
@@ -33,7 +33,7 @@
                                 Name<span style="color: red">*</span>
                             </label>                        
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" name="name" value="{{ old('name')? old('name') : $edit->name }}" 
+                                <input type="text" class="form-control" name="name" value="{{ old('name')? old('name') : $edit->brand->name }}" 
                                     placeholder="Please Enter Category Name"/>
                                 @error("name")
                                 <span class="text-danger"> {{ $errors->first('name') }} </span>
@@ -46,22 +46,22 @@
                             </label>
                             <div class="col-sm-10">
                                 <textarea class="form-control" rows="3" name="description" 
-                                    placeholder="Please Enter Description" >{{ old('description') ? old('description') : $edit->description }}</textarea>
+                                    placeholder="Please Enter Description" >{{ old('description') ? old('description') : $edit->brand->description }}</textarea>
                                 @error('description')
                                 <span class="text-danger">{{ $errors->first('description') }}</span>
                                 @enderror  
                             </div>
                         </div> 
                         <div class="position-relative row form-group">
-                        <label class="col-sm-2 col-form-label">Category<span style="color: red">*</span></label>
+                        <label class="col-sm-2 col-form-label">Subcategory<span style="color: red">*</span></label>
                             <div class="col-sm-10">
-                                <select class="form-control" name="category">
-                                <option value="" disabled>Category</option>
-                                    @foreach($category as $value)
-                                        <option value="{{$value->id}}" @if($value->id==$edit->categoryId) selected @endif>{{$value->name}}</option>
+                                <select class="form-control" name="subcategory">
+                                <option value="" disabled>Subcategory</option>
+                                    @foreach($subcategory as $value)
+                                        <option value="{{$value->id}}" @if($value->id==$edit->subcategoryId) selected @endif>{{$value->name}}</option>
                                     @endforeach
 			                    </select> 
-                                    <span class="text-danger"> {{ $errors->first('category') }} </span>
+                                    <span class="text-danger"> {{ $errors->first('subcategory') }} </span>
                                 
                             </div>
                     </div>

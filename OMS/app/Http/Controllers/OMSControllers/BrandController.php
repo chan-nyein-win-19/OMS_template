@@ -4,7 +4,8 @@ namespace App\Http\Controllers\OMSControllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Brand;
-use App\Models\Category;
+use App\Models\subCategory;
+use App\Models\Subbrand;
 use Illuminate\Http\Request;
 
 class BrandController extends Controller
@@ -16,25 +17,44 @@ class BrandController extends Controller
      */
     public function index()
     {
-        $brand = Brand::all();
-        $category = Category::all();
-        return view("brand.index",compact(['brand','category']));
+        $brand = Subbrand::all();
+        $subcategory = subCategory::all();
+        return view("brand.index",compact(['brand','subcategory']));
     }
    
     public function store(Request $request)
     {
-        $validate = $request->validate([
-            'name' => 'required|unique:brands,name',
+        $validator = $request->validate([
+            'name' => 'required',
             'description' => 'required',
-            'category'=>'required',
-        ]);
-      
-        $brand = new Brand;
-        $brand->name = request()->name;
-        $brand->description = request()->description;
-        $brand->categoryId = request()->category;
-        $brand->save();
-        return back()->with('info','Brands Successfully Added...');
+            'subcategory'=>'required',
+         ]);
+        $brandExists=Brand::where('name',request()->name)->first();
+        if($brandExists!=null){
+            $subBrandExists=Subbrand::where([['subcategoryId',request()->subcategory],['brandId',$brandExists->id]])->get();
+            if(count($subBrandExists)<=0){
+                $subBrand=new Subbrand;
+                $subBrand->subcategoryId=request()->subcategory;
+                $subBrand->brandId=$brandExists->id;
+                $subBrand->save();
+                return back()->with('info','Brands Successfully Added...');
+            }else{
+                return back()->with('info','Brands already exists...');
+            }
+              
+        }else{
+            $brand=new Brand;
+            $brand->name=request()->name;
+            $brand->description=request()->description;
+            $brand->save();
+            $newBrand=Brand::where('name',request()->name)->first();
+                $subBrand=new Subbrand;
+                $subBrand->subcategoryId=request()->subcategory;
+                $subBrand->brandId=$newBrand->id;
+                $subBrand->save();
+                return back()->with('info','Brands Successfully Added...');
+
+        }
     
     }
    
@@ -79,7 +99,7 @@ class BrandController extends Controller
      */
     public function destroy(Brand $brand)
     {
-        $delete = $brand::find($brand->id);
+        $delete = Subbrand::find($brand->id);
         $delete -> delete();
         return back()->with('info','Brand Deleted');
     }

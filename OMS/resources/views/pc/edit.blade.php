@@ -21,9 +21,8 @@
                         <label class="col-sm-4 col-form-label">Brand<span style="color:red">*</span></label>
                         <div class="col-sm-6">
                             <select class="form-control" name="brand" readonly>
-                                <!-- <option value="{{$edit->brand->id}}"selected disabled>{{$edit->brand->name}}</option> -->
                                 @foreach($brand as $value)
-                                <option value="{{$value->id}}">{{$value->name}}</option>
+                                <option value="{{$value->id}}" @if($value->id==$edit->brandid) selected @endif>{{$value->name}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -53,28 +52,6 @@
                             @error("storage")
                                 <span class="text-danger float-left">{{$errors->first('storage')}}</span>
                             @enderror 
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="category" class="col-sm-4 col-form-label" >Category<span style="color:red">*</span></label>
-                        <div class="col-sm-6">
-                            <select class="form-control" name="category" readonly>
-                                <!-- <option value="{{ $edit->category->id }}"selected disabled>{{ $edit->category->name }}</option> -->
-                                @foreach($category as $value)
-                                <option value="{{ $value->id }}">{{ $value->name }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="subcategory" class="col-sm-4 col-form-label" >Sub Category<span style="color:red">*</span></label>
-                        <div class="col-sm-6">
-                            <select class="form-control" name="subcategory" readonly>
-                            <!-- <option value="{{ $edit->subcategory->id }}"selected disabled>{{ $edit->subcategory->name }}</option> -->
-                                @foreach($subCategory as $value)
-                                <option value="{{ $value->id }}">{{ $value->name }}</option>
-                                @endforeach
-                            </select>
                         </div>
                     </div>
                    

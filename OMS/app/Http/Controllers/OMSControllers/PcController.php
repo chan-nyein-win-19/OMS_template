@@ -85,8 +85,6 @@ class PcController extends Controller
     {
         //dd('update fun');
         $validator=validator(request()->all(),[         
-            'category'=>'required',
-            'subcategory'=>'required',
             'brand'=>'required',
             'cpu'=>'required',
             'ram'=>'required',
@@ -109,8 +107,6 @@ class PcController extends Controller
         $pc->itemcode=request()->itemcode;
         $pc->condition=request()->condition;
         $pc->currentprice=request()->currentprice;
-        $pc->categoryid=request()->category;
-        $pc->subcategoryid=request()->subcategory;
         $pc->brandid=request()->brand;
         $pc->save();
     

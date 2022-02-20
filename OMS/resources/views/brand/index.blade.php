@@ -56,15 +56,15 @@
                                 </div>
                             </div> 
                             <div class="position-relative row form-group">
-                                <label class="col-sm-2 col-form-label">Category<span style="color: red">*</span></label>
+                                <label class="col-sm-2 col-form-label">Subcategory<span style="color: red">*</span></label>
                                 <div class="col-sm-10">
-                                    <select class="form-control" name="category">
-                                    <option value="" selected disabled>Choose Category</option>
-                                        @foreach($category as $value)
+                                    <select class="form-control" name="subcategory">
+                                    <option value="" selected disabled>Choose Subcategory</option>
+                                        @foreach($subcategory as $value)
                                             <option value="{{$value->id}}">{{$value->name}}</option>
                                         @endforeach
 			                        </select> 
-                                    <span class="text-danger"> {{ $errors->first('category') }} </span>
+                                    <span class="text-danger"> {{ $errors->first('subcategory') }} </span>
                                 
                                 </div>
                             </div>
@@ -84,21 +84,21 @@
                         <tr>
                             <th>Name</th>
                             <th>Description</th>
-                            <th>Category</th>
+                            <th>Subcategory</th>
                             <th>Action</th>
                         </tr> 
                     </thead>
                     <tbody> 
                         @foreach ($brand as $item)               
                             <tr>
-                                <td>{{ $item->name }}</td>
-                                <td>{{ $item->description }}</td> 
-                                <td>{{ $item->category->name }}</td>
+                                <td>{{ $item->brand->name }}</td>
+                                <td>{{ $item->brand->description }}</td> 
+                                <td>{{$item->subcategory->name}}</td>
                                 <td>  
-                                    <a href="{{ route('brands.edit', $item->id) }}" class="mb-2 mr-2 btn-transition btn btn-outline-primary" data-toggle="tooltip" title='Edit'>
+                                    <a href="{{ route('subbrands.edit', $item->id) }}" class="mb-2 mr-2 btn-transition btn btn-outline-primary" data-toggle="tooltip" title='Edit'>
                                         <i class="fa fa-fw"></i>
                                     </a>
-                                    <form method="POST" action="{{ route('brands.destroy',['brand'=>$item]) }}" id="form{{ $item->id }}">
+                                    <form method="POST" action="{{ route('subbrands.destroy',['subbrand'=>$item]) }}" id="form{{ $item->id }}">
                                         @csrf
                                         <input name="_method" type="hidden" value="DELETE">
                                         <button type="button" onclick=deleteRecord(this.id) class="mb-2 mr-2 btn-transition btn btn-outline-danger" data-toggle="tooltip" title="Delete" id="{{$item->id}}">
