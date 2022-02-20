@@ -14,4 +14,8 @@ class Subbrand extends Model
     {
         return $this->belongsTo(Brand::class,'brandId');
     }
+    public function subcategory()
+    {
+        return $this->belongsTo(subCategory::class,'subcategoryId');
+    }
 }
