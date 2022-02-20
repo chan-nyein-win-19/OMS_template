@@ -6,27 +6,27 @@
         <li class="text">
             <a href="#" class="textstyle">
                 <i class="metismenu-icon pe-7s fas fa-user" style="font-size: 16px;"></i>
-                    Employee
+                Employee
                 <i class="fa fa-angle-down ml-5 opacity-8"></i>
             </a>
-                <ul>
-                    <li>
-                        <a href="{{ url('/users') }}" class="textstyle">
-                            Employee List
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ url('/users/create') }}" class="textstyle">
-                           Employee Create
-                        </a>
-                    </li>
-               </ul>
-           </li>
+            <ul>
+                <li>
+                    <a href="{{ url('/users') }}" class="textstyle">
+                        Employee List
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ url('/users/create') }}" class="textstyle">
+                        Employee Create
+                    </a>
+                </li>
+            </ul>
+        </li>
         <li class="app-sidebar__heading mt-4">Announcements</li>
         <li>
             <a href="#">
                 <i class="metismenu-icon pe-7s fas fa-scroll" style="font-size: 16px;"></i>
-                    Announcements
+                Announcements
                 <i class="fa fa-angle-down ml-2 opacity-8"></i>
             </a>
             <ul>
@@ -46,13 +46,13 @@
         <li>
             <a href="#">
                 <i class="metismenu-icon pe-7s fas fa-briefcase" style="font-size: 16px;"></i>
-                    <span class="ml-3">Attendance</span>
+                <span class="ml-3">Attendance</span>
                 <i class="fa fa-angle-down ml-3 opacity-8"></i>
             </a>
             <ul>
                 <li>
                     <a href="{{ url('/attendance/show') }}" class="textstyle">
-                       View Attendance Record
+                        View Attendance Record
                     </a>
                 </li>
             </ul>
@@ -65,21 +65,21 @@
                 <i class="fa fa-angle-down ml-5 opacity-8"></i>
             </a>
             <ul>
-                
+
                 <li>
                     <a href="#" class="textstyle">
-                        <i class="metismenu-icon" ></i>
+                        <i class="metismenu-icon"></i>
                         <span class="ml-3 mr-3"> Asset Lists&nbsp</span>
                         <i class="fa fa-angle-down ml-5 opacity-8"></i>
                     </a>
                     <ul>
                         <li>
-                            <a href="{{ url('/otherAsset') }}"  class="textstyle">
+                            <a href="{{ url('/otherAsset') }}" class="textstyle">
                                 Asset Detail Lists
                             </a>
                         </li>
                         <li>
-                            <a href="{{ url('/otherpurchase') }}"  class="textstyle">
+                            <a href="{{ url('/otherpurchase') }}" class="textstyle">
                                 Other Purchase Lists
                             </a>
                         </li>
@@ -91,9 +91,9 @@
                     </ul>
                 </li>
                 <li>
-                    
+
                     <a href="#" class="textstyle">
-                        <i class="metismenu-icon" ></i>
+                        <i class="metismenu-icon"></i>
                         <span class="ml-3"> Asset Create&nbsp&nbsp</span>
                         <i class="fa fa-angle-down ml-5 opacity-8"></i>
                     </a>
@@ -111,52 +111,23 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="#" class="textstyle">
-                        <i class="metismenu-icon" ></i>
-                        <span class="ml-3 mr-5">Brand</span>
-                        <i class="fa fa-angle-down ml-5 opacity-8"></i>
-                    </a>
-                    <ul>
-                        <li>
-                            <a href="{{ url('/brands') }}" class="textstyle">
-                               List&Create
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#" class="textstyle">
-                        <i class="metismenu-icon" ></i>
-                        <span class="ml-3 mr-4">Category&nbsp</span>
-                        <i class="fa fa-angle-down ml-5 opacity-8"></i>
-                    </a>
-                    <ul>
-                        <li>
-                            <a href="{{ url('/categories') }}" class="textstyle">
-                               List&Create
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#" class="textstyle">
-                        <i class="metismenu-icon" ></i>
-                        <span class="ml-3 mr-3">SubCategories&nbsp&nbsp&nbsp</span>
-                        <i class="fa fa-angle-down ml-3 opacity-8"></i>
-                    </a>
-                    <ul>
-                        <li>
-                            <a href="{{ url('/subCategory') }}" class="textstyle">
-                               List&Create
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
                     <a href="{{ url('/allAssetLists') }}" class="textstyle">
-                        <i class="metismenu-icon" ></i>
-                        <span class="ml-3">Assets-CurrentPrice&nbsp</span>
-                        <i class="fa fa-angle-down ml-2 opacity-8"></i>
+                        Assets-CurrentPrice
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ url('/categories') }}" class="textstyle">
+                        Category
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ url('/subCategory') }}" class="textstyle">
+                        SubCategory
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ url('/brands') }}" class="textstyle">
+                        Brands
                     </a>
                 </li>
             </ul>
@@ -165,18 +136,18 @@
         <li>
             <a href="#">
                 <i class="metismenu-icon pe-7s fas fa-laptop" style="font-size: 16px;"></i>
-                    <span class="ml-3">PC Rent</span>
+                <span class="ml-3">PC Rent</span>
                 <i class="fa fa-angle-down ml-5 opacity-8"></i>
             </a>
             <ul>
                 <li>
                     <a href="{{ url('/pcrent') }}" class="textstyle">
-                       Rent List
+                        Rent List
                     </a>
                 </li>
                 <li>
                     <a href="{{ url('/pcrent/create') }}" class="textstyle">
-                       Rent Form
+                        Rent Form
                     </a>
                 </li>
             </ul>
@@ -220,7 +191,7 @@
                 </li>
             </ul>
         </li>
-        
+
     </ul>
 </div>
 @endif
@@ -232,7 +203,7 @@
         <li class="text">
             <a href="#" class="textstyle">
                 <i class="metismenu-icon pe-7s fas fa-business-time" style="font-size: 16px;"></i>
-                    <span class="mr-3">Leaves&nbsp&nbsp</span>
+                <span class="mr-3">Leaves&nbsp&nbsp</span>
                 <i class="fa fa-angle-down ml-5 opacity-8"></i>
             </a>
             <ul>
@@ -248,7 +219,7 @@
         <li>
             <a href="#" class="textstyle">
                 <i class="metismenu-icon pe-7s fas fa-list" style="font-size: 16px;"></i>
-                    <span class="">Attendance</span>
+                <span class="">Attendance</span>
                 <i class="fa fa-angle-down ml-5 opacity-8"></i>
             </a>
             <ul>
@@ -259,7 +230,7 @@
                 </li>
             </ul>
         </li>
-        
+
     </ul>
 </div>
 @endif
@@ -272,7 +243,7 @@
         <li class="text">
             <a href="#" class="textstyle">
                 <i class="metismenu-icon pe-7s fas fa-business-time" style="font-size: 16px;"></i>
-                    <span class="mr-3">Leaves&nbsp&nbsp</span>
+                <span class="mr-3">Leaves&nbsp&nbsp</span>
                 <i class="fa fa-angle-down ml-5 opacity-8"></i>
             </a>
             <ul>
@@ -292,7 +263,7 @@
         <li>
             <a href="#" class="textstyle">
                 <i class="metismenu-icon pe-7s fas fa-list" style="font-size: 16px;"></i>
-                    <span class="">Attendance</span>
+                <span class="">Attendance</span>
                 <i class="fa fa-angle-down ml-5 opacity-8"></i>
             </a>
             <ul>
