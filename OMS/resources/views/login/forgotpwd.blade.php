@@ -20,24 +20,14 @@ Forgot Password Form
                 <strong>{{ $message }}</strong>
             </div>
         @endif
-
-        <!-- @if(count($errors) > 0)
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif -->
         
         <form method="post" action="{{ url('/forgotpwd/checkemail' )}}" novalidate>
         @csrf
             <div class="form-group">
                 <label>Employee Email</label>
-                <input type="email" name="email" class="form-control @error('email') is-invalid @enderror"/>
+                <input type="email" name="email" class="form-control"/>
                 @error('email')
-                    <span class="invalid-feedback" role="alert">
+                    <span class="invalid-feedback">
                         {{ $message }}
                     </span>
                 @enderror

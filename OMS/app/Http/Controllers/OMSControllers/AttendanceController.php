@@ -5,6 +5,7 @@ namespace App\Http\Controllers\OMSControllers;
 use App\Http\Controllers\Controller;
 use App\Models\Dailyattendance;
 use Illuminate\Http\Request;
+use Auth;
 
 
 class AttendanceController extends Controller
@@ -15,14 +16,11 @@ class AttendanceController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function __construct()
+    public function index(Dailyattendance $dailyattendance)
     {
-        $this->middleware('auth')->except(['store','create']);
-    }
-
-    public function index()
-    {
-        //
+        $id = Auth::user()->employeeid;
+        $dailyattendance = Dailyattendance::where('userid',$id)->get();
+        return view('attendance.index',compact('dailyattendance'));
     }
 
     /**
@@ -32,7 +30,6 @@ class AttendanceController extends Controller
      */
     public function create()
     {
-        //
         return view('attendance.create');
     }
 
@@ -44,38 +41,33 @@ class AttendanceController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        $validator=validator(request()->all(),[
-           
-            'attendanceDate'=>'required',
-            'checkIn'=>'required',
-            'checkOut'=>'required',
-            'lunchTime'=>'required',
-    
+        $validator = validator(request()->all(),[
+            'attendanceDate' => 'required|date|unique:dailyattendances,date,',
+            'checkIn' => 'required',
+            'checkOut' => 'required',
+            'lunchTime' => 'required',
+            'workHour' => 'required',
         ]);
     
         if($validator->fails()) {
             return back()->withErrors($validator);
-    
         }
     
-        $dailyattendance=new Dailyattendance;
-        $dailyattendance->userid=request()->employeeID;
-        $dailyattendance->date=request()->attendanceDate;
-        $dailyattendance->checkin=request()->checkIn;
-        $dailyattendance->checkout=request()->checkOut;
-        $dailyattendance->lunchtime=request()->lunchTime;
-        $dailyattendance->workinghour=request()->workHour;
-        $dailyattendance->halfdayleave=request()->halfDayLeave;
-        $dailyattendance->leaveday=request()->leaveDay;
-        $dailyattendance->workfromhome=request()->wfh;
-        $dailyattendance->ottime=request()->ottime;
-    
-       
+        $dailyattendance = new Dailyattendance;
+        $dailyattendance->userid = request()->employeeID;
+        $dailyattendance->date = request()->attendanceDate;
+        $dailyattendance->checkin = request()->checkIn;
+        $dailyattendance->checkout = request()->checkOut;
+        $dailyattendance->lunchtime = request()->lunchTime;
+        $dailyattendance->workinghour = request()->workHour;
+        $dailyattendance->halfdayleave = request()->halfDayLeave;
+        $dailyattendance->leaveday = request()->leaveDay;
+        $dailyattendance->workfromhome = request()->wfh;
+        $dailyattendance->ottime = request()->ottime;
+        
         $dailyattendance->save();
     
-        return redirect('/');
-        
+        return redirect('attendance')->with('success','Attendance record has been saved successfully!!');
     }
 
     /**
@@ -86,12 +78,9 @@ class AttendanceController extends Controller
      */
     public function show(Dailyattendance $dailyattendance)
     {
-        //
-
-        $detail=Dailyattendance::all();
-
-        return view('attendance.attendanceList',compact('detail'));
-    }
+        $dailyattendance = Dailyattendance::all();
+        return view('attendance.show',compact('dailyattendance'));
+    } 
 
     /**
      * Show the form for editing the specified resource.
@@ -99,9 +88,11 @@ class AttendanceController extends Controller
      * @param  \App\Models\Dailyattendance  $dailyattendance
      * @return \Illuminate\Http\Response
      */
-    public function edit(Dailyattendance $dailyattendance)
+    public function edit($id)
     {
-        //
+        $edit = Dailyattendance::find($id);
+
+        return view('attendance.edit',compact('edit'));
     }
 
     /**
@@ -111,9 +102,33 @@ class AttendanceController extends Controller
      * @param  \App\Models\Dailyattendance  $dailyattendance
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Dailyattendance $dailyattendance)
+    public function update(Request $request, $id)
     {
-        //
+        $validator = validator(request()->all(),[
+            'attendanceDate' => 'required',
+            'checkIn' => 'required',
+            'checkOut' => 'required',
+            'lunchTime' => 'required',
+            'workHour' => 'required',
+        ]);
+    
+        if($validator->fails()) {
+            return back()->withErrors($validator);
+        }
+
+        Dailyattendance::findOrFail($id)->update([
+            'userid'=>request()->employeeID,
+            'date'=>request()->attendanceDate,
+            'checkin'=>request()->checkIn,
+            'checkout'=>request()->checkOut,
+            'lunchtime'=>request()->lunchTime,
+            'workinghour'=>request()->workHour,
+            'halfdayleave'=>request()->halfDayLeave,
+            'leaveday'=>request()->leaveDay,
+            'workfromhome'=>request()->wfh,
+            'ottime'=>request()->ottime,
+        ]);
+        return redirect('attendance')->with('success','Attendance record has been updated successfully!!');;
     }
 
     /**
@@ -122,10 +137,10 @@ class AttendanceController extends Controller
      * @param  \App\Models\Dailyattendance  $dailyattendance
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Dailyattendance $dailyattendance)
+    public function destroy($id)
     {
-        //
+        $attendance = Dailyattendance::where('id',$id)->delete();
+        return redirect('attendance');
     }
 }
-
 

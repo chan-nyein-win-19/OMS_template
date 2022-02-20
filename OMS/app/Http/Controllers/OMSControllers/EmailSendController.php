@@ -14,7 +14,6 @@ use App\Models\Otp;
 
 class EmailSendController extends Controller
 {
-    //
     public function forgotpwd()
     {
         return view('login.forgotpwd');
@@ -40,19 +39,18 @@ class EmailSendController extends Controller
     
         Mail::to($user)->send(new ForgotpwdEmail($details));
 
-        $otp=Otp::where('employeeid',$user->id)->first();
+        $otp = Otp::where('employeeid',$user->id)->first();
 
         if($otp == NULL)
         {
             $otp1 = new Otp;
-            $otp1->employeeid=$user->id;
-            $otp1->otp=$number;
+            $otp1->employeeid = $user->id;
+            $otp1->otp = $number;
     
             $otp1->save();
         }
         else{
             Otp::where('id',$otp->id)->update([
-               
                 'employeeid'=>$user->id,
                 'otp'=>$number,
             ]);

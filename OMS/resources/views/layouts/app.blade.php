@@ -59,7 +59,7 @@
                             </button>
                         </span>
                     </div>
-                    <div class="scrollbar-sidebar">
+                    <div class="scrollbar-sidebar" style="overflow-y:scroll;">
                         @section('sidebar')
                             @include('layouts.sidebar')
                         @show

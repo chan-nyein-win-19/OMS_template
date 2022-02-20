@@ -14,7 +14,7 @@ class ResetPasswordController extends Controller
     //
     function checkOTP(Request $request)
    {
-    $validator= validator(request()->all(),[
+    $validator = validator(request()->all(),[
         'otp'=>'required',
         'newPassword'=>'required|string|min:3',
         'confirmPassword'=>'required|string|min:3',
@@ -27,10 +27,9 @@ class ResetPasswordController extends Controller
       {
       
         return view('login.otpform',compact('employeeid'))->withErrors($validator);
-       // return view('login.otpform',compact('employeeid'));
       }
 
-       $otp =Otp::where('employeeid',$request->get('employeeid'))->first();
+       $otp = Otp::where('employeeid',$request->get('employeeid'))->first();
        
 
        if($otp->otp == $request->get('otp'))
@@ -38,13 +37,12 @@ class ResetPasswordController extends Controller
         User::where('id',$request->get('employeeid'))->update([
             'password' => Hash::make($request->get('newPassword'))
         ]);
-        return view('login.login');
+       return redirect('/forgotpwd/checkemail/checkOTP');
+          
        }
        else
        {
         return view('login.otpform',compact('employeeid'))->withErrors(['otpError'=>'Incorrect OTP']);
-        //return view('login.otpform',compact('employeeid'))->with('error','Incorrect OTP');
-        //return view('login.otpform')->with('error','Wrong Email');
        }
     }
     

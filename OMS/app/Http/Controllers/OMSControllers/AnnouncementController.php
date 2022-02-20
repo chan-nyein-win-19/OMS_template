@@ -13,13 +13,6 @@ class AnnouncementController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-
-
-    public function __construct(){
-        $this->middleware('auth')->except(['index']);
-    }
-
-
     public function index()
     {
         $list =  Announcement::all();
@@ -44,11 +37,16 @@ class AnnouncementController extends Controller
      */
     public function store(Request $request)
     {
+        $validateData = $request->validate([
+            'title' => 'required',
+            'content' => 'required',
+        ]);
+         
         $announcement = new Announcement;
-        $announcement->title=request()->title;
-        $announcement->content=request()->content;
-        $announcement->save();
-        return redirect('/announcements/create')->with('info','Announcements Successfully Added...');
+        $announcement -> title=request()->title;
+        $announcement -> content=request()->content;
+        $announcement -> save();
+        return redirect('announcements')->with('success','Announcements Successfully Added...');
     }
 
     /**
@@ -59,7 +57,7 @@ class AnnouncementController extends Controller
      */
     public function show($id)
     {
-        $ann=Announcement::find($id);
+        $ann = Announcement::find($id);
         
         return view('announcement.show',compact('ann'));
     }
@@ -87,11 +85,15 @@ class AnnouncementController extends Controller
     public function update(Request $request, $id)
     {
         
+        $validateData= $request->validate([
+            'title' => 'required',
+            'content' => 'required',
+        ]);
         $announcement = Announcement::find($id);
-        $announcement->title=request()->title;
-        $announcement->content=request()->content;
+        $announcement->title = request()->title;
+        $announcement->content = request()->content;
         $announcement->save();
-        return redirect("announcements/".$id."/edit")->with('success','Announcement has been updated successfully!!');
+        return redirect("announcements")->with('success','Announcement has been updated successfully!!');
     }
 
     /**
@@ -104,7 +106,6 @@ class AnnouncementController extends Controller
     {
         $delete = $announcement::find($announcement->id);
         $delete -> delete();
-        return back();
+        return back()->with('anndelete','Announcement Deleted');
     }
 }
-?>

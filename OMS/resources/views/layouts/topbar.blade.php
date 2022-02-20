@@ -46,7 +46,7 @@
                         <div class="widget-content-left">
                             <div class="btn-group">
                                 <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="p-0 btn">
-                                    <img width="42" class="rounded-circle" src="" alt="" />
+                                   
                                     <i class="fa fa-user" style="font-size: 20px;color: grey;"></i>
                                     <i class="fa fa-angle-down ml-2 opacity-8"></i>
                                 </a>
@@ -54,14 +54,15 @@
 
                                 <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu dropdown-menu-right">
                                 @if(isset(Auth::user()->employeeid))
-                                    <a class="btn dropdown-item" tabindex="0" href="{{ url('/accounts/Auth::user()->id') }}">Account info</a>
-                                    <a class="btn dropdown-item" tabindex="0" href="{{ url('/changepassword/Auth::user()->id') }}">Change Password</a>
+                                    <a class="btn dropdown-item" tabindex="0" href="{{ url('/accounts/'.Auth::user()->id) }}">Account info</a>
+                                    <a class="btn dropdown-item" tabindex="0" href="{{ url('/changepassword/'.Auth::user()->id) }}">Change Password</a>
                                     <a class="btn dropdown-item" tabindex="0"  href="{{ url('/logout') }}">Logout</a>
                                 
                                 @endif
                             </div>
                             </div>
                         </div>
+                        
                         <div class="widget-content-left ml-3 header-user-info">
                             <div class="widget-heading">
                             {{ Auth::user()->username }}
