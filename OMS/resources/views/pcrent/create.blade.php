@@ -25,7 +25,7 @@
                     <div class="form-group row">
                         <label for="employeeid" class="col-sm-4 col-form-label" >EmployeeId<span style="color:red">*</span></label>
                             <div class="col-sm-6">
-                            <input type="text" class="form-control" name="employeeid">
+                            <input type="text" class="form-control" id="employeeid" name="employeeid">
                             @error("employeeid")
                                 <span class="text-danger float-left">{{$errors->first('employeeid')}}</span>
                             @enderror  
@@ -35,7 +35,7 @@
                     <div class="form-group row">
                         <label for="employeename" class="col-sm-4 col-form-label" >Employee Name<span style="color:red">*</span></label>
                         <div class="col-sm-6"> 
-                        <input type="text" class="form-control" name="employeename" >
+                        <input type="text" class="form-control" id="employeename" name="employeename" >
                         @error("employeename")
                             <span class="text-danger float-left">{{$errors->first('employeename')}}</span>
                         @enderror  
@@ -87,4 +87,25 @@
     </div>
 </div>
 </div>
+@endsection
+
+@section('script')
+<script src="{{ asset('/storage/OMS/login/jquery.min.js') }}"></script>
+<script src="{{ asset('/storage/OMS/login/bootstrap.min.js') }}"></script>
+<script type="text/javascript">
+    $('#employeeid').on('keyup', function() {
+        $empId=$(this).val();
+        $.ajax({
+          type:'get',
+          url:'/employee/'+$empId,
+          data:{'id':$empId},
+          success:function(data) {
+              console.log(data);
+              for(var i=0; i<data.length; i++) {
+                document.getElementById('employeename').value=data[i].username;
+              }            
+          }
+        });
+    });
+</script>
 @endsection
