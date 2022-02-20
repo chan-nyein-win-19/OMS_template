@@ -22,7 +22,9 @@
         <form action="{{route('subCategory.update',['subCategory'=>$subCategory])}}" method="post" class="p-5">
             @csrf
             @method('PUT')
-            <div class="form-group">
+            <div class="position-relative row form-group">
+            <label class="col-sm-2 col-form-label"> Category<span style="color: red"></span></label>
+            <div class="col-sm-10">
                 <select name="category" class="form-control mr-3">
                     <option value="" disabled>Category</option>
                         @foreach($category as $item)
@@ -34,17 +36,23 @@
                         @endforeach
                 </select>
             </div>
-            <div class="form-group">
-                <input type="text" name="itemcode" class="form-control mr-3" placeholder="Prefix" value="{{ old('itemcode')? old('itemcode') : $subCategory->itemcode }}"> 
-                    @error('itemcode')
-                        <div class="row">
-                            <div class="col-sm-10">
-                                <span class="text-danger">*{{$message}}</span><br>
-                            </div>
-                        </div>
-                    @enderror
             </div>
-            <div class="form-group">
+            <div class="position-relative row form-group">
+            <label class="col-sm-2 col-form-label"> Prefix<span style="color: red"></span></label>
+            <div class="col-sm-10">
+                <input type="text" name="itemcode" class="form-control mr-3" placeholder="Prefix" value="{{ old('itemcode')? old('itemcode') : $subCategory->itemcode }}"> 
+                        @error('itemcode')
+                            <div class="row">
+                                <div class="col-sm-10">
+                                    <span class="text-danger">*{{$message}}</span><br>
+                                </div>
+                            </div>
+                        @enderror
+            </div>
+            </div>
+            <div class="position-relative row form-group">
+            <label class="col-sm-2 col-form-label">SubCategory<span style="color: red"></span></label>
+            <div class="col-sm-10">
                 <input type="text" name="name" class="form-control mr-3" placeholder="SubCategory Name" value="{{ old('name')? old('name') : $subCategory->name }}"> 
                     @error('name')
                         <div class="row">
@@ -54,7 +62,10 @@
                         </div>
                     @enderror
             </div>
-            <div class="form-group">
+            </div>
+            <div class="position-relative row form-group">
+            <label class="col-sm-2 col-form-label"> Description<span style="color: red"></span></label>
+            <div class="col-sm-10">
                 <textarea name="description" rows="3" class="form-control mr-3"
                     placeholder="Enter Your Description.">{{ old('description') ? old('description'): $subCategory->description }}</textarea>
                     @error('description')
@@ -64,6 +75,7 @@
                             </div>
                         </div>
                     @enderror
+            </div>
             </div>
             <div class="form-group">
                 <input type="submit" value="Update" class="btn btn-primary">
