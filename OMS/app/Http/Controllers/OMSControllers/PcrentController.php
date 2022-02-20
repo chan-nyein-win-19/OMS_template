@@ -5,6 +5,7 @@ namespace App\Http\Controllers\OMSControllers;
 use App\Http\Controllers\Controller;
 use App\Models\Pcrent;
 use App\Models\Pc;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Validator;
 
@@ -111,6 +112,11 @@ class PcrentController extends Controller
             'remark'=>'required',
             'error'=>'required',
          ]);
+         
+         if($validator->fails()){
+             return back()->withErrors($validator);
+         }
+
         $pcrent = Pcrent::find($id);
         $pcrent->employeeId=request()->employeeid;
         $pcrent->employeename=request()->employeename;
@@ -130,12 +136,17 @@ class PcrentController extends Controller
      */
     public function destroy($id)
     {
-        //
         $pcrent = Pcrent::find($id);
         $pc=Pc::find($pcrent->pcid);
         $pc->status='available';
         $pc->save();
         $pcrent->delete();
         return redirect('pcrent');
+    }
+
+    public static function employee($id)
+    {
+        $data = User::select('username')->where('employeeid',$id)->take(100)->get();
+        return response()->json($data);
     }
 }

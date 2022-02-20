@@ -119,6 +119,7 @@ Route::middleware(['auth'])->group(function(){
 
     //PcRent
         Route::resource('pcrent',PcrentController::class);
+        Route::get('/employee/{id}',[PcrentController::class,'employee']);
     //end
 
     //PC
