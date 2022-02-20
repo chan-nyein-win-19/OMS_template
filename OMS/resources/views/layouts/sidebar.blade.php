@@ -88,6 +88,11 @@
                                 PC Lists
                             </a>
                         </li>
+                        <li>
+                            <a href="{{ url('/pcpurchase') }}" class="textstyle">
+                                PC Purchase Lists
+                            </a>
+                        </li>
                     </ul>
                 </li>
                 <li>
