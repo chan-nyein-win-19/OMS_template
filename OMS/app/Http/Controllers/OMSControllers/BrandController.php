@@ -24,6 +24,11 @@ class BrandController extends Controller
    
     public function store(Request $request)
     {
+        $validator = $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+            'subcategory'=>'required',
+         ]);
         $brandExists=Brand::where('name',request()->name)->first();
         if($brandExists!=null){
             $subBrandExists=Subbrand::where([['subcategoryId',request()->subcategory],['brandId',$brandExists->id]])->get();

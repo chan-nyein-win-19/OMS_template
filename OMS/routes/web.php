@@ -20,6 +20,7 @@ use App\Http\Controllers\OMSControllers\SubcategoryController;
 use App\Http\Controllers\OMSControllers\AllAssetsController;
 use App\Http\Controllers\OMSControllers\PurchaseController;
 use App\Http\Controllers\OMSControllers\OtherAssetController;
+use App\Http\Controllers\OMSControllers\SubbrandController;
 
 /*
 |--------------------------------------------------------------------------
@@ -132,6 +133,10 @@ Route::middleware(['auth'])->group(function(){
     // brand
         Route::resource('brands',BrandController::class);
     // end
+
+    //subbrand
+    Route::resource('subbrands',SubbrandController::class);
+    //end
 
     // category
         Route::resource('categories',CategoryController::class);
