@@ -117,8 +117,9 @@ class PcController extends Controller
      */
     public function destroy($id)
     {
-        //
         $pc = Pc::where('id',$id)->delete();
+        $pc->quantity = $pc->quantity-1;
+        $pc->update();
         return redirect('pc');
     }
 }
