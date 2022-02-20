@@ -30,7 +30,7 @@ class LeaderLeaveController extends Controller
     public function findLeave(Request $request){
         $today = request()->date;
         $filtering = request()->filtering;
-        $leaveRecords = Leaves::where('date',$today)->where([
+        $leaveRecords = Leaves::where([
             [
                 'date',$today
             ],

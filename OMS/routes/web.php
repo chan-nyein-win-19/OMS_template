@@ -103,8 +103,8 @@ Route::middleware(['auth'])->group(function(){
         Route::get('/leader/leaveRecord',[LeaderLeaveController::class,'viewLeave']);
         Route::get('/leader/leaveStatus/{id}/{status}/{date}/{filtering}',[LeaderLeaveController::class,'changeStatus']);
         Route::get('/leader/leaveRecord/filterLeave/{filtering}/{date}',[LeaderLeaveController::class,'filterLeave']);
-        Route::get('/leader/leaveRecord/searchLeave',[LeaderLeaveController::class,'findLeave']);
-        Route::post('/leader/leaveRecord/searchLeave',[LeaderLeaveController::class,'viewLeave']);
+        Route::get('/leader/leaveRecord/searchLeave',[LeaderLeaveController::class,'viewLeave']);
+        Route::post('/leader/leaveRecord/searchLeave',[LeaderLeaveController::class,'findLeave']);
     // end
 
     // purchaseforotherasset
