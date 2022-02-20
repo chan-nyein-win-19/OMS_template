@@ -17,43 +17,8 @@ class PcController extends Controller
      */
     public function index()
     {
-        //
         $pc=Pc::all();
-        return view('pc.index',compact('pc')
-        );
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\PC  $pC
-     * @return \Illuminate\Http\Response
-     */
-    public function show(PC $pC)
-    {
-        //
-        
+        return view('pc.index',compact('pc'));
     }
 
     /**
@@ -79,7 +44,6 @@ class PcController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //dd('update fun');
         $validator=validator(request()->all(),[         
             'brand'=>'required',
             'cpu'=>'required',
@@ -117,7 +81,6 @@ class PcController extends Controller
      */
     public function destroy($id)
     {
-        //
         $pc = Pc::where('id',$id)->delete();
         return redirect('pc');
     }

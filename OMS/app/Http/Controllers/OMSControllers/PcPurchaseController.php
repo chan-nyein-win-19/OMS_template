@@ -20,7 +20,6 @@ class PcPurchaseController extends Controller
      */
     public function index()
     {
-        //
         $pcpurchase=Pcpurchase::all();
         
         return view('pcpurchase.index',compact('pcpurchase'));
@@ -124,17 +123,6 @@ class PcPurchaseController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Purchase  $purchase
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Purchase $purchase)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\Purchase  $purchase
@@ -142,7 +130,6 @@ class PcPurchaseController extends Controller
      */
     public function edit($id)
     {
-        //
         $edit=Pcpurchase::find($id);
         $subCategory = subCategory::where('name','PC')->first();
         $brand = Subbrand::where('subcategoryId',$subCategory->id)->get();
@@ -158,7 +145,6 @@ class PcPurchaseController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
         $validator = validator(request()->all(),[
             'date'=>'required',
             'priceperunit'=>'required|integer|min:1',
@@ -226,7 +212,6 @@ class PcPurchaseController extends Controller
      */
     public function destroy($id)
     {
-        //
         $pc =Pc::where('purchaseId',$id)->delete();
         $pcpurchase = Pcpurchase::where('id',$id)->delete();
         return redirect('pcpurchase')->with('success','Successfully Deleted!!');
