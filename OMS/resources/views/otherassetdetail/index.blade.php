@@ -88,69 +88,68 @@
 <script src="{{ asset('/storage/OMS/bootstrap5/bootstrap.bundle.min.js') }}"></script>
 
 <script type="text/javascript">
-jQuery(function($) {
-    //initiate dataTables plugin
-    var myTable =
-        $('#table')
-        //.wrap("<div class='dataTables_borderWrap' />")   //if you are applying horizontal scrolling (sScrollX)
-        .DataTable({
-            bAutoWidth: false,
-            "aoColumns": [
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                
-                
-                       
-
-            ],
-            "aaSorting": [],   
-
-            select: {
-                style: 'multi'
-            }
-        });
-});
-$(document).ready(function() {
-           setTimeout(() => {
+    jQuery(function($) {
+        //initiate dataTables plugin
+        var myTable =
+            $('#table')
+            //.wrap("<div class='dataTables_borderWrap' />")   //if you are applying horizontal scrolling (sScrollX)
+            .DataTable({
+                bAutoWidth: false,
+                "aoColumns": [
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                ],
+                "aaSorting": [],   
+                select: {
+                    style: 'multi'
+                }
+            });
+    });
+    $(document).ready(function() {
+        setTimeout(() => {
                 $('.alert-success').addClass('d-none');;
             }, 3000);
         });
 </script>
 
 <script type="text/javascript">
-function deleteRecord($id) {
-    bootbox.confirm({
-        message: "Do You Really want to delete it?This can't be undone.",
-        buttons: {
-            confirm: {
-                label: 'Yes',
-                className: 'btn-success'
+    function deleteRecord($id) {
+        bootbox.confirm({
+            message: "Do You Really want to delete it?This can't be undone.",
+            buttons: {
+                confirm: {
+                    label: 'Yes',
+                    className: 'btn-success'
+                },
+                cancel: {
+                    label: 'No',
+                    className: 'btn-danger'
+                }
             },
-            cancel: {
-                label: 'No',
-                className: 'btn-danger'
+            callback: function(result) {
+                if (result) {
+                    let formToDelete = document.getElementById("form"+$id);
+                    formToDelete.submit();
+                    bootbox.alert({
+                        message: "Successfully Deleted!",
+                        callback: function() {
+                            console.log('This was logged in the callback!');
+                        }
+                    })
+                }
             }
-        },
-        callback: function(result) {
-            if (result) {
-                let formToDelete = document.getElementById("form"+$id);
-                formToDelete.submit();
-                bootbox.alert({
-                    message: "Successfully Deleted!",
-                    callback: function() {
-                        console.log('This was logged in the callback!');
-                    }
-                })
-            }
-        }
-    });
-}
-
+        });
+    }
 </script>
 
+<script>
+    $(document).on('click','a.paginate_button',function(event){
+        $('[data-toggle="tooltip"]').tooltip();                            
+    })
+</script>
 @endsection

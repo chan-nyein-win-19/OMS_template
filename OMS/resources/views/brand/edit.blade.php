@@ -46,7 +46,7 @@
                             </label>
                             <div class="col-sm-10">
                                 <textarea class="form-control" rows="3" name="description" 
-                                    placeholder="Please Enter Description" >{{ old('description') ? old('description') : $edit->brand->description }}</textarea>
+                                    placeholder="Please Enter Description" >{{ old('description') ? old('description') : $edit->description }}</textarea>
                                 @error('description')
                                 <span class="text-danger">{{ $errors->first('description') }}</span>
                                 @enderror  
