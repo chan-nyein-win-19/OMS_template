@@ -10,48 +10,7 @@ use Illuminate\Http\Request;
 
 class SubbrandController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Subbrand  $subbrand
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Subbrand $subbrand)
-    {
-        //
-    }
-
+    
     /**
      * Show the form for editing the specified resource.
      *
@@ -60,7 +19,6 @@ class SubbrandController extends Controller
      */
     public function edit(Subbrand $subbrand)
     {
-        //
         $edit = Subbrand::find($subbrand->id);
         $subcategory = subCategory::all();
         return view("brand.edit",compact(['edit','subcategory']));
@@ -75,7 +33,6 @@ class SubbrandController extends Controller
      */
     public function update(Request $request, Subbrand $subbrand)
     {
-        //
         $validator = $request->validate([
             'name' => 'required',
             'description' => 'required',
@@ -119,7 +76,6 @@ class SubbrandController extends Controller
      */
     public function destroy(Subbrand $subbrand)
     {
-        //
         $delete = Subbrand::find($subbrand->id);
         $delete -> delete();
         return back()->with('info','Brand Deleted');
