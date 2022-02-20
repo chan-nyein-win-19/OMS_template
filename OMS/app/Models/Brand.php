@@ -8,11 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Brand extends Model
 {
     use HasFactory;
-    protected $guarded=[];
-     
+    protected $table='brands';
+
     public function category(){
         return $this->belongsTo(Category::class,'categoryId');
     }
-    
-   
+       
 }
