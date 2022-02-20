@@ -67,11 +67,6 @@
             <ul>
 
                 <li>
-                    <!-- <a href="#" class="textstyle">
-                        <i class="metismenu-icon"></i>
-                        <span class="ml-3 mr-3"> Asset Lists&nbsp</span>
-                        <i class="fa fa-angle-down ml-5 opacity-8"></i>
-                    </a> -->
                     <a href="#" class="textstyle">
                     <i class="metismenu-icon" style="font-size: 16px;"></i>
                     <span>Asset Lists&nbsp&nbsp&nbsp</span>
