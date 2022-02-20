@@ -92,7 +92,7 @@
                         @foreach ($brand as $item)               
                             <tr>
                                 <td>{{ $item->brand->name }}</td>
-                                <td>{{ $item->brand->description }}</td> 
+                                <td>{{ $item->description }}</td> 
                                 <td>{{$item->subcategory->name}}</td>
                                 <td>  
                                     <a href="{{ route('subbrands.edit', $item->id) }}" class="mb-2 mr-2 btn-transition btn btn-outline-primary" data-toggle="tooltip" title='Edit'>

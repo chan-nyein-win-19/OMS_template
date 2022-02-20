@@ -17,6 +17,7 @@ class CreateSubbrandTable extends Migration
             $table->id();
             $table->integer('subcategoryId');
             $table->integer('brandId');
+            $table->string('description');
             $table->timestamps();
         });
     }

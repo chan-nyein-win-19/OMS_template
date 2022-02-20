@@ -36,6 +36,7 @@ class BrandController extends Controller
                 $subBrand=new Subbrand;
                 $subBrand->subcategoryId=request()->subcategory;
                 $subBrand->brandId=$brandExists->id;
+                $subBrand->description=request()->description;
                 $subBrand->save();
                 return back()->with('info','Brands Successfully Added...');
             }else{
@@ -45,12 +46,12 @@ class BrandController extends Controller
         }else{
             $brand=new Brand;
             $brand->name=request()->name;
-            $brand->description=request()->description;
             $brand->save();
             $newBrand=Brand::where('name',request()->name)->first();
                 $subBrand=new Subbrand;
                 $subBrand->subcategoryId=request()->subcategory;
                 $subBrand->brandId=$newBrand->id;
+                $subBrand->description=request()->description;
                 $subBrand->save();
                 return back()->with('info','Brands Successfully Added...');
 

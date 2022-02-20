@@ -84,12 +84,15 @@ class SubbrandController extends Controller
          $brandExists=Brand::where('name',request()->name)->first();
          if($brandExists!=null){
              if($brandExists->id==$subbrand->brandId && $request->subcategory==$subbrand->subcategoryId){
+                 $subbrand->description=request()->description;
+                 $subbrand->save();
                 return redirect('brands')->with('info','Brands Successfully Updated...');
              }
             $subBrandExists=Subbrand::where([['subcategoryId',request()->subcategory],['brandId',$brandExists->id]])->get();
             if(count($subBrandExists)<=0){
                 $subbrand->subcategoryId=$request->subcategory;
                 $subbrand->brandId=$brandExists->id;
+                $subbrand->description=request()->description;
                 $subbrand->save();
                 return redirect('brands')->with('info','Brands Successfully Updated...');
             }else{
@@ -98,11 +101,11 @@ class SubbrandController extends Controller
          }else{
             $brand=new Brand;
             $brand->name=request()->name;
-            $brand->description=request()->description;
             $brand->save();
             $newBrand=Brand::where('name',request()->name)->first();
                 $subbrand->subcategoryId=request()->subcategory;
                 $subbrand->brandId=$newBrand->id;
+                $subbrand->description=request()->description;
                 $subbrand->save();
                 return redirect('brands')->with('info','Brands Successfully Updated...');
          }
