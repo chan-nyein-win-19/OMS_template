@@ -68,6 +68,7 @@ class PurchaseController extends Controller
     public function store(Request $request)
     {
         $validateData = $request->validate([
+            'date'=>'required',
             'priceperunit'=>'required',
             'quantity'=>'required',
             'totalprice'=>'required',
@@ -153,6 +154,7 @@ class PurchaseController extends Controller
     public function update(Request $request, $id)
     {
         $validateData = $request->validate([
+            'date'=>'required',
             'priceperunit'=>'required',
             'quantity'=>'required',
             'totalprice'=>'required',

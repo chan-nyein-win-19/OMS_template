@@ -28,7 +28,10 @@
         <div class="position-relative row form-group">
           <label for="date" class="col-sm-2 col-form-label">Date<span style="color: red">*</span></label>
             <div class="col-sm-10">
-              <input type="text" class="form-control" name="date" value="{{ date('Y-m-d H:i:s') }}" readonly/>
+              <input type="date" class="form-control" name="date" />
+              @error("date")
+                  <span class="text-danger float-left">{{$errors->first('date')}}</span>
+              @enderror  
             </div>
         </div> 
         <div class="position-relative row form-group">

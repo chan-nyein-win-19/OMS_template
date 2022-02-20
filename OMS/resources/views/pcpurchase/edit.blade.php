@@ -31,7 +31,7 @@
                     <div class="col-sm-6">
                         <select class="form-control" name="brand" readonly>
                             @foreach($brand as $value)
-                            <option value="{{$value['id']}}"{{ $edit->brand->brandid == $value->id ? 'selected' : ''}}>{{$value['name']}}</option>
+                            <option value="{{$value->brand->id}}"{{ $edit->brandid == $value->brand->id ? 'selected' : ''}}>{{$value->brand->name}}</option>
                             @endforeach
                         </select>
                     </div>

@@ -13,15 +13,6 @@
     <div class="row">
         
         <div class="col-sm-12">
-        @if($errors->any())
-            <div class="alert alert-warning">
-                <ol>
-                    @foreach($errors->all() as $value)
-                    <li> {{$value}} </li>
-                    @endforeach
-                </ol>
-            </div>
-        @endif
 
         @if(session('success'))
         <div class="alert alert-success">{{session('success')}}</div>
@@ -38,6 +29,9 @@
                 <div class="col-sm-6">
                 <div class="md-form">
                     <input type="date" class="form-control" name="date">
+                    @error("date")
+                        <span class="text-danger float-left">{{$errors->first('date')}}</span>
+                    @enderror  
                 </div>
                 </div>
             </div>

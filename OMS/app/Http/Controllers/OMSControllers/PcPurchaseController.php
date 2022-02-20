@@ -144,7 +144,8 @@ class PcPurchaseController extends Controller
     {
         //
         $edit=Pcpurchase::find($id);
-        $brand = Brand::all();
+        $subCategory = subCategory::where('name','PC')->first();
+        $brand = Subbrand::where('subcategoryId',$subCategory->id)->get();
         return view('pcpurchase.edit',compact(['edit','brand']));
     }
 
