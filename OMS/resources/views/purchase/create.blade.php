@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title','Other Asset Purchase')
+@section('title','other asset purchase')
 
 @section('style')
   <link rel="stylesheet" href="{{ asset('/storage/OMS/bootstrap5/bootstrap.min.css') }}">

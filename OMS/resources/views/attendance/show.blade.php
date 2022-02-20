@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title','attendance show list')
+
 @section('style')
     <link rel="stylesheet" href="{{ asset('/storage/OMS/data-tables/jquery.dataTables.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/storage/OMS/bootstrap5/bootstrap.min.css') }}">

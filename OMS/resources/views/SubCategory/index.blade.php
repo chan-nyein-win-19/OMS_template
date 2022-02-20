@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title','SubCategory')
+@section('title','subCategory')
 
 @section('style')
     <link rel="stylesheet" href="{{ asset('/storage/OMS/css/style.css') }}">

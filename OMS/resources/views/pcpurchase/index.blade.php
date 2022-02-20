@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title','pc list')
+@section('title','pc purchase list')
 
 @section('style')
     <link rel="stylesheet" href="{{ asset('/storage/OMS/data-tables/jquery.dataTables.min.css') }}">
