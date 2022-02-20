@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title','pc rent create')
+
 @section('style')
     <link rel="stylesheet" href="{{ asset('/storage/OMS/attendance/attendanceform.css') }}">
     <link rel="stylesheet" href="{{ asset('/storage/OMS/bootstrap5/bootstrap.min.css') }}">

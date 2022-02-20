@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title','pc list')
+@section('title','pc rent list')
 
 @section('style')
     <link rel="stylesheet" href="{{ asset('/storage/OMS/data-tables/jquery.dataTables.min.css') }}">
@@ -16,8 +16,7 @@
     @parent
 @endsection
 
-@section('content')  
-     
+@section('content') 
     <div class="container">
         <h2>PC Rent List</h2>
         <table class="mb-0 table table-hover" id="table">
@@ -73,9 +72,9 @@
     <script src="{{ asset('/storage/OMS/data-tables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('/storage/OMS/bootbox/bootbox.all.js') }}"></script>
     <script src="{{ asset('/storage/OMS/bootbox/bootbox.js') }}"></script>
-    <script src="{{ asset('/storage/OMS/bootbox/bootbox.locale.js') }}"></script>
     <script src="{{ asset('/storage/OMS/bootstrap5/bootstrap.min.js') }}"></script>
     <script src="{{ asset('/storage/OMS/bootstrap5/popper.min.js') }}"></script>
+    <script src="{{ asset('/storage/OMS/bootstrap5/bootstrap.bundle.min.js') }}"></script>
     <script type="text/javascript">
         $(document).ready( function () {
             $('#table').DataTable();
@@ -110,5 +109,11 @@
                 }
             });
         }
+    </script>
+
+    <script>
+        $(document).on('click','a.paginate_button',function(event){
+            $('[data-toggle="tooltip"]').tooltip();                            
+        })
     </script>
 @endsection
