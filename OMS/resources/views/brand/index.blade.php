@@ -17,7 +17,7 @@
 @endsection
 
 @section('content')
-@if(session('info'))
+    @if(session('info'))
         <div class="alert alert-success">
             {{session('info')}}
         </div>
@@ -37,7 +37,7 @@
                                 </label>
                                 <div class="col-sm-10">
                                     <input type="text" class="form-control" name="name" value="{{ old('name') }}" 
-                                        placeholder="Please Enter Brand Name"/>
+                                        placeholder="Please Enter Brand Name" autofocus/>
                                     @error("name")
                                     <span class="text-danger">{{ $errors->first('name') }}</span>
                                     @enderror
@@ -78,39 +78,39 @@
         </div>
         <br>
         <hr>
-            <div class="row mt-3">
-                <table class="mb-0 table table-hover" id="brand">
-                    <thead>
+        <div class="row mt-3">
+            <table class="mb-0 table table-hover" id="brand">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Subcategory</th>
+                        <th>Action</th>
+                    </tr> 
+                </thead>
+                <tbody> 
+                    @foreach ($brand as $item)               
                         <tr>
-                            <th>Name</th>
-                            <th>Description</th>
-                            <th>Subcategory</th>
-                            <th>Action</th>
-                        </tr> 
-                    </thead>
-                    <tbody> 
-                        @foreach ($brand as $item)               
-                            <tr>
-                                <td>{{ $item->brand->name }}</td>
-                                <td>{{ $item->description }}</td> 
-                                <td>{{$item->subcategory->name}}</td>
-                                <td>  
-                                    <a href="{{ route('subbrands.edit', $item->id) }}" class="mb-2 mr-2 btn-transition btn btn-outline-primary" data-toggle="tooltip" title='Edit'>
-                                        <i class="fa fa-fw"></i>
-                                    </a>
-                                    <form method="POST" action="{{ route('subbrands.destroy',['subbrand'=>$item]) }}" id="form{{ $item->id }}">
-                                        @csrf
-                                        <input name="_method" type="hidden" value="DELETE">
-                                        <button type="button" onclick=deleteRecord(this.id) class="mb-2 mr-2 btn-transition btn btn-outline-danger" data-toggle="tooltip" title="Delete" id="{{$item->id}}">
-                                            <i class="fa fa-fw"></i>
-                                        </button>
-                                    </form>
-                                </td> 
-                            </tr>  
-                        @endforeach 
-                    </tbody>
-                </table>
-            </div>
+                            <td>{{ $item->brand->name }}</td>
+                            <td>{{ $item->description }}</td> 
+                            <td>{{$item->subcategory->name}}</td>
+                            <td>  
+                                <a href="{{ route('subbrands.edit', $item->id) }}" class="mb-2 mr-2 btn-transition btn btn-outline-primary" data-toggle="tooltip" title='Edit'>
+                                    <i class="fa fa-fw"></i>
+                                </a>
+                                <form method="POST" action="{{ route('subbrands.destroy',['subbrand'=>$item]) }}" id="form{{ $item->id }}">
+                                    @csrf
+                                    <input name="_method" type="hidden" value="DELETE">
+                                    <button type="button" onclick=deleteRecord(this.id) class="mb-2 mr-2 btn-transition btn btn-outline-danger" data-toggle="tooltip" title="Delete" id="{{$item->id}}">
+                                        <i class="fa fa-fw"></i>
+                                    </button>
+                                </form>
+                            </td> 
+                        </tr>  
+                    @endforeach 
+                </tbody>
+            </table>
+        </div>
     </div>
     
 @endsection
@@ -126,6 +126,9 @@
     <script>
         $(document).ready(function() {
             $('#brand').DataTable();
+
+            let subcategory = "{{ old('subcategory') }}";
+            $('[name="subcategory"]').val(subcategory);
 
             setTimeout(() => {
                 $('.alert-success').addClass('d-none');
