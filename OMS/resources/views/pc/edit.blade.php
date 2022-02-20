@@ -22,7 +22,7 @@
                         <div class="col-sm-6">
                             <select class="form-control" name="brand" readonly>
                                 @foreach($brand as $value)
-                                <option value="{{$value->id}}" @if($value->id==$edit->brandid) selected @endif>{{$value->name}}</option>
+                                <option value="{{$value->brand->id}}" @if($value->brand->id==$edit->brandid) selected @endif>{{$value->brand->name}}</option>
                                 @endforeach
                             </select>
                         </div>
