@@ -82,7 +82,7 @@
                             <div class="col-sm-4"></div>
                             <div class="col-sm-6">
                                 <button type="submit" class="btn btn-primary">Update</button>
-                                <button type="reset" href="{{ url('/pcrent') }}" class="btn btn-danger" id="cancel" >Clear</button>
+                                <button type="reset" class="btn btn-danger" id="cancel" >Clear</button>
                             </div>
                         </div>
                     </form>

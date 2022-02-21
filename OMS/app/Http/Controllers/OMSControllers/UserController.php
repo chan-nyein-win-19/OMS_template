@@ -86,6 +86,7 @@ class UserController extends Controller
             [
                 'fname'=>request()->fname,
                 'lname'=>request()->lname,
+                'username'=>request()->username,
                 'email'=>request()->email,
                 'employeeid'=>request()->employeeid,
                 'role'=>request()->role,
