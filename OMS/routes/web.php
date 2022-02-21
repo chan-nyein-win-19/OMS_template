@@ -56,58 +56,8 @@ Route::get('/', function () {
 // end
 
 //Middleware Function
-Route::middleware(['auth'])->group(function(){
-    
-    // login
-        Route::get('/successlogin',[AuthController::class, 'successlogin']);
-    // end
-      
-    // user
-        Route::resource('users',UserController::class);
-    // end
-
-    // announcement
-        Route::resource('announcements',AnnouncementController::class);
-    // end
-
-    //account
-        Route::resource('accounts',AccountController::class);
-        Route::get('/changepassword/{id}',[AccountController::class,'editPassword']);
-        Route::post('/changepassword/{id}',[AccountController::class,'changePassword']);
-    // end
-
-    // attendance
-        Route::resource('attendance',AttendanceController::class);
-        Route::post('/update/{id}',[AttendanceController::class, 'update']);
-    // end
-
-    // leave 
-        Route::get('leaves/list',[
-            'as'=>'leaves.show',
-            'uses'=>'App\Http\Controllers\OMSControllers\LeaveController@show'
-        ]);
-        Route::get('leaves/edit/{date}',[
-            'as'=>'leaves.edit',
-            'uses'=>'App\Http\Controllers\OMSControllers\LeaveController@edit'
-        ]);
-        Route::resource('leaves',LeaveController::class,['except'=>'show','edit']);
-    // end
-
-    // EmployeeLeave
-        Route::get('/leaveRequestForm/{date}',[LeaveController::class,'addNew']);
-        Route::post('/leaveRecord/searchLeave',[LeaveController::class,'searchLeave']);
-        Route::get('/leaveRecord/searchLeave',[LeaveController::class,'show']);
-    // end
-
-    // leaderLeave
-        Route::get('/leader/leaveRecord',[LeaderLeaveController::class,'viewLeave']);
-        Route::get('/leader/leaveStatus/{id}/{status}/{date}/{filtering}',[LeaderLeaveController::class,'changeStatus']);
-        Route::get('/leader/leaveRecord/filterLeave/{filtering}/{date}',[LeaderLeaveController::class,'filterLeave']);
-        Route::get('/leader/leaveRecord/searchLeave',[LeaderLeaveController::class,'viewLeave']);
-        Route::post('/leader/leaveRecord/searchLeave',[LeaderLeaveController::class,'findLeave']);
-    // end
-
-    // purchaseforotherasset
+Route::middleware(['checkRole:Admin'])->group(function(){
+        // purchaseforotherasset
         Route::resource('otherpurchase',PurchaseController::class); 
         Route::resource('otherAsset',OtherAssetController::class);
         Route::get('/findCategory/{id}',[PurchaseController::class,'findCategory']);
@@ -153,6 +103,65 @@ Route::middleware(['auth'])->group(function(){
         Route::get('/allAssetList/updateOthersPrice',[AllAssetsController::class,'currentOthersPrice']);
         Route::get('/allAssetList/updatePcPrice',[AllAssetsController::class,'currentPcPrice']);
     //end
+    // user
+     Route::resource('users',UserController::class);
+     // end
+     // announcement
+    Route::resource('announcements',AnnouncementController::class);
+    // end
+});
+
+Route::group(['middleware'=>['checkRole:Leader|Sensei']],function(){
+     // leaderLeave
+     Route::get('/leader/leaveRecord',[LeaderLeaveController::class,'viewLeave']);
+     Route::get('/leader/leaveStatus/{id}/{status}/{date}/{filtering}',[LeaderLeaveController::class,'changeStatus']);
+     Route::get('/leader/leaveRecord/filterLeave/{filtering}/{date}',[LeaderLeaveController::class,'filterLeave']);
+     Route::get('/leader/leaveRecord/searchLeave',[LeaderLeaveController::class,'viewLeave']);
+     Route::post('/leader/leaveRecord/searchLeave',[LeaderLeaveController::class,'findLeave']);
+ // end
+});
+
+Route::group(['middleware'=>['checkRole:Employee']],function(){
+  // leave 
+    Route::get('leaves/list',[
+        'as'=>'leaves.show',
+        'uses'=>'App\Http\Controllers\OMSControllers\LeaveController@show'
+    ]);
+    Route::get('leaves/edit/{date}',[
+        'as'=>'leaves.edit',
+        'uses'=>'App\Http\Controllers\OMSControllers\LeaveController@edit'
+    ]);
+    Route::resource('leaves',LeaveController::class,['except'=>'show','edit']);
+// end
+
+// EmployeeLeave
+    Route::get('/leaveRequestForm/{date}',[LeaveController::class,'addNew']);
+    Route::post('/leaveRecord/searchLeave',[LeaveController::class,'searchLeave']);
+    Route::get('/leaveRecord/searchLeave',[LeaveController::class,'show']);
+// end
+// attendance
+    Route::resource('attendance',AttendanceController::class);
+    Route::post('/update/{id}',[AttendanceController::class, 'update']);
+// end
+    
+});
+
+Route::middleware(['auth'])->group(function(){
+    
+    // login
+        Route::get('/successlogin',[AuthController::class, 'successlogin']);
+    // end
+    //account
+        Route::resource('accounts',AccountController::class);
+        Route::get('/changepassword/{id}',[AccountController::class,'editPassword']);
+        Route::post('/changepassword/{id}',[AccountController::class,'changePassword']);
+    // end
+    //attendance
+    Route::get('/attendanceList',[AttendanceController::class, 'showAttendance']);
+    //end
+
+    Route::get('/announceDetails/{id}',[AnnouncementController::class, 'show']);
+    
 });
 
 

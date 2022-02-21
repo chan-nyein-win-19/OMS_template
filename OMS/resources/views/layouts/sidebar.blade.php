@@ -51,7 +51,7 @@
             </a>
             <ul>
                 <li>
-                    <a href="{{ url('/attendance/show') }}" class="textstyle">
+                    <a href="{{ url('/attendanceList') }}" class="textstyle">
                         View Attendance Record
                     </a>
                 </li>
@@ -190,8 +190,8 @@
             </a>
             <ul>
                 <li>
-                    <a href="{{ url('/attendance/show') }}" class="textstyle">
-                        View Attendance Records
+                    <a href="{{ url('/attendanceList') }}" class="textstyle">
+                        View Attendance Record
                     </a>
                 </li>
             </ul>
@@ -229,8 +229,13 @@
             </a>
             <ul>
                 <li>
+<<<<<<< HEAD
                     <a href="{{ url('/attendance/show') }}" class="textstyle">
                         View Attendance Records
+=======
+                    <a href="{{ url('/attendanceList') }}" class="textstyle">
+                        View Attendance Record
+>>>>>>> MiddlewareTesting
                     </a>
                 </li>
             </ul>
