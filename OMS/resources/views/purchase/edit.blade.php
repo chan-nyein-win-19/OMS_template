@@ -44,7 +44,7 @@
                 <div class="col-sm-6">
                   <input type="text" class="form-control" name="priceperunit" id="priceperunit" value="{{ old('priceperunit')? old('priceperunit') : $purchasedetail->priceperunit }}" placeholder="Please enter Price Per Unit"  onkeyup="add(this)"/>
                   @error("priceperunit")
-                    <span class="text-danger"> {{ $errors->first('priceperunit') }} </span>
+                    <span class="text-danger float-left"> {{ $errors->first('priceperunit') }} </span>
                   @enderror  
                 </div>
               </div>
@@ -53,7 +53,7 @@
                 <div class="col-sm-6">
                   <input id="quantity" type="numeric" class="form-control" name="quantity" value="{{ old('quantity')? old('quantity') : $purchasedetail->quantity }}" placeholder="Please enter quantity" onkeyup="add(this)" />
                   @error("quantity")
-                    <span class="text-danger"> {{ $errors->first('quantity') }} </span>
+                    <span class="text-danger float-left"> {{ $errors->first('quantity') }} </span>
                   @enderror  
                 </div>
               </div>
@@ -62,7 +62,7 @@
                 <div class="col-sm-6">
                   <input id="totalprice" type="text" class="form-control" name="totalprice" value="{{ old('totalprice')? old('totalprice') : $purchasedetail->totalprice }}" onkeyup="add(this)" readonly/>
                   @error("totalprice")
-                    <span class="text-danger"> {{ $errors->first('totalprice') }} </span>
+                    <span class="text-danger float-left"> {{ $errors->first('totalprice') }} </span>
                   @enderror  
                 </div>
               </div>
@@ -74,7 +74,7 @@
                         <option value="{{$categories->id}}" {{$purchasedetail->categoryid == $categories->id ? 'selected' : ''}}>{{$categories->name}}</option>
                       @endforeach
                   </select>
-                  <span class="text-danger"> {{ $errors->first('category') }} </span>
+                  <span class="text-danger float-left"> {{ $errors->first('category') }} </span>
                 </div>
               </div>
               <div class="form-group row"><label for="subcategory" class="col-sm-4 col-form-label">Sub Category<span style="color: red">*</span></label>
@@ -84,7 +84,7 @@
                       <option value="{{$subcategories->id}}" {{$purchasedetail->subcategoryid == $subcategories->id ? 'selected' : ''}}>{{$subcategories->name}}</option>
                     @endforeach
                   </select>
-                  <span class="text-danger"> {{ $errors->first('subcategory') }} </span>
+                  <span class="text-danger float-left"> {{ $errors->first('subcategory') }} </span>
                 </div>
               </div>
               <div class="form-group row"><label for="content" class="col-sm-4 col-form-label">Brand<span style="color: red">*</span></label>
@@ -94,14 +94,14 @@
                   <option value="{{$brands->brandId}}" {{$purchasedetail->brandid == $brands->id ? 'selected' : ''}} selected>{{$brands->brand->name}}</option>
                   @endforeach
                   </select>
-                  <span class="text-danger"> {{ $errors->first('brand') }} </span>
+                  <span class="text-danger float-left"> {{ $errors->first('brand') }} </span>
                 </div>
               </div>
               <div class="form-group row">
                 <label for="conditon" class="col-sm-4 col-form-label">Condition<span style="color: red">*</span></label>
                 <div class="col-sm-6">
                   <textarea id="totalPrice" type="textarea" class="form-control" rows="3" name="condition" placeholder="Condition" >{{ old('condition')? old('condition'): $purchasedetail->condition }}</textarea>
-                  <span class="text-danger"> {{ $errors->first('condition') }} </span>
+                  <span class="text-danger float-left"> {{ $errors->first('condition') }} </span>
                 </div>
               </div> 
               <div class="text-center">

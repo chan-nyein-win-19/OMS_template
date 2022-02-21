@@ -1,6 +1,6 @@
 <div class="app-header header-shadow">
     <div class="app-header__logo">
-        <div class="logo-src mb-4"><span  style="font-size: 15px;font-style: italic;font-weight: bold;">OfficeManagement System</span></div>
+        <div class="logo-src mb-4"><span  style="font-size: 15px;font-style: italic;font-weight: bold;"><a href="{{url('/successlogin')}}" class="text-decoration-none text-dark">OfficeManagement System</a></span></div>
         <div class="header__pane ml-auto">
             <div>
                 <button type="button" class="hamburger close-sidebar-btn hamburger--elastic" data-class="closed-sidebar">

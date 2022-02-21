@@ -45,7 +45,7 @@
                   <div class="col-sm-6">
                       <input type="text" class="form-control" name="priceperunit" id="priceperunit" value="{{ old('priceperunit') }}" placeholder="Please enter Price Per Unit"  onkeyup="add(this)"/>
                         @error("priceperunit")
-                          <span class="text-danger"> {{ $errors->first('priceperunit') }} </span>
+                          <span class="text-danger float-left"> {{ $errors->first('priceperunit') }} </span>
                         @enderror  
                   </div>
                 </div>
@@ -54,7 +54,7 @@
                   <div class="col-sm-6">
                       <input id="quantity" type="text" class="form-control" name="quantity" value="{{ old('quantity') }}" placeholder="Please enter quantity" onkeyup="add(this)" />
                         @error("quantity")
-                          <span class="text-danger"> {{ $errors->first('quantity') }} </span>
+                          <span class="text-danger float-left"> {{ $errors->first('quantity') }} </span>
                         @enderror 
                   </div>
               </div>
@@ -62,7 +62,8 @@
                 <label for="totalprice" class="col-sm-4 col-form-label">Total Price<span style="color: red">*</span></label>
                 <div class="col-sm-6">
                     <input id="totalprice" type="text" class="form-control" name="totalprice" value="{{ old('totalprice') }}" onkeyup="add(this)" readonly/>
-                </div>  
+                    <span class="text-danger float-left"> {{ $errors->first('totalprice') }} </span>
+                  </div>  
               </div>
               <div class="form-group row">
                 <label for="content" class="col-sm-4 col-form-label">Category<span style="color: red">*</span></label>
@@ -73,7 +74,7 @@
                           <option value="{{$value['id']}}">{{$value['name']}}</option>
                         @endforeach
                     </select>
-                  <span class="text-danger"> {{ $errors->first('category') }} </span>
+                  <span class="text-danger float-left"> {{ $errors->first('category') }} </span>
                 </div>
               </div>
               <div class="form-group row">
@@ -82,7 +83,7 @@
                       <select class="subcategory form-control" name="subcategory">
                         <option selected disabled>Choose Item </option>
                       </select>
-                      <span class="text-danger"> {{ $errors->first('subcategory') }} </span>
+                      <span class="text-danger float-left"> {{ $errors->first('subcategory') }} </span>
                   </div>
               </div>
               <div class="form-group row">
@@ -91,14 +92,14 @@
                       <select class="brand form-control" name="brand">
                         <option selected disabled>Choose Brand </option>
                       </select>
-                        <span class="text-danger"> {{ $errors->first('brand') }} </span>
+                        <span class="text-danger float-left"> {{ $errors->first('brand') }} </span>
                   </div>
               </div>
               <div class="form-group row">
                 <label for="conditon" class="col-sm-4 col-form-label">Condition<span style="color: red">*</span></label>
                   <div class="col-sm-6">
                       <textarea id="totalPrice" type="textarea" class="form-control" rows="3" name="condition" placeholder="Condition" >{{ old('condition') }}</textarea>
-                        <span class="text-danger"> {{ $errors->first('condition') }} </span>   
+                        <span class="text-danger float-left"> {{ $errors->first('condition') }} </span>   
                   </div>
               </div> 
               <div class="text-center">
