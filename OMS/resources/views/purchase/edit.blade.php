@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title','announcement list')
+@section('title','Other Purchase Update Form')
 
 @section('style')
   <link rel="stylesheet" href="{{ asset('/storage/OMS/bootstrap5/bootstrap.min.css') }}">
@@ -16,96 +16,104 @@
 @endsection
 
 @section('content')
-	@if(session('info'))
-		<div class="alert alert-success">{{session('info')}}</div>
-	@endif
-  <div class="main-card mb-3 card">
-    <div class="card-body"><h5 class="card-title">Other Purchase Update Form</h5>
-    	<br>
-      <form action="{{ route('otherpurchase.update',[$purchasedetail->id]) }}" method="post" >
-        @csrf
-        @method('PUT')  
-        <div class="position-relative row form-group">
-          <label for="date" class="col-sm-2 col-form-label">Date<span style="color: red">*</span></label>
-            <div class="col-sm-10">
-              <input type="date" class="form-control" name="date" value="{{ old('date') ? old('date') : $purchasedetail->date }}"/>
-              @error("date")
-                  <span class="text-danger float-left">{{$errors->first('date')}}</span>
-              @enderror  
+<div class="container pt-80 mb-100 text-center ">
+  <div class="row">
+    <div class="col-sm-12">
+      @if(session('info'))
+          <div class="alert alert-success">{{session('info')}}</div>
+      @endif
+        <div class="main-card mb-3 card">
+          <div class="card-body">
+            <div class="col-12 pt-4 mb-5">
+              <h3 class="sub-title">Other Purchase Update Form</h3>
             </div>
-        </div> 
-        <div class="position-relative row form-group">
-          <label for="priceperunit" class="col-sm-2 col-form-label">Price Per Unit<span style="color: red">*</span></label>
-          <div class="col-sm-10">
-            <input type="text" class="form-control" name="priceperunit" id="priceperunit" value="{{ old('priceperunit')? old('priceperunit') : $purchasedetail->priceperunit }}" placeholder="Please enter Price Per Unit"  onkeyup="add(this)"/>
-            @error("priceperunit")
-              <span class="text-danger"> {{ $errors->first('priceperunit') }} </span>
-            @enderror  
+            <form action="{{ route('otherpurchase.update',[$purchasedetail->id]) }}" method="post" >
+              @csrf
+              @method('PUT')  
+              <div class="form-group row">
+                <label for="date" class="col-sm-4 col-form-label">Date<span style="color: red">*</span></label>
+                  <div class="col-sm-6">
+                    <input type="date" class="form-control" name="date" value="{{ old('date') ? old('date') : $purchasedetail->date }}"/>
+                    @error("date")
+                        <span class="text-danger float-left">{{$errors->first('date')}}</span>
+                    @enderror  
+                  </div>
+              </div> 
+              <div class="form-group row">
+                <label for="priceperunit" class="col-sm-4 col-form-label">Price Per Unit<span style="color: red">*</span></label>
+                <div class="col-sm-6">
+                  <input type="text" class="form-control" name="priceperunit" id="priceperunit" value="{{ old('priceperunit')? old('priceperunit') : $purchasedetail->priceperunit }}" placeholder="Please enter Price Per Unit"  onkeyup="add(this)"/>
+                  @error("priceperunit")
+                    <span class="text-danger"> {{ $errors->first('priceperunit') }} </span>
+                  @enderror  
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="quantity" class="col-sm-4 col-form-label">Quantity<span style="color: red">*</span></label>
+                <div class="col-sm-6">
+                  <input id="quantity" type="numeric" class="form-control" name="quantity" value="{{ old('quantity')? old('quantity') : $purchasedetail->quantity }}" placeholder="Please enter quantity" onkeyup="add(this)" />
+                  @error("quantity")
+                    <span class="text-danger"> {{ $errors->first('quantity') }} </span>
+                  @enderror  
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="totalprice" class="col-sm-4 col-form-label">Total Price<span style="color: red">*</span></label>
+                <div class="col-sm-6">
+                  <input id="totalprice" type="text" class="form-control" name="totalprice" value="{{ old('totalprice')? old('totalprice') : $purchasedetail->totalprice }}" onkeyup="add(this)" readonly/>
+                  @error("totalprice")
+                    <span class="text-danger"> {{ $errors->first('totalprice') }} </span>
+                  @enderror  
+                </div>
+              </div>
+              <div class="form-group row"><label for="content" class="col-sm-4 col-form-label">Category<span style="color: red">*</span></label>
+                <div class="col-sm-6">
+                  <select class="category form-control" name="category">
+                    <option selected disabled>Choose Category </option>
+                      @foreach($category as $categories)
+                        <option value="{{$categories->id}}" {{$purchasedetail->categoryid == $categories->id ? 'selected' : ''}}>{{$categories->name}}</option>
+                      @endforeach
+                  </select>
+                  <span class="text-danger"> {{ $errors->first('category') }} </span>
+                </div>
+              </div>
+              <div class="form-group row"><label for="subcategory" class="col-sm-4 col-form-label">Sub Category<span style="color: red">*</span></label>
+                <div class="col-sm-6">
+                  <select class="subcategory form-control" name="subcategory">
+                    @foreach($subcategory as $subcategories)
+                      <option value="{{$subcategories->id}}" {{$purchasedetail->subcategoryid == $subcategories->id ? 'selected' : ''}}>{{$subcategories->name}}</option>
+                    @endforeach
+                  </select>
+                  <span class="text-danger"> {{ $errors->first('subcategory') }} </span>
+                </div>
+              </div>
+              <div class="form-group row"><label for="content" class="col-sm-4 col-form-label">Brand<span style="color: red">*</span></label>
+                <div class="col-sm-6">
+                  <select class="brand form-control" name="brand">
+                  @foreach($brand as $brands)
+                  <option value="{{$brands->brandId}}" {{$purchasedetail->brandid == $brands->id ? 'selected' : ''}} selected>{{$brands->brand->name}}</option>
+                  @endforeach
+                  </select>
+                  <span class="text-danger"> {{ $errors->first('brand') }} </span>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="conditon" class="col-sm-4 col-form-label">Condition<span style="color: red">*</span></label>
+                <div class="col-sm-6">
+                  <textarea id="totalPrice" type="textarea" class="form-control" rows="3" name="condition" placeholder="Condition" >{{ old('condition')? old('condition'): $purchasedetail->condition }}</textarea>
+                  <span class="text-danger"> {{ $errors->first('condition') }} </span>
+                </div>
+              </div> 
+              <div class="text-center">
+                <input type="Submit" class="mb-2 mr-2 btn btn-primary" value="Update" name="submit">
+                <a href="{{ url('/otherpurchase') }}" class="mb-2 mr-2 btn btn-danger">Cancel</a>
+              </div>
+            </form>
           </div>
         </div>
-        <div class="position-relative row form-group">
-        	<label for="quantity" class="col-sm-2 col-form-label">Quantity<span style="color: red">*</span></label>
-          <div class="col-sm-10">
-            <input id="quantity" type="numeric" class="form-control" name="quantity" value="{{ old('quantity')? old('quantity') : $purchasedetail->quantity }}" placeholder="Please enter quantity" onkeyup="add(this)" />
-            @error("quantity")
-              <span class="text-danger"> {{ $errors->first('quantity') }} </span>
-            @enderror  
-          </div>
-        </div>
-        <div class="position-relative row form-group">
-          <label for="totalprice" class="col-sm-2 col-form-label">Total Price<span style="color: red">*</span></label>
-          <div class="col-sm-10">
-            <input id="totalprice" type="text" class="form-control" name="totalprice" value="{{ old('totalprice')? old('totalprice') : $purchasedetail->totalprice }}" onkeyup="add(this)" readonly/>
-            @error("totalprice")
-              <span class="text-danger"> {{ $errors->first('totalprice') }} </span>
-            @enderror  
-          </div>
-        </div>
-        <div class="position-relative row form-group"><label for="content" class="col-sm-2 col-form-label">Category<span style="color: red">*</span></label>
-          <div class="col-sm-10">
-            <select class="category form-control" name="category">
-              <option selected disabled>Choose Category </option>
-                @foreach($category as $categories)
-                  <option value="{{$categories->id}}" {{$purchasedetail->categoryid == $categories->id ? 'selected' : ''}}>{{$categories->name}}</option>
-                @endforeach
-            </select>
-            <span class="text-danger"> {{ $errors->first('category') }} </span>
-          </div>
-        </div>
-        <div class="position-relative row form-group"><label for="subcategory" class="col-sm-2 col-form-label">Sub Category<span style="color: red">*</span></label>
-          <div class="col-sm-10">
-            <select class="subcategory form-control" name="subcategory">
-              @foreach($subcategory as $subcategories)
-                <option value="{{$subcategories->id}}" {{$purchasedetail->subcategoryid == $subcategories->id ? 'selected' : ''}}>{{$subcategories->name}}</option>
-              @endforeach
-            </select>
-            <span class="text-danger"> {{ $errors->first('subcategory') }} </span>
-          </div>
-        </div>
-        <div class="position-relative row form-group"><label for="content" class="col-sm-2 col-form-label">Brand<span style="color: red">*</span></label>
-          <div class="col-sm-10">
-            <select class="brand form-control" name="brand">
-            @foreach($brand as $brands)
-            <option value="{{$brands->brandId}}" {{$purchasedetail->brandid == $brands->id ? 'selected' : ''}} selected>{{$brands->brand->name}}</option>
-            @endforeach
-            </select>
-            <span class="text-danger"> {{ $errors->first('brand') }} </span>
-          </div>
-        </div>
-        <div class="position-relative row form-group">
-          <label for="conditon" class="col-sm-2 col-form-label">Condition<span style="color: red">*</span></label>
-          <div class="col-sm-10">
-            <textarea id="totalPrice" type="textarea" class="form-control" rows="3" name="condition" placeholder="Condition" >{{ old('condition')? old('condition'): $purchasedetail->condition }}</textarea>
-            <span class="text-danger"> {{ $errors->first('condition') }} </span>
-          </div>
-        </div> 
-        <div class="text-center">
-          <input type="Submit" class="mb-2 mr-2 btn btn-primary" value="Update" name="submit">
-          <a href="{{ url('/otherpurchase') }}" class="mb-2 mr-2 btn btn-danger">Cancel</a>
-        </div>
-      </form>
     </div>
-  </div>
+  </div>  
+</div>        
 @endsection
 
 @section('script')
