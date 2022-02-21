@@ -20,7 +20,7 @@
         <div class="main-card mb-3 card ">
             <div class="card-body">
                 <div class="col-12 pt-4 mb-5">
-                    <h3 class="sub-title">Employee Attendance Edit</h3>
+                    <h3 class="sub-title">Employee Attendance Update</h3>
                 </div>
                 <form method="post" action="{{url('/update/'.$edit['id'])}}" class="container">
                     @csrf
@@ -73,7 +73,6 @@
 
                     <div class="form-group row">
                         <label for="workingHour" class="col-sm-4 col-form-label" >Working Hour</label>
-                            <!-- <input type="time" id="input3" class="form-control" name="checkOut" > -->
                         <div class="col-sm-6">
                             <input type="text" class="form-control" id="workHour" name="workHour" readonly value="{{$edit->workinghour}}"><br>
                         </div>
