@@ -87,7 +87,7 @@
         </div>
         <div class="text-center">
             <input type="Submit" class="mb-2 mr-2 btn btn-primary" value="Update" name="submit">
-            <a href="{{ url('/otherpurchase') }}" class="mb-2 mr-2 btn btn-danger">Cancel</a>
+            <a href="{{ url('/otherAsset') }}" class="mb-2 mr-2 btn btn-danger">Cancel</a>
         </div>
     </form>
     </div>
