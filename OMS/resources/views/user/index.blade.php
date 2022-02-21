@@ -1,6 +1,6 @@
 @extends("layouts.app")
 
-@section('title','user account list')
+@section('title','employee list')
 
 @section("style")
     <link rel="stylesheet" href="{{ asset('/storage/OMS/bootstrap5/bootstrap.min.css') }}" >  
@@ -21,7 +21,7 @@
         <div class="alert alert-success">{{session('success')}}</div>
     @endif
     <div class="container">
-        <h2 style="text-align: center;">User Account List</h2><br>
+        <h3 style="text-align: center;">Employee List</h3><br>
         <table class="mb-0 table table-hover" id="table">
             <thead>
                 <tr>

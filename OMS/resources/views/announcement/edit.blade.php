@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title','announcement list')
+@section('title','announcement update')
 
 @section('style')
     <link rel="stylesheet" href="{{ asset('/storage/OMS/bootstrap5/bootstrap.min.css') }}">
@@ -16,9 +16,9 @@
 @endsection
 
 @section('content')
+    <h3 class="text-center">Announcement Update Form</h3><br>
     <div class="main-card mb-3 card">
-        <div class="card-body"><h5 class="card-title">Announcement Update Form</h5>
-        	<br>
+        <div class="card-body">
             <form action="{{ route('announcements.update',[$edit->id]) }}" method="post" >
                 @csrf
                 @method('PUT')

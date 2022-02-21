@@ -16,73 +16,77 @@
 @endsection
 
 @section('content')
-<div class="container-fluid">
-    <h3 class="text-center mb-5">SubCategory Update Form</h3>
-    <div class="card">
-        <form action="{{route('subCategory.update',['subCategory'=>$subCategory])}}" method="post" class="p-5">
-            @csrf
-            @method('PUT')
-            <div class="position-relative row form-group">
-            <label class="col-sm-2 col-form-label"> Category<span style="color: red"></span></label>
-            <div class="col-sm-10">
-                <select name="category" class="form-control mr-3">
-                    <option value="" disabled>Category</option>
-                        @foreach($category as $item)
-                            <option value="{{$item->id}}" 
-                                @if($subCategory->categoryId==$item->id)
-                                    selected
-                                @endif>{{$item->name}}
-                            </option>
-                        @endforeach
-                </select>
-            </div>
-            </div>
-            <div class="position-relative row form-group">
-            <label class="col-sm-2 col-form-label"> Prefix<span style="color: red"></span></label>
-            <div class="col-sm-10">
-                <input type="text" name="itemcode" class="form-control mr-3" placeholder="Prefix" value="{{ old('itemcode')? old('itemcode') : $subCategory->itemcode }}"> 
-                        @error('itemcode')
+    <div class="container-fluid">
+        <h3 class="text-center mb-3">SubCategory Update Form</h3>
+        <div class="card">
+            <form action="{{route('subCategory.update',['subCategory'=>$subCategory])}}" method="post" class="p-5">
+                @csrf
+                @method('PUT')
+                <div class="position-relative row form-group mt-2">
+                    <label class="col-sm-2 col-form-label"> Category<span style="color: red"></span></label>
+                    <div class="col-sm-10">
+                        <select name="category" class="form-control mr-3">
+                            <option value="" disabled>Category</option>
+                                @foreach($category as $item)
+                                    <option value="{{$item->id}}" 
+                                        @if($subCategory->categoryId==$item->id)
+                                            selected
+                                        @endif>{{$item->name}}
+                                    </option>
+                                @endforeach
+                        </select>
+                    </div>
+                </div>
+                <div class="position-relative row form-group">
+                    <label class="col-sm-2 col-form-label"> Prefix<span style="color: red"></span></label>
+                    <div class="col-sm-10">
+                        <input type="text" name="itemcode" class="form-control mr-3" placeholder="Prefix" value="{{ old('itemcode')? old('itemcode') : $subCategory->itemcode }}"> 
+                                @error('itemcode')
+                                    <div class="row">
+                                        <div class="col-sm-10">
+                                            <span class="text-danger">*{{$message}}</span><br>
+                                        </div>
+                                    </div>
+                                @enderror
+                    </div>
+                </div>
+                <div class="position-relative row form-group">
+                    <label class="col-sm-2 col-form-label">SubCategory<span style="color: red"></span></label>
+                    <div class="col-sm-10">
+                        <input type="text" name="name" class="form-control mr-3" placeholder="SubCategory Name" value="{{ old('name')? old('name') : $subCategory->name }}"> 
+                            @error('name')
+                                <div class="row">
+                                    <div class="col-sm-10">
+                                        <span class="text-danger">*{{$message}}</span><br>
+                                    </div>
+                                </div>
+                            @enderror
+                    </div>
+                </div>
+                <div class="position-relative row form-group">
+                    <label class="col-sm-2 col-form-label"> Description<span style="color: red"></span></label>
+                    <div class="col-sm-10">
+                        <textarea name="description" rows="3" class="form-control mr-3"
+                            placeholder="Enter Your Description.">{{ old('description') ? old('description'): $subCategory->description }}</textarea>
+                        @error('description')
                             <div class="row">
                                 <div class="col-sm-10">
                                     <span class="text-danger">*{{$message}}</span><br>
                                 </div>
                             </div>
                         @enderror
-            </div>
-            </div>
-            <div class="position-relative row form-group">
-            <label class="col-sm-2 col-form-label">SubCategory<span style="color: red"></span></label>
-            <div class="col-sm-10">
-                <input type="text" name="name" class="form-control mr-3" placeholder="SubCategory Name" value="{{ old('name')? old('name') : $subCategory->name }}"> 
-                    @error('name')
-                        <div class="row">
-                            <div class="col-sm-10">
-                                <span class="text-danger">*{{$message}}</span><br>
-                            </div>
-                        </div>
-                    @enderror
-            </div>
-            </div>
-            <div class="position-relative row form-group">
-            <label class="col-sm-2 col-form-label"> Description<span style="color: red"></span></label>
-            <div class="col-sm-10">
-                <textarea name="description" rows="3" class="form-control mr-3"
-                    placeholder="Enter Your Description.">{{ old('description') ? old('description'): $subCategory->description }}</textarea>
-                    @error('description')
-                        <div class="row">
-                            <div class="col-sm-10">
-                                <span class="text-danger">*{{$message}}</span><br>
-                            </div>
-                        </div>
-                    @enderror
-            </div>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Update" class="btn btn-primary">
-            </div>
-        </form>
+                    </div>
+                </div>
+                <div class="position-relative row form-group">
+                    <div class="col-sm-4"></div>
+                    <div class="col-sm-6">
+                        <input type="submit" class="mb-2 mr-2 btn btn-primary" value="Update" name="submit">
+                        <a href="{{ url('/subCategory') }}" class="mb-2 mr-2 btn btn-danger">Cancel</a>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
-</div>
 @endsection
 
 @section('script')

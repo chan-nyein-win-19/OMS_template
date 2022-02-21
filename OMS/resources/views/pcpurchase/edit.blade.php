@@ -19,15 +19,15 @@
 @section('content')
     <div class="container pt-80 mb-100 text-center ">
         <div class="row">
+            <div class="col-12 pt-4 mb-3">
+                <h3 class="text-center">PC Purchase Update Form</h3>
+            </div>
             <div class="main-card mb-3 card ">
                 <div class="card-body">
-                    <div class="col-12 pt-4 mb-5">
-                        <h3 class="sub-title">PC Purchase Update Form</h3>
-                    </div>
                     <form method="post" action="{{ route('pcpurchase.update',[$edit->id]) }}"  class="container">
                         @csrf
                         @method('PUT')
-                        <div class="form-group row">
+                        <div class="form-group row mt-3">
                             <label for="date" class="col-sm-4 col-form-label">Purchase Date<span style="color:red">*</span></label>
                             <div class="col-sm-6">
                                 <input type="date" class="form-control" name="date" value="{{ old('date') ? old('date') : $edit->date }}">
@@ -121,8 +121,8 @@
                         </div>
                         <div class="form-group row">
                             <div class="col-sm-4"></div>
-                            <div class="col-sm-6">
-                                <button type="submit" class="btn btn-primary">Update</button>
+                            <div class="col-sm-6 mt-3">
+                                <button type="submit" class="btn btn-primary mr-2">Update</button>
                                 <button type="reset" class="btn btn-danger" id="cancel" >Clear</button>
                             </div>
                         </div>

@@ -18,7 +18,7 @@
 
 @section('content')   
     <div class="container">
-        <h2>PC Purchase List</h2>
+        <h3 class="text-center mb-3">PC Purchase List</h3>
         <table class="mb-0 table table-hover" id="table">
             <thead>
                 <tr class="text-center">

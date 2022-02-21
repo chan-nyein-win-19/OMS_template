@@ -16,14 +16,16 @@
 @endsection
 
 @section("content")
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header justify-content-center"  style="font-size:20px;">{{ __('Account Update Form') }}</div>
+    <div class="container">
+        <h3 class="text-center">Account Update Form</h3><br>
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">      
                     <div class="card-body">
                         <form method="POST" action="{{url('/accounts/'.$user->id)}}"> 
                             @csrf
                             @method('PUT')
+                            <br>
                             <div class="row mb-3">
                                 <label class="col-md-4 col-form-label text-md-end font-weight-bold">{{ __('Employee ID') }}</label>
                                 <div class="col-md-6">
@@ -74,14 +76,13 @@
                                     @enderror
                                 </div>
                             </div>
-                            <hr>
+                            <br>
+                            <div class="text-center">
+                                <input type="submit" name="Update" value="Update" class="btn btn-primary">
                             
-                                <div class="text-center">
-                                    <input type="submit" name="Update" value="Update" class="btn btn-primary">
-                                
-                                        &nbsp;&nbsp;
-                                    <a class="btn btn-danger" href="{{url('/successlogin')}}"> {{ __('Cancel') }}</a>
-                                </div>
+                                    &nbsp;&nbsp;
+                                <a class="btn btn-danger" href="{{url('/successlogin')}}"> {{ __('Cancel') }}</a>
+                            </div>
                             
                         </form>
                     </div>

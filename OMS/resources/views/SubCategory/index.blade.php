@@ -24,7 +24,7 @@
     @endif
     <div class="container-fluid">
         <div class="row">
-            <h3 class="text-center mb-3">Subcategory</h3>
+            <h3 class="text-center mb-3">SubCategory</h3>
             <div class="col-md-2 col-sm-1"></div>
             <div class="col-md-8 col-sm-10">
                 <div class="card p-3">
@@ -81,7 +81,7 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <input type="submit" value="Submit" class="btn btn-primary" style="float:right;">
+                                    <input type="submit" value="Create" class="btn btn-primary" style="float:right;">
                                 </div>
                             </div>
                         </div>

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title','Office Management System')
+@section('title','announcement detail')
 
 @section('style')
     <link rel="stylesheet" href="{{ asset('/storage/OMS/bootstrap5/bootstrap.min.css') }}">

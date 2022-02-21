@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title','Category')
+@section('title','category update')
 
 @section('style')
     <link rel="stylesheet" href="{{ asset('/storage/OMS/css/style.css') }}">
@@ -18,7 +18,7 @@
 @section('content')
     <div class="container-fluid">
         <div class="row">
-            <h2 class="text-center mb-3">Category</h2>
+            <h2 class="text-center mb-3">Category Update Form</h2>
             @if(session('info'))
                 <div class="alert alert-success">{{session('info')}}</div>
             @endif
@@ -28,7 +28,7 @@
                     <form action="{{ route('categories.update', [$edit->id]) }}" method="post">
                         @csrf             
                         @method('PUT') 
-                        <div class="position-relative row form-group">
+                        <div class="position-relative row form-group mt-3">
                             <label class="col-sm-2 col-form-label"> Name
                                 <span style="color: red">*</span>
                             </label>                        
@@ -52,9 +52,12 @@
                                 @enderror  
                             </div>
                         </div> 
-                        <div class="text-right">
-                            <input type="submit" class="mb-2 mr-2 btn btn-primary" value="Update" name="submit">
-                            <a href="{{ url('/categories') }}" class="mb-2 mr-2 btn btn-danger">Cancel</a>
+                        <div class="position-relative row form-group">
+                            <div class="col-sm-4"></div>
+                            <div class="col-sm-6">
+                                <input type="submit" class="mb-2 mr-2 btn btn-primary" value="Update" name="submit">
+                                <a href="{{ url('/categories') }}" class="mb-2 mr-2 btn btn-danger">Cancel</a>
+                            </div>
                         </div>
                     </form>
                 </div>            

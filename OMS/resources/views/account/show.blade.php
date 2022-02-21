@@ -16,14 +16,16 @@
 @endsection
 
 @section("content")
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header justify-content-center"  style="font-size:20px;">{{ __('Account Information') }}</div>
+    <div class="container">
+        <h3 class="text-center">Account Information</h3><br>
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">      
                     <div class="card-body">
                         <form method="POST" action=""> 
                             @csrf
                             @method('PUT')
+                            <br>
                             <div class="row mb-3">
                                 <label class="col-md-4 col-form-label text-md-end font-weight-bold">{{ __('Employee ID') }}</label>
                                 <div class="col-md-6">
@@ -60,7 +62,7 @@
                                     <input type="text" class="form-control" name="role" value="{{ $user->role }}" disabled>
                                 </div>
                             </div>
-                            <hr>
+                            <br>
                             <div class="text-center" >            
                                 <a class="btn btn-primary" style="width:70px" href="{{url('/accounts/'.$user->id.'/edit')}}">{{ __('Edit') }}</a>
 				 				&nbsp;&nbsp;

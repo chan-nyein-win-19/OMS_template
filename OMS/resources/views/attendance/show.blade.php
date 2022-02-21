@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title','attendance show list')
+@section('title','attendance detail')
 
 @section('style')
     <link rel="stylesheet" href="{{ asset('/storage/OMS/data-tables/jquery.dataTables.min.css') }}">
@@ -18,39 +18,39 @@
 @endsection
 
 @section('content')   
-<div class="container">
-    <h2>Attendance List</h2>            
-    <table class="mb-0 table table-hover" id="table">
-         <thead>
-            <tr>
-                <th>EmployeeId</th>
-                <th>Date</th>
-                <th>Check In</th>
-                <th>Check Out</th>
-                <th>WorkingHour</th>
-                <th>OT Time</th>
-                <th>LeaveDay</th>
-                <th>Half Day</th>
-                <th>Work From Home</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach($dailyattendance as $item)
-            <tr>
-                <td>{{ $item->userid }}</td>
-                <td>{{ $item->date }}</td>
-                <td>{{ $item->checkin }}</td>
-                <td>{{ $item->checkout }}</td>
-                <td>{{ $item->workinghour }}</td>
-                <td>{{ $item->ottime }}</td>
-                <td>{{ $item->leaveday }}</td>
-                <td>{{ $item->halfdayleave }}</td>
-                <td>{{ $item->workfromhome}}</td>
-            </tr>
-            @endforeach
-        </tbody>
-    </table>               
-</div>
+    <div class="container">
+        <h3 class="text-center">Attendance List</h3>            
+        <table class="mb-0 table table-hover" id="table">
+            <thead>
+                <tr>
+                    <th>EmployeeId</th>
+                    <th>Date</th>
+                    <th>Check In</th>
+                    <th>Check Out</th>
+                    <th>WorkingHour</th>
+                    <th>OT Time</th>
+                    <th>LeaveDay</th>
+                    <th>Half Day</th>
+                    <th>Work From Home</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($dailyattendance as $item)
+                <tr>
+                    <td>{{ $item->userid }}</td>
+                    <td>{{ $item->date }}</td>
+                    <td>{{ $item->checkin }}</td>
+                    <td>{{ $item->checkout }}</td>
+                    <td>{{ $item->workinghour }}</td>
+                    <td>{{ $item->ottime }}</td>
+                    <td>{{ $item->leaveday }}</td>
+                    <td>{{ $item->halfdayleave }}</td>
+                    <td>{{ $item->workfromhome}}</td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>               
+    </div>
 @endsection
 
 @section('script')   
@@ -60,7 +60,7 @@
     
     <script type="text/javascript">
         $(document).ready( function () {
-        $('#table').DataTable();
-        } );
+            $('#table').DataTable();
+        });
     </script>
 @endsection

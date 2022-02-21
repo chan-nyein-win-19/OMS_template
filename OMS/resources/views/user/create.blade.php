@@ -1,17 +1,22 @@
 @extends('layouts.app')
 
-@section('title','user account create')
+@section('title','employee create')
+
+@section('style')
+    <link rel="stylesheet" href="{{ asset('/storage/OMS/bootstrap5/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('/storage/OMS/css/style.css') }}">
+@endsection
 
 @section("content")
     <div class="container">
+        <h3 class="text-center">Employee Form</h3><br>
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">{{ __('Account Create Form') }}</div>
+                <div class="card">                    
                     <div class="card-body">
                         <form method="POST" action="{{ route('users.store') }}" novalidate>
                             @csrf
-                            <div class="row mb-3">
+                            <div class="row mb-3 mt-2">
                                 <label class="col-md-4 col-form-label text-md-end">{{ __('FirstName') }}</label>
                                 <div class="col-md-6">
                                     <input type="text" class="form-control" name="fname"
@@ -103,7 +108,7 @@
                                         {{ __('Create') }}
                                     </button>
                                     <button type="reset" class="btn btn-danger">
-                                        {{ __('Cancel') }}
+                                        {{ __('Clear') }}
                                     </button>
                                 </div>
                             </div>

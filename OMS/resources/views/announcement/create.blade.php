@@ -20,10 +20,10 @@
 	@if(session('info'))
 		<div class="alert alert-success">{{session('info')}}</div>
 	@endif
+    <h3 class="text-center">Announcement Form</h3>
+    <br>
     <div class="main-card mb-3 card">
         <div class="card-body">
-            <h5 class="card-title">Announcement Form</h5>
-        	<br>
             <form action="{{ route('announcements.store') }}" method="post">
                 @csrf              
                 <div class="position-relative row form-group">
@@ -42,7 +42,7 @@
                     </div>
                 </div> 
                 <div class="text-center">
-                    <input type="Submit" class="mb-2 mr-2 btn btn-primary" value="Upload" name="submit">
+                    <input type="Submit" class="mb-2 mr-2 btn btn-primary" value="Create" name="submit">
                     <button class="mb-2 mr-2 btn btn-danger" type="reset">Clear</button>
                 </div>
             </form>

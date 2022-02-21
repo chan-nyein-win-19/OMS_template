@@ -20,18 +20,18 @@
     <div class="container pt-80 mb-100 text-center ">
         <div class="row">
             <div class="col-sm-12">
+                <div class="col-12 pt-4 mb-3">
+                    <h3 class="text-center">PC Purchase Form</h3>
+                </div>
                 @if(session('success'))
                     <div class="alert alert-success">{{session('success')}}</div>
                 @endif
 
                 <div class="main-card mb-3 card ">
                     <div class="card-body">
-                        <div class="col-12 pt-4 mb-5">
-                            <h3 class="sub-title">PC Purchase Form</h3>
-                        </div>
                         <form method="post"  action="{{ route('pcpurchase.store') }}" class="container">
                         @csrf
-                            <div class="form-group row">
+                            <div class="form-group row mt-3">
                                 <label for="date" class="col-sm-4 col-form-label" >Date</label>
                                 <div class="col-sm-6">
                                     <div class="md-form">
@@ -137,8 +137,8 @@
 
                             <div class="form-group row">
                                 <div class="col-sm-4"></div>
-                                <div class="col-sm-6">
-                                    <button type="submit" class="btn btn-primary">Add</button>
+                                <div class="col-sm-6 mt-2">
+                                    <button type="submit" class="btn btn-primary mr-2">Create</button>
                                     <button type="reset" class="btn btn-danger" id="cancel" >Clear</button>
                                 </div>
                             </div>

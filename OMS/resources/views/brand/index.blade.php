@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title','Brand List')
+@section('title','brand')
 
 @section('style')
     <link rel="stylesheet" href="{{ asset('/storage/OMS/css/style.css') }}">
@@ -25,12 +25,13 @@
 
     <div class="container-fluid">
         <div class="row">
-            <h2 class="text-center mb-3">Brand</h2>
+            <h3 class="text-center mb-3">Brand</h3>
             <div class="col-md-1 col-sm-1"></div>
                 <div class="col-md-10 col-sm-10">
                     <div class="card p-3">
                         <form action="" method="post">
                             @csrf              
+                            <br>
                             <div class="position-relative row form-group">
                                 <label class="col-sm-2 col-form-label"> Name
                                     <span style="color: red">*</span>
@@ -68,8 +69,12 @@
                                 
                                 </div>
                             </div>
-                            <div class="text-right">
-                                <input type="submit" class="mb-2 mr-2 btn btn-primary" value="Upload" name="submit">
+                            <div class="position-relative row form-group">
+                                <div class="col-sm-4"></div>
+                                <div class="col-sm-6" >
+                                    <button type="submit" class="btn btn-primary mr-2">Create</button>
+                                    <button type="reset" class="btn btn-danger" id="cancel">Cancel</button>
+                                </div>
                             </div>
                         </form>
                     </div>            

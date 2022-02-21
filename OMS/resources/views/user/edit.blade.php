@@ -1,18 +1,23 @@
 @extends('layouts.app')
 
-@section('title','user account update')
+@section('title','employee update')
+
+@section('style')
+    <link rel="stylesheet" href="{{ asset('/storage/OMS/bootstrap5/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('/storage/OMS/css/style.css') }}">
+@endsection
 
 @section("content")
-    <div class="container">
+<div class="container">
+        <h3 class="text-center">Employee Update Form</h3><br>
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">{{ __('Account Update Form') }}</div>
+                <div class="card">                    
                     <div class="card-body">
-                        <form method="POST" action=" {{ route('users.update',[$edit->id]) }}" novalidate>
+                        <form method="POST" action="{{ route('users.store') }}" novalidate>
                             @csrf
                             @method('PUT')
-                            <div class="row mb-3">
+                            <div class="row mb-3 mt-2">
                                 <label class="col-md-4 col-form-label text-md-end">{{ __('FirstName') }}</label>
                                 <div class="col-md-6">
                                     <input id="fname" type="text" class="form-control" name="fname"

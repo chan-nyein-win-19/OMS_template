@@ -2,11 +2,11 @@
 @if ( Auth::user()->role == 'Admin')
 <div class="app-sidebar__inner">
     <ul class="vertical-nav-menu">
-        <li class="app-sidebar__heading mt-4">Employee</li>
+        <li class="app-sidebar__heading mt-4">Employees</li>
         <li class="text">
             <a href="#" class="textstyle">
                 <i class="metismenu-icon pe-7s fas fa-user" style="font-size: 16px;"></i>
-                Employee
+                Employees
                 <i class="fa fa-angle-down ml-5 opacity-8"></i>
             </a>
             <ul>
@@ -32,7 +32,7 @@
             <ul>
                 <li>
                     <a href="{{ url('/announcements') }}" style="text-decoration: none">
-                        Announcement Lists
+                        Announcement List
                     </a>
                 </li>
                 <li>
@@ -42,11 +42,11 @@
                 </li>
             </ul>
         </li>
-        <li class="app-sidebar__heading mt-4">Attendance</li>
+        <li class="app-sidebar__heading mt-4">Attendances</li>
         <li>
             <a href="#">
                 <i class="metismenu-icon pe-7s fas fa-briefcase" style="font-size: 16px;"></i>
-                <span class="ml-3">Attendance</span>
+                <span class="ml-3">Attendances</span>
                 <i class="fa fa-angle-down ml-3 opacity-8"></i>
             </a>
             <ul>
@@ -69,28 +69,28 @@
                 <li>
                     <a href="#" class="textstyle">
                     <i class="metismenu-icon" style="font-size: 16px;"></i>
-                    <span>Asset Lists&nbsp&nbsp&nbsp</span>
+                    <span>Asset List&nbsp&nbsp&nbsp</span>
                     <i class="fa fa-angle-down ml-5 opacity-8"></i>
                     </a>
                     <ul>
                         <li>
                             <a href="{{ url('/otherAsset') }}" class="textstyle">
-                                Asset Detail Lists
+                                Asset Detail List
                             </a>
                         </li>
                         <li>
                             <a href="{{ url('/otherpurchase') }}" class="textstyle">
-                                Other Purchase Lists
+                                Other Purchase List
                             </a>
                         </li>
                         <li>
                             <a href="{{url('/pc')}}" class="textstyle">
-                                PC Lists
+                                PC List
                             </a>
                         </li>
                         <li>
                             <a href="{{ url('/pcpurchase') }}" class="textstyle">
-                                PC Purchase Lists
+                                PC Purchase List
                             </a>
                         </li>
                     </ul>
@@ -132,16 +132,16 @@
                 </li>
                 <li>
                     <a href="{{ url('/brands') }}" class="textstyle">
-                        Brands
+                        Brand
                     </a>
                 </li>
             </ul>
         </li>
-        <li class="app-sidebar__heading mt-4">Pc Rent</li>
+        <li class="app-sidebar__heading mt-4">Pc Rents</li>
         <li>
             <a href="#">
                 <i class="metismenu-icon pe-7s fas fa-laptop" style="font-size: 16px;"></i>
-                <span class="ml-3">PC Rent</span>
+                <span class="ml-3">PC Rents</span>
                 <i class="fa fa-angle-down ml-5 opacity-8"></i>
             </a>
             <ul>
@@ -152,7 +152,7 @@
                 </li>
                 <li>
                     <a href="{{ url('/pcrent/create') }}" class="textstyle">
-                        Rent Form
+                        Rent Create
                     </a>
                 </li>
             </ul>
@@ -165,7 +165,7 @@
 @if ( Auth::user()->role == 'Leader')
 <div class="app-sidebar__inner">
     <ul class="vertical-nav-menu">
-        <li class="app-sidebar__heading mt-4">Employee</li>
+        <li class="app-sidebar__heading mt-4">Employees</li>
         <li class="text">
             <a href="#" class="textstyle">
                 <i class="metismenu-icon pe-7s fas fa-business-time" style="font-size: 16px;"></i>
@@ -175,23 +175,23 @@
             <ul>
                 <li>
                     <a href='{{url("/leader/leaveRecord")}}' class="textstyle">
-                        View Leave Request
+                        View Leave Requests
                     </a>
                 </li>
 
             </ul>
         </li>
-        <li class="app-sidebar__heading mt-4">Attendance</li>
+        <li class="app-sidebar__heading mt-4">Attendances</li>
         <li>
             <a href="#" class="textstyle">
                 <i class="metismenu-icon pe-7s fas fa-list" style="font-size: 16px;"></i>
-                <span class="">Attendance</span>
+                <span class="">Attendances</span>
                 <i class="fa fa-angle-down ml-5 opacity-8"></i>
             </a>
             <ul>
                 <li>
                     <a href="{{ url('/attendance/show') }}" class="textstyle">
-                        View Attendance Record
+                        View Attendance Records
                     </a>
                 </li>
             </ul>
@@ -204,7 +204,7 @@
 @if ( Auth::user()->role == 'Sensei')
 <div class="app-sidebar__inner">
     <ul class="vertical-nav-menu">
-        <li class="app-sidebar__heading mt-4">Employee</li>
+        <li class="app-sidebar__heading mt-4">Employees</li>
         <li class="text">
             <a href="#" class="textstyle">
                 <i class="metismenu-icon pe-7s fas fa-business-time" style="font-size: 16px;"></i>
@@ -214,23 +214,23 @@
             <ul>
                 <li>
                     <a href='{{url("/leader/leaveRecord")}}' class="textstyle">
-                        View Leave Request
+                        View Leave Requests
                     </a>
                 </li>
 
             </ul>
         </li>
-        <li class="app-sidebar__heading mt-4">Attendance</li>
+        <li class="app-sidebar__heading mt-4">Attendances</li>
         <li>
             <a href="#" class="textstyle">
                 <i class="metismenu-icon pe-7s fas fa-list" style="font-size: 16px;"></i>
-                <span class="">Attendance</span>
+                <span class="">Attendances</span>
                 <i class="fa fa-angle-down ml-5 opacity-8"></i>
             </a>
             <ul>
                 <li>
                     <a href="{{ url('/attendance/show') }}" class="textstyle">
-                        View Attendance Record
+                        View Attendance Records
                     </a>
                 </li>
             </ul>
@@ -244,7 +244,7 @@
 @if ( Auth::user()->role == 'Employee')
 <div class="app-sidebar__inner">
     <ul class="vertical-nav-menu">
-        <li class="app-sidebar__heading mt-4">Employee</li>
+        <li class="app-sidebar__heading mt-4">Employees</li>
         <li class="text">
             <a href="#" class="textstyle">
                 <i class="metismenu-icon pe-7s fas fa-business-time" style="font-size: 16px;"></i>
@@ -268,7 +268,7 @@
         <li>
             <a href="#" class="textstyle">
                 <i class="metismenu-icon pe-7s fas fa-list" style="font-size: 16px;"></i>
-                <span class="">Attendance</span>
+                <span class="">Attendances</span>
                 <i class="fa fa-angle-down ml-5 opacity-8"></i>
             </a>
             <ul>
@@ -279,7 +279,7 @@
                 </li>
                 <li>
                     <a href="{{ url('/attendance') }}" class="textstyle">
-                        View Attendance Record
+                        View Attendance Records
                     </a>
                 </li>
             </ul>
