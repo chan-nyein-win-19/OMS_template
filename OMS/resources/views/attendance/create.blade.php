@@ -33,10 +33,10 @@
                     <div class="form-group row">
                         <label for="attendanceDate" class="col-sm-4 col-form-label">Attendance Date</label>
                         <div class="col-sm-6">
-                            <input type="date"class="form-control" name="attendanceDate">
-                            @error("attendanceDate")
-                             <span class="text-danger float-left">{{$errors->first('attendanceDate')}}</span>
-                            @enderror  
+                            <input type="date"class="form-control" name="attendanceDate" value="{{ old('attendanceDate', date('Y-m-d')) }}">
+                            @if(session('errmsg'))
+                            <span class="text-danger float-left"> {{session('errmsg')}} </span>
+                            @endif
                         </div>
                     </div>
                    
@@ -69,7 +69,6 @@
                     </div>
                     <div class="form-group row">
                         <label for="workingHour" class="col-sm-4 col-form-label" >Working Hour</label>
-                            <!-- <input type="time" id="input3" class="form-control" name="checkOut" > -->
                         <div class="col-sm-6">
                             <input type="text" class="form-control" id="workHour" name="workHour" readonly>
                             @error("workHour")

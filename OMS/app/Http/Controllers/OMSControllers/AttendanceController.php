@@ -4,6 +4,7 @@ namespace App\Http\Controllers\OMSControllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Dailyattendance;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Auth;
 
@@ -41,17 +42,40 @@ class AttendanceController extends Controller
      */
     public function store(Request $request)
     {
-        $validator = validator(request()->all(),[
-            'attendanceDate' => 'required|date|unique:dailyattendances,date,',
-            'checkIn' => 'required',
-            'checkOut' => 'required',
-            'lunchTime' => 'required',
-            'workHour' => 'required',
-        ]);
-    
-        if($validator->fails()) {
-            return back()->withErrors($validator);
-        }
+        $userId = Auth::user()->employeeid;
+        $users = User::select('employeeid')->get();
+        $dailyattendances = Dailyattendance::where('userid',$userId)->get();
+        foreach($users as $user) {
+            if($user->employeeid == $userId) {
+                foreach($dailyattendances as $dailyattendance) {
+                    if($dailyattendance->date == $request->attendanceDate) {
+                        return back()->with('errmsg','The attendance date field already exists.');
+                    } else {
+                        $validator = validator(request()->all(),[
+                            'checkIn' => 'required',
+                            'checkOut' => 'required',
+                            'lunchTime' => 'required',
+                            'workHour' => 'required',
+                        ]);
+                    
+                        if($validator->fails()) {
+                            return back()->withErrors($validator);
+                        }
+                    }
+                }                
+            } else {
+                $validator = validator(request()->all(),[
+                    'checkIn' => 'required',
+                    'checkOut' => 'required',
+                    'lunchTime' => 'required',
+                    'workHour' => 'required',
+                ]);
+            
+                if($validator->fails()) {
+                    return back()->withErrors($validator);
+                }
+            }
+        }        
     
         $dailyattendance = new Dailyattendance;
         $dailyattendance->userid = request()->employeeID;
@@ -104,18 +128,41 @@ class AttendanceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $validator = validator(request()->all(),[
-            'attendanceDate' => 'required',
-            'checkIn' => 'required',
-            'checkOut' => 'required',
-            'lunchTime' => 'required',
-            'workHour' => 'required',
-        ]);
-    
-        if($validator->fails()) {
-            return back()->withErrors($validator);
-        }
-
+        $userId = Auth::user()->employeeid;
+        $users = User::select('employeeid')->get();
+        $dailyattendances = Dailyattendance::where('userid',$userId)->get();
+        foreach($users as $user) {
+            if($user->employeeid == $userId) {
+                foreach($dailyattendances as $dailyattendance) {
+                    if($dailyattendance->date == $request->attendanceDate) {
+                        return back()->with('errmsg','The attendance date field already exists.');
+                    } else {
+                        $validator = validator(request()->all(),[
+                            'checkIn' => 'required',
+                            'checkOut' => 'required',
+                            'lunchTime' => 'required',
+                            'workHour' => 'required',
+                        ]);
+                    
+                        if($validator->fails()) {
+                            return back()->withErrors($validator);
+                        }
+                    }
+                }                
+            } else {
+                $validator = validator(request()->all(),[
+                    'checkIn' => 'required',
+                    'checkOut' => 'required',
+                    'lunchTime' => 'required',
+                    'workHour' => 'required',
+                ]);
+            
+                if($validator->fails()) {
+                    return back()->withErrors($validator);
+                }
+            }
+        }     
+        
         Dailyattendance::findOrFail($id)->update([
             'userid'=>request()->employeeID,
             'date'=>request()->attendanceDate,

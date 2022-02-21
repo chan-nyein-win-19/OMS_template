@@ -35,9 +35,9 @@
                         <label for="attendanceDate" class="col-sm-4 col-form-label">Attendance Date</label>
                         <div class="col-sm-6">
                             <input type="date" class="form-control" name="attendanceDate" value="{{$edit->date}}">
-                            @error("attendanceDate")
-                      	    <span class="text-danger float-left">{{$errors->first('attendanceDate')}}</span>
-                            @enderror  
+                            @if(session('errmsg'))
+                            <span class="text-danger float-left"> {{session('errmsg')}} </span>
+                            @endif
                         </div>
                     </div>
 
