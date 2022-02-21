@@ -41,12 +41,12 @@ class AnnouncementController extends Controller
             'title' => 'required',
             'content' => 'required',
         ]);
-         
+
         $announcement = new Announcement;
-        $announcement -> title=request()->title;
-        $announcement -> content=request()->content;
-        $announcement -> save();
-        return redirect('announcements')->with('success','Announcements Successfully Added...');
+        $announcement->title = request()->title;
+        $announcement->content = request()->content;
+        $announcement->save();
+        return redirect('announcements')->with('success', 'Announcements Successfully Added...');
     }
 
     /**
@@ -57,8 +57,8 @@ class AnnouncementController extends Controller
      */
     public function show($id)
     {
-        $ann = Announcement::find($id);        
-        return view('announcement.show',compact('ann'));
+        $ann = Announcement::find($id);
+        return view('announcement.show', compact('ann'));
     }
 
     /**
@@ -69,8 +69,8 @@ class AnnouncementController extends Controller
      */
     public function edit($id)
     {
-        $edit=Announcement::find($id);        
-        return view('announcement.edit',compact('edit'));
+        $edit = Announcement::find($id);
+        return view('announcement.edit', compact('edit'));
     }
 
     /**
@@ -81,8 +81,8 @@ class AnnouncementController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {        
-        $validateData= $request->validate([
+    {
+        $validateData = $request->validate([
             'title' => 'required',
             'content' => 'required',
         ]);
@@ -90,7 +90,7 @@ class AnnouncementController extends Controller
         $announcement->title = request()->title;
         $announcement->content = request()->content;
         $announcement->save();
-        return redirect("announcements")->with('success','Announcement has been updated successfully!!');
+        return redirect("announcements")->with('success', 'Announcement has been updated successfully!!');
     }
 
     /**
@@ -102,7 +102,7 @@ class AnnouncementController extends Controller
     public function destroy(Announcement $announcement)
     {
         $delete = $announcement::find($announcement->id);
-        $delete -> delete();
-        return back()->with('anndelete','Announcement Deleted');
+        $delete->delete();
+        return back()->with('anndelete', 'Announcement Deleted');
     }
 }

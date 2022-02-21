@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 
 class SubbrandController extends Controller
 {
-    
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -21,7 +21,7 @@ class SubbrandController extends Controller
     {
         $edit = Subbrand::find($subbrand->id);
         $subcategory = subCategory::all();
-        return view("brand.edit",compact(['edit','subcategory']));
+        return view("brand.edit", compact(['edit', 'subcategory']));
     }
 
     /**
@@ -33,39 +33,42 @@ class SubbrandController extends Controller
      */
     public function update(Request $request, Subbrand $subbrand)
     {
-        $validator = $request->validate([
+        $validator = validator(request()->all(), [
             'name' => 'required',
             'description' => 'required',
-            'subcategory'=>'required',
-         ]);
-         $brandExists=Brand::where('name',request()->name)->first();
-         if($brandExists!=null){
-             if($brandExists->id==$subbrand->brandId && $request->subcategory==$subbrand->subcategoryId){
-                 $subbrand->description=request()->description;
-                 $subbrand->save();
-                return redirect('brands')->with('info','Brands Successfully Updated...');
-             }
-            $subBrandExists=Subbrand::where([['subcategoryId',request()->subcategory],['brandId',$brandExists->id]])->get();
-            if(count($subBrandExists)<=0){
-                $subbrand->subcategoryId=$request->subcategory;
-                $subbrand->brandId=$brandExists->id;
-                $subbrand->description=request()->description;
+            'subcategory' => 'required',
+        ]);
+        if ($validator->fails()) {
+            return back()->withErrors($validator);
+        }
+        $brandExists = Brand::where('name', request()->name)->first();
+        if ($brandExists != null) {
+            if ($brandExists->id == $subbrand->brandId && $request->subcategory == $subbrand->subcategoryId) {
+                $subbrand->description = request()->description;
                 $subbrand->save();
-                return redirect('brands')->with('info','Brands Successfully Updated...');
-            }else{
-                return back()->with('info','Brands already exists...');
+                return redirect('brands')->with('info', 'Brands Successfully Updated...');
             }
-         }else{
-            $brand=new Brand;
-            $brand->name=request()->name;
-            $brand->save();
-            $newBrand=Brand::where('name',request()->name)->first();
-                $subbrand->subcategoryId=request()->subcategory;
-                $subbrand->brandId=$newBrand->id;
-                $subbrand->description=request()->description;
+            $subBrandExists = Subbrand::where([['subcategoryId', request()->subcategory], ['brandId', $brandExists->id]])->get();
+            if (count($subBrandExists) <= 0) {
+                $subbrand->subcategoryId = $request->subcategory;
+                $subbrand->brandId = $brandExists->id;
+                $subbrand->description = request()->description;
                 $subbrand->save();
-                return redirect('brands')->with('info','Brands Successfully Updated...');
-         }
+                return redirect('brands')->with('info', 'Brands Successfully Updated...');
+            } else {
+                return back()->with('info', 'Brands already exists...');
+            }
+        } else {
+            $brand = new Brand;
+            $brand->name = request()->name;
+            $brand->save();
+            $newBrand = Brand::where('name', request()->name)->first();
+            $subbrand->subcategoryId = request()->subcategory;
+            $subbrand->brandId = $newBrand->id;
+            $subbrand->description = request()->description;
+            $subbrand->save();
+            return redirect('brands')->with('info', 'Brands Successfully Updated...');
+        }
     }
 
     /**
@@ -77,7 +80,7 @@ class SubbrandController extends Controller
     public function destroy(Subbrand $subbrand)
     {
         $delete = Subbrand::find($subbrand->id);
-        $delete -> delete();
-        return back()->with('info','Brand Deleted');
+        $delete->delete();
+        return back()->with('info', 'Brand Deleted');
     }
 }

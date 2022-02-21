@@ -22,7 +22,6 @@ class PurchaseController extends Controller
     {
         $list = Purchase::all();
         return view('purchase.index', compact('list'));
-
     }
 
     /**
@@ -34,29 +33,31 @@ class PurchaseController extends Controller
     {
         //
         $category = Category::all();
-        $subCategory = SubCategory::all();  
+        $subCategory = SubCategory::all();
         $brand = Brand::all();
 
-        return view('purchase.create',compact('category','subCategory','brand'));
+        return view('purchase.create', compact('category', 'subCategory', 'brand'));
     }
-    public static function findCategory(Request $request){
-        $data = SubCategory::select('name','id')->where ('categoryId',$request->id)->take(100)->get();
+    public static function findCategory(Request $request)
+    {
+        $data = SubCategory::select('name', 'id')->where('categoryId', $request->id)->take(100)->get();
 
         return response()->json($data);
     }
 
-    public static function findBrand(Request $request){
+    public static function findBrand(Request $request)
+    {
 
-    $data1=Subbrand::select('brandId','id')->where ('subcategoryId',$request->id)->take(100)->get();
-    
-    $data=array();
-    $length = sizeof($data1);
+        $data1 = Subbrand::select('brandId', 'id')->where('subcategoryId', $request->id)->take(100)->get();
 
-    for($i = 0; $i<$length; $i++){
-        $d = Brand::find($data1[$i]->brandId);
-        array_push($data, $d);
-    }
-      
+        $data = array();
+        $length = sizeof($data1);
+
+        for ($i = 0; $i < $length; $i++) {
+            $d = Brand::find($data1[$i]->brandId);
+            array_push($data, $d);
+        }
+
         return response()->json($data);
     }
     /**
@@ -67,16 +68,20 @@ class PurchaseController extends Controller
      */
     public function store(Request $request)
     {
-        $validateData = $request->validate([
-            'date'=>'required',
-            'priceperunit'=>'required',
-            'quantity'=>'required',
-            'totalprice'=>'required',
-            'category'=>'required',
-            'subcategory'=>'required',
-            'brand'=>'required',
-            'condition'=>'required',
-         ]);
+        $validator = validator(request()->all(), [
+            'date' => 'required',
+            'priceperunit' => 'required',
+            'quantity' => 'required',
+            'totalprice' => 'required',
+            'category' => 'required',
+            'subcategory' => 'required',
+            'brand' => 'required',
+            'condition' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return back()->withErrors($validator);
+        }
         $purchase = new Purchase;
         $purchase->date = request()->date;
         $purchase->condition = request()->condition;
@@ -88,42 +93,29 @@ class PurchaseController extends Controller
         $purchase->brandid = request()->brand;
         $purchase->save();
 
-        $lastAssets=AssetDetails::join('purchases','purchases.id','=','asset_details.purchaseId')
-                    ->where('subcategoryid',request()->subcategory)->latest('asset_details.id')->first();
-        
-        $code=0;
-        if($lastAssets!=null)
-        {
-            $lastItemCode=explode('-',$lastAssets->itemCode);
-            $code=$lastItemCode[1];
+        $lastAssets = AssetDetails::join('purchases', 'purchases.id', '=', 'asset_details.purchaseId')
+            ->where('subcategoryid', request()->subcategory)->latest('asset_details.id')->first();
+
+        $code = 0;
+        if ($lastAssets != null) {
+            $lastItemCode = explode('-', $lastAssets->itemCode);
+            $code = $lastItemCode[1];
         }
-        $subCategory=SubCategory::where('id',request()->subcategory)->first();
-        if($subCategory!=null)
-        {
-            $prefix=$subCategory->itemcode;
+        $subCategory = SubCategory::where('id', request()->subcategory)->first();
+        if ($subCategory != null) {
+            $prefix = $subCategory->itemcode;
         }
-        for($i = 0; $i<$purchase->quantity; $i++){
+        for ($i = 0; $i < $purchase->quantity; $i++) {
             $assetDetail = new AssetDetails;
-            $code=$code+1;
-            $itemCode=$prefix.'-'.$code;
-            $assetDetail->itemCode=$itemCode;
+            $code = $code + 1;
+            $itemCode = $prefix . '-' . $code;
+            $assetDetail->itemCode = $itemCode;
             $assetDetail->condition = request()->condition;
             $assetDetail->currentPrice = request()->priceperunit;
             $assetDetail->purchaseId = $purchase->id;
             $assetDetail->save();
         }
-        return redirect('otherpurchase')->with('success','purchase Successfully Added...');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Purchase  $purchase
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Purchase $purchase)
-    {
-        //
+        return redirect('otherpurchase')->with('success', 'purchase Successfully Added...');
     }
 
     /**
@@ -137,11 +129,11 @@ class PurchaseController extends Controller
         //
         $purchasedetail = Purchase::find($id);
         //dd($purchasedetail);
-        $assetdetail = AssetDetails::where('purchaseId',$id)->get();
+        $assetdetail = AssetDetails::where('purchaseId', $id)->get();
         $category = Category::all();
-        $subcategory = SubCategory::where('categoryId',$purchasedetail->categoryid)->get();
-        $brand = Subbrand::select('brandId')->where('brandId',$purchasedetail->brandid)->distinct('brandId')->get();
-        return view('purchase.edit',compact('purchasedetail','assetdetail','brand','category','subcategory'));
+        $subcategory = SubCategory::where('categoryId', $purchasedetail->categoryid)->get();
+        $brand = Subbrand::select('brandId')->where('brandId', $purchasedetail->brandid)->distinct('brandId')->get();
+        return view('purchase.edit', compact('purchasedetail', 'assetdetail', 'brand', 'category', 'subcategory'));
     }
 
     /**
@@ -153,53 +145,55 @@ class PurchaseController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $validateData = $request->validate([
-            'date'=>'required',
-            'priceperunit'=>'required',
-            'quantity'=>'required',
-            'totalprice'=>'required',
-            'category'=>'required',
-            'subcategory'=>'required',
-            'brand'=>'required',
-            'condition'=>'required',
-         ]);
-        $delete = AssetDetails::where('purchaseId',$id)->delete();
-        Purchase::where('id',$id)->update([
-            'date'=>$request->date,
-            'condition'=>$request->condition,
-            'quantity'=>$request->quantity,
-            'totalprice'=>$request->totalprice,
-            'priceperunit'=>$request->priceperunit,
-            'categoryid'=>$request->category,
-            'subcategoryid'=>$request->subcategory,
-            'brandid'=>$request->brand,
+        $validator = validator(request()->all(), [
+            'date' => 'required',
+            'priceperunit' => 'required',
+            'quantity' => 'required',
+            'totalprice' => 'required',
+            'category' => 'required',
+            'subcategory' => 'required',
+            'brand' => 'required',
+            'condition' => 'required',
         ]);
-        $lastAssets=AssetDetails::join('purchases','purchases.id','=','asset_details.purchaseId')
-                    ->where('subcategoryid',request()->subcategory)->latest('asset_details.id')->first();
-        
-        $code=0;
-        if($lastAssets!=null)
-        {
-            $lastItemCode=explode('-',$lastAssets->itemCode);
-            $code=$lastItemCode[1];
+
+        if ($validator->fails()) {
+            return back()->withErrors($validator);
         }
-        $subCategory=SubCategory::where('id',request()->subcategory)->first();
-        if($subCategory!=null)
-        {
-            $prefix=$subCategory->itemcode;
+        $delete = AssetDetails::where('purchaseId', $id)->delete();
+        Purchase::where('id', $id)->update([
+            'date' => $request->date,
+            'condition' => $request->condition,
+            'quantity' => $request->quantity,
+            'totalprice' => $request->totalprice,
+            'priceperunit' => $request->priceperunit,
+            'categoryid' => $request->category,
+            'subcategoryid' => $request->subcategory,
+            'brandid' => $request->brand,
+        ]);
+        $lastAssets = AssetDetails::join('purchases', 'purchases.id', '=', 'asset_details.purchaseId')
+            ->where('subcategoryid', request()->subcategory)->latest('asset_details.id')->first();
+
+        $code = 0;
+        if ($lastAssets != null) {
+            $lastItemCode = explode('-', $lastAssets->itemCode);
+            $code = $lastItemCode[1];
+        }
+        $subCategory = SubCategory::where('id', request()->subcategory)->first();
+        if ($subCategory != null) {
+            $prefix = $subCategory->itemcode;
         }
 
-        for($i = 0; $i<$request->quantity; $i++){
+        for ($i = 0; $i < $request->quantity; $i++) {
             $assetDetail = new AssetDetails;
-            $code=$code+1;
-            $itemCode=$prefix.'-'.$code;
-            $assetDetail->itemCode=$itemCode;
+            $code = $code + 1;
+            $itemCode = $prefix . '-' . $code;
+            $assetDetail->itemCode = $itemCode;
             $assetDetail->condition = request()->condition;
             $assetDetail->currentPrice = request()->priceperunit;
             $assetDetail->purchaseId = $id;
             $assetDetail->save();
         }
-        return redirect('otherpurchase')->with('success','Updated successfully!!');
+        return redirect('otherpurchase')->with('success', 'Updated successfully!!');
     }
 
     /**
@@ -211,8 +205,8 @@ class PurchaseController extends Controller
     public function destroy($id)
     {
         //
-       $assetDetail = AssetDetails::where('purchaseId',$id)->delete();
-       $purchase = Purchase::where('id',$id)->delete();
-       return redirect('otherpurchase')->with('success','Successfully Deleted!!');
+        $assetDetail = AssetDetails::where('purchaseId', $id)->delete();
+        $purchase = Purchase::where('id', $id)->delete();
+        return redirect('otherpurchase')->with('success', 'Successfully Deleted!!');
     }
 }

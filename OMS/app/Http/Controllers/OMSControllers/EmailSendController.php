@@ -4,8 +4,6 @@ namespace App\Http\Controllers\OMSControllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Validator;
-use Auth;
 use Illuminate\Support\Facades\Mail;
 use App\Models\User;
 use App\Mail\ForgotpwdEmail;
@@ -20,53 +18,48 @@ class EmailSendController extends Controller
     }
 
 
-   function checkemail(Request $request)
-   {
-        $this->validate($request,[
-           'email'=>'required|string|email'  
+    function checkemail(Request $request)
+    {
+        $this->validate($request, [
+            'email' => 'required|string|email'
         ]);
 
-        $user = User::where('email',$request->get('email'))->first();
-       
-        if($user != NULL)
-        {    
+        $user = User::where('email', $request->get('email'))->first();
+
+        if ($user != NULL) {
             $number = mt_rand(100000, 999999);
             $details = [
-                'title'=> 'One Time Password from Office Management System',
-                'body'=>'If you forgot your password to login,Please use this OTP,and then set new password.
-                    Your One Time Password : '. $number
+                'title' => 'One Time Password from Office Management System',
+                'body' => 'If you forgot your password to login,Please use this OTP,and then set new password.
+                    Your One Time Password : ' . $number
             ];
-    
-        Mail::to($user)->send(new ForgotpwdEmail($details));
 
-        $otp = Otp::where('employeeid',$user->id)->first();
+            Mail::to($user)->send(new ForgotpwdEmail($details));
 
-        if($otp == NULL)
-        {
-            $otp1 = new Otp;
-            $otp1->employeeid = $user->id;
-            $otp1->otp = $number;
-    
-            $otp1->save();
-        }
-        else{
-            Otp::where('id',$otp->id)->update([
-                'employeeid'=>$user->id,
-                'otp'=>$number,
-            ]);
-        }
-        
-        $employeeid = $user->id;
-        return view('login.otpform',compact('employeeid'));
+            $otp = Otp::where('employeeid', $user->id)->first();
 
-        }else
-        {
-            return back()->with('error','Wrong Email');
+            if ($otp == NULL) {
+                $otp1 = new Otp;
+                $otp1->employeeid = $user->id;
+                $otp1->otp = $number;
+
+                $otp1->save();
+            } else {
+                Otp::where('id', $otp->id)->update([
+                    'employeeid' => $user->id,
+                    'otp' => $number,
+                ]);
+            }
+
+            $employeeid = $user->id;
+            return view('login.otpform', compact('employeeid'));
+        } else {
+            return back()->with('error', 'Wrong Email');
         }
     }
-    
+
     function otpform()
     {
-     return view('login.otpform');
+        return view('login.otpform');
     }
 }

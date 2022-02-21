@@ -7,7 +7,6 @@ use App\Models\Pcrent;
 use App\Models\Pc;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Validator;
 
 class PcrentController extends Controller
 {
@@ -19,9 +18,9 @@ class PcrentController extends Controller
     public function index()
     {
         //
-        $pcrent=Pcrent::all();
-        
-        return view('pcrent.index',compact('pcrent'));
+        $pcrent = Pcrent::all();
+
+        return view('pcrent.index', compact('pcrent'));
     }
 
     /**
@@ -32,9 +31,9 @@ class PcrentController extends Controller
     public function create()
     {
         //
-        
-        $pc=Pc::where('status','available')->get();
-        return view('pcrent.create',compact('pc'));
+
+        $pc = Pc::where('status', 'available')->get();
+        return view('pcrent.create', compact('pc'));
     }
 
     /**
@@ -45,40 +44,29 @@ class PcrentController extends Controller
      */
     public function store(Request $request)
     {
-       $validator = validator(request()->all(),[
-            'employeeid'=>'required',
-            'employeename'=>'required',
-            'pc'=>'required',
-            'remark'=>'required',
-            'error'=>'required',
+        $validator = validator(request()->all(), [
+            'employeeid' => 'required',
+            'employeename' => 'required',
+            'pc' => 'required',
+            'remark' => 'required',
+            'error' => 'required',
         ]);
-        if($validator->fails()){
+        if ($validator->fails()) {
             return back()->withErrors($validator);
         }
-        $pcrent=new Pcrent();
-        $pcrent->employeeId=request()->employeeid;
-        $pcrent->employeename=request()->employeename;
-        $pcrent->pcid=request()->pc;        
-        $pcrent->error=request()->error;
-        $pcrent->remark=request()->remark;
+        $pcrent = new Pcrent();
+        $pcrent->employeeId = request()->employeeid;
+        $pcrent->employeename = request()->employeename;
+        $pcrent->pcid = request()->pc;
+        $pcrent->error = request()->error;
+        $pcrent->remark = request()->remark;
         $pcrent->save();
 
-        $pc=Pc::find(request()->pc);
-        $pc->status='unavailable';
+        $pc = Pc::find(request()->pc);
+        $pc->status = 'unavailable';
         $pc->save();
-    
-        return redirect('pcrent')->with('success','PC Rent has been added successfully!!');
-    }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Pcrent  $pcrent
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Pcrent $pcrent)
-    {
-        //
+        return redirect('pcrent')->with('success', 'PC Rent has been added successfully!!');
     }
 
     /**
@@ -90,9 +78,9 @@ class PcrentController extends Controller
     public function edit($id)
     {
         //
-        $edit=Pcrent::find($id);
+        $edit = Pcrent::find($id);
         $pc = Pc::all();
-        return view('pcrent.edit',compact(['edit','pc']));
+        return view('pcrent.edit', compact(['edit', 'pc']));
     }
 
     /**
@@ -105,27 +93,26 @@ class PcrentController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $validator=validator(request()->all(),[
-            'employeeid'=>'required',
-            'employeename'=>'required',
-            'pc'=>'required',
-            'remark'=>'required',
-            'error'=>'required',
-         ]);
-         
-         if($validator->fails()){
-             return back()->withErrors($validator);
-         }
+        $validator = validator(request()->all(), [
+            'employeeid' => 'required',
+            'employeename' => 'required',
+            'pc' => 'required',
+            'remark' => 'required',
+            'error' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return back()->withErrors($validator);
+        }
 
         $pcrent = Pcrent::find($id);
-        $pcrent->employeeId=request()->employeeid;
-        $pcrent->employeename=request()->employeename;
-        $pcrent->pcid=request()->pc;
-        $pcrent->error=request()->error;
-        $pcrent->remark=request()->remark;
+        $pcrent->employeeId = request()->employeeid;
+        $pcrent->employeename = request()->employeename;
+        $pcrent->pcid = request()->pc;
+        $pcrent->error = request()->error;
+        $pcrent->remark = request()->remark;
         $pcrent->save();
-        return redirect("pcrent")->with('info','Pcrent has been updated successfully!!');
-
+        return redirect("pcrent")->with('info', 'Pcrent has been updated successfully!!');
     }
 
     /**
@@ -137,8 +124,8 @@ class PcrentController extends Controller
     public function destroy($id)
     {
         $pcrent = Pcrent::find($id);
-        $pc=Pc::find($pcrent->pcid);
-        $pc->status='available';
+        $pc = Pc::find($pcrent->pcid);
+        $pc->status = 'available';
         $pc->save();
         $pcrent->delete();
         return redirect('pcrent');
@@ -146,7 +133,7 @@ class PcrentController extends Controller
 
     public static function employee($id)
     {
-        $data = User::select('username')->where('employeeid',$id)->take(100)->get();
+        $data = User::select('username')->where('employeeid', $id)->take(100)->get();
         return response()->json($data);
     }
 }

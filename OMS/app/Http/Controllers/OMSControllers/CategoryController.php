@@ -27,10 +27,13 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $validate = $request->validate([
+        $validator = validator(request()->all(),[
             'name' => 'required|unique:categories|string',
             'description' => 'required',
         ]);
+        if($validator->fails()) {
+           return back()->withErrors($validator);
+        }
 
         $category = new Category;
         $category->name = request()->name;
@@ -61,10 +64,13 @@ class CategoryController extends Controller
     public function update(Request $request, $id)
     {
         $category = Category::find($id);
-        $validate = $request->validate([
+        $validator = validator(request()->all(),[
             'name' => 'required|unique:categories,name,'.$category->id.'|string',
             'description' => 'required',
         ]);
+        if($validator->fails()) {
+            return back()->withErrors($validator);
+        }
        
         $category->name = request()->name;
         $category->description = request()->description;

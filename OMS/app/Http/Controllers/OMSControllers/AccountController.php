@@ -10,20 +10,20 @@ use Auth;
 
 class AccountController extends Controller
 {
-    
+
     //Show account info
     public function show($id)
     {
         $id = Auth::user()->id;
         $user = User::find($id);
-        return view('account.show',compact('user'));
+        return view('account.show', compact('user'));
     }
-    
+
     // Update Account info
     public function edit($id)
     {
         $user = User::find($id);
-        return view('account.edit',compact('user'));
+        return view('account.edit', compact('user'));
     }
 
     public function update(Request $request, $id)
@@ -32,14 +32,14 @@ class AccountController extends Controller
 
         $user = User::find($id);
 
-        $validator = validator(request()->all(),[
+        $validator = validator(request()->all(), [
             'fname' => 'required',
             'lname' => 'required',
             'username' => 'required',
-            'email' => 'required|email|unique:users,email,'.$user->id.'|min:10',
+            'email' => 'required|email|unique:users,email,' . $user->id . '|min:10',
         ]);
 
-        if($validator->fails()) {
+        if ($validator->fails()) {
             return back()->withErrors($validator);
         }
 
@@ -49,8 +49,8 @@ class AccountController extends Controller
             'username' => request()->username,
             'email' => request()->email,
         ]);
-        
-        return redirect('/successlogin')->with('info','Account Information is updated!!');
+
+        return redirect('/successlogin')->with('info', 'Account Information is updated!!');
     }
 
     //changePassword 
@@ -58,10 +58,11 @@ class AccountController extends Controller
     {
         $id = Auth::user()->id;
         $user = User::find($id);
-        return view('account.changepassword',compact('user'));
+        return view('account.changepassword', compact('user'));
     }
-  
-    public function changePassword(Request $request){   
+
+    public function changePassword(Request $request)
+    {
         $this->validate($request, [
             'currentpassword' => 'required',
             'newpassword' => 'required|min:3',
@@ -69,17 +70,16 @@ class AccountController extends Controller
         ]);
 
         $data = $request->all();
-    
+
         $user = User::find(auth()->user()->id);
 
-        if(!\Hash::check($data['currentpassword'], $user->password)){
-            return back()->with('errormessage','Current Password is wrong');
-        }
-        else{
+        if (!\Hash::check($data['currentpassword'], $user->password)) {
+            return back()->with('errormessage', 'Current Password is wrong');
+        } else {
             User::findOrFail(auth()->user()->id)->update([
                 'password' => Hash::make($request->confirmpassword)
             ]);
-            return redirect('/successlogin')->with('info','Your password is changed!!'); 
+            return redirect('/successlogin')->with('info', 'Your password is changed!!');
         }
     }
 }

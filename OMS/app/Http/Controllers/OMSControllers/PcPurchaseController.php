@@ -5,8 +5,6 @@ namespace App\Http\Controllers\OMSControllers;
 use App\Http\Controllers\Controller;
 use App\Models\Pcpurchase;
 use App\Models\Pc;
-use App\Models\Brand;
-use App\Models\Category;
 use App\Models\Subbrand;
 use App\Models\subCategory;
 use Illuminate\Http\Request;
@@ -20,9 +18,9 @@ class PcPurchaseController extends Controller
      */
     public function index()
     {
-        $pcpurchase=Pcpurchase::all();
-        
-        return view('pcpurchase.index',compact('pcpurchase'));
+        $pcpurchase = Pcpurchase::all();
+
+        return view('pcpurchase.index', compact('pcpurchase'));
     }
 
     /**
@@ -32,10 +30,10 @@ class PcPurchaseController extends Controller
      */
     public function create()
     {
-        $subCategory = subCategory::where('name','PC')->first();
-        $brand = Subbrand::where('subcategoryId',$subCategory->id)->get();
-        return view('pc.create',compact([
-            'brand','subCategory'
+        $subCategory = subCategory::where('name', 'PC')->first();
+        $brand = Subbrand::where('subcategoryId', $subCategory->id)->get();
+        return view('pc.create', compact([
+            'brand', 'subCategory'
         ]));
         
        
@@ -49,77 +47,77 @@ class PcPurchaseController extends Controller
      */
     public function store(Request $request)
     {
-        $validator = validator(request()->all(),[
-            'date'=>'required',
-            'priceperunit'=>'required|integer|min:1',
-            'quantity'=>'required|integer|min:1',
-            'totalprice'=>'required|integer|min:1',
-            'brand'=>'required',
-            'cpu'=>'required',
-            'ram'=>'required',
-            'storage'=>'required',
-            'model'=>'required',
-            'condition'=>'required',
+        $validator = validator(request()->all(), [
+            'date' => 'required',
+            'priceperunit' => 'required|integer|min:1',
+            'quantity' => 'required|integer|min:1',
+            'totalprice' => 'required|integer|min:1',
+            'brand' => 'required',
+            'cpu' => 'required',
+            'ram' => 'required',
+            'storage' => 'required',
+            'model' => 'required',
+            'condition' => 'required',
         ]);
-        
+
         //pcpurchase
-        if($validator->fails()) {
+        if ($validator->fails()) {
             return back()->withErrors($validator);
         }
-    
-        $pcpurchase=new Pcpurchase();
-        $pcpurchase->date=request()->date;
-        $pcpurchase->priceperunit=request()->priceperunit;
-        $pcpurchase->quantity=request()->quantity;
-        $pcpurchase->totalprice=request()->totalprice;
-        $pcpurchase->cpu=request()->cpu;
-        $pcpurchase->ram=request()->ram;
-        $pcpurchase->storage=request()->storage;
-        $pcpurchase->model=request()->model;
-        $pcpurchase->condition=request()->condition;
-        $pcpurchase->brandid=request()->brand;
+
+        $pcpurchase = new Pcpurchase();
+        $pcpurchase->date = request()->date;
+        $pcpurchase->priceperunit = request()->priceperunit;
+        $pcpurchase->quantity = request()->quantity;
+        $pcpurchase->totalprice = request()->totalprice;
+        $pcpurchase->cpu = request()->cpu;
+        $pcpurchase->ram = request()->ram;
+        $pcpurchase->storage = request()->storage;
+        $pcpurchase->model = request()->model;
+        $pcpurchase->condition = request()->condition;
+        $pcpurchase->brandid = request()->brand;
         $pcpurchase->save();
-        
+
         //pc
-        if($validator->fails()) {
+        if ($validator->fails()) {
             return back()->withErrors($validator);
         }
-        $lastPC=Pc::join('purchases','purchases.id','=','pcs.purchaseid')
-                    ->select('*')->latest('pcs.id')->first();
-        $code=0;
-        if($lastPC!=null){
-        $lastItemCode=explode('-',$lastPC->itemcode);
-        $code=$lastItemCode[1];
+        $lastPC = Pc::join('purchases', 'purchases.id', '=', 'pcs.purchaseid')
+            ->select('*')->latest('pcs.id')->first();
+        $code = 0;
+        if ($lastPC != null) {
+            $lastItemCode = explode('-', $lastPC->itemcode);
+            $code = $lastItemCode[1];
         }
 
-        if($validator->fails()) {
+        if ($validator->fails()) {
             return back()->withErrors($validator);
         }
-        $lastPC=Pc::join('purchases','purchases.id','=','pcs.purchaseid')
-                    ->select('*')->latest('pcs.id')->first();
-        $code=0;
-        if($lastPC!=null){
-        $lastItemCode=explode('-',$lastPC->itemcode);
-        $code=$lastItemCode[1];
+        $lastPC = Pc::join('purchases', 'purchases.id', '=', 'pcs.purchaseid')
+            ->select('*')->latest('pcs.id')->first();
+        $code = 0;
+        if ($lastPC != null) {
+            $lastItemCode = explode('-', $lastPC->itemcode);
+            $code = $lastItemCode[1];
         }
 
-        for($x=0;$x<$pcpurchase->quantity;$x++){
-            $code=$code+1;
-            $itemcode="PC-".$code;
-        $pc=new Pc();
-        $pc->cpu=request()->cpu;
-        $pc->ram=request()->ram;
-        $pc->storage=request()->storage;
-        $pc->model=request()->model;
-        $pc->itemcode=$itemcode;
-        $pc->condition=request()->condition;
-        $pc->currentprice=request()->priceperunit;
-        $pc->purchaseid=$pcpurchase->id;
-        $pc->brandid=request()->brand;
-        $pc->status='available';
-        $pc->save();
-    }
-        return redirect('pcpurchase')->with('success','PC Purchase has been added successfully!!');
+        for ($x = 0; $x < $pcpurchase->quantity; $x++) {
+            $code = $code + 1;
+            $itemcode = "PC-" . $code;
+            $pc = new Pc();
+            $pc->cpu = request()->cpu;
+            $pc->ram = request()->ram;
+            $pc->storage = request()->storage;
+            $pc->model = request()->model;
+            $pc->itemcode = $itemcode;
+            $pc->condition = request()->condition;
+            $pc->currentprice = request()->priceperunit;
+            $pc->purchaseid = $pcpurchase->id;
+            $pc->brandid = request()->brand;
+            $pc->status = 'available';
+            $pc->save();
+        }
+        return redirect('pcpurchase')->with('success', 'PC Purchase has been added successfully!!');
     }
 
     /**
@@ -130,10 +128,10 @@ class PcPurchaseController extends Controller
      */
     public function edit($id)
     {
-        $edit=Pcpurchase::find($id);
-        $subCategory = subCategory::where('name','PC')->first();
-        $brand = Subbrand::where('subcategoryId',$subCategory->id)->get();
-        return view('pcpurchase.edit',compact(['edit','brand']));
+        $edit = Pcpurchase::find($id);
+        $subCategory = subCategory::where('name', 'PC')->first();
+        $brand = Subbrand::where('subcategoryId', $subCategory->id)->get();
+        return view('pcpurchase.edit', compact(['edit', 'brand']));
     }
 
     /**
@@ -145,63 +143,63 @@ class PcPurchaseController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $validator = validator(request()->all(),[
-            'date'=>'required',
-            'priceperunit'=>'required|integer|min:1',
-            'quantity'=>'required|integer|min:1',
-            'totalprice'=>'required|integer|min:1',
-            'brand'=>'required',
-            'cpu'=>'required',
-            'ram'=>'required',
-            'storage'=>'required',
-            'model'=>'required',
-            'condition'=>'required',
-            'priceperunit'=>'required|integer',
+        $validator = validator(request()->all(), [
+            'date' => 'required',
+            'priceperunit' => 'required|integer|min:1',
+            'quantity' => 'required|integer|min:1',
+            'totalprice' => 'required|integer|min:1',
+            'brand' => 'required',
+            'cpu' => 'required',
+            'ram' => 'required',
+            'storage' => 'required',
+            'model' => 'required',
+            'condition' => 'required',
+            'priceperunit' => 'required|integer',
         ]);
-        
+
         //pcpurchase
-        if($validator->fails()) {
+        if ($validator->fails()) {
             return back()->withErrors($validator);
         }
-        $delete = Pc::where('purchaseid',$id)->delete();
-        $pcpurchase=Pcpurchase::find($id);
-        $pcpurchase->date=request()->date;
-        $pcpurchase->priceperunit=request()->priceperunit;
-        $pcpurchase->quantity=request()->quantity;
-        $pcpurchase->totalprice=request()->totalprice;
-        $pcpurchase->cpu=request()->cpu;
-        $pcpurchase->ram=request()->ram;
-        $pcpurchase->storage=request()->storage;
-        $pcpurchase->model=request()->model;
-        $pcpurchase->condition=request()->condition;
-        $pcpurchase->brandid=request()->brand;
+        $delete = Pc::where('purchaseid', $id)->delete();
+        $pcpurchase = Pcpurchase::find($id);
+        $pcpurchase->date = request()->date;
+        $pcpurchase->priceperunit = request()->priceperunit;
+        $pcpurchase->quantity = request()->quantity;
+        $pcpurchase->totalprice = request()->totalprice;
+        $pcpurchase->cpu = request()->cpu;
+        $pcpurchase->ram = request()->ram;
+        $pcpurchase->storage = request()->storage;
+        $pcpurchase->model = request()->model;
+        $pcpurchase->condition = request()->condition;
+        $pcpurchase->brandid = request()->brand;
         $pcpurchase->save();
 
-        $lastPC=Pc::join('purchases','purchases.id','=','pcs.purchaseid')
-                    ->select('*')->latest('pcs.id')->first();
-        $code=0;
-        if($lastPC!=null){
-        $lastItemCode=explode('-',$lastPC->itemcode);
-        $code=$lastItemCode[1];
+        $lastPC = Pc::join('purchases', 'purchases.id', '=', 'pcs.purchaseid')
+            ->select('*')->latest('pcs.id')->first();
+        $code = 0;
+        if ($lastPC != null) {
+            $lastItemCode = explode('-', $lastPC->itemcode);
+            $code = $lastItemCode[1];
         }
 
-        for($x=0;$x<$pcpurchase->quantity;$x++){
-            $code=$code+1;
-            $itemcode="PC-".$code;
-        $pc=new Pc();
-        $pc->cpu=request()->cpu;
-        $pc->ram=request()->ram;
-        $pc->storage=request()->storage;
-        $pc->model=request()->model;
-        $pc->itemcode=$itemcode;
-        $pc->condition=request()->condition;
-        $pc->currentprice=request()->priceperunit;
-        $pc->purchaseid=$pcpurchase->id;
-        $pc->brandid=request()->brand;
-        $pc->status='available';
-        $pc->save();
-    }
-        return redirect("pcpurchase")->with('info','Pc Purchsae has been updated successfully!!');;
+        for ($x = 0; $x < $pcpurchase->quantity; $x++) {
+            $code = $code + 1;
+            $itemcode = "PC-" . $code;
+            $pc = new Pc();
+            $pc->cpu = request()->cpu;
+            $pc->ram = request()->ram;
+            $pc->storage = request()->storage;
+            $pc->model = request()->model;
+            $pc->itemcode = $itemcode;
+            $pc->condition = request()->condition;
+            $pc->currentprice = request()->priceperunit;
+            $pc->purchaseid = $pcpurchase->id;
+            $pc->brandid = request()->brand;
+            $pc->status = 'available';
+            $pc->save();
+        }
+        return redirect("pcpurchase")->with('info', 'Pc Purchsae has been updated successfully!!');;
     }
 
     /**
@@ -212,8 +210,8 @@ class PcPurchaseController extends Controller
      */
     public function destroy($id)
     {
-        $pc =Pc::where('purchaseId',$id)->delete();
-        $pcpurchase = Pcpurchase::where('id',$id)->delete();
-        return redirect('pcpurchase')->with('success','Successfully Deleted!!');
+        $pc = Pc::where('purchaseId', $id)->delete();
+        $pcpurchase = Pcpurchase::where('id', $id)->delete();
+        return redirect('pcpurchase')->with('success', 'Successfully Deleted!!');
     }
 }

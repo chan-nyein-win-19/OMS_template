@@ -4,118 +4,121 @@ namespace App\Http\Controllers\OMSControllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Leaves;
-use App\Models\User;
 use Illuminate\Http\Request;
 
 class LeaderLeaveController extends Controller
 {
     //Leader Section
-     public function viewLeave(){
+    public function viewLeave()
+    {
         $today = date('Y-m-d');
         $filtering = 'all';
-        $leaveRecords = Leaves::where('date',$today)->where([
+        $leaveRecords = Leaves::where('date', $today)->where([
             [
-                'date',$today
+                'date', $today
             ],
             [
-                'leaderId',auth()->user()->id
+                'leaderId', auth()->user()->id
             ]
         ])->get();
 
-        return view('leave.leaderLeaveForm',compact([
-            'today','leaveRecords','filtering'
+        return view('leave.leaderLeaveForm', compact([
+            'today', 'leaveRecords', 'filtering'
         ]));
     }
 
-    public function findLeave(Request $request){
+    public function findLeave(Request $request)
+    {
         $today = request()->date;
         $filtering = request()->filtering;
         $leaveRecords = Leaves::where([
             [
-                'date',$today
+                'date', $today
             ],
             [
-                'leaderId',auth()->user()->id
+                'leaderId', auth()->user()->id
             ]
         ])->get();
-        
-        return view('leave.leaderLeaveForm',compact([
-            'today','leaveRecords','filtering'
+
+        return view('leave.leaderLeaveForm', compact([
+            'today', 'leaveRecords', 'filtering'
         ]));
     }
 
-    public function changeStatus($id,$status,$date,$filtering){
+    public function changeStatus($id, $status, $date, $filtering)
+    {
         $leave = Leaves::find($id);
         $today = $date;
-        if($status == "approve"){
+        if ($status == "approve") {
             $leave->update([
-               'status' => "Approved"
+                'status' => "Approved"
             ]);
-        }elseif($status == "deny"){
+        } elseif ($status == "deny") {
             $leave->update([
-               'status' => "Denied"
+                'status' => "Denied"
             ]);
-        }else{
+        } else {
             $leave->update([
-               'status' => "Pending"
+                'status' => "Pending"
             ]);
         }
         $today = request()->date;
-            if($filtering == 'all'){
-                $leaveRecords = Leaves::where([
-                    [
-                        'date',$today
-                    ],
-                    [
-                        'leaderId',auth()->user()->id
-                    ]
-                ])->get();
-            }else{
-                $leaveRecords=Leaves::where([
-                    [
-                        'date',$today
-                    ],
-                    [
-                        'status',$filtering
-                    ],
-                    [
-                        'leaderId',auth()->user()->id
-                    ]
-                ])->get();
-            }
-        return view('leave.leaderLeaveForm',compact([
-            'today','leaveRecords','filtering'
+        if ($filtering == 'all') {
+            $leaveRecords = Leaves::where([
+                [
+                    'date', $today
+                ],
+                [
+                    'leaderId', auth()->user()->id
+                ]
+            ])->get();
+        } else {
+            $leaveRecords = Leaves::where([
+                [
+                    'date', $today
+                ],
+                [
+                    'status', $filtering
+                ],
+                [
+                    'leaderId', auth()->user()->id
+                ]
+            ])->get();
+        }
+        return view('leave.leaderLeaveForm', compact([
+            'today', 'leaveRecords', 'filtering'
         ]));
    
     }
 
-    public function filterLeave($filtering,$date){
+    public function filterLeave($filtering, $date)
+    {
         $today = $date;
-        if($filtering == 'all'){
+        if ($filtering == 'all') {
             $leaveRecords = Leaves::where([
                 [
-                    'date',$today
+                    'date', $today
                 ],
                 [
-                    'leaderId',auth()->user()->id
+                    'leaderId', auth()->user()->id
                 ]
             ])->get();
-        }else{
-            $leaveRecords=Leaves::where([
+        } else {
+            $leaveRecords = Leaves::where([
                 [
-                    'date',$today
+                    'date', $today
                 ],
                 [
-                    'status',$filtering
+                    'status', $filtering
                 ],
                 [
-                    'leaderId',auth()->user()->id
+                    'leaderId', auth()->user()->id
                 ]
             ])->get();
         }
-       
-        return view('leave.leaderLeaveForm',compact([
-            'today','leaveRecords','filtering'
+
+        return view('leave.leaderLeaveForm', compact([
+            'today', 'leaveRecords', 'filtering'
         ]));
         
     }
