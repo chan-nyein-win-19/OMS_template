@@ -55,12 +55,19 @@
                                 </button>
                             </form>
                         </div>
-                        @endif
                         <div class="col-md-1">
                             <a class="btn btn-outline-info" href="{{route('announcements.show',['announcement'=>$item] )}}">
                                 Detail
                             </a>
                         </div>
+                    @else
+                    <div class="col-md-1">
+                            <a class="btn btn-outline-info" href="{{url('/announceDetails/'.$item->id)}}">
+                                Detail
+                            </a>
+                    </div>
+                    @endif
+                        
                     </div>
                 </div>
             </div>

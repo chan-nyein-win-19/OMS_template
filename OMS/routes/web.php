@@ -106,6 +106,9 @@ Route::middleware(['checkRole:Admin'])->group(function(){
     // user
      Route::resource('users',UserController::class);
      // end
+     // announcement
+    Route::resource('announcements',AnnouncementController::class);
+    // end
 });
 
 Route::group(['middleware'=>['checkRole:Leader|Sensei']],function(){
@@ -136,6 +139,10 @@ Route::group(['middleware'=>['checkRole:Employee']],function(){
     Route::post('/leaveRecord/searchLeave',[LeaveController::class,'searchLeave']);
     Route::get('/leaveRecord/searchLeave',[LeaveController::class,'show']);
 // end
+// attendance
+    Route::resource('attendance',AttendanceController::class);
+    Route::post('/update/{id}',[AttendanceController::class, 'update']);
+// end
     
 });
 
@@ -149,14 +156,12 @@ Route::middleware(['auth'])->group(function(){
         Route::get('/changepassword/{id}',[AccountController::class,'editPassword']);
         Route::post('/changepassword/{id}',[AccountController::class,'changePassword']);
     // end
+    //attendance
+    Route::get('/attendanceList',[AttendanceController::class, 'showAttendance']);
+    //end
 
-    // attendance
-    Route::resource('attendance',AttendanceController::class);
-    Route::post('/update/{id}',[AttendanceController::class, 'update']);
-    // end
-    // announcement
-    Route::resource('announcements',AnnouncementController::class);
-    // end
+    Route::get('/announceDetails/{id}',[AnnouncementController::class, 'show']);
+    
 });
 
 

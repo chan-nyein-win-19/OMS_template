@@ -189,5 +189,10 @@ class AttendanceController extends Controller
         $attendance = Dailyattendance::where('id',$id)->delete();
         return redirect('attendance');
     }
+    public function showAttendance()
+    {
+        $dailyattendance = Dailyattendance::all();
+        return view('attendance.show',compact('dailyattendance'));
+    } 
 }
 
