@@ -4,6 +4,7 @@ namespace App\Http\Controllers\OMSControllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Brand;
+use App\Models\Category;
 use App\Models\subCategory;
 use App\Models\Subbrand;
 use Illuminate\Http\Request;

@@ -7,11 +7,10 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Auth;
-use Validator;
 
 class AccountController extends Controller
 {
-
+    
     //Show account info
     public function show($id)
     {
@@ -40,7 +39,7 @@ class AccountController extends Controller
             'email' => 'required|email|unique:users,email,'.$user->id.'|min:10',
         ]);
 
-        if($validator->fails()){
+        if($validator->fails()) {
             return back()->withErrors($validator);
         }
 

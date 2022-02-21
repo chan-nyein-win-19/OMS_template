@@ -4,9 +4,7 @@ namespace App\Http\Controllers\OMSControllers;
 use App\Models\Announcement;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Validator;
 use Auth;
-use Illuminate\Support\Facades\Mail;
 
 class AuthController extends Controller
 {

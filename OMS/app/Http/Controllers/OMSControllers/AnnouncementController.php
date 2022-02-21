@@ -57,8 +57,7 @@ class AnnouncementController extends Controller
      */
     public function show($id)
     {
-        $ann = Announcement::find($id);
-        
+        $ann = Announcement::find($id);        
         return view('announcement.show',compact('ann'));
     }
 
@@ -70,8 +69,7 @@ class AnnouncementController extends Controller
      */
     public function edit($id)
     {
-        $edit=Announcement::find($id);
-        
+        $edit=Announcement::find($id);        
         return view('announcement.edit',compact('edit'));
     }
 
@@ -83,8 +81,7 @@ class AnnouncementController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
-        
+    {        
         $validateData= $request->validate([
             'title' => 'required',
             'content' => 'required',
