@@ -31,7 +31,11 @@ class PcPurchaseController extends Controller
     public function create()
     {
         $subCategory = subCategory::where('name', 'PC')->first();
-        $brand = Subbrand::where('subcategoryId', $subCategory->id)->get();
+        $brand=[];
+        if($subCategory!=null){
+            $brand = Subbrand::where('subcategoryId', $subCategory->id)->get();
+        }
+        
         return view('pc.create', compact([
             'brand', 'subCategory'
         ]));
