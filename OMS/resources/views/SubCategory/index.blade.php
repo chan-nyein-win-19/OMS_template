@@ -22,6 +22,11 @@
         {{session('info')}}
     </div>
     @endif
+    @if(session('alert'))
+        <div class="alert alert-danger">
+            {{session('alert')}}
+        </div>
+    @endif
     <div class="container-fluid">
         <div class="row">
             <h3 class="text-center mb-3">SubCategory</h3>
@@ -150,6 +155,9 @@
         setTimeout(() => {
             $('.alert-success').addClass('d-none');;
         }, 3000);
+        setTimeout(() => {
+            $('.alert-danger').addClass('d-none');;
+        }, 3000);
     });
 
     function deleteRecord($id) {
@@ -169,12 +177,6 @@
                 if (result) {
                     let formToDelete = document.getElementById("form" + $id);
                     formToDelete.submit();
-                    bootbox.alert({
-                        message: "Successfully Deleted!",
-                        callback: function() {
-                            console.log('This was logged in the callback!');
-                        }
-                    })
                 }
             }
         });

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\OMSControllers;
 use App\Http\Controllers\Controller;
 use App\Models\SubCategory;
 use App\Models\Category;
+use App\Models\Subbrand;
 use Illuminate\Http\Request;
 
 class SubcategoryController extends Controller
@@ -106,7 +107,11 @@ class SubcategoryController extends Controller
      */
     public function destroy(SubCategory $subCategory)
     {
+        $isSubbrandExists=Subbrand::where('subcategoryId',$subCategory->id)->get();
+        if(sizeof($isSubbrandExists)>0){
+            return redirect('/subCategory')->with('alert','The subcategory you are about to delete already linked with other brands');
+        }
         $subCategory->delete();
-        return redirect('/subCategory');
+        return redirect('/subCategory')->with('info','Subcategory successfully deleted!');
     }
 }

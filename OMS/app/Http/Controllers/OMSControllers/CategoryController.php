@@ -4,6 +4,7 @@ namespace App\Http\Controllers\OMSControllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\subCategory;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -86,8 +87,12 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
+        $isSubcategoryExists=subCategory::where('categoryId',$category->id)->get();
+        if(sizeof($isSubcategoryExists)>0){
+            return back()->with('alert','The category you are about to delete already linked with other subcategories!');
+        }
         $delete = $category::find($category->id);
         $delete->delete();
-        return back()->with('catdelete','Category has been deleted successfully');
+        return back()->with('info','Category has been deleted successfully');
     }
 }
