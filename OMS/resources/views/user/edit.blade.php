@@ -14,7 +14,7 @@
             <div class="col-md-8">
                 <div class="card">                    
                     <div class="card-body">
-                        <form method="POST" action="{{ route('users.store') }}" novalidate>
+                        <form method="POST" action="{{ route('users.update',$edit->id)}}" novalidate>
                             @csrf
                             @method('PUT')
                             <div class="row mb-3 mt-2">
