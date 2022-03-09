@@ -21,6 +21,8 @@ use App\Http\Controllers\OMSControllers\AllAssetsController;
 use App\Http\Controllers\OMSControllers\PurchaseController;
 use App\Http\Controllers\OMSControllers\OtherAssetController;
 use App\Http\Controllers\OMSControllers\SubbrandController;
+use App\Http\Controllers\OMSControllers\SalaryControllers\BandController;
+use App\Http\Controllers\OMSControllers\SalaryControllers\JapaneseController;
 
 /*
 |--------------------------------------------------------------------------
@@ -95,6 +97,14 @@ Route::middleware(['checkRole:Admin'])->group(function(){
     
     // subCategory
         Route::resource('subCategory',SubcategoryController::class);
+    // end
+
+    // band
+        Route::resource('bands',BandController::class);
+    // end
+
+    // japanallowance
+        Route::resource('jpnAllowance',JapaneseController::class);
     // end
     
 
