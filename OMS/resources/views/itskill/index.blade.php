@@ -54,7 +54,13 @@
                                 <span style="color: red">*</span>
                             </label>
                             <div class="col-sm-9">
-                                <input type="number" class="form-control" name="type" id="" value="{{old('type')}}">
+                                <select class="form-control" name="type">
+                                    <option selected disabled>Please select ITskill Type</option>
+                                    <option value="Front-End">{{__('Front-End') }}</option>
+                                    <option value="Back-End">{{__('Back-End') }}</option>
+                                    <option value="Framework">{{__('Framework') }}</option>
+                                    <option value="Database">{{__('Database') }}</option>
+                                </select>
                                 <span class="text-danger"> 
                                     @error('type')
                                     {{ $errors->first('type') }} 

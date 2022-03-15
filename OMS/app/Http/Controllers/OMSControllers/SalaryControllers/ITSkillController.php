@@ -39,6 +39,22 @@ class ITSkillController extends Controller
     public function store(Request $request)
     {
         //
+        $validator = validator(request()->all(),[
+            'name'=>'required|unique:itskills|string',
+            'type'=>'required',
+        ]);
+
+        if($validator->fails()){
+            return back()->withErrors($validator);
+        }
+
+        $itskill = new Itskill;
+        $itskill->name = request()->name;
+        $itskill->type = request()->type;
+        $itskill->save();
+        return redirect('itskill')->with('info','IT Skill has been added successfully')
+;        
+
     }
 
     /**
@@ -58,9 +74,11 @@ class ITSkillController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Itskill $itskill)
     {
         //
+        $edit = $itskill;
+        return view('itskill.edit',compact('edit'));    
     }
 
     /**
@@ -73,7 +91,21 @@ class ITSkillController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $itskill = Itskill::find($id);
+        $validator = validator(request()->all(),[
+            'name'=>'required|unique:itskills,name,'.$itskill->id.'|string',
+            'type'=>'required',
+        ]);
+
+        if($validator->fails()) {
+            return back()->withErrors($validator);
+        }
+        $itskill->name = request()->name;
+        $itskill->type = request()->type;
+        $itskill->save();
+        return redirect('itskill')->with('info','IT Skill has been updated successfully');
     }
+
 
     /**
      * Remove the specified resource from storage.
@@ -81,8 +113,12 @@ class ITSkillController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Itskill $itskill)
     {
         //
+        $delete = Itskill::find($itskill->id);
+        $delete->delete();
+        return back()->with('info','ITskill has been deleted successfully');
+
     }
 }
