@@ -167,6 +167,9 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/announceDetails/{id}',[AnnouncementController::class, 'show']);
     
 });
+Route::get('/payment',function(){
+   return view ("SalaryPayment/index");
+});
 
 
 

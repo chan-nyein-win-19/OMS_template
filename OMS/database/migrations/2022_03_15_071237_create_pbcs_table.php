@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateEnglishTable extends Migration
+class CreatePbcsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateEnglishTable extends Migration
      */
     public function up()
     {
-        Schema::create('english', function (Blueprint $table) {
+        Schema::create('pbcs', function (Blueprint $table) {
             $table->id();
-            $table->string('engLevel');
-            $table->double('engAllowance');
+            $table->string('pbcNo');
+            $table->double('allowance')->unsigned();
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class CreateEnglishTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('english');
+        Schema::dropIfExists('pbcs');
     }
 }
