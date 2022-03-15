@@ -22,6 +22,7 @@ use App\Http\Controllers\OMSControllers\PurchaseController;
 use App\Http\Controllers\OMSControllers\OtherAssetController;
 use App\Http\Controllers\OMSControllers\SubbrandController;
 use App\Http\Controllers\OMSControllers\SalaryControllers\WorkingDayController;
+use App\Http\Controllers\OMSControllers\SalaryControllers\ITSkillController;
 
 /*
 |--------------------------------------------------------------------------
@@ -113,6 +114,9 @@ Route::middleware(['checkRole:Admin'])->group(function(){
     //Working
     Route::resource('workingDay',WorkingDayController::class);
     //end
+
+    //ITSkill
+    Route::resource('itskill',ITSkillController::class);
 });
 
 Route::group(['middleware'=>['checkRole:Leader|Sensei']],function(){
