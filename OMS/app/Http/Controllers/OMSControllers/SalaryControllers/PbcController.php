@@ -4,7 +4,9 @@ namespace App\Http\Controllers\OMSControllers\SalaryControllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Pbc;
+use App\Models\PbcChangesHistory;
 use Illuminate\Http\Request;
+use Auth;
 
 class PbcController extends Controller
 {
@@ -16,7 +18,9 @@ class PbcController extends Controller
     public function index()
     {
         //
-        return view('pbc.index');
+        $list = Pbc::all();
+        return view('pbc.index', compact('list'));
+        
     }
 
     /**
@@ -27,6 +31,7 @@ class PbcController extends Controller
     public function create()
     {
         //
+      
     }
 
     /**
@@ -38,6 +43,30 @@ class PbcController extends Controller
     public function store(Request $request)
     {
         //
+       
+        $validator = validator(request()->all(), [
+            'pbcno' => 'required',
+            'allowance' => 'required|regex:/^[0-9]+(\.[0-9][0-9]?)?$/',
+        ]);
+        if( $validator->fails() ) {
+            return back()->withErrors($validator);
+        }
+
+        $pbc= new Pbc;
+        $pbc->pbcNo = request()->pbcno;
+        $pbc->allowance = request()->allowance;
+        $pbc->save();
+     
+        
+        $pbcchangeshistory= new PbcChangesHistory;
+        $pbcchangeshistory->employeeId = Auth::user()->employeeid;
+        $pbcchangeshistory->oldAllowance=request()->allowance;
+        $pbcchangeshistory->newAllowance=request()->allowance;
+        $pbcchangeshistory->pbcid=$pbc->id;
+        $pbcchangeshistory->save();
+        return redirect('pbc')->with('info','Pbc has been added successfully');
+            
+
     }
 
     /**
@@ -57,9 +86,11 @@ class PbcController extends Controller
      * @param  \App\Models\Pbc  $pbc
      * @return \Illuminate\Http\Response
      */
-    public function edit(Pbc $pbc)
+    public function edit($id)
     {
         //
+        $edit = Pbc::find($id);
+        return view('pbc.edit', compact('edit'));
     }
 
     /**
@@ -69,9 +100,30 @@ class PbcController extends Controller
      * @param  \App\Models\Pbc  $pbc
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Pbc $pbc)
+    public function update(Request $request, $id)
     {
         //
+        $pbc = Pbc::find($id);
+        $validator = validator(request()->all(), [
+            'pbcNo' => 'required',
+            'allowance' => 'required|regex:/^[0-9]+(\.[0-9][0-9]?)?$/',
+        ]);
+        if( $validator->fails() ) {
+            return back()->withErrors($validator);
+        }
+        $pbc->pbcNo = request()->pbcNo;
+        $pbc->allowance = request()->allowance;
+        $pbc->save();
+       
+        $pbcchangeshistory= new PbcChangesHistory;
+        $pbcchangeshistory->employeeId = Auth::user()->employeeid;
+        $pbcchangeshistory->oldAllowance=$pbc->allowance;
+        $pbcchangeshistory->newAllowance=request()->allowance;
+        $pbcchangeshistory->pbcid=$pbc->id;
+        $pbcchangeshistory->save();
+        return redirect('pbc')->with('success','Pbc has been updated successfully');
+
+        
     }
 
     /**
@@ -80,8 +132,11 @@ class PbcController extends Controller
      * @param  \App\Models\Pbc  $pbc
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Pbc $pbc)
+    public function destroy($id)
     {
         //
+        $delete = Pbc::find($id);
+        $delete->delete();
+        return back()->with('info', 'Pbc has been deleted successfully');
     }
 }

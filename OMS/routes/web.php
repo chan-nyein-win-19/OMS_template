@@ -22,6 +22,7 @@ use App\Http\Controllers\OMSControllers\PurchaseController;
 use App\Http\Controllers\OMSControllers\OtherAssetController;
 use App\Http\Controllers\OMSControllers\SubbrandController;
 use App\Http\Controllers\OMSControllers\SalaryControllers\PbcController;
+use App\Http\Controllers\OMSControllers\SalaryControllers\PbcChangesHistoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -150,6 +151,7 @@ Route::group(['middleware'=>['checkRole:Employee']],function(){
 
 //PBC
     Route::resource('pbc',PbcController::class);
+    Route::resource('pbcchangeshistory',PbcChangesHistoryController::class);
 //end
 
 

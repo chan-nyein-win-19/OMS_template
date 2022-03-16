@@ -86,7 +86,7 @@
                 <tbody>  
                     @foreach ($list as $item)              
                         <tr>
-                            <td>{{ $item->pbcno }}</td>
+                            <td>{{ $item->pbcNo }}</td>
                             <td>{{ $item->allowance }}</td>
                             <td>
                                 <a href="{{ route('pbc.edit', $item->id) }}" class="mb-2 mr-2 btn-transition btn btn-outline-primary"  data-toggle="tooltip" title="Edit">
