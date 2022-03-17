@@ -32,6 +32,7 @@
                     <th>Check In</th>
                     <th>Check Out</th>
                     <th>WorkingHour</th>
+                    <th>Late Time</th>
                     <th>OT Time</th>
                     <th>LeaveDay</th>
                     <th>Half Day</th>
@@ -47,6 +48,7 @@
                     <td>{{ $item->checkin }}</td>
                     <td>{{ $item->checkout }}</td>
                     <td>{{ $item->workinghour }}</td>
+                    <td>{{ $item->latetime }}</td>
                     <td>{{ $item->ottime }}</td>
                     <td>{{ $item->leaveday }}</td>
                     <td>{{ $item->halfdayleave }}</td>

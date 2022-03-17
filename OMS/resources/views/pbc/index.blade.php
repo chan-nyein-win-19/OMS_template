@@ -75,6 +75,8 @@
         <br>
         <hr>
         <div class="row mt-3">
+        
+            <h3 class="text-center"><a href="{{ url('/pbcchangeshistory') }}" class="mb-2 mr-2 btn btn-primary float-left">History</a>PBC Changes History List</h3>
             <table class="mb-0 table table-hover" id="pbc">
                 <thead>
                     <tr>

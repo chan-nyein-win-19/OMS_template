@@ -35,9 +35,9 @@
                             <label for="attendanceDate" class="col-sm-4 col-form-label">Attendance Date</label>
                             <div class="col-sm-6">
                                 <input type="date" class="form-control" name="attendanceDate" value="{{$edit->date}}">
-                                @if(session('errmsg'))
-                                <span class="text-danger float-left"> {{session('errmsg')}} </span>
-                                @endif
+                                @error("attendanceDate")
+                                <span class="text-danger float-left"> {{ $errors->first('attendanceDate') }} </span>
+                                @enderror
                             </div>
                         </div>
 
@@ -47,7 +47,7 @@
                                 <input type="time" id="time1" class="form-control" name="checkIn" onchange=getTimeDifference() value="{{$edit->checkin}}">
                             </div>
                             @error("checkIn")
-                            <span class="text-danger"> {{ $errors->first('checkIn') }} </span>
+                            <span class="text-danger float-left"> {{ $errors->first('checkIn') }} </span>
                             @enderror
                         </div>
 
@@ -57,7 +57,7 @@
                                 <input type="time" id="time2" class="form-control time1" name="checkOut" onchange=getTimeDifference() value="{{$edit->checkout}}">
                             </div>
                             @error("checkOut")
-                            <span class="text-danger"> {{ $errors->first('checkOut') }} </span>
+                            <span class="text-danger float-left"> {{ $errors->first('checkOut') }} </span>
                             @enderror
                         </div>
 
@@ -67,7 +67,7 @@
                                 <input type="text" class="form-control" id="lunchThime" name="lunchTime" value="01:00:00" place-holder="01:00" readonly>
                             </div>
                             @error("lunchTime")
-                            <span class="text-danger"> {{ $errors->first('lunchTime') }} </span>
+                            <span class="text-danger float-left"> {{ $errors->first('lunchTime') }} </span>
                             @enderror
                         </div>
 
@@ -80,6 +80,25 @@
                             <span class="text-danger float-left"> {{ $errors->first('workHour') }} </span>
                             @enderror
                         </div>
+                        <div class="form-group row">
+                            <label for="latetime" class="col-sm-4 col-form-label">Late Time</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" id="latetime" name="latetime" readonly value="{{$edit->latetime}}"><br>
+                            </div>
+                            @error("latetime")
+                            <span class="text-danger float-left"> {{ $errors->first('latetime') }} </span>
+                            @enderror
+                        </div>
+                        <div class="form-group row">
+                            <label for="ottime" class="col-sm-4 col-form-label">OT Time</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" id="ottime" name="ottime" readonly value="{{$edit->ottime}}"><br>
+                            </div>
+                            @error("ottime")
+                            <span class="text-danger float-left"> {{ $errors->first('ottime') }} </span>
+                            @enderror
+                        </div>
+
 
                         <div class="form-group row">
                             <label for="radio" class="col-form-label col-sm-4 pt-0">Leave Day</label>
@@ -108,19 +127,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group row">
-                            <label for="radio" class="col-form-label col-sm-4 pt-0">OT Time</label>
-                            <div class="col-sm-6">
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="ottime" value="Yes" {{ $edit->ottime == 'Yes' ? 'checked' : '' }} />
-                                    <label class="form-check-label">Yes</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="ottime" value="No" {{ $edit->ottime == 'No' ? 'checked' : '' }} />
-                                    <label class="form-check-label">No</label>
-                                </div>
-                            </div>
-                        </div>
+                        
                         <div class="form-group row">
                             <label for="radio" class="col-form-label col-sm-4 pt-0">Work From Home</label>
                             <div class="col-sm-6">
@@ -168,6 +175,32 @@
             if (timeStringToMins(time2) > 720) {
                 diff = diff - 60;
             }
+             //OT time
+             if(diff>480){
+                var extra=diff-480;
+            }
+            // Format OT time as HH:MM and return             
+            var extratime=z(extra/60 | 0) + ':' + z(extra % 60); 
+            if(extra>0){
+                document.getElementById("ottime").value=extratime;
+            }else{
+                document.getElementById("ottime").value="00:00";
+            }
+            //end   
+            // late time
+            if(timeStringToMins(time1)>480){
+                var lateTime = timeStringToMins(time1)-480;
+            }
+            // Format late time as HH:MM and return
+            if(lateTime>0 ){
+                var late=(lateTime/15 | 0)*15+15;
+                var lateTimeDifference=z(late/60 | 0) + ':' + z(late % 60);
+                document.getElementById("latetime").value=lateTimeDifference;
+            }
+            else{
+                document.getElementById("latetime").value="00:00";
+            }
+            //end
 
             // Format difference as hh:mm and return
             var timeDifference = z(diff / 60 | 0) + ':' + z(diff % 60);

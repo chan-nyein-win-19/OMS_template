@@ -166,32 +166,33 @@
             if(timeStringToMins(time2)>720){
             diff=diff-60;
             }
-
+        //OT time
             if(diff>480){
                 var extra=diff-480;
             }
-           
-           
+        // Format OT time as HH:MM and return             
             var extratime=z(extra/60 | 0) + ':' + z(extra % 60); 
-            if(extratime>0){
+            if(extra>0){
                 document.getElementById("ottime").value=extratime;
             }else{
-                document.getElementById("ottime").value="";
+                document.getElementById("ottime").value="00:00";
             }
-            
+        //end   
         // late time
            
             if(timeStringToMins(time1)>480){
                 var lateTime = timeStringToMins(time1)-480;
             }
         // Format late time as HH:MM and return
-            var lateTimeDifference=z(lateTime/60 | 0) + ':' + z(lateTime % 60);
-            if(lateTime>0){
+            if(lateTime>0 ){
+                var late=(lateTime/15 | 0)*15+15;
+                var lateTimeDifference=z(late/60 | 0) + ':' + z(late % 60);
                 document.getElementById("latetime").value=lateTimeDifference;
-            }else{
-                document.getElementById("latetime").value="";
             }
-
+            else{
+                document.getElementById("latetime").value="00:00";
+            }
+        //end
         
 
         // Format difference as hh:mm and return
