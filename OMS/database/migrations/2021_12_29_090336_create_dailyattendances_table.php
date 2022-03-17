@@ -19,9 +19,10 @@ class CreateDailyattendancesTable extends Migration
             $table->date('date');
             $table->time('checkin');
             $table->time('checkout');
-            $table->String('lunchtime');
-            $table->String('ottime');
+            $table->String('lunchtime');      
             $table->String('workinghour');
+            $table->String('latetime');
+            $table->String('ottime');
             $table->String('leaveday');
             $table->String('halfdayleave');   
             $table->String('workfromhome');

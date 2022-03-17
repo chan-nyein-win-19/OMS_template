@@ -36,6 +36,7 @@
                         <th>Employee Id</th>
                         <th>Old Allowance</th>
                         <th>New Allowance</th>
+                        <th>Update Date</th>
                     </tr> 
                 </thead>
                 <tbody>  
@@ -44,10 +45,14 @@
                             <td>{{ $item->employeeId }}</td>
                             <td>{{ $item->oldAllowance }}</td>
                             <td>{{ $item->newAllowance }}</td>
+                            <td>{{ $item->updated_at }}</td>
                         </tr>  
                     @endforeach                
                 </tbody>
             </table>
+            <div class="col-sm-12 mt-2">
+                <a href="{{ url('/pbc') }}" class="mb-2 mr-2 btn btn-primary float-right">Back</a>
+            </div>
         </div>
     </div>
 @endsection

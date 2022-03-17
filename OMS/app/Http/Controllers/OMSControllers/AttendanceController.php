@@ -88,6 +88,7 @@ class AttendanceController extends Controller
         $dailyattendance->leaveday = request()->leaveDay;
         $dailyattendance->workfromhome = request()->wfh;
         $dailyattendance->ottime = request()->ottime;
+        $dailyattendance->latetime = request()->latetime;
 
         $dailyattendance->save();
 

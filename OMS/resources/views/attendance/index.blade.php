@@ -70,6 +70,9 @@
                 @endforeach
             </tbody>
         </table>
+        <div class="col-sm-12 mt-2">
+                <a href="{{ url('/attendance/create') }}" class="mb-2 mr-2 btn btn-primary float-right">Back</a>
+            </div>
     </div>
 @endsection
 

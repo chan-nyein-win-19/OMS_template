@@ -43,7 +43,7 @@
                         <div class="form-group row">
                             <label for="checkIn" class="col-sm-4 col-form-label" >Check in</label>
                             <div class="col-sm-6" id="timepicker1">
-                                <input type="time" id="time1" class="form-control" name="checkIn" onchange=getTimeDifference() value="00:00" >
+                                <input type="time" id="checkin" class="form-control" name="checkIn" onchange=getTimeDifference() value="00:00" >
                             </div>
                             @error("checkIn")
                             <span class="text-danger"> {{ $errors->first('checkIn') }} </span>
@@ -52,7 +52,7 @@
                         <div class="form-group row">
                             <label for="checkOut" class="col-sm-4 col-form-label" >Check Out</label>
                             <div class="col-sm-6" id="timepicker2">
-                                <input type="time" id="time2" class="form-control time1" name="checkOut" onchange=getTimeDifference() value="00:00" >
+                                <input type="time" id="checkout" class="form-control time1" name="checkOut" onchange=getTimeDifference() value="00:00" >
                             </div>
                             @error("checkOut")
                             <span class="text-danger"> {{ $errors->first('checkOut') }} </span>
@@ -75,7 +75,24 @@
                                 <span class="text-danger float-left"> {{ $errors->first('workHour') }} </span>
                                 @enderror  
                             </div>
-                            
+                        </div>
+                        <div class="form-group row">
+                            <label for="latetime" class="col-sm-4 col-form-label">Late Time</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" id="latetime" name="latetime" readonly>
+                            </div>
+                            @error("latetime")
+                            <span class="text-danger"> {{ $errors->first('latetime') }} </span>
+                            @enderror  
+                        </div>
+                        <div class="form-group row">
+                            <label for="ottime" class="col-sm-4 col-form-label" >OT Time</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" id="ottime" name="ottime" readonly>
+                                @error("ottime")
+                                <span class="text-danger float-left"> {{ $errors->first('ottitme') }} </span>
+                                @enderror  
+                            </div>
                         </div>
                         <div class="form-group row">
                             <label for="radio" class="col-form-label col-sm-4 pt-0">Leave Day</label>
@@ -99,19 +116,6 @@
                                 </div>
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="radio" name="halfDayLeave" id="inlineRadio2" value="No"checked />
-                                    <label class="form-check-label" for="inlineRadio1">No</label>
-                                </div>  
-                            </div> 
-                        </div>
-                        <div class="form-group row">
-                            <label for="radio" class="col-form-label col-sm-4 pt-0">OT Time</label>
-                            <div class="col-sm-6">
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="ottime" id="inlineRadio1" value="Yes" />  
-                                    <label class="form-check-label" for="inlineRadio1">Yes</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="ottime" id="inlineRadio2" value="No" checked/>
                                     <label class="form-check-label" for="inlineRadio1">No</label>
                                 </div>  
                             </div> 
@@ -153,8 +157,8 @@
             }
         
         function getTimeDifference() {
-            var time1 = document.getElementById("time1").value;
-            var time2 = document.getElementById("time2").value;
+            var time1 = document.getElementById("checkin").value;
+            var time2 = document.getElementById("checkout").value;
         // Small helper function to padd single digits
         function z(n){return (n<10?'0':'') + n;}
         // Get difference in minutes
@@ -162,6 +166,33 @@
             if(timeStringToMins(time2)>720){
             diff=diff-60;
             }
+
+            if(diff>480){
+                var extra=diff-480;
+            }
+           
+           
+            var extratime=z(extra/60 | 0) + ':' + z(extra % 60); 
+            if(extratime>0){
+                document.getElementById("ottime").value=extratime;
+            }else{
+                document.getElementById("ottime").value="";
+            }
+            
+        // late time
+           
+            if(timeStringToMins(time1)>480){
+                var lateTime = timeStringToMins(time1)-480;
+            }
+        // Format late time as HH:MM and return
+            var lateTimeDifference=z(lateTime/60 | 0) + ':' + z(lateTime % 60);
+            if(lateTime>0){
+                document.getElementById("latetime").value=lateTimeDifference;
+            }else{
+                document.getElementById("latetime").value="";
+            }
+
+        
 
         // Format difference as hh:mm and return
             var timeDifference=z(diff/60 | 0) + ':' + z(diff % 60);
@@ -171,6 +202,7 @@
                 document.getElementById("workHour").value="";
                 }
             }
+
     </script>
 @endsection
 
