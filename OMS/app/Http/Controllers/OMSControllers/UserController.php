@@ -4,6 +4,7 @@ namespace App\Http\Controllers\OMSControllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\UserHistory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -18,6 +19,13 @@ class UserController extends Controller
     {
         $list = User::all();
         return view('user.index', compact('list'));
+    }
+
+    //History
+    public function history()
+    {
+        $list = UserHistory::all();
+        return view('history.emphistorylist', compact('list'));
     }
 
     /**

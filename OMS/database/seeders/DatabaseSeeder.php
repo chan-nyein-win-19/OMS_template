@@ -21,8 +21,6 @@ class DatabaseSeeder extends Seeder
         \App\Models\Announcement::factory(10)->create();
 
         \App\Models\User::factory()->create([
-            'fname'=>'Admin',
-            'lname'=>'Admin',
             'username'=>'Admin',
             'employeeid'=>'201',
             'email'=>'thawtar13799@gmail.com',

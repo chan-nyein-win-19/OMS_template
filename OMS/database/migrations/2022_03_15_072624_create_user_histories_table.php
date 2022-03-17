@@ -13,7 +13,7 @@ class CreateUserHistory extends Migration
      */
     public function up()
     {
-        Schema::create('user_history', function (Blueprint $table) {
+        Schema::create('user_histories', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
             $table->string('username');

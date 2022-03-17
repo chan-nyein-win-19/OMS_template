@@ -117,6 +117,10 @@ Route::middleware(['checkRole:Admin'])->group(function(){
 
     //ITSkill
     Route::resource('itskill',ITSkillController::class);
+    //end
+
+    //EmployeeHistoryList
+    Route::get('/emphistorylist',[UserController::class,'history']);
 });
 
 Route::group(['middleware'=>['checkRole:Leader|Sensei']],function(){
