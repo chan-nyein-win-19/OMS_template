@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUserHistory extends Migration
+class CreateUserHistories extends Migration
 {
     /**
      * Run the migrations.
@@ -16,10 +16,10 @@ class CreateUserHistory extends Migration
         Schema::create('user_histories', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->integer('userId');
             $table->string('username');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
             $table->integer('employeeid');
             $table->string('role');
             $table->string('NRC');
@@ -40,8 +40,7 @@ class CreateUserHistory extends Migration
             $table->integer('educationId');
             $table->integer('japaneseId');
             $table->integer('englishId');
-            $table->integer('casualLeaveId');
-            $table->integer('ITSkillId');
+            $table->integer('casualLeaves');
             $table->integer('accessUserId');
         });
     }
@@ -53,6 +52,6 @@ class CreateUserHistory extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_history');
+        Schema::dropIfExists('user_histories');
     }
 }

@@ -5,7 +5,10 @@
 @section("style")
     <link rel="stylesheet" href="{{ asset('/storage/OMS/bootstrap5/bootstrap.min.css') }}" >  
     <link rel="stylesheet" href="{{ asset('/storage/OMS/css/style.css') }}">
-    <link rel="stylesheet" href="{{ asset('/storage/OMS/data-tables/jquery.dataTables.min.css') }}">    
+    <link rel="stylesheet" href="{{ asset('/storage/OMS/data-tables/jquery.dataTables.min.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/fixedcolumns/4.0.2/css/fixedColumns.bootstrap5.min.css">
 @endsection
 
 @section('topbar')
@@ -19,8 +22,8 @@
 @section("content")
     <div class="container">
         <h3 style="text-align: center;">Employee History List</h3><br>
-        <div class="table-responsive">
-        <table class="mb-0 table table-hover" id="table">
+        
+        <table class="table table-hover" id="example" style="width:100%">
             <thead>
             <tr>
                 <th>AccessEmployee</th>
@@ -77,7 +80,7 @@
             </tbody>
         </table>
     </div>
-    </div>
+   
 @endsection
 
 @section('script')   
@@ -88,6 +91,10 @@
     <script src="{{ asset('/storage/OMS/bootstrap5/bootstrap.min.js') }}"></script>
     <script src="{{ asset('/storage/OMS/bootstrap5/popper.min.js') }}"></script>
     <script src="{{ asset('/storage/OMS/bootstrap5/bootstrap.bundle.min.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdn.datatables.net/fixedcolumns/4.0.2/js/dataTables.fixedColumns.min.js"></script>
     <script>
         jQuery(function($) {
         //initiate dataTables plugin
@@ -130,5 +137,16 @@
         $(document).on('click','a.paginate_button',function(event){
             $('[data-toggle="tooltip"]').tooltip();                            
         })
+    </script>
+    <script>
+        $(document).ready(function() {
+        var table = $('#example').DataTable( {
+        scrollY:        "300px",
+        scrollX:        true,
+        scrollCollapse: true,
+        paging:         false,
+        fixedColumns:   true,
+    } );
+} );
     </script>
 @endsection 
