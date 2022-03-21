@@ -40,7 +40,7 @@ class CreateUsersTable extends Migration
             $table->integer('japaneseId');
             $table->integer('englishId');
             $table->integer('casualLeaveId');
-            $table->integer('ITSkillId');
+            $table->text('itSkills')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

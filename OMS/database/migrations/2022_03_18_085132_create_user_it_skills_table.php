@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateJapanTable extends Migration
+class CreateUserItSkillsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateJapanTable extends Migration
      */
     public function up()
     {
-        Schema::create('japan', function (Blueprint $table) {
+        Schema::create('user_it_skills', function (Blueprint $table) {
             $table->id();
-            $table->string('jpnLevel');
-            $table->double('jpnAllowance');
             $table->timestamps();
+            $table->integer("userId");
+            $table->integer("itSkillId");
         });
     }
 
@@ -28,6 +28,6 @@ class CreateJapanTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('japan');
+        Schema::dropIfExists('user_it_skills');
     }
 }

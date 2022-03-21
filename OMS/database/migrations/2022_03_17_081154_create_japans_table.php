@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateEnglishTable extends Migration
+class CreateJapansTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class CreateEnglishTable extends Migration
      */
     public function up()
     {
-        Schema::create('english', function (Blueprint $table) {
+        Schema::create('japans', function (Blueprint $table) {
             $table->id();
-            $table->string('engLevel');
-            $table->string('engExamType');
-            $table->double('engAllowance');
             $table->timestamps();
+            $table->string('jpnLevel');
+            $table->integer('jpnAllowance');
         });
     }
 
@@ -29,6 +28,6 @@ class CreateEnglishTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('english');
+        Schema::dropIfExists('japans');
     }
 }

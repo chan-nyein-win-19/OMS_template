@@ -106,6 +106,14 @@ Route::middleware(['checkRole:Admin'])->group(function(){
     //end
     // user
      Route::resource('users',UserController::class);
+     Route::get('/itSkillList',[UserController::class,'itSkill']);
+     Route::get('/testingInput', function(){
+    $names[] = array('id' => 0, 'name' => 'hello');
+    $names[] = array('id' => 1, 'name' => 'sup');
+
+    return response::json($names);
+});
+
      // end
      // announcement
     Route::resource('announcements',AnnouncementController::class);
