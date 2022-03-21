@@ -1,132 +1,371 @@
 @extends('layouts.app')
 
-@section('title','employee create')
+@section('title','UserCreate')
 
 @section('style')
-    <link rel="stylesheet" href="{{ asset('/storage/OMS/bootstrap5/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/storage/OMS/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('/storage/OMS/data-tables/jquery.dataTables.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('/storage/OMS/bootstrap5/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('/storage/OMS/autofillTagging/fm.tagator.jquery.css')  }}">
+    <link rel="stylesheet" href="{{ asset('/storage/OMS/autofillTagging/fm.tagator.jquery.min.css')  }}">
+    <style>
+		
+		#wrapper {
+	  padding: 15px;
+      margin:100px auto;
+      max-width:728px;
+		}
+		
+	</style>
 @endsection
 
-@section("content")
-    <div class="container">
-        <h3 class="text-center">Employee Form</h3><br>
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">                    
-                    <div class="card-body">
-                        <form method="POST" action="{{ route('users.store') }}" novalidate>
-                            @csrf
-                            <div class="row mb-3 mt-2">
-                                <label class="col-md-4 col-form-label text-md-end">{{ __('FirstName') }}</label>
-                                <div class="col-md-6">
-                                    <input type="text" class="form-control" name="fname"
-                                        value="{{ old('fname') }}" autocomplete="fname" autofocus>
-                                    @if($errors->has('fname'))
-                                        <span class='text-danger'>
-                                            The firstname is required.
-                                        </span>
-                                    @endif
-                                </div>
-                            </div>
-                            <div class="row mb-3">
-                                <label class="col-md-4 col-form-label text-md-end">{{ __('LastName') }}</label>
-                                <div class="col-md-6">
-                                    <input type="text" class="form-control" name="lname"
-                                        value="{{ old('lname') }}" autocomplete="lname">
-                                    @if($errors->has('lname'))
-                                        <span class='text-danger'>
-                                            The lastname is required.
-                                        </span>
-                                    @endif
-                                </div>
-                            </div>
-                            <div class="row mb-3">
-                                <label class="col-md-4 col-form-label text-md-end">{{ __('Username') }}</label>
-                                <div class="col-md-6">
-                                    <input type="text" class="form-control" name="username"
-                                        value="{{ old('username') }}" autocomplete="username">
-                                    @if($errors->has('username'))
-                                        <span class='text-danger'>
-                                            {{$errors->first('username')}}
-                                        </span>
-                                    @endif
-                                </div>
-                            </div>
-                            <div class="row mb-3">
-                                <label class="col-md-4 col-form-label text-md-end">{{ __('E-Mail') }}</label>
-                                <div class="col-md-6">
-                                    <input type="email" class="form-control" name="email" value="{{ old('email') }}">
-                                    @if($errors->has('email'))
-                                        <span class='text-danger'>
-                                            {{$errors->first('email')}}
-                                        </span>
-                                    @endif
-                                </div>
-                            </div>
-                            <div class="row mb-3">
-                                <label class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
-                                <div class="col-md-6">
-                                    <input type="password" class="form-control" name="password"  value="{{ old('password') }}">
-                                    @if($errors->has('password'))
-                                        <span class='text-danger'>
-                                            {{$errors->first('password')}}
-                                        </span>
-                                    @endif
-                                </div>
-                            </div>
-                            <div class="row mb-3">
-                                <label class="col-md-4 col-form-label text-md-end">{{ __('Employee ID') }}</label>
-                                <div class="col-md-6">
-                                    <input type="text" class="form-control" name="employeeid" value="{{ old('employeeid') }}">
-                                    @if($errors->has('employeeid'))
-                                        <span class='text-danger'>
-                                            {{$errors->first('employeeid')}}
-                                        </span>
-                                    @endif
-                                </div>
-                            </div>
-                            <div class="row mb-3">
-                                <label class="col-md-4 col-form-label text-md-end">{{ __('Role') }}</label>
-                                <div class="col-md-6">
-                                    <select class="form-control" name="role">
-                                        <option value="">{{ __('Please select role') }}</option>
-                                        <option value="Admin">{{ __('Admin') }}</option>
-                                        <option value="Leader">{{ __('Leader') }}</option>
-                                        <option value="Sensei">{{ __('Sensei') }}</option>
-                                        <option value="Employee">{{ __('Employee') }}</option>
-                                    </select>
-                                    @if($errors->has('role'))
-                                        <span class='text-danger'>
-                                            {{$errors->first('role')}}
-                                        </span>
-                                    @endif
-                                </div>
-                            </div>
-                            <div class="row mb-0">
-                                <div class="col-md-6 offset-md-4">
-                                    <button type="submit" class="btn btn-primary">
-                                        {{ __('Create') }}
-                                    </button>
-                                    <button type="reset" class="btn btn-danger">
-                                        {{ __('Clear') }}
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
+@section('topbar')
+    @parent
+@endsection
+
+@section('sidebar')
+    @parent
+@endsection
+
+@section('content')
+    @if(session('info'))
+        <div class="alert alert-success">
+            {{session('info')}}
         </div>
+    @endif
+    
+    <div class="container-fluid">
+        <h3 class="text-center mb-3">User Create</h3>
+        <div class="card p-5 pt-4">
+            <form action="{{ route('users.store') }}" method="POST">
+                @csrf
+                <div class="row">
+                    <div class="col-md-6 pr-5 pl-5">
+                        <div class="position-relative row form-group">
+                            <label class="form-label"> EmployeeId
+                                <span style="color: red">*</span>
+                            </label>           
+                                <input type="text" class="form-control" name="employeeid" value="{{ old('employeeid') }}"/>
+                         @error('employeeid')
+                            <span class="text-danger small">*{{$message}}</span><br>
+                         @enderror
+                        </div>
+                        
+                        <div class="position-relative row form-group">
+                            <label class="form-label">Name
+                                <span style="color: red">*</span>
+                            </label>           
+                                <input type="text" class="form-control" name="username"  value="{{ old('username') }}"/>
+                            @error('username')
+                                <span class="text-danger small">*{{$message}}</span><br>
+                            @enderror
+                            </div>
+                        
+                        <div class="position-relative row form-group">
+                            <label class="form-label"> Role
+                                <span style="color: red">*</span>
+                            </label>           
+                            <select class="form-control" name="role">
+                                <option value="" disabled selected>Please select role</option>
+                                <option value="Admin"@if(old('role')=="Admin") selected @endif>Admin</option>
+                                <option value="MD" @if(old('role')=="MD") selected @endif>Managing Director</option>
+                                <option value="Leader" @if(old('role')=="Leader") selected @endif>Leader</option>
+                                <option value="Sensei" @if(old('role')=="Sensei") selected @endif>Sensei</option>
+                                <option value="Employee" @if(old('role')=="Employee") selected @endif>Employee</option>
+                            </select>
+                        @error('role')
+                            <span class="text-danger small">*{{$message}}</span><br>
+                        @enderror
+                        </div>
+                        
+                        <div class="position-relative row form-group">
+                            <label class="form-label">Email
+                                <span style="color: red">*</span>
+                            </label>           
+                                <input type="email" class="form-control" name="email" value="{{old('email')}}"/>
+                        @error('email')
+                            <span class="text-danger small">*{{$message}}</span><br>
+                        @enderror
+                        </div>
+                        
+                        <div class="position-relative row form-group">
+                            <label class="form-label">Password
+                                <span style="color: red">*</span>
+                            </label>           
+                                <input type="password" class="form-control" name="password" value="{{old('password')}}"/>
+                        @error('password')
+                            <span class="text-danger small">*{{$message}}</span><br>
+                        @enderror
+                        </div>
+                        
+                        <div class="position-relative row form-group">
+                            <label class="form-label">NRC
+                                <span style="color: red">*</span>
+                            </label>           
+                                <input type="text" class="form-control" name="NRC" value="{{old('NRC')}}"/>
+                        @error('NRC')
+                            <span class="text-danger small">*{{$message}}</span><br>
+                        @enderror
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Gender
+                                <span style="color: red">*<br></span>
+                            </label> 
+                        </div>
+                        <div class="form-group mb-2">
+                            <div class="form-check form-check-inline" style="line-height:1;">
+                                <input class="form-check-input" type="radio" name="gender" id="male" value="male" @if(old('gender')=="male") checked @endif>
+                                <label class="form-check-label" for="male" >Male</label>
+                            </div>
+                            <div class="form-check form-check-inline" style="line-height:1;">
+                                <input class="form-check-input" type="radio" name="gender" id="female" value="female" @if(old('gender')=="female") checked @endif>
+                                <label class="form-check-label" for="female" >Female</label>
+                            </div>
+                        </div>
+                        @error('gender')
+                        <div class="form-group">
+                            <span class="text-danger small">*{{$message}}</span><br>
+                        </div>
+                            
+                        @enderror
+                        <div class="form-group">
+                            <label class="form-label">MarriageStatus
+                                <span style="color: red">*<br></span>
+                            </label> 
+                        </div>
+                        <div class="form-group mb-2">
+                            <div class="form-check form-check-inline" style="line-height:1;">
+                                <input class="form-check-input" type="radio" name="marriageStatus" id="married" value="married" @if(old('marriageStatus')=="married") checked @endif>
+                                <label class="form-check-label" for="male" >Married</label>
+                            </div>
+                            <div class="form-check form-check-inline" style="line-height:1;">
+                                <input class="form-check-input" type="radio" name="marriageStatus" id="single" value="single" @if(old('marriageStatus')=="single") checked @endif>
+                                <label class="form-check-label" for="female" >Single</label>
+                            </div>
+                        </div>
+                        @error('marriageStatus')
+                        <div class="form-group">
+                            <span class="text-danger small">*{{$message}}</span><br>
+                        </div>
+                        @enderror
+                        
+                            <div class="position-relative row form-group">
+                                <label class="form-label">DOB
+                                    <span style="color: red">*</span>
+                                </label>           
+                                    <input type="date" class="form-control" name="DOB" value="{{old('DOB')}}"/>
+                        @error('DOB')
+                            <span class="text-danger small">*{{$message}}</span><br>
+                        @enderror
+                            </div>
+                        
+                        <div class="position-relative row form-group">
+                            <label class="form-label">PhNo
+                                <span style="color: red">*</span>
+                            </label>           
+                                <input type="text" class="form-control" name="phNo" value="{{old('phNo')}}"/>
+                        @error('phNo')
+                            <span class="text-danger small">*{{$message}}</span><br>
+                        @enderror
+                        </div>
+                        
+                        <div class="position-relative row form-group">
+                            <label class="form-label">Travel Fees
+                                <span style="color: red">*</span>
+                            </label>           
+                                <input type="number" class="form-control" name="travelFees" value="{{old('travelFees')}}"/>
+                        @error('travelFees')
+                            <span class="text-danger small">*{{$message}}</span><br>
+                        @enderror
+                        </div>
+                        
+                        <div class="position-relative row form-group">
+                            <label class="form-label">Address
+                                <span style="color: red">*</span>
+                            </label>           
+                               <textarea  id="" cols="30" rows="5" class="form-control" name="address">{{old('address')}}</textarea>
+                        @error('address')
+                            <span class="text-danger small">*{{$message}}</span><br>
+                        @enderror
+                        </div>
+                        
+                        
+                    </div>
+                    <div class="col-md-6 pr-5 pl-5">
+                        <div class="position-relative row form-group">
+                            <label class="form-label">Office
+                                <span style="color: red">*</span>
+                            </label>           
+                            <select class="form-control" name="office">
+                                <option value="" disabled selected>Please select office</option>
+                                <option value="Yangon" @if(old('office')=="Yangon") selected @endif>Yangon</option>
+                                <option value="Mandalay"  @if(old('office')=="Mandalay") selected @endif>Mandalay</option>
+                            </select>
+                        @error('office')
+                            <span class="text-danger small">*{{$message}}</span><br>
+                        @enderror
+                        </div>
+                       
+                        <div class="position-relative row form-group">
+                            <label class="form-label">Batch
+                                <span style="color: red">*</span>
+                            </label>           
+                                <input type="text" class="form-control" name="batch"  value="{{old('batch')}}"/>
+                        @error('batch')
+                            <span class="text-danger small">*{{$message}}</span><br>
+                        @enderror
+                        </div>
+                        
+                        <div class="position-relative row form-group">
+                            <label class="form-label">JoinDate
+                                <span style="color: red">*</span>
+                            </label>           
+                                <input type="date" class="form-control" name="joinDate"  value="{{old('joinDate')}}"/>
+                        @error('joinDate')
+                            <span class="text-danger small">*{{$message}}</span><br>
+                        @enderror
+                        </div>
+                        
+                        <div class="position-relative row form-group">
+                            <label class="form-label">WorkExp(Year)
+                                <span style="color: red">*</span>
+                            </label>           
+                                <input type="number" class="form-control" name="workExp"  value="{{old('workExp')}}"/>
+                        @error('workExp')
+                            <span class="text-danger small">*{{$message}}</span><br>
+                        @enderror
+                        </div>
+                        
+                        <div class="position-relative row form-group">
+                            <label class="form-label">Education
+                                <span style="color: red">*</span>
+                            </label>           
+                                <input type="text" class="form-control" name="education"  value="{{old('education')}}"/>
+                        @error('education')
+                            <span class="text-danger small">*{{$message}}</span><br>
+                        @enderror
+                        </div>
+                        
+                        <div class="position-relative row form-group">
+                            <label class="form-label">Degree
+                                <span style="color: red">*</span>
+                            </label>           
+                            <select class="form-control" name="degree">
+                                <option value="" disabled selected>Please select Degree</option>
+                                @foreach($educationList as $education)
+                                <option value="{{$education->id}}" @if(old('degree')==$education->id) selected @endif>{{$education->eduLevel}}</option>
+                                @endforeach
+                            </select>
+                        @error('degree')
+                            <span class="text-danger small">*{{$message}}</span><br>
+                        @enderror
+                        </div>
+                        
+                        <div class="position-relative row form-group">
+                            <label class="form-label">Band
+                                <span style="color: red">*</span>
+                            </label>           
+                            <select class="form-control" name="band">
+                                <option value="" disabled selected>Please select Band</option>
+                                @foreach($bandList as $band)
+                                <option value="{{$band->id}}" @if(old('band')==$band->id) selected @endif>{{$band->bandNo}}</option>
+                                @endforeach
+                            </select>
+                        @error('band')
+                            <span class="text-danger small">*{{$message}}</span><br>
+                        @enderror
+                        </div>
+                        
+                        <div class="position-relative row form-group">
+                            <label class="form-label">PBC
+                                <span style="color: red">*</span>
+                            </label>           
+                            <select class="form-control" name="pbc">
+                                <option value="" disabled selected>Please select PBC</option>
+                                @foreach($pbcList as $pbc)
+                                <option value="{{$pbc->id}}" @if(old('pbc')==$pbc->id) selected @endif>{{$pbc->pbcNo}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        
+                        <div class="position-relative row form-group">
+                            <label class="form-label">Japanese
+                                <span style="color: red">*</span>
+                            </label>           
+                            <select class="form-control" name="japanese">
+                                <option value="" disabled selected>Please select Level</option>
+                                @foreach($japanList as $japanese)
+                                <option value="{{$japanese->id}}" @if(old('japanese')==$japanese->id) selected @endif>{{$japanese->jpnLevel}}</option>
+                                @endforeach
+                            </select>
+                        @error('japanese')
+                            <span class="text-danger small">*{{$message}}</span><br>
+                        @enderror
+                        </div>
+                        
+                        <div class="position-relative row form-group">
+                            <label class="form-label">English
+                                <span style="color: red">*</span>
+                            </label>           
+                            <select class="form-control" name="english">
+                                <option value="" disabled selected>Please select Level</option>
+                                @foreach($englishList as $english)
+                                <option value="{{$english->id}}" @if(old('english')==$english->id) selected @endif>{{$english->engExamType}} {{$english->engLevel}}</option>
+                                @endforeach
+                            </select>
+                        @error('english')
+                            <span class="text-danger small">*{{$message}}</span><br>
+                        @enderror
+                        </div>
+                        
+                        <div class="position-relative row form-group">
+                            <label class="form-label">CasualLeaves
+                                <span style="color: red">*</span>
+                            </label>           
+                                <input type="number" class="form-control" name="casualLeave" value="{{old('casualLeave')}}"/>
+                        @error('casualLeave')
+                            <span class="text-danger small">*{{$message}}</span><br>
+                        @enderror
+                        </div>
+                        
+                        <div class="position-relative row form-group">
+                            <label class="form-label">IT skills
+                                <span style="color: red">*</span>
+                            </label>    
+                            <input id="itSkills" type="text" name="itSkills"class="tagator form-control" data-tagator-show-all-options-on-focus="true" value="{{old('itSkills')}}">       
+                            
+                        </div>
+                        <div class="position-relative form-group mt-3">
+                            <input type="submit" value="Save" class="btn btn-primary m-3">
+                            <input type="submit" value="Cancel" class="btn btn-danger ">
+                        </div>
+                    </div>
+                   
+                </div>
+               
+            </form>
+        </div>
+        
     </div>
+    
 @endsection
 
-@section("script")
-    <script src="{{ asset('/storage/OMS/data-tables/jquery.js') }}"></script>
-    <script>
-        $(document).ready(()=>{
-            let role = "{{ old('role') }}";
-            console.log(role);
-            $('[name="role"]').val(role);
-        });
-    </script>
+@section('script')
+    <script src="{{ asset('/storage/OMS/autofillTagging/jquery.min.js') }}"></script>
+    <script src="{{ asset('/storage/OMS/autofillTagging/fm.tagator.jquery.js') }}"></script>
+    <script src="{{ asset('/storage/OMS/tokeninput/bootstrap-tokenfield.js') }}"></script>
+    <script src="{{ asset('/storage/OMS/bootstrap5/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('/storage/OMS/bootstrap5/popper.min.js') }}"></script>
+    <script src="{{ asset('/storage/OMS/bootstrap5/bootstrap.bundle.min.js') }}"></script>
+    <script type="text/javascript">
+       $(document).ready(function(){
+           var itSkill=[];
+           @foreach($itSkills as $itSkill)
+            itSkill.push("{{$itSkill->name}}");
+            @endforeach
+        $('#itSkills').tagator('autocomplete', itSkill);
+
+});
+        </script>
 @endsection

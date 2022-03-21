@@ -42,7 +42,7 @@ class UserController extends Controller
         $englishList=English::all();
         $bandList=Band::all();
         $itSkills=Itskill::select('name')->get();
-        return view('tempUser.create',compact(['pbcList','educationList','japanList','englishList','bandList','itSkills']));
+        return view('user.create',compact(['pbcList','educationList','japanList','englishList','bandList','itSkills']));
     }
 
     /**
@@ -180,7 +180,7 @@ class UserController extends Controller
         $englishList=English::all();
         $bandList=Band::all();
         $itSkills=Itskill::select('name')->get();
-        return view('tempUser.edit',compact(['edit','pbcList','educationList','japanList','englishList','bandList','itSkills']));
+        return view('user.edit',compact(['edit','pbcList','educationList','japanList','englishList','bandList','itSkills']));
     }
 
     public function update(Request $request,$id)
