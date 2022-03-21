@@ -198,7 +198,7 @@
                                 <span style="color: red">*</span>
                             </label>           
                             <select class="form-control" name="office">
-                                <option value="">Please select office</option>
+                                <option value="" disabled selected>Please select office</option>
                                 <option value="Yangon" @if(old('office')=="Yangon") selected @endif>Yangon</option>
                                 <option value="Mandalay"  @if(old('office')=="Mandalay") selected @endif>Mandalay</option>
                             </select>
@@ -252,7 +252,7 @@
                                 <span style="color: red">*</span>
                             </label>           
                             <select class="form-control" name="degree">
-                                <option value="">Please select Degree</option>
+                                <option value="" disabled selected>Please select Degree</option>
                                 @foreach($educationList as $education)
                                 <option value="{{$education->id}}" @if(old('degree')==$education->id) selected @endif>{{$education->eduLevel}}</option>
                                 @endforeach
@@ -267,7 +267,7 @@
                                 <span style="color: red">*</span>
                             </label>           
                             <select class="form-control" name="band">
-                                <option value="">Please select Band</option>
+                                <option value="" disabled selected>Please select Band</option>
                                 @foreach($bandList as $band)
                                 <option value="{{$band->id}}" @if(old('band')==$band->id) selected @endif>{{$band->bandNo}}</option>
                                 @endforeach
@@ -282,7 +282,7 @@
                                 <span style="color: red">*</span>
                             </label>           
                             <select class="form-control" name="pbc">
-                                <option value="">Please select PBC</option>
+                                <option value="" disabled selected>Please select PBC</option>
                                 @foreach($pbcList as $pbc)
                                 <option value="{{$pbc->id}}" @if(old('pbc')==$pbc->id) selected @endif>{{$pbc->pbcNo}}</option>
                                 @endforeach
@@ -294,7 +294,7 @@
                                 <span style="color: red">*</span>
                             </label>           
                             <select class="form-control" name="japanese">
-                                <option value="">Please select Level</option>
+                                <option value="" disabled selected>Please select Level</option>
                                 @foreach($japanList as $japanese)
                                 <option value="{{$japanese->id}}" @if(old('japanese')==$japanese->id) selected @endif>{{$japanese->jpnLevel}}</option>
                                 @endforeach
@@ -309,7 +309,7 @@
                                 <span style="color: red">*</span>
                             </label>           
                             <select class="form-control" name="english">
-                                <option value="">Please select Level</option>
+                                <option value="" disabled selected>Please select Level</option>
                                 @foreach($englishList as $english)
                                 <option value="{{$english->id}}" @if(old('english')==$english->id) selected @endif>{{$english->engExamType}} {{$english->engLevel}}</option>
                                 @endforeach

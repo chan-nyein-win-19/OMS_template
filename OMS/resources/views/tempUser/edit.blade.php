@@ -64,12 +64,20 @@
                                 <span style="color: red">*</span>
                             </label>           
                             <select class="form-control" name="role">
-                                <option value="">Please select role</option>
+                                <option value="" disabled>Please select role</option>
+                                @if(old('role')!=null)
+                                <option value="Admin"@if(old('role')=="Admin") selected @endif>Admin</option>
+                                <option value="MD" @if(old('role')=="MD") selected @endif>Managing Director</option>
+                                <option value="Leader" @if(old('role')=="Leader") selected @endif>Leader</option>
+                                <option value="Sensei" @if(old('role')=="Sensei") selected @endif>Sensei</option>
+                                <option value="Employee" @if(old('role')=="Employee") selected @endif>Employee</option>
+                                @else
                                 <option value="Admin" @if($edit->role=="Admin") selected @endif>Admin</option>
                                 <option value="MD" @if($edit->role=="MD") selected @endif>Managing Director</option>
                                 <option value="Leader" @if($edit->role=="Leader") selected @endif>Leader</option>
                                 <option value="Sensei" @if($edit->role=="Sensei") selected @endif>Sensei</option>
                                 <option value="Employee" @if($edit->role=="Employee") selected @endif>Employee</option>
+                                @endif
                             </select>
                          @error('role')
                             <span class="text-danger small">*{{$message}}</span><br>
@@ -99,6 +107,16 @@
                             </label> 
                         </div>
                         <div class="form-group mb-2">
+                            @if(old('gender')!=null)
+                            <div class="form-check form-check-inline" style="line-height:1;">
+                                <input class="form-check-input" type="radio" name="gender" id="male" value="male" @if(old('gender')=="male") checked @endif>
+                                <label class="form-check-label" for="male" >Male</label>
+                            </div>
+                            <div class="form-check form-check-inline" style="line-height:1;">
+                                <input class="form-check-input" type="radio" name="gender" id="female" value="female" @if(old('gender')=="female") checked @endif>
+                                <label class="form-check-label" for="female" >Female</label>
+                            </div>
+                            @else
                             <div class="form-check form-check-inline" style="line-height:1;">
                                 <input class="form-check-input" type="radio" name="gender" id="male" value="male" @if($edit->gender=="male") checked @endif>
                                 <label class="form-check-label" for="male" >Male</label>
@@ -107,6 +125,7 @@
                                 <input class="form-check-input" type="radio" name="gender" id="female" value="female"  @if($edit->gender=="female") checked @endif>
                                 <label class="form-check-label" for="female" >Female</label>
                             </div>
+                            @endif
                         </div>
                         @error('gender')
                         <div class="form-group">
@@ -120,6 +139,16 @@
                             </label> 
                         </div>
                         <div class="form-group mb-2">
+                            @if(old('marriageStatus')!=null)
+                            <div class="form-check form-check-inline" style="line-height:1;">
+                                <input class="form-check-input" type="radio" name="marriageStatus" id="married" value="married" @if(old('marriageStatus')=="married") checked @endif>
+                                <label class="form-check-label" for="male" >Married</label>
+                            </div>
+                            <div class="form-check form-check-inline" style="line-height:1;">
+                                <input class="form-check-input" type="radio" name="marriageStatus" id="single" value="single" @if(old('marriageStatus')=="single") checked @endif>
+                                <label class="form-check-label" for="female" >Single</label>
+                            </div>
+                            @else
                             <div class="form-check form-check-inline" style="line-height:1;">
                                 <input class="form-check-input" type="radio" name="marriageStatus" id="married" value="married" @if($edit->marriageStatus=="married") checked @endif>
                                 <label class="form-check-label" for="male">Married</label>
@@ -128,6 +157,7 @@
                                 <input class="form-check-input" type="radio" name="marriageStatus" id="single" value="single"  @if($edit->marriageStatus=="single") checked @endif>
                                 <label class="form-check-label" for="female" >Single</label>
                             </div>
+                            @endif
                         </div>
                         @error('marriageStatus')
                         <div class="form-group">
@@ -179,9 +209,14 @@
                                 <span style="color: red">*</span>
                             </label>           
                             <select class="form-control" name="office">
-                                <option value="">Please select office</option>
+                                <option value="" disabled>Please select office</option>
+                                @if(old('office')!=null)
+                                <option value="Yangon" @if(old('office')=="Yangon") selected @endif>Yangon</option>
+                                <option value="Mandalay"  @if(old('office')=="Mandalay") selected @endif>Mandalay</option>
+                                @else
                                 <option value="Yangon"@if($edit->office=="Yangon") selected @endif>Yangon</option>
                                 <option value="Mandalay"@if($edit->office=="Mandalay") selected @endif>Mandalay</option>
+                                @endif
                             </select>
                         @error('office')
                             <span class="text-danger small">*{{$message}}</span><br>
@@ -229,10 +264,16 @@
                                 <span style="color: red">*</span>
                             </label>           
                             <select class="form-control" name="degree">
-                                <option value="">Please select Degree</option>
+                                <option value="" disabled>Please select Degree</option>
+                                @if(old('degree')!=null)
+                                @foreach($educationList as $education)
+                                <option value="{{$education->id}}" @if(old('degree')==$education->id) selected @endif>{{$education->eduLevel}}</option>
+                                @endforeach
+                                @else
                                 @foreach($educationList as $education)
                                 <option value="{{$education->id}}" @if($edit->educationId==$education->id) selected @endif>{{$education->eduLevel}}</option>
                                 @endforeach
+                                @endif
                             </select>
                         @error('degree')
                             <span class="text-danger small">*{{$message}}</span><br>
@@ -243,10 +284,16 @@
                                 <span style="color: red">*</span>
                             </label>           
                             <select class="form-control" name="band">
-                                <option value="">Please select Band</option>
+                                <option value="" disabled>Please select Band</option>
+                                @if(old('band')!=null)
+                                @foreach($bandList as $band)
+                                <option value="{{$band->id}}" @if(old('band')==$band->id) selected @endif>{{$band->bandNo}}</option>
+                                @endforeach
+                                @else
                                 @foreach($bandList as $band)
                                 <option value="{{$band->id}}" @if($edit->bandId==$band->id) selected @endif>{{$band->bandNo}}</option>
                                 @endforeach
+                                @endif
                             </select>
                         @error('band')
                             <span class="text-danger small">*{{$message}}</span><br>
@@ -257,10 +304,16 @@
                                 <span style="color: red">*</span>
                             </label>           
                             <select class="form-control" name="pbc">
-                                <option value="">Please select PBC</option>
+                                <option value="" disabled>Please select PBC</option>
+                                @if(old('pbc')!=null)
+                                @foreach($pbcList as $pbc)
+                                <option value="{{$pbc->id}}" @if(old('pbc')==$pbc->id) selected @endif>{{$pbc->pbcNo}}</option>
+                                @endforeach
+                                @else
                                 @foreach($pbcList as $pbc)
                                 <option value="{{$pbc->id}}" @if($edit->PBCId==$pbc->id) selected @endif>{{$pbc->pbcNo}}</option>
                                 @endforeach
+                                @endif
                             </select>
                         </div>
                         
@@ -269,10 +322,16 @@
                                 <span style="color: red">*</span>
                             </label>           
                             <select class="form-control" name="japanese">
-                                <option value="">Please select Level</option>
+                                <option value="" disabled>Please select Japanese Level</option>
+                                @if(old('japanese')!=null)
+                                @foreach($japanList as $japanese)
+                                <option value="{{$japanese->id}}" @if(old('japanese')==$japanese->id) selected @endif>{{$japanese->jpnLevel}}</option>
+                                @endforeach
+                                @else
                                 @foreach($japanList as $japanese)
                                 <option value="{{$japanese->id}}"@if($edit->japaneseId==$japanese->id) selected @endif>{{$japanese->jpnLevel}}</option>
                                 @endforeach
+                                @endif
                             </select>
                         @error('japanese')
                             <span class="text-danger small">*{{$message}}</span><br>
@@ -283,10 +342,16 @@
                                 <span style="color: red">*</span>
                             </label>           
                             <select class="form-control" name="english">
-                                <option value="">Please select Level</option>
+                                <option value="" disabled>Please select Level</option>
+                                @if(old('english')!=null)
+                                @foreach($englishList as $english)
+                                <option value="{{$english->id}}" @if(old('english')==$english->id) selected @endif>{{$english->engExamType}} {{$english->engLevel}}</option>
+                                @endforeach
+                                @else
                                 @foreach($englishList as $english)
                                 <option value="{{$english->id}}" @if($edit->englishId==$english->id) selected @endif>{{$english->engExamType}} {{$english->engLevel}}</option>
                                 @endforeach
+                                @endif
                             </select>
                         @error('english')
                             <span class="text-danger small">*{{$message}}</span><br>

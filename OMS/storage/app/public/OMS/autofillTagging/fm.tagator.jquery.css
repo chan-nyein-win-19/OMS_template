@@ -98,9 +98,7 @@
 	position: relative;
 	z-index: 1;
 }
-.tagator_input {
-	/*padding: 0px 0px;*/
-}
+
 
 /* options holder */
 .tagator_options {
