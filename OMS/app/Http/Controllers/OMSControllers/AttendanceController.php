@@ -20,8 +20,21 @@ class AttendanceController extends Controller
     public function index(Dailyattendance $dailyattendance)
     {
         $id = Auth::user()->employeeid;
-        $dailyattendance = Dailyattendance::where('userid', $id)->get();
-        return view('attendance.index', compact('dailyattendance'));
+        $dailyAttendances = Dailyattendance::where('userid', $id)->get();
+        // foreach($dailyAttendances as $a){
+        //    $latetime=$a->latetime*60;          
+        //    $h=$latetime/60 | 0; 
+        //    $m=$latetime % 60;
+        //    $lateTime="$h:$m"; 
+        // }
+        // foreach($dailyAttendances as $b){
+        //     $otTime = $b->ottime*60;
+        //     $hr=$latetime/60 | 0;
+        //     $min=$latetime % 60;
+        //     $otTime="$hr:$min"; 
+            
+        // }
+        return view('attendance.index', compact('dailyAttendances'));
     }
 
     /**
@@ -76,7 +89,16 @@ class AttendanceController extends Controller
                 }
             }
         }
-
+        $latetime = request()->latetime;
+        $time = explode(":", $latetime);
+        $mins = $time[0]*60+$time[1];
+        $lateHour = $mins/60;
+        
+        $ottime = request()->ottime;
+        $ot = explode(":",$ottime);
+        $otmins = $ot[0]*60+$ot[1];
+        $otHour = round($otmins/60,2);
+         
         $dailyattendance = new Dailyattendance;
         $dailyattendance->userid = request()->employeeID;
         $dailyattendance->date = request()->attendanceDate;
@@ -87,8 +109,8 @@ class AttendanceController extends Controller
         $dailyattendance->halfdayleave = request()->halfDayLeave;
         $dailyattendance->leaveday = request()->leaveDay;
         $dailyattendance->workfromhome = request()->wfh;
-        $dailyattendance->ottime = request()->ottime;
-        $dailyattendance->latetime = request()->latetime;
+        $dailyattendance->ottime = $otHour;
+        $dailyattendance->latetime = $lateHour;
 
         $dailyattendance->save();
 
@@ -135,44 +157,62 @@ class AttendanceController extends Controller
         foreach ($users as $user) {
             if ($user->employeeid == $userId) {
                 foreach ($dailyattendances as $dailyattendance) {
+                    if ($dailyattendance->date == $request->attendanceDate && $dailyattendance->id != $id) {
+
+                        return back()->with('errmsg', 'The attendance date field already exists.');
+
+                    } else {
                         $validator = validator(request()->all(), [
                             'checkIn' => 'required',
                             'checkOut' => 'required',
                             'lunchTime' => 'required',
                             'workHour' => 'required',
-                            'attendanceDate'=>'unique:dailyAttendances,date,' . $id,
                         ]);
-        
+
                         if ($validator->fails()) {
                             return back()->withErrors($validator);
                         }
-                    
-        
-                Dailyattendance::findOrFail($id)->update([
-                    'userid' => request()->employeeID,
-                    'date' => request()->attendanceDate,
-                    'checkin' => request()->checkIn,
-                    'checkout' => request()->checkOut,
-                    'lunchtime' => request()->lunchTime,
-                    'workinghour' => request()->workHour,
-                    'halfdayleave' => request()->halfDayLeave,
-                    'leaveday' => request()->leaveDay,
-                    'workfromhome' => request()->wfh,
-                    'ottime' => request()->ottime,
-                    'latetime'=> request()->latetime,
+                    }
+                }
+            } else {
+                $validator = validator(request()->all(), [
+                    'checkIn' => 'required',
+                    'checkOut' => 'required',
+                    'lunchTime' => 'required',
+                    'workHour' => 'required',
                 ]);
-              
-                return redirect('attendance')->with('success', 'Attendance record has been updated successfully!!');
-                       
+
+                if ($validator->fails()) {
+                    return back()->withErrors($validator);
                 }
             }
         }
-    }
-            
+
+        $latetime = request()->latetime;
+        $time = explode(":", $latetime);
+        $mins = $time[0]*60+$time[1];
+        $lateHour = $mins/60;
         
-               
-                
-                  
+        $ottime = request()->ottime;
+        $ot = explode(":",$ottime);
+        $otmins = $ot[0]*60+$ot[1];
+        $otHour = round($otmins/60,2);
+
+        Dailyattendance::findOrFail($id)->update([
+            'userid' => request()->employeeID,
+            'date' => request()->attendanceDate,
+            'checkin' => request()->checkIn,
+            'checkout' => request()->checkOut,
+            'lunchtime' => request()->lunchTime,
+            'workinghour' => request()->workHour,
+            'halfdayleave' => request()->halfDayLeave,
+            'leaveday' => request()->leaveDay,
+            'workfromhome' => request()->wfh,
+            'ottime' => request()->ottime,
+            'latetime' => request()->latetime,
+        ]);
+        return redirect('attendance')->with('success', 'Attendance record has been updated successfully!!');;
+    }
 
     /**
      * Remove the specified resource from storage.

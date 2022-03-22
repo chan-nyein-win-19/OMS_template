@@ -24,6 +24,7 @@
     @endif
     <div class="container">
         <h3 class="text-center">Attendance List</h3>
+      
         <table class="mb-0 table table-hover" id="table">
             <thead>
                 <tr class="text-center">
@@ -41,7 +42,8 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($dailyattendance as $item)
+                @foreach($dailyAttendances as $item)
+                $latetime=
                 <tr class="text-center">
                     <td>{{ $item->userid }}</td>
                     <td>{{ $item->date }}</td>
@@ -130,4 +132,5 @@
             $('[data-toggle="tooltip"]').tooltip();
     })
     </script>
+   
 @endsection

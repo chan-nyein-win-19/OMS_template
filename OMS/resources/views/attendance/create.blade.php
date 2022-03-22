@@ -167,8 +167,8 @@
             diff=diff-60;
             }
         //OT time
-            if(diff>480){
-                var extra=diff-480;
+            if(timeStringToMins(time2)>1020){
+                var extra=timeStringToMins(time2)-1020;
             }
         // Format OT time as HH:MM and return             
             var extratime=z(extra/60 | 0) + ':' + z(extra % 60); 
@@ -185,7 +185,7 @@
             }
         // Format late time as HH:MM and return
             if(lateTime>0 ){
-                var late=(lateTime/15 | 0)*15+15;
+                var late=((lateTime-1)/15 | 0)*15+15;
                 var lateTimeDifference=z(late/60 | 0) + ':' + z(late % 60);
                 document.getElementById("latetime").value=lateTimeDifference;
             }
