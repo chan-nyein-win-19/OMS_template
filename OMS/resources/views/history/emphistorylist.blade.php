@@ -1,14 +1,11 @@
-@extends("layouts.app")
+@extends('layouts.app')
 
-@section('title','employee history list')
+@section('title','Employee History List')
 
-@section("style")
-    <link rel="stylesheet" href="{{ asset('/storage/OMS/bootstrap5/bootstrap.min.css') }}" >  
-    <link rel="stylesheet" href="{{ asset('/storage/OMS/css/style.css') }}">
-    <link rel="stylesheet" href="{{ asset('/storage/OMS/css/fixedColumns.bootstrap5.min.css') }}">
+@section('style')
     <link rel="stylesheet" href="{{ asset('/storage/OMS/data-tables/jquery.dataTables.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('/storage/OMS/data-tables/dataTables.bootstrap5.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('/storage/OMS/bootstrap5/bootstrapAjax.min.css') }}" >
+    <link rel="stylesheet" href="{{ asset('/storage/OMS/bootstrap5/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('/storage/OMS/css/style.css') }}">
 @endsection
 
 @section('topbar')
@@ -19,12 +16,16 @@
     @parent
 @endsection
 
-@section("content")
+@section('content')
+    @if(session('success'))
+    <div class="alert alert-success">
+        {{session('success')}}
+    </div>
+    @endif
     <div class="container">
-        <h3 style="text-align: center;">Employee History List</h3><br>
-        
-        <table class="table table-hover" id="example" style="width:100%">
-            <thead>
+        <h3 class="text-center">Employee History List</h3>
+        <table class="mb-0 table table-hover" id="table">
+        <thead>
             <tr>
                 <th>AccessEmployee</th>
                 <th>UserName</th>
@@ -80,10 +81,9 @@
             </tbody>
         </table>
     </div>
-   
 @endsection
 
-@section('script')   
+@section('script')
     <script src="{{ asset('/storage/OMS/data-tables/jquery.js') }}"></script>
     <script src="{{ asset('/storage/OMS/data-tables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('/storage/OMS/bootbox/bootbox.all.js') }}"></script>
@@ -91,62 +91,18 @@
     <script src="{{ asset('/storage/OMS/bootstrap5/bootstrap.min.js') }}"></script>
     <script src="{{ asset('/storage/OMS/bootstrap5/popper.min.js') }}"></script>
     <script src="{{ asset('/storage/OMS/bootstrap5/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ asset('/storage/OMS/JQuery/jquery-3.5.1.js') }}"></script>
-    <script src="{{ asset('/storage/OMS/js/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ asset('/storage/OMS/js/dataTables.bootstrap5.min.js') }}"></script>
-    <script src="{{ asset('/storage/OMS/js/dataTables.fixedColumns.min.js') }}"></script>
-    <script>
-        jQuery(function($) {
-        //initiate dataTables plugin
-        var myTable = 
-        $('#table')
-        .DataTable({
-            bAutoWidth: false,
-            "aoColumns": [
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null
-            ],
-            "aaSorting": [],
-                select: {
-                    style: 'multi'
-                }
-            });
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#table').DataTable();
+            setTimeout(() => {
+                $('.alert-success').addClass('d-none');;
+            }, 3000);
         });
     </script>
+
     <script>
-        $(document).on('click','a.paginate_button',function(event){
-            $('[data-toggle="tooltip"]').tooltip();                            
-        })
+        $(document).on('click', 'a.paginate_button', function(event) {
+            $('[data-toggle="tooltip"]').tooltip();
+    })
     </script>
-    <script>
-        $(document).ready(function() {
-        var table = $('#example').DataTable( {
-        scrollY:        "300px",
-        scrollX:        true,
-        scrollCollapse: true,
-        paging:         false,
-        fixedColumns:   true,
-    } );
-} );
-    </script>
-@endsection 
+@endsection
