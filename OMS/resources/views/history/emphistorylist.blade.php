@@ -5,10 +5,10 @@
 @section("style")
     <link rel="stylesheet" href="{{ asset('/storage/OMS/bootstrap5/bootstrap.min.css') }}" >  
     <link rel="stylesheet" href="{{ asset('/storage/OMS/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('/storage/OMS/css/fixedColumns.bootstrap5.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/storage/OMS/data-tables/jquery.dataTables.min.css') }}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/fixedcolumns/4.0.2/css/fixedColumns.bootstrap5.min.css">
+    <link rel="stylesheet" href="{{ asset('/storage/OMS/data-tables/dataTables.bootstrap5.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('/storage/OMS/bootstrap5/bootstrapAjax.min.css') }}" >
 @endsection
 
 @section('topbar')
@@ -91,10 +91,10 @@
     <script src="{{ asset('/storage/OMS/bootstrap5/bootstrap.min.js') }}"></script>
     <script src="{{ asset('/storage/OMS/bootstrap5/popper.min.js') }}"></script>
     <script src="{{ asset('/storage/OMS/bootstrap5/bootstrap.bundle.min.js') }}"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
-    <script src="https://cdn.datatables.net/fixedcolumns/4.0.2/js/dataTables.fixedColumns.min.js"></script>
+    <script src="{{ asset('/storage/OMS/JQuery/jquery-3.5.1.js') }}"></script>
+    <script src="{{ asset('/storage/OMS/js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('/storage/OMS/js/dataTables.bootstrap5.min.js') }}"></script>
+    <script src="{{ asset('/storage/OMS/js/dataTables.fixedColumns.min.js') }}"></script>
     <script>
         jQuery(function($) {
         //initiate dataTables plugin
