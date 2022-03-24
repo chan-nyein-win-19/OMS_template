@@ -30,6 +30,9 @@
     <div class="container-fluid">
         <div class="row mt-3">
             <h3 class="text-center">PBC Changes History List</h3>
+            <div class="col-sm-12 mt-2">
+                <a href="{{ url('/pbc') }}" class="mb-2 mr-2 btn btn-primary float-right">Back</a>
+            </div>
             <table class="mb-0 table table-hover" id="pbc">
                 <thead>
                     <tr>
@@ -50,9 +53,6 @@
                     @endforeach                
                 </tbody>
             </table>
-            <div class="col-sm-12 mt-2">
-                <a href="{{ url('/pbc') }}" class="mb-2 mr-2 btn btn-primary float-right">Back</a>
-            </div>
         </div>
     </div>
 @endsection

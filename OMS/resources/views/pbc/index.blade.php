@@ -70,13 +70,14 @@
                     </form>
                 </div>            
             </div>
+            <div class=" float-right">
+                <a href="{{ url('/pbcchangeshistory') }}" class="mb-2 mr-2 btn btn-primary float-right">History</a>
+            <div>
             <div class="col-md-2 col-sm-1"></div>
-        </div>
-        <br>
-        <hr>
-        <div class="row mt-3">
-        
-            <h3 class="text-center"><a href="{{ url('/pbcchangeshistory') }}" class="mb-2 mr-2 btn btn-primary float-left">History</a>PBC Changes History List</h3>
+            </div>
+            <br>
+            <hr>
+            <div class="row mt-3">
             <table class="mb-0 table table-hover" id="pbc">
                 <thead>
                     <tr>

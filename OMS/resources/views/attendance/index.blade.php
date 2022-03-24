@@ -43,7 +43,6 @@
             </thead>
             <tbody>
                 @foreach($dailyAttendances as $item)
-                $latetime=
                 <tr class="text-center">
                     <td>{{ $item->userid }}</td>
                     <td>{{ $item->date }}</td>

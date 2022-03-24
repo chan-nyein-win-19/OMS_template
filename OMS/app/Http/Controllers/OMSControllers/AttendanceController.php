@@ -21,19 +21,17 @@ class AttendanceController extends Controller
     {
         $id = Auth::user()->employeeid;
         $dailyAttendances = Dailyattendance::where('userid', $id)->get();
-        // foreach($dailyAttendances as $a){
-        //    $latetime=$a->latetime*60;          
-        //    $h=$latetime/60 | 0; 
-        //    $m=$latetime % 60;
-        //    $lateTime="$h:$m"; 
-        // }
-        // foreach($dailyAttendances as $b){
-        //     $otTime = $b->ottime*60;
-        //     $hr=$latetime/60 | 0;
-        //     $min=$latetime % 60;
-        //     $otTime="$hr:$min"; 
-            
-        // }
+       
+        foreach($dailyAttendances as $a){
+           $latetime=$a->latetime*60;         
+           $lateTime=intdiv($latetime, 60).':'. ($latetime % 60);
+           $a->latetime=date("H:i",strtotime($lateTime));
+        }
+        foreach($dailyAttendances as $ot){
+            $ottime=$ot->ottime*60;         
+            $otTime=intdiv($ottime, 60).':'. ($ottime % 60);
+            $ot->ottime=date("H:i",strtotime($otTime));
+         }
         return view('attendance.index', compact('dailyAttendances'));
     }
 
@@ -193,6 +191,7 @@ class AttendanceController extends Controller
         $mins = $time[0]*60+$time[1];
         $lateHour = $mins/60;
         
+        
         $ottime = request()->ottime;
         $ot = explode(":",$ottime);
         $otmins = $ot[0]*60+$ot[1];
@@ -208,8 +207,8 @@ class AttendanceController extends Controller
             'halfdayleave' => request()->halfDayLeave,
             'leaveday' => request()->leaveDay,
             'workfromhome' => request()->wfh,
-            'ottime' => request()->ottime,
-            'latetime' => request()->latetime,
+            'ottime' => $otHour,
+            'latetime' => $lateHour,
         ]);
         return redirect('attendance')->with('success', 'Attendance record has been updated successfully!!');;
     }

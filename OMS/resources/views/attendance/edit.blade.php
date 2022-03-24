@@ -175,9 +175,9 @@
             if (timeStringToMins(time2) > 720) {
                 diff = diff - 60;
             }
-             //OT time
-             if(diff>480){
-                var extra=diff-480;
+            //OT time
+            if(timeStringToMins(time2)>1020){
+                var extra=timeStringToMins(time2)-1020;
             }
             // Format OT time as HH:MM and return             
             var extratime=z(extra/60 | 0) + ':' + z(extra % 60); 
@@ -187,6 +187,7 @@
                 document.getElementById("ottime").value="00:00";
             }
             //end   
+          
             // late time
             if(timeStringToMins(time1)>480){
                 var lateTime = timeStringToMins(time1)-480;
