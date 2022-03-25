@@ -23,6 +23,9 @@ use App\Http\Controllers\OMSControllers\OtherAssetController;
 use App\Http\Controllers\OMSControllers\SubbrandController;
 use App\Http\Controllers\OMSControllers\SalaryControllers\PbcController;
 use App\Http\Controllers\OMSControllers\SalaryControllers\PbcChangesHistoryController;
+use Rap2hpoutre\FastExcel\FastExcel;
+use App\Models\Dailyattendance;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -145,6 +148,12 @@ Route::group(['middleware'=>['checkRole:Employee']],function(){
     Route::resource('attendance',AttendanceController::class);
     Route::post('/update/{id}',[AttendanceController::class, 'update']);
 // end
+//attendance
+Route::get('/attendanceList',[AttendanceController::class, 'showAttendance']);
+Route::get('/export',[AttendanceController::class, 'exprot']);
+Route::get('/import',[AttendanceController::class, 'import']);
+Route::post('/importexcel',[AttendanceController::class, 'excelstore']);
+//end
     
 });
 
@@ -165,10 +174,6 @@ Route::middleware(['auth'])->group(function(){
         Route::get('/changepassword/{id}',[AccountController::class,'editPassword']);
         Route::post('/changepassword/{id}',[AccountController::class,'changePassword']);
     // end
-    //attendance
-    Route::get('/attendanceList',[AttendanceController::class, 'showAttendance']);
-    //end
-
     Route::get('/announceDetails/{id}',[AnnouncementController::class, 'show']);
     
 });

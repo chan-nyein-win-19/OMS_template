@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Dailyattendance;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Rap2hpoutre\FastExcel\FastExcel;
 use Auth;
 
 
@@ -34,7 +35,17 @@ class AttendanceController extends Controller
          }
         return view('attendance.index', compact('dailyAttendances'));
     }
+    
+    public function exprot()
+    {
+        $dailyAtt = Dailyattendance::all();
 
+        // Export all Attendance
+        (new FastExcel($dailyAtt))->export('file.xlsx');
+        return (new FastExcel(Dailyattendance::all()))->download('file.xlsx');
+    }
+  
+  
     /**
      * Show the form for creating a new resource.
      *
@@ -113,6 +124,31 @@ class AttendanceController extends Controller
         $dailyattendance->save();
 
         return redirect('attendance')->with('success', 'Attendance record has been saved successfully!!');
+    }
+    public function import()
+    {
+        return view('attendance.excelimport');
+    }
+    public function excelstore()
+    {
+        $collection = fastexcel()->import('file.xlsx');
+        $collection = (new FastExcel)->import('file.xlsx');
+        $empAttendances = (new FastExcel)->import('file.xlsx', function ($file) {
+            return DailyAttendance::create([
+                'userid' => $file['userid'],
+                'date' => $file['date'],
+                'checkin' => $file['checkin'],
+                'checkout' => $file['checkout'],
+                'lunchtime' => $file['lunchtime'],
+                'workinghour' => $file['workinghour'],
+                'halfdayleave' => $file['halfdayleave'],
+                'leaveday' => $file['leaveday'],
+                'workfromhome' => $file['workfromhome'],
+                'ottime' => $file['ottime'],
+                'latetime' => $file['latetime']
+            ]);
+        });
+        return redirect('attendance')->with('success', 'Excel Attendance record has been saved successfully!!');
     }
 
     /**

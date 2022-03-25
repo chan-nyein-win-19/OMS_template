@@ -74,8 +74,9 @@
             </tbody>
         </table>
         <div class="col-sm-12 mt-2">
-                <a href="{{ url('/attendance/create') }}" class="mb-2 mr-2 btn btn-primary float-right">Back</a>
-            </div>
+            <a href="{{ url('/export') }}" class="mb-2 mr-2 btn btn-primary float-right">Export</a>
+            <a href="{{ url('/attendance/create') }}" class="mb-2 mr-2 btn btn-primary float-right">Back</a>
+        </div>
     </div>
 @endsection
 

@@ -19,6 +19,11 @@
     <div class="container pt-80 mb-100 text-center">
         <h3 class="sub-title">Employee Attendance Form</h3><br>
         <div class="row">
+            <div class="col-sm-12 mt-2">
+                <a href="{{ url('/import') }}" class="mb-2 mr-2 btn btn-primary float-right">Excel Import</a>
+            </div>
+        </div>
+        <div class="row">
             <div class="main-card mb-3 card ">
                 <div class="card-body">
                     <form method="post" action="{{ route('attendance.store') }}" class="container">
