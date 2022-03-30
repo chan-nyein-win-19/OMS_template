@@ -6,6 +6,10 @@
     <link rel="stylesheet" href="{{ asset('/storage/OMS/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('/storage/OMS/data-tables/jquery.dataTables.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/storage/OMS/bootstrap5/bootstrap.min.css') }}">
+
+    <link rel="stylesheet" href="{{ asset('/storage/OMS/css/datepicker.min.css') }}">
+    <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.2.0/css/datepicker.min.css" rel="stylesheet"> -->
+
 @endsection
 
 @section('topbar')
@@ -65,7 +69,7 @@
                                 <span style="color: red">*</span>
                             </label>
                             <div class="col-sm-10">
-                            <input type="number" class="form-control" name="year" min="1900" max="2099" step="1" value="2022" />
+                            <input type="text" class="form-control" name="datepicker" id="datepicker" />
                                 @error("year")
                                 <span class="text-danger">{{ $errors->first('year') }}</span>
                                 @enderror  
@@ -133,6 +137,10 @@
     <script src="{{ asset('/storage/OMS/bootstrap5/bootstrap.min.js') }}"></script>
     <script src="{{ asset('/storage/OMS/bootstrap5/popper.min.js') }}"></script>
     <script src="{{ asset('/storage/OMS/bootstrap5/bootstrap.bundle.min.js') }}"></script>
+
+    <script src="{{ asset('/storage/OMS/bootstrap5/bootstrap-datepicker.min.js') }}"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.2.0/js/bootstrap-datepicker.min.js"></script> -->
+  
     <script type="text/javascript">    
         $(document).ready(function() {
             $('#pbc').DataTable();
@@ -173,4 +181,14 @@
             $('[data-toggle="tooltip"]').tooltip();
         });
     </script>
+   <script>
+    $(document).ready(function(){
+    $("#datepicker").datepicker({
+        format: "yyyy",
+        viewMode: "years", 
+        minViewMode: "years",
+        autoclose:true
+    });   
+    })
+ </script>
 @endsection
