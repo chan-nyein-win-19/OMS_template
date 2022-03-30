@@ -5,6 +5,7 @@
 @section('style')
     <link rel="stylesheet" href="{{ asset('/storage/OMS/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('/storage/OMS/bootstrap5/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('/storage/OMS/css/datepicker.min.css') }}">
 @endsection
 
 @section('topbar')
@@ -57,7 +58,7 @@
                                 <span style="color: red">*</span>
                             </label>
                             <div class="col-sm-10">
-                            <input type="number" class="form-control" name="year" min="1900" max="2099" step="1"  value="{{ old('year')? old('year') : $edit->year }}" />
+                            <input type="text" class="form-control" name="datepicker" id="datepicker" />
                                 @error("year")
                                 <span class="text-danger">{{ $errors->first('year') }}</span>
                                 @enderror  
@@ -79,5 +80,16 @@
 @endsection
 
 @section('script')
-
+<script src="{{ asset('/storage/OMS/bootstrap5/bootstrap.bundle.min.js') }}"></script>
+<script src="{{ asset('/storage/OMS/bootstrap5/bootstrap-datepicker.min.js') }}"></script>
+<script>
+    $(document).ready(function(){
+    $("#datepicker").datepicker({
+        format: "yyyy",
+        viewMode: "years", 
+        minViewMode: "years",
+        autoclose:true
+    });   
+    })
+ </script>
 @endsection
