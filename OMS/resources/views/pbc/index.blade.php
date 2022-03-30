@@ -61,6 +61,17 @@
                             </div>
                         </div> 
                         <div class="position-relative row form-group">
+                            <label class="col-sm-2 col-form-label">Year
+                                <span style="color: red">*</span>
+                            </label>
+                            <div class="col-sm-10">
+                            <input type="number" class="form-control" name="year" min="1900" max="2099" step="1" value="2022" />
+                                @error("year")
+                                <span class="text-danger">{{ $errors->first('year') }}</span>
+                                @enderror  
+                            </div>
+                        </div> 
+                        <div class="position-relative row form-group">
                             <div class="col-sm-4"></div>
                             <div class="col-sm-6" >
                                 <button type="submit" class="btn btn-primary mr-2">Create</button>
@@ -83,6 +94,7 @@
                     <tr>
                         <th>PBC No.</th>
                         <th>Allowance</th>
+                        <th>Year</th>
                         <th>Action</th>
                     </tr> 
                 </thead>
@@ -91,6 +103,7 @@
                         <tr>
                             <td>{{ $item->pbcNo }}</td>
                             <td>{{ $item->allowance }}</td>
+                            <td>{{ $item->year}}</td>
                             <td>
                                 <a href="{{ route('pbc.edit', $item->id) }}" class="mb-2 mr-2 btn-transition btn btn-outline-primary"  data-toggle="tooltip" title="Edit">
                                     <i class="fa fa-fw"></i>

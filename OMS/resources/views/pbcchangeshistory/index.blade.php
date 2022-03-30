@@ -36,19 +36,25 @@
             <table class="mb-0 table table-hover" id="pbc">
                 <thead>
                     <tr>
-                        <th>Employee Id</th>
+                        <th>Employee Name</th>
+                        <th>PBC Name</th>
                         <th>Old Allowance</th>
                         <th>New Allowance</th>
+                        <th>Year</th>
                         <th>Update Date</th>
+                        <th>Status</th>
                     </tr> 
                 </thead>
                 <tbody>  
                     @foreach ($list as $item)              
                         <tr>
-                            <td>{{ $item->employeeId }}</td>
+                            <td>{{ $item->employeeName }}</td>
+                            <td>{{ $item->pbcNo }}</td>
                             <td>{{ $item->oldAllowance }}</td>
                             <td>{{ $item->newAllowance }}</td>
+                            <td>{{ $item->year }}</td>
                             <td>{{ $item->updated_at }}</td>
+                            <td>{{ $item->status}}</td>
                         </tr>  
                     @endforeach                
                 </tbody>

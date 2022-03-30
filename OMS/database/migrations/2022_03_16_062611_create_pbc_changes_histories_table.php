@@ -15,9 +15,12 @@ class CreatePbcChangesHistoriesTable extends Migration
     {
         Schema::create('pbc_changes_histories', function (Blueprint $table) {
             $table->id();
-            $table->String('employeeId');
+            $table->String('employeeName');
+            $table->string('pbcNo');
             $table->double('oldAllowance');
             $table->double('newAllowance');
+            $table->integer('year');
+            $table->String('status');
             $table->integer('pbcid');
             $table->timestamps();
         });

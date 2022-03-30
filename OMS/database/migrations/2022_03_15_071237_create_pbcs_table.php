@@ -17,6 +17,7 @@ class CreatePbcsTable extends Migration
             $table->id();
             $table->string('pbcNo');
             $table->double('allowance')->unsigned();
+            $table->integer('year');
             $table->timestamps();
         });
     }

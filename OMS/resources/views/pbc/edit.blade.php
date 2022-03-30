@@ -33,10 +33,10 @@
                                 <span style="color: red">*</span>
                             </label>                        
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" name="pbcNo" value="{{ old('pbcNo')? old('pbcNo') : $edit->pbcNo }}" 
+                                <input type="text" class="form-control" name="pbcno" value="{{ old('pbcNo')? old('pbcNo') : $edit->pbcNo }}" 
                                     placeholder="Please Enter Pbc Number"/>
-                                @error("pbcNo")
-                                <span class="text-danger"> {{ $errors->first('pbcNo') }} </span>
+                                @error("pbcno")
+                                <span class="text-danger"> {{ $errors->first('pbcno') }} </span>
                                 @enderror
                             </div>
                         </div>
@@ -50,6 +50,17 @@
                                 @error("allowance")
                                 <span class="text-danger"> {{ $errors->first('allowance') }} </span>
                                 @enderror
+                            </div>
+                        </div> 
+                        <div class="position-relative row form-group">
+                            <label class="col-sm-2 col-form-label">Year
+                                <span style="color: red">*</span>
+                            </label>
+                            <div class="col-sm-10">
+                            <input type="number" class="form-control" name="year" min="1900" max="2099" step="1"  value="{{ old('year')? old('year') : $edit->year }}" />
+                                @error("year")
+                                <span class="text-danger">{{ $errors->first('year') }}</span>
+                                @enderror  
                             </div>
                         </div> 
                         <div class="position-relative row form-group">

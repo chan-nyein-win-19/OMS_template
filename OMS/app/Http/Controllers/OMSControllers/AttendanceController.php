@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Rap2hpoutre\FastExcel\FastExcel;
 use Auth;
+use Validator;
 
 
 class AttendanceController extends Controller
@@ -130,10 +131,32 @@ class AttendanceController extends Controller
         return view('attendance.excelimport');
     }
     public function excelstore()
-    {
-        $collection = fastexcel()->import('file.xlsx');
-        $collection = (new FastExcel)->import('file.xlsx');
-        $empAttendances = (new FastExcel)->import('file.xlsx', function ($file) {
+    {   
+        $validator=validator(request()->all(), [
+            'file' => 'required',
+           
+        ]);
+        if ($validator->fails()) {
+            return back()->with('errmsg', 'no file upload');
+        }
+
+        $validator=validator(request()->all(), [
+                'userid' => 'required',
+                'date' => 'required',
+                'checkin' => 'required',
+                'checkout' => 'required',
+                'lunchtime' => 'required',
+                'workinghour' => 'required',
+                'halfdayleave' => 'required',
+                'leaveday' => 'required',
+                'workfromhome' => 'required',
+                'ottime' => 'required',
+                'latetime' => 'required',
+            ]);
+            if ($validator->fails()) {
+                return back()->withErrors($validator);
+            }
+            $empAttendances = (new FastExcel)->import('file.xlsx', function ($file) {
             return DailyAttendance::create([
                 'userid' => $file['userid'],
                 'date' => $file['date'],
@@ -148,6 +171,7 @@ class AttendanceController extends Controller
                 'latetime' => $file['latetime']
             ]);
         });
+    
         return redirect('attendance')->with('success', 'Excel Attendance record has been saved successfully!!');
     }
 

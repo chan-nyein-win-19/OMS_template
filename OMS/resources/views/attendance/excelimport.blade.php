@@ -24,7 +24,10 @@
                     <form method="post" action="{{ url('/importexcel') }}" class="container">
                         @csrf
                         <div class="form-group">
-                            <input type="file" name="file" />
+                            <input type="file" name="file" accept=".xlsx, .xls, .csv"/>
+                            @if(session('errmsg'))
+                                <span class="text-danger"> {{session('errmsg')}} </span>
+                            @endif
                             <button type="submit" class="btn btn-primary">Import</button>
                         </div>
                     </form>

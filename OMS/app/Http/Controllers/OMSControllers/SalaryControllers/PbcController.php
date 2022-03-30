@@ -47,6 +47,7 @@ class PbcController extends Controller
         $validator = validator(request()->all(), [
             'pbcno' => 'required',
             'allowance' => 'required|regex:/^[0-9]+(\.[0-9][0-9]?)?$/',
+            'year'=>'required',
         ]);
         if( $validator->fails() ) {
             return back()->withErrors($validator);
@@ -55,13 +56,17 @@ class PbcController extends Controller
         $pbc= new Pbc;
         $pbc->pbcNo = request()->pbcno;
         $pbc->allowance = request()->allowance;
+        $pbc->year = request()->year;
         $pbc->save();
      
         
         $pbcchangeshistory= new PbcChangesHistory;
-        $pbcchangeshistory->employeeId = Auth::user()->employeeid;
-        $pbcchangeshistory->oldAllowance=request()->allowance;
+        $pbcchangeshistory->employeeName= Auth::user()->username;
+        $pbcchangeshistory->pbcNo=request()->pbcno;
+        $pbcchangeshistory->oldAllowance= 0;
         $pbcchangeshistory->newAllowance=request()->allowance;
+        $pbcchangeshistory->year=request()->year;
+        $pbcchangeshistory->status='Insert';
         $pbcchangeshistory->pbcid=$pbc->id;
         $pbcchangeshistory->save();
         return redirect('pbc')->with('info','Pbc has been added successfully');
@@ -105,24 +110,37 @@ class PbcController extends Controller
         //
         $pbc = Pbc::find($id);
         $validator = validator(request()->all(), [
-            'pbcNo' => 'required',
+            'pbcno' => 'required',
             'allowance' => 'required|regex:/^[0-9]+(\.[0-9][0-9]?)?$/',
+            'year'=>'required',
         ]);
         if( $validator->fails() ) {
             return back()->withErrors($validator);
         }
-        $pbc->pbcNo = request()->pbcNo;
-        $pbc->allowance = request()->allowance;
-        $pbc->save();
-       
+        if($pbc->allowance!=request()->allowance){
+           
         $pbcchangeshistory= new PbcChangesHistory;
-        $pbcchangeshistory->employeeId = Auth::user()->employeeid;
+        $pbcchangeshistory->employeeName=Auth::user()->username;
+        $pbcchangeshistory->pbcNo=request()->pbcno;
         $pbcchangeshistory->oldAllowance=$pbc->allowance;
         $pbcchangeshistory->newAllowance=request()->allowance;
+        $pbcchangeshistory->year=request()->year;
         $pbcchangeshistory->pbcid=$pbc->id;
+        $pbcchangeshistory->status='Update';
         $pbcchangeshistory->save();
+        $pbc->pbcNo = request()->pbcno;
+        $pbc->allowance = request()->allowance;
+        $pbc->year = request()->year;
+        $pbc->save();
         return redirect('pbc')->with('success','Pbc has been updated successfully');
-
+        }
+        else{
+            $pbc->pbcNo = request()->pbcno;
+            $pbc->allowance = request()->allowance;
+            $pbc->year = request()->year;
+            $pbc->save();
+            return redirect('pbc');
+        }
         
     }
 
@@ -135,8 +153,19 @@ class PbcController extends Controller
     public function destroy($id)
     {
         //
-        $delete = Pbc::find($id);
-        $delete->delete();
+        $pbc = Pbc::find($id);
+        dd('show');
+        $pbcchangeshistory= new PbcChangesHistory;
+        $pbcchangeshistory->employeeName=Auth::user()->username;
+        $pbcchangeshistory->pbcNo=$pbc->pbcNo;
+        $pbcchangeshistory->oldAllowance=$pbc->allowance;
+        $pbcchangeshistory->newAllowance=0;
+        $pbcchangeshistory->year=$pbc->year;
+        $pbcchangeshistory->pbcid=$pbc->id;
+        $pbcchangeshistory->status='Delete';
+        $pbcchangeshistory->save();
+
+        $pbc->delete();
         return back()->with('info', 'Pbc has been deleted successfully');
     }
 }
