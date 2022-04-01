@@ -133,29 +133,13 @@ class AttendanceController extends Controller
     public function excelstore()
     {   
         $validator=validator(request()->all(), [
-            'file' => 'required',
-           
+            'file' => 'required|mimes:xls,xlsx',
+            dd('show'),
         ]);
         if ($validator->fails()) {
             return back()->with('errmsg', 'no file upload');
+           
         }
-
-        $validator=validator(request()->all(), [
-                'userid' => 'required',
-                'date' => 'required',
-                'checkin' => 'required',
-                'checkout' => 'required',
-                'lunchtime' => 'required',
-                'workinghour' => 'required',
-                'halfdayleave' => 'required',
-                'leaveday' => 'required',
-                'workfromhome' => 'required',
-                'ottime' => 'required',
-                'latetime' => 'required',
-            ]);
-            if ($validator->fails()) {
-                return back()->withErrors($validator);
-            }
             $empAttendances = (new FastExcel)->import('file.xlsx', function ($file) {
             return DailyAttendance::create([
                 'userid' => $file['userid'],
@@ -230,6 +214,8 @@ class AttendanceController extends Controller
                         if ($validator->fails()) {
                             return back()->withErrors($validator);
                         }
+
+                        return redirect('attendance');
                     }
                 }
             } else {
@@ -270,7 +256,7 @@ class AttendanceController extends Controller
             'ottime' => $otHour,
             'latetime' => $lateHour,
         ]);
-        return redirect('attendance')->with('success', 'Attendance record has been updated successfully!!');;
+        return redirect('attendance')->with('success', 'Attendance record has been updated successfully!!');
     }
 
     /**
